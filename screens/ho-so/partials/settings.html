@@ -1,0 +1,221 @@
+  <section class="section profile-body" id="cai-dat">
+    <div class="container">
+      <div class="profile-grid">
+        <aside class="profile-side">
+          <nav class="profile-nav" aria-label="Menu tài khoản">
+            <a href="#ho-so" aria-current="page">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-user"></use>
+              </svg>
+              Hồ sơ cá nhân
+            </a>
+            <a href="#">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-route"></use>
+              </svg>
+              Chuyến của tôi
+            </a>
+            <a href="#">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-wallet"></use>
+              </svg>
+              Ví & khuyến mãi
+            </a>
+            <a href="#" class="is-exit">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-logout"></use>
+              </svg>
+              Đăng xuất
+            </a>
+          </nav>
+          <div class="profile-help">
+            <strong>Cần hỗ trợ?</strong>
+            Gọi <a href="tel:19001234">1900 1234</a> hoặc email
+            <a href="mailto:hotro@vivuviet.vn">hotro@vivuviet.vn</a> — phản hồi
+            trong 30 phút.
+          </div>
+        </aside>
+
+        <form class="profile-form" id="profileForm" novalidate>
+          <section class="profile-panel reveal">
+            <h2 class="profile-legend">Thông tin cá nhân</h2>
+            <p>Thông tin hiển thị với tài xế khi bạn đặt chuyến.</p>
+            <div class="profile-fields">
+              <div class="field">
+                <label for="fullName">Họ và tên</label>
+                <div class="field-control">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-user"></use>
+                  </svg>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value="Nguyễn Thu Hà"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field profile-field--locked">
+                <div class="profile-label-row">
+                  <label for="phone">Số điện thoại</label>
+                  <span class="badge badge--green">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-check"></use>
+                    </svg>
+                    Đã xác thực
+                  </span>
+                </div>
+                <div class="field-control">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-phone"></use>
+                  </svg>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value="0912 345 678"
+                    readonly
+                    aria-readonly="true"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <div class="field-control">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-mail"></use>
+                  </svg>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="thuha.nguyen@gmail.com"
+                    autocomplete="email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="birthDate">Ngày sinh</label>
+                <div class="field-control">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-calendar"></use>
+                  </svg>
+                  <input
+                    type="date"
+                    id="birthDate"
+                    name="birthDate"
+                    value="1998-06-14"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="gender">Giới tính</label>
+                <div class="field-control select-wrap">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-users"></use>
+                  </svg>
+                  <select id="gender" name="gender">
+                    <option value="nu" selected>Nữ</option>
+                    <option value="nam">Nam</option>
+                    <option value="khac">Khác</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="profile-panel reveal" style="--reveal-delay: 60ms">
+            <h2 class="profile-legend">Địa chỉ & đi chung</h2>
+            <p>Gợi ý tuyến và điểm đón phù hợp với thói quen của bạn.</p>
+            <div class="profile-fields">
+              <div class="field field--full">
+                <label for="address">Địa chỉ đón mặc định</label>
+                <div class="field-control">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-pin"></use>
+                  </svg>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value="Số 12, ngõ 45 Nguyễn Chánh, Cầu Giấy, Hà Nội"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="homeCity">Tỉnh / thành thường đi</label>
+                <div class="field-control select-wrap">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-map"></use>
+                  </svg>
+                  <select id="homeCity" name="homeCity">
+                    <option value="hanoi" selected>Hà Nội</option>
+                    <option value="haiphong">Hải Phòng</option>
+                    <option value="thanhhoa">Thanh Hóa</option>
+                    <option value="danang">Đà Nẵng</option>
+                    <option value="hcm">TP. Hồ Chí Minh</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="prefVehicle">Loại xe ưa thích</label>
+                <div class="field-control select-wrap">
+                  <svg class="icon field-icon" aria-hidden="true">
+                    <use href="#i-car"></use>
+                  </svg>
+                  <select id="prefVehicle" name="prefVehicle">
+                    <option value="van9" selected>Xe van 9 chỗ</option>
+                    <option value="xe16">Xe 16 chỗ</option>
+                    <option value="xe29">Xe 29 chỗ</option>
+                    <option value="any">Bất kỳ</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field field--full">
+                <label for="noteDriver">Ghi chú cho tài xế</label>
+                <textarea
+                  id="noteDriver"
+                  name="noteDriver"
+                  placeholder="VD: Đón ở cổng B tòa nhà, có 1 vali nhỏ..."
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+          <div class="profile-actions">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="saveProfileBtn"
+              disabled
+            >
+              <span class="btn-label">Lưu thay đổi</span>
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-check"></use>
+              </svg>
+            </button>
+            <button type="button" class="btn btn-ghost" id="resetProfileBtn">
+              Hoàn tác
+            </button>
+          </div>
+          <div
+            class="form-status"
+            id="profileStatus"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
