@@ -47,17 +47,16 @@ design/
 │   ├── assets/            # favicon.svg, logo.svg, image.png, icon.html (*)
 │   └── screens/loi/       # trang lỗi 404/500 dùng chung → shared/404.html
 ├── khach-hang/            # NHÓM: end user (shell M + shell U + auth khách)
-│   ├── components/ · css/ · js/
+│   ├── components/ · css/ · js/          # dùng chung ≥2 màn TRONG nhóm
 │   └── screens/
-│       ├── home/{screen.json, partials/}   # → khach-hang/index.html (trang chủ)
-│       ├── dang-nhap/ · dang-ky/           # → khach-hang/*.html
-│       └── ho-so/{screen.json, partials/}  # → khach-hang/ho-so.html
+│       └── <màn>/{screen.json, partials/, css/, js/}  # css/ js/ = RIÊNG màn
+│           # home/ · dang-nhap/ · dang-ky/ → khach-hang/*.html
 ├── tai-xe/                # NHÓM: tài xế (shell D) — tổ chức Y HỆT khach-hang/
 │   ├── components/ · css/ · js/
-│   └── screens/<màn>/{screen.json, partials/}
+│   └── screens/<màn>/{screen.json, partials/, css/, js/}
 └── admin/                 # NHÓM: quản trị (shell A) — tổ chức Y HỆT khach-hang/
     ├── components/ · css/ · js/
-    └── screens/<màn>/{screen.json, partials/}
+    └── screens/<màn>/{screen.json, partials/, css/, js/}
 ```
 
 - Mỗi vai trò là **một web riêng**, file vào của web nằm **trong nhóm của nó**
@@ -67,22 +66,38 @@ design/
 - **Không có file `.html` build nào ở gốc** — mọi output nằm trong `<nhóm>/`
   hoặc `shared/`.
 
-- **Phân loại tài nguyên:** css/js/component dùng chung ≥2 nhóm → `shared/`;
-  riêng 1 nhóm → `<nhóm>/` tương ứng. Mỗi màn = `<nhóm>/screens/<màn>/` gồm
-  `screen.json` (khai báo `output`, `base`, `title`, `description`, `css[]`,
-  `js[]`, `partials[]`) + `partials/`.
+- **Phân loại tài nguyên (3 tầng, nguyên tắc "≥2 mới nâng cấp"):**
+  - Dùng bởi **1 màn** → `<nhóm>/screens/<màn>/css|js/` (riêng màn).
+  - Dùng bởi **≥2 màn cùng nhóm** → `<nhóm>/css|js/` (riêng nhóm).
+  - Dùng bởi **≥2 nhóm** → `shared/` (dùng chung toàn hệ).
+  - Mặc định khi tạo màn mới: đặt style/script vào `screens/<màn>/css|js/`;
+    chỉ nâng lên `<nhóm>/` khi có màn thứ 2 trong nhóm dùng lại, lên `shared/`
+    khi có nhóm thứ 2 dùng lại. Component HTML dùng chung theo đúng 3 tầng này
+    (`shared/components/`, `<nhóm>/components/`).
+- Mỗi màn = `<nhóm>/screens/<màn>/` gồm `screen.json` (khai báo `output`,
+  `base`, `title`, `description`, `css[]`, `js[]`, `partials[]`) + `partials/`
+  + (khi cần) `css/`, `js/`. Trong `css[]`/`js[]`, đường dẫn màn-local ghi đầy
+  đủ so với gốc (vd `khach-hang/screens/ho-so/css/profile`).
+- **Chống tranh chấp khi thiết kế nhiều màn song song:** `shared/*` (đặc biệt
+  `tokens.css`, `base.css`, `header.css`, `components/{sprite,art,header,footer}`,
+  `responsive-*`) và `<nhóm>/css|js/` là **file dùng chung** — nhiều màn cùng
+  sửa dễ conflict/chéo lỗi. Chỉ chạm khi thật bắt buộc; ưu tiên để style/script
+  trong `screens/<màn>/`. Sửa file dùng chung phải **tuần tự**, không sửa song
+  song nhiều màn, và phải build + test lại toàn bộ màn bị ảnh hưởng.
 - Trong `screen.json`: `output` là đường dẫn **so với gốc**; `css[]`/`js[]` là
   đường dẫn **so với gốc, không kèm phần mở rộng** (vd `shared/css/tokens`,
   `khach-hang/js/auth`); `partials[]` là đường dẫn so với gốc.
 - File output (`<nhóm>/*.html`, `shared/404.html`) sinh từ `node build.js` → **luôn sửa `shared/`,
-  `<nhóm>/components/`, `<nhóm>/css|js/` + `<nhóm>/screens/<màn>/partials/`
+  `<nhóm>/components/`, `<nhóm>/css|js/`, `<nhóm>/screens/<màn>/{partials,css,js}/`
   (và `screen.json`) rồi build**, không edit file build trực tiếp.
 - Thêm màn mới: tạo `<nhóm>/screens/<màn>/screen.json` + `partials/`, thêm vào
-  build là xong; chỉ tạo `.css`/`.js` mới khi thực sự có component chưa tồn tại.
-- Thứ tự load CSS (bắt buộc giữ): `tokens` → `base` → các component →
-  `motion` → `responsive-desktop` → `responsive-mobile` → `responsive-touch`.
-- Thứ tự load JS (`<script defer>`): `header` → `booking` → `routes` → `faq`
-  → `reveal` (cuối cùng, phụ trách cả active-nav).
+  build là xong; chỉ tạo `.css`/`.js` mới (mặc định trong `screens/<màn>/css|js/`)
+  khi thực sự có component chưa tồn tại, rồi nâng tầng theo quy tắc "≥2 mới nâng".
+- Thứ tự load CSS (bắt buộc giữ): `tokens` → `base` → các component → `motion`
+  → `responsive-desktop` → `responsive-mobile` → `responsive-touch`.
+  CSS màn-local (`screens/<màn>/css/*`) chèn cùng nhóm với component, trước `motion`.
+- Thứ tự load JS (`<script defer>`): `header` → các js màn (booking/routes/faq/
+  auth/profile...) → `reveal` (cuối cùng, phụ trách cả active-nav).
 - Trước commit: chạy `node build.js` phải pass, không file nguồn nào vượt rule.
 - (*) `shared/assets/` được **miễn** check 300 dòng/100 ký tự (chứa `icon.html`
   xuất ra); riêng `shared/assets/favicon.svg` vẫn được check.
@@ -335,9 +350,10 @@ Xác nhận **tất cả** điểm sau đều ĐÚNG:
   `shared/components/footer`, `shared/css/tokens.css`, `shared/css/base.css` và
   các component — hạn chế tối đa CSS/JS mới; chỉ thêm file khi thực sự có
   component chưa tồn tại (kèm rule §1).
-- Mỗi màn = 1 thư mục `<nhóm>/screens/<ten>/` gồm `screen.json` + `partials/`:
-  `screen.json` khai báo `output`, `base`, `title`, `description`, `css[]`,
-  `js[]`, `partials[]` (đường dẫn gốc, có thể trộn `shared/*` và `<nhóm>/*`).
+- Mỗi màn = 1 thư mục `<nhóm>/screens/<ten>/` gồm `screen.json` + `partials/`
+  (+ `css/`, `js/` khi có tài nguyên riêng màn): `screen.json` khai báo `output`,
+  `base`, `title`, `description`, `css[]`, `js[]`, `partials[]` (đường dẫn gốc,
+  có thể trộn `shared/*`, `<nhóm>/*` và `<nhóm>/screens/<ten>/*`).
 - Partial màn chèn giữa `shared/components/header.html` và
   `shared/components/footer.html`; `shared/components/head.html` tự bơm
   `{{title}}`/`{{description}}`/`{{css}}`, footer bơm `{{js}}` — nên **không

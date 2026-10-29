@@ -17,16 +17,16 @@
     "shared/css/sections",
     "shared/css/ride-card",
     "shared/css/cta-footer",
-    "khach-hang/css/profile",
-    "khach-hang/css/profile-side",
-    "khach-hang/css/profile-form",
+    "khach-hang/screens/ho-so/css/profile",
+    "khach-hang/screens/ho-so/css/profile-side",
+    "khach-hang/screens/ho-so/css/profile-form",
     "shared/css/motion",
     "shared/css/responsive-desktop",
     "shared/css/responsive-mobile"
   ],
   "js": [
     "shared/js/header",
-    "khach-hang/js/profile",
+    "khach-hang/screens/ho-so/js/profile",
     "shared/js/reveal"
   ],
   "partials": [
