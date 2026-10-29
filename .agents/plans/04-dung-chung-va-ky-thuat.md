@@ -115,9 +115,9 @@ phân trang client) · `modal.js` (mở/đóng, focus trap) · `toast.js` ·
 
 | Phase | Màn ưu tiên làm trước |
 |-------|------------------------|
-| **1 — MVP khách** | AU1, AU2 (auth) → B1, B2, B3, B4, B5 → B6, B7, B8, B9 → B11, B12 → shell U |
+| **1 — MVP khách** | AU1, AU2 (auth) → B1, B2, B3, B4, B5 → B6, B7, B8 → B10, B11 → shell U |
 | **2 — Tài xế + vận hành** | D1, D2, D3, D5, D6, D9 → AD1, AD3, AD4, AD6, AD7, AD8 → shell D, shell A |
-| **3 — Hoàn thiện** | AD2, AD5, AD9, AD10, AD11, AD12, AD13, AD14, AD15 → B7, B10, B13 → D4, D7, D8, D10 → A1–A2, SH1 |
+| **3 — Hoàn thiện** | AD2, AD5, AD9, AD10, AD11, AD12, AD13, AD14, AD15 → B9, B12 → D4, D7, D8, D10 → SH1 |
 
 ---
 

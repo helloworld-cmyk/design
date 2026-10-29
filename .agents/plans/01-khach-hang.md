@@ -7,36 +7,6 @@
 
 ---
 
-## A. TRANG CÔNG KHAI (khách chưa đăng nhập — shell M)
-
-### A1. Danh sách tuyến đường — `screens/tuyen-duong/`
-- **Tác dụng:** cổng SEO & khám phá; giúp khách thấy toàn bộ mạng lưới tuyến
-  (hơn 120 tuyến) trước khi đặt, tăng độ tin cậy và thời gian ở site.
-- **Nhiệm vụ chính:**
-  - Lọc theo vùng miền (Bắc/Trung/Nam), sắp xếp theo giá / thời gian / phổ biến.
-  - Xem mỗi tuyến: điểm đi–đến, thời lượng, số chuyến/ngày, giá từ.
-  - Click tuyến → sang màn **Kết quả tìm kiếm** đã điền sẵn.
-  - Hiển thị "Tuyến của tôi gần đây" nếu có dữ liệu cục bộ.
-- **Thành phần:** `.section-head`, `.filter-bar` (mới), `.routes-grid` +
-  `.route-card`, `.pagination` (mới), `.cta-final`.
-- **Trạng thái:** loading skeleton, empty (không có tuyến theo lọc), error.
-- **Ưu tiên:** P1.
-
-### A2. Chi tiết tuyến — `screens/tuyen-duong-chi-tiet/`
-- **Tác dụng:** trang chi tiết một tuyến (VD Hà Nội → Hải Phòng): mô tả hành
-  trình, điểm đón/trả phổ biến, giá, đánh giá — giúp khách quyết định đặt.
-- **Nhiệm vụ chính:**
-  - Xem các khung giờ có chuyến trong 7 ngày tới.
-  - Xem điểm đón, điểm trả, thời gian dự kiến, loại xe.
-  - Đọc FAQ riêng tuyến + đánh giá của khách đã đi.
-  - Nút "Đặt tuyến này" → **Kết quả tìm kiếm**.
-- **Thành phần:** hero tuyến (`.hero` rút gọn), `.route-card`, `.fleet-card`,
-  `.testimonial-card`, `.faq` (accordion có sẵn), `.step` (cách đặt).
-- **Trạng thái:** loading, empty (tuyến tạm ngưng), error.
-- **Ưu tiên:** P1.
-
----
-
 ## B. KHU KHÁCH HÀNG ĐÃ ĐĂNG NHẬP (shell U)
 
 ### B1. Tìm chuyến (dashboard khách) — `screens/tim-chuyen/`
@@ -112,19 +82,7 @@
 - **Trạng thái:** từng mốc trạng thái; chuyến bị hủy bởi tài xế (thông báo).
 - **Ưu tiên:** P0.
 
-### B7. Theo dõi chuyến realtime — `screens/theo-doi-chuyen/`
-- **Tác dụng:** theo dõi vị trí xe & ETA khi chuyến đang chạy — giảm lo lắng.
-- **Nhiệm vụ chính:**
-  - Bản đồ vị trí xe hiện tại + điểm đón/đến, ETA cập nhật.
-  - Thông tin tài xế & xe (biển số, màu), nút gọi/nhắn.
-  - Trạng thái: tài xế đang đến / đã đón / sắp tới điểm trả.
-  - Chia sẻ hành trình cho người thân; nút SOS/hỗ trợ khẩn.
-- **Thành phần:** `.map` (placeholder), `.float-chip` (ETA), `.ride-card`
-  (tài xế), `.timeline` (trạng thái), nút SOS (`.btn` + `i-shield`).
-- **Trạng thái:** mất tín hiệu GPS, chuyến chưa bắt đầu, đã kết thúc.
-- **Ưu tiên:** P1.
-
-### B8. Hủy / đổi chuyến — `screens/huy-doi-chuyen/`
+### B7. Hủy / đổi chuyến — `screens/huy-doi-chuyen/`
 - **Tác dụng:** cho khách hủy hoặc đổi lịch với điều kiện & phí minh bạch.
 - **Nhiệm vụ chính:**
   - Chọn hủy: xem phí hủy theo thời điểm (miễn phí trước 2h), chọn lý do,
@@ -135,7 +93,7 @@
 - **Trạng thái:** không thể hủy (quá muộn) → chỉ đổi/hỗ trợ; thành công.
 - **Ưu tiên:** P0.
 
-### B9. Đánh giá chuyến đi — `screens/danh-gia/`
+### B8. Đánh giá chuyến đi — `screens/danh-gia/`
 - **Tác dụng:** thu phản hồi sau chuyến để cải thiện & xếp hạng tài xế.
 - **Nhiệm vụ chính:**
   - Chấm sao tổng + các tiêu chí (tài xế, xe, đúng giờ, thái độ).
@@ -146,7 +104,7 @@
 - **Trạng thái:** bắt buộc chấm sao mới gửi; gửi thành công; đã đánh giá (đọc lại).
 - **Ưu tiên:** P0.
 
-### B10. Ưu đãi & mã giảm giá — `screens/uu-dai/`
+### B9. Ưu đãi & mã giảm giá — `screens/uu-dai/`
 - **Tác dụng:** khu khuyến mãi — tăng tần suất đặt & giữ chân khách.
 - **Nhiệm vụ chính:**
   - Xem voucher khả dụng (điều kiện, hạn dùng), điểm thưởng, hạng thành viên.
@@ -156,7 +114,7 @@
 - **Trạng thái:** empty (không có ưu đãi), hết hạn.
 - **Ưu tiên:** P1.
 
-### B11. Hồ sơ cá nhân — `screens/ho-so/`
+### B10. Hồ sơ cá nhân — `screens/ho-so/`
 - **Tác dụng:** quản lý thông tin tài khoản & cài đặt cá nhân.
 - **Nhiệm vụ chính:**
   - Sửa tên, ảnh đại diện, SĐT, email, ngày sinh, giới tính.
@@ -168,7 +126,7 @@
 - **Trạng thái:** lưu thành công, xác thực SĐT/email, lỗi validate.
 - **Ưu tiên:** P0.
 
-### B12. Thông báo — `screens/thong-bao/`
+### B11. Thông báo — `screens/thong-bao/`
 - **Tác dụng:** hộp thư hệ thống: trạng thái chuyến, nhắc chuyến sắp đi, khuyến mãi.
 - **Nhiệm vụ chính:**
   - Danh sách thông báo (đọc/chưa đọc), lọc theo loại, đánh dấu đã đọc.
@@ -179,7 +137,7 @@
 - **Trạng thái:** empty, đã đọc hết, loading.
 - **Ưu tiên:** P1.
 
-### B13. Trung tâm hỗ trợ / khiếu nại (khách) — `screens/ho-tro-khach/`
+### B12. Trung tâm hỗ trợ / khiếu nại (khách) — `screens/ho-tro-khach/`
 - **Tác dụng:** gửi & theo dõi yêu cầu hỗ trợ/khiếu nại gắn với chuyến.
 - **Nhiệm vụ chính:**
   - Tạo yêu cầu: chọn chuyến liên quan, loại vấn đề, mô tả, đính kèm ảnh.
@@ -197,7 +155,7 @@
 ```
 Đăng nhập → Tìm chuyến → Kết quả tìm kiếm → Chi tiết & chọn ghế
 → Đặt chỗ thành công (trả tiền mặt cho tài xế trên xe) → Chuyến của tôi
-→ (trong ngày đi) Theo dõi realtime → Hoàn thành → Đánh giá
+→ (trong ngày đi) Hoàn thành → Đánh giá
 ```
 
 Luồng phụ: Hủy/đổi chuyến, Ưu đãi, Hỗ trợ/khiếu nại,
