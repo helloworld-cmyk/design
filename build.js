@@ -1,11 +1,14 @@
 "use strict";
 
 /**
- * Build mọi màn hình từ manifest screens/<ten>/screen.json — chạy: node build.js
- * Partial dùng chung nằm ở components/, partial riêng màn ở screens/<ten>/partials/.
+ * Build mọi màn hình từ manifest <nhóm>/screens/<ten>/screen.json — node build.js
+ * Nhóm vai trò: public | khach-hang | tai-xe | admin; dùng chung ở shared/.
+ * Partial dùng chung ở shared/components/, riêng nhóm ở <nhóm>/components/,
+ * partial riêng màn ở <nhóm>/screens/<ten>/partials/.
  * Trước khi build, script kiểm tra DESIGN RULES:
  *   - mỗi file nguồn tối đa 300 dòng
  *   - mỗi dòng tối đa 100 ký tự
+ * File output (sinh ra) và shared/assets/ được miễn check.
  * Vi phạm sẽ dừng build và báo đúng file/dòng lỗi.
  */
 
@@ -15,7 +18,9 @@ const path = require("path");
 const ROOT = __dirname;
 const MAX_LINES = 300;
 const MAX_COLS = 100;
-const SOURCE_DIRS = ["components", "screens", "css", "js"];
+const SOURCE_DIRS = ["shared", "khach-hang", "tai-xe", "admin"];
+const SCREEN_GROUPS = ["shared", "khach-hang", "tai-xe", "admin"];
+const EXEMPT_DIR = "shared/assets";
 
 function checkSource(relPath, text) {
   const lines = text.split("\n");
@@ -34,35 +39,49 @@ function checkSource(relPath, text) {
   });
 }
 
-function checkTree(dir) {
+function checkTree(dir, outputs) {
   for (const name of fs.readdirSync(dir)) {
     const fullPath = path.join(dir, name);
+    const rel = path.relative(ROOT, fullPath);
+    if (rel === EXEMPT_DIR || outputs.has(rel)) continue;
     if (fs.statSync(fullPath).isDirectory()) {
-      checkTree(fullPath);
+      checkTree(fullPath, outputs);
     } else if (/\.(css|js|html|svg)$/.test(name)) {
-      checkSource(path.relative(ROOT, fullPath), fs.readFileSync(fullPath, "utf8"));
+      checkSource(rel, fs.readFileSync(fullPath, "utf8"));
     }
   }
 }
 
 function cssTags(base, list) {
   return (list || [])
-    .map((name) => '    <link rel="stylesheet" href="' + base + 'css/' + name + '.css" />')
+    .map((name) => '    <link rel="stylesheet" href="' + base + name + '.css" />')
     .join("\n");
 }
 
 function jsTags(base, list) {
   return (list || [])
-    .map((name) => '<script src="' + base + 'js/' + name + '.js" defer></script>')
+    .map((name) => '<script src="' + base + name + '.js" defer></script>')
     .join("\n");
 }
 
-function buildScreen(name) {
-  const dir = path.join(ROOT, "screens", name);
-  const manifest = JSON.parse(
-    fs.readFileSync(path.join(dir, "screen.json"), "utf8")
-  );
+function loadScreens() {
+  const items = [];
+  for (const group of SCREEN_GROUPS) {
+    const root = path.join(ROOT, group, "screens");
+    if (!fs.existsSync(root)) continue;
+    for (const name of fs.readdirSync(root)) {
+      const dir = path.join(root, name);
+      if (!fs.statSync(dir).isDirectory()) continue;
+      const manifest = JSON.parse(
+        fs.readFileSync(path.join(dir, "screen.json"), "utf8")
+      );
+      items.push({ dir, manifest });
+    }
+  }
+  return items.sort((a, b) => a.manifest.output.localeCompare(b.manifest.output));
+}
 
+function buildScreen(manifest) {
   const base = manifest.base || "";
 
   const body = manifest.partials
@@ -92,15 +111,15 @@ function buildScreen(name) {
   return { output: manifest.output, lines: html.split("\n").length };
 }
 
-SOURCE_DIRS.forEach((dir) => checkTree(path.join(ROOT, dir)));
-checkSource("assets/favicon.svg", fs.readFileSync(path.join(ROOT, "assets/favicon.svg"), "utf8"));
+const screens = loadScreens();
+const outputs = new Set(screens.map((s) => s.manifest.output));
+
+SOURCE_DIRS.forEach((dir) => checkTree(path.join(ROOT, dir), outputs));
+const FAVICON = "shared/assets/favicon.svg";
+checkSource(FAVICON, fs.readFileSync(path.join(ROOT, FAVICON), "utf8"));
 checkSource("build.js", fs.readFileSync(path.join(ROOT, "build.js"), "utf8"));
 
-const screenNames = fs
-  .readdirSync(path.join(ROOT, "screens"))
-  .filter((name) => fs.statSync(path.join(ROOT, "screens", name)).isDirectory());
-
-const results = screenNames.map(buildScreen);
+const results = screens.map((s) => buildScreen(s.manifest));
 
 console.log("Đã build " + results.length + " màn — mọi file nguồn đạt rule:");
 results.forEach((r) => {

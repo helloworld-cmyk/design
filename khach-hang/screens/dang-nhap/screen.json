@@ -1,0 +1,32 @@
+{
+  "output": "khach-hang/dang-nhap.html",
+  "base": "../",
+  "title": "Đăng nhập — Vi Vu Việt | Đặt xe ghép liên tỉnh",
+  "description": "Đăng nhập Vi Vu Việt để đặt xe ghép liên tỉnh, theo dõi chuyến đi và quản lý ví của bạn.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/booking",
+    "shared/css/cta-footer",
+    "khach-hang/css/auth",
+    "khach-hang/css/auth-form",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": ["shared/js/header", "khach-hang/js/auth", "shared/js/reveal"],
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "{{home}}",
+  "linkLoginLabel": "Trang chủ",
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "khach-hang/components/auth-top.html",
+    "khach-hang/screens/dang-nhap/partials/form.html",
+    "shared/components/footer.html"
+  ]
+}

@@ -1,0 +1,61 @@
+<main id="main">
+  <!-- ERROR HERO (404/500) -->
+  <section class="error">
+    <div class="error-bg" aria-hidden="true"></div>
+    <div class="container error-grid">
+      <div class="error-copy">
+        <span class="section-eyebrow" id="errorEyebrow">
+          Lỗi 404 — Không tìm thấy trang
+        </span>
+        <p class="error-code" id="errorCode" aria-hidden="true">404</p>
+        <h1 class="error-title" id="errorTitle">
+          Ôi! Trang này <span class="text-sky">lạc đường</span> rồi.
+        </h1>
+        <p class="error-lead" id="errorLead">
+          Đường dẫn có thể đã thay đổi hoặc trang đã được di chuyển. Đừng lo,
+          chuyến đi của bạn vẫn còn nguyên — thử một lối tắt bên dưới nhé.
+        </p>
+
+        <div class="error-actions">
+          <button class="btn btn-primary btn-lg" id="errorRetry" type="button" hidden>
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-refresh"></use>
+            </svg>
+            Thử lại
+          </button>
+          <a class="btn btn-primary btn-lg" href="{{base}}khach-hang/index.html" id="errorHome">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-arrow-right"></use>
+            </svg>
+            Về trang chủ
+          </a>
+          <a
+            class="btn btn-ghost btn-lg"
+            href="{{base}}khach-hang/index.html#dat-xe"
+            id="errorBook"
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-car"></use>
+            </svg>
+            Đặt chuyến xe
+          </a>
+        </div>
+
+        <p class="error-note">
+          <svg class="icon" aria-hidden="true">
+            <use href="#i-shield"></use>
+          </svg>
+          Mã lỗi <span id="errorRef">404 — Not Found</span>
+        </p>
+      </div>
+
+      <div class="error-visual reveal">
+        <figure class="error-art">
+          <svg class="error-scene" viewBox="0 0 320 140" role="img"
+            aria-label="Minh hoạ chuyến xe đi lạc đường">
+            <use href="#a-error"></use>
+          </svg>
+        </figure>
+      </div>
+    </div>
+  </section>

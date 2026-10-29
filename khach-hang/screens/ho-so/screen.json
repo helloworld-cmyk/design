@@ -1,0 +1,38 @@
+{
+  "output": "khach-hang/ho-so.html",
+  "base": "../",
+  "title": "Hồ sơ cá nhân — Vi Vu Việt",
+  "description": "Quản lý thông tin cá nhân, địa chỉ đón xe và tùy chọn đi chung trên Vi Vu Việt.",
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "index.html",
+  "linkLoginLabel": "Trang chủ",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/booking",
+    "shared/css/sections",
+    "shared/css/ride-card",
+    "shared/css/cta-footer",
+    "khach-hang/css/profile",
+    "khach-hang/css/profile-side",
+    "khach-hang/css/profile-form",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile"
+  ],
+  "js": [
+    "shared/js/header",
+    "khach-hang/js/profile",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "khach-hang/screens/ho-so/partials/identity.html",
+    "khach-hang/screens/ho-so/partials/settings.html",
+    "shared/components/footer.html"
+  ]
+}
