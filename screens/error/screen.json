@@ -1,7 +1,12 @@
 {
   "output": "404.html",
+  "base": "",
   "title": "Không tìm thấy trang — Vi Vu Việt",
   "description": "Trang bạn tìm không tồn tại hoặc đã bị di chuyển. Về trang chủ, đặt chuyến xe hoặc liên hệ hỗ trợ Vi Vu Việt 24/7.",
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "html-screen/dang-nhap.html",
+  "linkLoginLabel": "Đăng nhập",
   "css": [
     "tokens",
     "base",
@@ -12,7 +17,8 @@
     "cta-footer",
     "motion",
     "responsive-desktop",
-    "responsive-mobile"
+    "responsive-mobile",
+    "responsive-touch"
   ],
   "js": ["header", "error", "reveal"],
   "partials": [
