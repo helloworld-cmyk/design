@@ -1,0 +1,143 @@
+<div class="adm" id="admShell">
+  <aside class="adm-side" id="admSide" aria-label="Điều hướng quản trị">
+    <div class="adm-side-top">
+      <a class="brand adm-brand" href="{{home}}" aria-label="Vi Vu Việt — Tổng quan">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="{{base}}shared/assets/logo.svg" alt="" width="42" height="42" />
+        </span>
+        <span class="brand-name">Vi Vu <span>Việt</span></span>
+      </a>
+      <p class="adm-side-cap">Quản trị hệ thống</p>
+    </div>
+
+    <nav class="adm-nav" aria-label="Mục quản trị">
+      <a class="adm-nav-item is-active" href="tong-quan.html" aria-current="page">
+        <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+        <span>Tổng quan</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
+        <span>Chuyến xe</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        <span>Tuyến đường</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+        <span>Khách hàng</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-user-check"></use></svg>
+        <span>Tài xế</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+        <span>Tài chính</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg>
+        <span>Khiếu nại & bồi thường</span>
+        <span class="adm-nav-badge">5</span>
+      </a>
+      <a class="adm-nav-item" href="#">
+        <svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg>
+        <span>Cài đặt</span>
+      </a>
+    </nav>
+
+    <div class="adm-side-foot">
+      <div class="adm-side-user">
+        <span class="adm-avatar" aria-hidden="true">
+          <span data-adm-initial>Q</span>
+        </span>
+        <span class="adm-side-user-id">
+          <strong data-adm-name>Quỳnh Anh</strong>
+          <span>Quản trị viên</span>
+        </span>
+      </div>
+      <button class="adm-side-logout" type="button" data-adm-logout>
+        <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+        Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <div class="adm-scrim" id="admScrim" hidden></div>
+
+  <div class="adm-main">
+    <header class="adm-topbar">
+      <button
+        class="adm-burger"
+        id="admBurger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="admSide"
+        aria-label="Mở menu quản trị"
+      >
+        <svg class="icon icon-menu" aria-hidden="true">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon icon-close" aria-hidden="true">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+
+      <label class="adm-search" for="admSearch">
+        <span class="sr-only">Tìm kiếm nhanh</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        <input
+          type="search"
+          id="admSearch"
+          name="q"
+          placeholder="Tìm chuyến, tuyến, khách hàng…"
+        />
+      </label>
+
+      <div class="adm-topbar-actions">
+        <button class="adm-bell" type="button" aria-label="Thông báo — 3 mục mới">
+          <svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg>
+          <span class="adm-bell-dot" aria-hidden="true"></span>
+        </button>
+
+        <div class="adm-user" id="admUser">
+          <button
+            class="adm-user-btn"
+            id="admUserBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="admUserDrop"
+            aria-label="Tài khoản quản trị"
+          >
+            <span class="adm-avatar" aria-hidden="true">
+              <span data-adm-initial>Q</span>
+            </span>
+            <span class="adm-user-id">
+              <strong data-adm-name>Quỳnh Anh</strong>
+              <span>Quản trị viên</span>
+            </span>
+            <svg class="icon adm-user-caret" aria-hidden="true">
+              <use href="#i-chevron-down"></use>
+            </svg>
+          </button>
+
+          <div class="adm-drop" id="admUserDrop" aria-labelledby="admUserBtn">
+            <a class="adm-drop-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+              Hồ sơ quản trị
+            </a>
+            <button
+              class="adm-drop-item adm-drop-item--logout"
+              type="button"
+              data-adm-logout
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+              Đăng xuất
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="adm-content" id="main">
+      <div class="container adm-inner">

@@ -1,0 +1,142 @@
+
+/* ---------- Khung chính ---------- */
+
+.adm-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.adm-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  height: var(--header-h);
+  padding: 0 clamp(16px, 3vw, 30px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.adm-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--ink);
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.adm-burger:hover {
+  background: var(--sky-50);
+  border-color: var(--sky-300);
+}
+
+.adm-burger .icon-close {
+  display: none;
+}
+
+.adm.is-side-open .adm-burger .icon-menu {
+  display: none;
+}
+
+.adm.is-side-open .adm-burger .icon-close {
+  display: block;
+}
+
+.adm-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  max-width: 430px;
+  height: 44px;
+  padding: 0 15px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.adm-search:focus-within {
+  border-color: var(--sky-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.14);
+}
+
+.adm-search .icon {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--slate-400);
+}
+
+.adm-search input {
+  width: 100%;
+  border: 0;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.adm-search input:focus {
+  outline: none;
+}
+
+.adm-search input::placeholder {
+  color: var(--slate-400);
+}
+
+.adm-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.adm-bell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--slate-600);
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.adm-bell:hover {
+  background: var(--sky-50);
+  border-color: var(--sky-300);
+  color: var(--sky-700);
+}
+
+.adm-bell-dot {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--red-600);
+  box-shadow: 0 0 0 2px var(--surface);
+}

@@ -1,0 +1,130 @@
+/* ============== Dashboard — trạng thái loading / empty / error ============== */
+
+@keyframes skSheen {
+  from {
+    background-position: 180% 0;
+  }
+
+  to {
+    background-position: -180% 0;
+  }
+}
+
+.sk {
+  display: block;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    90deg,
+    var(--border-soft) 25%,
+    var(--navy-50) 37%,
+    var(--border-soft) 63%
+  );
+  background-size: 300% 100%;
+  animation: skSheen 1.4s ease infinite;
+}
+
+/* ---------- Loading (skeleton) ---------- */
+
+.sk-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sk-card {
+  height: 118px;
+}
+
+.sk-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.sk-panel {
+  height: 264px;
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 700px) {
+  .sk-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1320px) {
+  .sk-kpis {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Empty / Error ---------- */
+
+.dash-state {
+  padding: clamp(36px, 6vw, 72px) 0;
+  text-align: center;
+}
+
+.dash-state-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+}
+
+.dash-state-icon .icon {
+  width: 27px;
+  height: 27px;
+}
+
+.dash-state-icon--sky {
+  color: var(--sky-700);
+  background: var(--sky-100);
+  box-shadow: inset 0 0 0 1px rgba(3, 105, 161, 0.16);
+}
+
+.dash-state-icon--red {
+  color: var(--red-600);
+  background: var(--red-50);
+  box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.18);
+}
+
+.dash-state h2 {
+  margin-top: 18px;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.dash-state p {
+  max-width: 470px;
+  margin: 12px auto 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--slate-600);
+  text-wrap: balance;
+}
+
+.dash-state-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+@media (max-width: 640px) {
+  .dash-state-actions .btn {
+    width: 100%;
+  }
+
+  .sk-panel {
+    height: 190px;
+  }
+}

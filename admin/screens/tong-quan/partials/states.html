@@ -1,0 +1,57 @@
+<div
+  class="dash-state dash-loading"
+  data-dash-panel="loading"
+  hidden
+  aria-hidden="true"
+>
+  <div class="sk-kpis">
+    <span class="sk sk-card"></span>
+    <span class="sk sk-card"></span>
+    <span class="sk sk-card"></span>
+    <span class="sk sk-card"></span>
+    <span class="sk sk-card"></span>
+    <span class="sk sk-card"></span>
+  </div>
+  <div class="sk-row">
+    <span class="sk sk-panel sk-panel--wide"></span>
+    <span class="sk sk-panel"></span>
+  </div>
+  <div class="sk-row">
+    <span class="sk sk-panel sk-panel--wide"></span>
+    <span class="sk sk-panel"></span>
+  </div>
+</div>
+
+<div class="dash-state dash-empty" data-dash-panel="empty" hidden role="status">
+  <span class="dash-state-icon dash-state-icon--sky" aria-hidden="true">
+    <svg class="icon"><use href="#i-chart-bars"></use></svg>
+  </span>
+  <h2>Chưa có dữ liệu hôm nay</h2>
+  <p>
+    Số liệu của ngày mới được tổng hợp lúc 00:05. Hãy tải lại trang sau
+    hoặc xem lại báo cáo của ngày hôm qua để theo dõi xu hướng.
+  </p>
+  <div class="dash-state-actions">
+    <button class="btn btn-primary" type="button" data-dash-reload>
+      Tải lại dữ liệu
+    </button>
+    <a class="btn btn-ghost" href="#">Xem báo cáo hôm qua</a>
+  </div>
+</div>
+
+<div class="dash-state dash-error" data-dash-panel="error" hidden role="alert">
+  <span class="dash-state-icon dash-state-icon--red" aria-hidden="true">
+    <svg class="icon"><use href="#i-alert"></use></svg>
+  </span>
+  <h2>Không tải được bảng điều khiển</h2>
+  <p>
+    Mất kết nối tới máy chủ dữ liệu (Lỗi 500). Kiểm tra kết nối mạng rồi
+    thử lại; nếu vẫn lỗi, đội kỹ thuật đã nhận cảnh báo tự động.
+  </p>
+  <div class="dash-state-actions">
+    <button class="btn btn-primary" type="button" data-dash-retry>
+      Thử lại
+    </button>
+    <a class="btn btn-ghost" href="#">Báo cáo sự cố</a>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "output": "admin/index.html",
+  "base": "../",
+  "title": "Đăng nhập quản trị — Vi Vu Việt",
+  "description": "Đăng nhập trang quản trị Vi Vu Việt để quản lý chuyến đi, tài xế và vận hành hệ thống.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/screens/dang-nhap/css/auth",
+    "admin/screens/dang-nhap/css/auth-form",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": ["admin/screens/dang-nhap/js/auth", "shared/js/reveal"],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/screens/dang-nhap/partials/auth-top.html",
+    "admin/screens/dang-nhap/partials/form.html"
+  ]
+}
