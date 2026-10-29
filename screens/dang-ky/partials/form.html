@@ -1,0 +1,168 @@
+    <section class="auth-card reveal" aria-labelledby="dang-ky">
+      <h1 id="dang-ky">Tạo tài khoản</h1>
+      <p class="auth-lead">
+        Chỉ mất 60 giây để bắt đầu đặt xe ghép trên khắp Việt Nam.
+      </p>
+
+      <p class="auth-role">
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-car"></use>
+        </svg>
+        Bạn là tài xế có xe?
+        <a href="dang-ky-tai-xe.html">Đăng ký làm tài xế</a>
+      </p>
+
+      <form class="auth-form" id="authForm" novalidate>
+        <div class="field">
+          <label for="fullname">Họ và tên</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-users"></use>
+            </svg>
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              placeholder="VD: Nguyễn Văn A"
+              autocomplete="name"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Số điện thoại</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-phone"></use>
+            </svg>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              inputmode="numeric"
+              placeholder="VD: 0912 345 678"
+              autocomplete="tel"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-mail"></use>
+            </svg>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email@vidu.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field field--has-toggle">
+          <label for="password">Mật khẩu</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-shield"></use>
+            </svg>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Ít nhất 8 ký tự"
+              autocomplete="new-password"
+              required
+            />
+            <button
+              type="button"
+              class="field-toggle"
+              aria-controls="password"
+              aria-pressed="false"
+              aria-label="Hiện mật khẩu"
+            >
+              <svg class="icon icon-eye" aria-hidden="true">
+                <use href="#i-eye"></use>
+              </svg>
+              <svg class="icon icon-eye-off" aria-hidden="true">
+                <use href="#i-eye-off"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="auth-strength" aria-hidden="true">
+            <div class="auth-strength-bars">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <span class="auth-strength-label">Độ mạnh mật khẩu</span>
+          </div>
+        </div>
+
+        <div class="field field--has-toggle">
+          <label for="confirm">Xác nhận mật khẩu</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-shield"></use>
+            </svg>
+            <input
+              type="password"
+              id="confirm"
+              name="confirm"
+              placeholder="Nhập lại mật khẩu"
+              autocomplete="new-password"
+              required
+            />
+            <button
+              type="button"
+              class="field-toggle"
+              aria-controls="confirm"
+              aria-pressed="false"
+              aria-label="Hiện mật khẩu"
+            >
+              <svg class="icon icon-eye" aria-hidden="true">
+                <use href="#i-eye"></use>
+              </svg>
+              <svg class="icon icon-eye-off" aria-hidden="true">
+                <use href="#i-eye-off"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <label class="auth-check" for="terms">
+          <input type="checkbox" id="terms" name="terms" required />
+          <span>
+            Tôi đồng ý với
+            <a class="auth-link" href="chinh-sach.html">Điều khoản</a> &amp;
+            <a class="auth-link" href="chinh-sach.html">Chính sách bảo mật</a>
+          </span>
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-lg auth-submit">
+          Tạo tài khoản
+        </button>
+        <div
+          class="form-status"
+          id="formStatus"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </form>
+
+      <p class="auth-switch">
+        Đã có tài khoản? <a href="dang-nhap.html">Đăng nhập</a>
+      </p>
+    </section>
+
+    <p class="form-note">
+      <svg class="icon" aria-hidden="true">
+        <use href="#i-shield"></use>
+      </svg>
+      Không cần đặt cọc · Bảo mật thông tin
+    </p>
+  </div>
+</main>

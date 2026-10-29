@@ -45,15 +45,15 @@ function checkTree(dir) {
   }
 }
 
-function cssTags(list) {
+function cssTags(base, list) {
   return (list || [])
-    .map((name) => '    <link rel="stylesheet" href="css/' + name + '.css" />')
+    .map((name) => '    <link rel="stylesheet" href="' + base + 'css/' + name + '.css" />')
     .join("\n");
 }
 
-function jsTags(list) {
+function jsTags(base, list) {
   return (list || [])
-    .map((name) => '<script src="js/' + name + '.js" defer></script>')
+    .map((name) => '<script src="' + base + 'js/' + name + '.js" defer></script>')
     .join("\n");
 }
 
@@ -63,17 +63,32 @@ function buildScreen(name) {
     fs.readFileSync(path.join(dir, "screen.json"), "utf8")
   );
 
+  const base = manifest.base || "";
+
   const body = manifest.partials
     .map((rel) => fs.readFileSync(path.join(ROOT, rel), "utf8").trimEnd())
     .join("\n");
 
+  const home = (manifest.home || "#").replace(/\{\{base\}\}/g, base);
+  const navPrefix = (manifest.navPrefix || "").replace(/\{\{base\}\}/g, base);
+  const linkLoginHref = (manifest.linkLoginHref || "")
+    .replace(/\{\{base\}\}/g, base)
+    .replace(/\{\{home\}\}/g, home);
+
   const html = ("<!DOCTYPE html>\n" + body + "\n")
     .replace(/\{\{title\}\}/g, () => manifest.title || "")
     .replace(/\{\{description\}\}/g, () => manifest.description || "")
-    .replace(/\{\{css\}\}/g, () => cssTags(manifest.css))
-    .replace(/\{\{js\}\}/g, () => jsTags(manifest.js));
+    .replace(/\{\{base\}\}/g, () => base)
+    .replace(/\{\{home\}\}/g, () => home)
+    .replace(/\{\{navPrefix\}\}/g, () => navPrefix)
+    .replace(/\{\{linkLoginHref\}\}/g, () => linkLoginHref)
+    .replace(/\{\{linkLoginLabel\}\}/g, () => manifest.linkLoginLabel || "Đăng nhập")
+    .replace(/\{\{css\}\}/g, () => cssTags(base, manifest.css))
+    .replace(/\{\{js\}\}/g, () => jsTags(base, manifest.js));
 
-  fs.writeFileSync(path.join(ROOT, manifest.output), html);
+  const outPath = path.join(ROOT, manifest.output);
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, html);
   return { output: manifest.output, lines: html.split("\n").length };
 }
 

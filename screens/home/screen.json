@@ -24,6 +24,10 @@
     "responsive-mobile"
   ],
   "js": ["header", "booking", "routes", "faq", "reveal"],
+  "home": "#",
+  "navPrefix": "",
+  "linkLoginHref": "{{base}}html-screen/dang-nhap.html",
+  "linkLoginLabel": "Đăng nhập",
   "partials": [
     "components/head.html",
     "components/sprite.html",

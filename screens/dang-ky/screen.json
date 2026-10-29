@@ -1,0 +1,31 @@
+{
+  "output": "html-screen/dang-ky.html",
+  "base": "../",
+  "title": "Đăng ký — Vi Vu Việt | Tạo tài khoản đặt xe ghép",
+  "description": "Tạo tài khoản Vi Vu Việt miễn phí trong 60 giây để đặt xe ghép liên tỉnh, giá minh bạch, đón trả tận nơi.",
+  "css": [
+    "tokens",
+    "base",
+    "header",
+    "booking",
+    "cta-footer",
+    "auth",
+    "auth-form",
+    "motion",
+    "responsive-desktop",
+    "responsive-mobile"
+  ],
+  "js": ["header", "auth", "reveal"],
+  "home": "{{base}}index.html",
+  "navPrefix": "{{base}}index.html",
+  "linkLoginHref": "{{home}}",
+  "linkLoginLabel": "Trang chủ",
+  "partials": [
+    "components/head.html",
+    "components/sprite.html",
+    "components/header.html",
+    "components/auth-top.html",
+    "screens/dang-ky/partials/form.html",
+    "components/footer.html"
+  ]
+}

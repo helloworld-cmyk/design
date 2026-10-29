@@ -7,6 +7,20 @@
 
 ---
 
+## 0. Bắt buộc dùng skill `ui-ux-pro-max` (BẮT BUỘC)
+
+- **Luôn luôn** dùng skill `ui-ux-pro-max` trong **khâu thiết kế** mọi màn/hình
+  mới (screen, modal, trang phụ, component, layout, palette, typography).
+- Trước khi thiết kế: nạp skill `ui-ux-pro-max` để tra cứu style/palette/UX
+  guideline/typography phù hợp sản phẩm.
+- Skill là **gợi ý định hướng**, không thay thế design system: mọi kết quả phải
+  **quy về token & component của dự án** theo §3–§9 (không hex/kích thước rời,
+  không class mới ngoài hợp đồng §6).
+- Nếu gợi ý của skill xung đột với `DESIGN_RULES.MD` → **ưu tiên
+  `DESIGN_RULES.MD`**; nếu thực sự không thể tuân theo, dừng lại và hỏi người dùng.
+
+---
+
 ## 1. Quy tắc tổ chức file (BẮT BUỘC)
 
 > **Mỗi file nguồn không quá 300 dòng và mỗi dòng không quá 100 ký tự.**
@@ -252,8 +266,10 @@ Xác nhận **tất cả** điểm sau đều ĐÚNG:
 5. Icon qua sprite; tile icon nền tint đúng biến thể; ảnh đúng chuẩn §7.
 6. Có đủ state hover/focus/active/loading theo pattern; motion §8.
 7. Đủ a11y §9; `node build.js` pass; kiểm desktop + ≤400px, console sạch.
+8. Đã dùng skill `ui-ux-pro-max` trong khâu thiết kế (§0) và quy mọi kết quả về
+   token/component của design system.
 
-> Một màn "trông khác" chỉ 1 trong 7 mục trên → **sai rule**, sửa cho khớp.
+> Một màn "trông khác" chỉ 1 trong 8 mục trên → **sai rule**, sửa cho khớp.
 
 ---
 
@@ -276,6 +292,8 @@ Xác nhận **tất cả** điểm sau đều ĐÚNG:
 
 ## 12. Quy trình sửa UI
 
+0. Nạp skill `ui-ux-pro-max` để định hướng thiết kế (§0), rồi quy về token/
+   component của dự án.
 1. Sửa partial/CSS/JS nguồn tương ứng (file ≤ 300 dòng, dòng ≤ 100 ký tự).
 2. Chạy `node build.js`.
 3. Mở `index.html` kiểm desktop + mobile (≤ 400px) + console không lỗi.
