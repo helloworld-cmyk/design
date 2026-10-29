@@ -39,7 +39,8 @@ ghép tuyến). Một chuyến gồm: nhiều khách ghép chung xe, tài xế c
 
 Ba nhóm người dùng cần **ba giao diện khác nhau**:
 
-1. **Khách hàng** — đặt chuyến, theo dõi, thanh toán, đánh giá.
+1. **Khách hàng** — đặt chuyến, theo dõi, đánh giá; trả tiền mặt trực tiếp
+   cho tài xế trên xe (không thanh toán trước).
 2. **Tài xế** — nhận chuyến, chạy tuyến, quản lý thu nhập và hồ sơ.
 3. **Quản trị viên** — vận hành, duyệt hồ sơ, kiểm soát chất lượng và dòng tiền.
 
@@ -56,7 +57,7 @@ riêng. Đề xuất **4 shell**:
 
 | Shell | Dùng cho | Header | Điều hướng | Bổ sung |
 |-------|----------|--------|------------|---------|
-| **M — Marketing** | trang chủ, tuyến, giới thiệu, FAQ | `site-header` (đang có) | neo cuộn | — |
+| **M — Marketing** | trang chủ, tuyến | `site-header` (đang có) | neo cuộn | — |
 | **U — User app** | khu khách hàng đã đăng nhập | topbar gọn + avatar | tab ngang / sidebar trái | `app-header.html`, `app-sidebar.html` |
 | **D — Driver app** | khu tài xế | topbar + trạng thái online | tab ngang (Tổng quan / Chuyến / Thu nhập / Hồ sơ) | dùng chung `app-header` |
 | **A — Admin** | back-office | sidebar trái cố định + topbar | sidebar 2 cấp + breadcrumb | `admin-shell.html`, `admin-sidebar.html` |
@@ -74,10 +75,7 @@ Vi Vu Việt
 ├── CÔNG KHAI (shell M)
 │   ├── Trang chủ ............................... [ĐÃ CÓ]
 │   ├── Danh sách tuyến đường
-│   ├── Chi tiết tuyến
-│   ├── Về chúng tôi / Giới thiệu
-│   ├── Trung tâm hỗ trợ & FAQ
-│   └── Điều khoản – Chính sách bảo mật
+│   └── Chi tiết tuyến
 │
 ├── XÁC THỰC (shell auth — dùng chung)
 │   ├── Đăng nhập
@@ -88,7 +86,6 @@ Vi Vu Việt
 │   ├── Tìm chuyến ....................... dashboard khách
 │   ├── Kết quả tìm kiếm chuyến
 │   ├── Chi tiết chuyến & chọn ghế
-│   ├── Thanh toán & xác nhận đặt chỗ
 │   ├── Đặt chỗ thành công
 │   ├── Chuyến của tôi (danh sách + lọc)
 │   ├── Chi tiết chuyến đã đặt
@@ -151,7 +148,6 @@ thêm file CSS mới theo §1 khi không còn chỗ tái dùng.
 | Toast `.toast` | `css/toast.css` | phản hồi thao tác |
 | Phân trang `.pagination` | `css/table.css` | danh sách dài |
 | Trạng thái rỗng `.empty-state` | `css/states.css` | danh sách trống |
-| Stepper `.stepper` | `css/steps.css` (mở rộng) | thanh toán |
 | Timeline trạng thái `.timeline` | `css/timeline.css` | theo dõi chuyến, audit |
 | Badge trạng thái chuyến `.status-badge` | `base.css` (mở rộng) | mọi nơi có trạng thái |
 | Thanh tiến trình `.progress` | `base.css` (mở rộng) | hồ sơ, giải ngân |
@@ -167,9 +163,10 @@ i-phone, i-mail, i-map, i-facebook, i-instagram, i-youtube`.
 
 ## 5. Lộ trình triển khai (đề xuất theo phase)
 
-**Phase 1 — MVP (P0):** luồng đặt chuyến khép kín của khách hàng.
+**Phase 1 — MVP (P0):** luồng đặt chuyến khép kín của khách hàng
+(không thanh toán trước — trả tiền mặt trực tiếp cho tài xế trên xe).
 Đăng nhập/Đăng ký → Tìm chuyến → Kết quả → Chi tiết & chọn ghế →
-Thanh toán → Thành công → Chuyến của tôi → Chi tiết chuyến → Hủy → Đánh giá;
+Thành công → Chuyến của tôi → Chi tiết chuyến → Hủy → Đánh giá;
 kèm Hồ sơ, Thông báo, shell U.
 
 **Phase 2 — Tài xế + vận hành (P1):** trạng thái chờ duyệt, dashboard tài xế,
@@ -178,7 +175,7 @@ quản lý người dùng, quản lý tài xế & duyệt KYC, quản lý chuy�
 
 **Phase 3 — Hoàn thiện (P1/P2):** ví đối tác & đối soát,
 khuyến mãi, đánh giá & khiếu nại, thông báo broadcast, CMS, cấu hình hệ thống,
-audit log, báo cáo; các màn công khai tuyến đường, giới thiệu, chính sách.
+audit log, báo cáo; các màn công khai tuyến đường.
 
 ---
 
@@ -189,51 +186,47 @@ audit log, báo cáo; các màn công khai tuyến đường, giới thiệu, ch
 | 1 | Trang chủ | M | `home` ✅ | P0 | Công khai |
 | 2 | Danh sách tuyến đường | M | `tuyen-duong` | P1 | Công khai |
 | 3 | Chi tiết tuyến | M | `tuyen-duong-chi-tiet` | P1 | Công khai |
-| 4 | Về chúng tôi | M | `ve-chung-toi` | P2 | Công khai |
-| 5 | Trung tâm hỗ trợ & FAQ | M | `ho-tro` | P1 | Công khai |
-| 6 | Điều khoản & bảo mật | M | `chinh-sach` | P2 | Công khai |
-| 7 | Đăng nhập | auth | `dang-nhap` | P0 | Xác thực |
-| 8 | Đăng ký | auth | `dang-ky` | P0 | Xác thực |
-| 9 | Đăng nhập admin | auth | `admin-dang-nhap` | P1 | Xác thực |
-| 10 | Tìm chuyến (dashboard khách) | U | `tim-chuyen` | P0 | Khách hàng |
-| 11 | Kết quả tìm kiếm chuyến | U | `ket-qua-tim-chuyen` | P0 | Khách hàng |
-| 12 | Chi tiết chuyến & chọn ghế | U | `chi-tiet-chuyen` | P0 | Khách hàng |
-| 13 | Thanh toán & xác nhận | U | `thanh-toan` | P0 | Khách hàng |
-| 14 | Đặt chỗ thành công | U | `dat-cho-thanh-cong` | P0 | Khách hàng |
-| 15 | Chuyến của tôi | U | `chuyen-cua-toi` | P0 | Khách hàng |
-| 16 | Chi tiết chuyến đã đặt | U | `chuyen-da-dat` | P0 | Khách hàng |
-| 17 | Theo dõi chuyến realtime | U | `theo-doi-chuyen` | P1 | Khách hàng |
-| 18 | Hủy / đổi chuyến | U | `huy-doi-chuyen` | P0 | Khách hàng |
-| 19 | Đánh giá chuyến đi | U | `danh-gia` | P0 | Khách hàng |
-| 20 | Ưu đãi & mã giảm giá | U | `uu-dai` | P1 | Khách hàng |
-| 21 | Hồ sơ cá nhân | U | `ho-so` | P0 | Khách hàng |
-| 22 | Thông báo | U | `thong-bao` | P1 | Khách hàng |
-| 23 | Trung tâm hỗ trợ / khiếu nại | U | `ho-tro-khach` | P1 | Khách hàng |
-| 24 | Trạng thái chờ duyệt | D | `tai-xe-cho-duyet` | P1 | Tài xế |
-| 25 | Tổng quan tài xế | D | `tai-xe-tong-quan` | P1 | Tài xế |
-| 26 | Chuyến được phân công | D | `tai-xe-chuyen` | P1 | Tài xế |
-| 27 | Quản lý tuyến & lịch chạy | D | `tai-xe-tuyen` | P1 | Tài xế |
-| 28 | Điều hành chuyến đang chạy | D | `tai-xe-dieu-hanh` | P1 | Tài xế |
-| 29 | Thu nhập | D | `tai-xe-thu-nhap` | P1 | Tài xế |
-| 30 | Quản lý xe | D | `tai-xe-xe` | P2 | Tài xế |
-| 31 | Đánh giá & xếp hạng (tài xế) | D | `tai-xe-danh-gia` | P2 | Tài xế |
-| 32 | Hồ sơ & giấy tờ tài xế | D | `tai-xe-ho-so` | P1 | Tài xế |
-| 33 | Hỗ trợ tài xế | D | `tai-xe-ho-tro` | P2 | Tài xế |
-| 34 | Dashboard tổng quan | A | `admin-tong-quan` | P1 | Admin |
-| 35 | Quản lý người dùng | A | `admin-nguoi-dung` | P1 | Admin |
-| 36 | Quản lý tài xế & duyệt KYC | A | `admin-tai-xe` | P1 | Admin |
-| 37 | Quản lý xe | A | `admin-xe` | P2 | Admin |
-| 38 | Quản lý tuyến đường & giá | A | `admin-tuyen-duong` | P1 | Admin |
-| 39 | Quản lý chuyến / lịch trình | A | `admin-chuyen` | P1 | Admin |
-| 40 | Quản lý đơn đặt chỗ | A | `admin-don-dat` | P1 | Admin |
-| 41 | Ví đối tác & đối soát | A | `admin-doi-soat` | P2 | Admin |
-| 42 | Quản lý khuyến mãi | A | `admin-khuyen-mai` | P2 | Admin |
-| 43 | Đánh giá & khiếu nại | A | `admin-khieu-nai` | P1 | Admin |
-| 44 | Thông báo broadcast | A | `admin-thong-bao` | P2 | Admin |
-| 45 | Nội dung / CMS | A | `admin-noi-dung` | P2 | Admin |
-| 46 | Cấu hình hệ thống | A | `admin-cau-hinh` | P2 | Admin |
-| 47 | Nhật ký hoạt động | A | `admin-nhat-ky` | P2 | Admin |
-| 48 | Báo cáo & thống kê | A | `admin-bao-cao` | P1 | Admin |
+| 4 | Đăng nhập | auth | `dang-nhap` | P0 | Xác thực |
+| 5 | Đăng ký | auth | `dang-ky` | P0 | Xác thực |
+| 6 | Đăng nhập admin | auth | `admin-dang-nhap` | P1 | Xác thực |
+| 7 | Tìm chuyến (dashboard khách) | U | `tim-chuyen` | P0 | Khách hàng |
+| 8 | Kết quả tìm kiếm chuyến | U | `ket-qua-tim-chuyen` | P0 | Khách hàng |
+| 9 | Chi tiết chuyến & chọn ghế | U | `chi-tiet-chuyen` | P0 | Khách hàng |
+| 10 | Đặt chỗ thành công | U | `dat-cho-thanh-cong` | P0 | Khách hàng |
+| 11 | Chuyến của tôi | U | `chuyen-cua-toi` | P0 | Khách hàng |
+| 12 | Chi tiết chuyến đã đặt | U | `chuyen-da-dat` | P0 | Khách hàng |
+| 13 | Theo dõi chuyến realtime | U | `theo-doi-chuyen` | P1 | Khách hàng |
+| 14 | Hủy / đổi chuyến | U | `huy-doi-chuyen` | P0 | Khách hàng |
+| 15 | Đánh giá chuyến đi | U | `danh-gia` | P0 | Khách hàng |
+| 16 | Ưu đãi & mã giảm giá | U | `uu-dai` | P1 | Khách hàng |
+| 17 | Hồ sơ cá nhân | U | `ho-so` | P0 | Khách hàng |
+| 18 | Thông báo | U | `thong-bao` | P1 | Khách hàng |
+| 19 | Trung tâm hỗ trợ / khiếu nại | U | `ho-tro-khach` | P1 | Khách hàng |
+| 20 | Trạng thái chờ duyệt | D | `tai-xe-cho-duyet` | P1 | Tài xế |
+| 21 | Tổng quan tài xế | D | `tai-xe-tong-quan` | P1 | Tài xế |
+| 22 | Chuyến được phân công | D | `tai-xe-chuyen` | P1 | Tài xế |
+| 23 | Quản lý tuyến & lịch chạy | D | `tai-xe-tuyen` | P1 | Tài xế |
+| 24 | Điều hành chuyến đang chạy | D | `tai-xe-dieu-hanh` | P1 | Tài xế |
+| 25 | Thu nhập | D | `tai-xe-thu-nhap` | P1 | Tài xế |
+| 26 | Quản lý xe | D | `tai-xe-xe` | P2 | Tài xế |
+| 27 | Đánh giá & xếp hạng (tài xế) | D | `tai-xe-danh-gia` | P2 | Tài xế |
+| 28 | Hồ sơ & giấy tờ tài xế | D | `tai-xe-ho-so` | P1 | Tài xế |
+| 29 | Hỗ trợ tài xế | D | `tai-xe-ho-tro` | P2 | Tài xế |
+| 30 | Dashboard tổng quan | A | `admin-tong-quan` | P1 | Admin |
+| 31 | Quản lý người dùng | A | `admin-nguoi-dung` | P1 | Admin |
+| 32 | Quản lý tài xế & duyệt KYC | A | `admin-tai-xe` | P1 | Admin |
+| 33 | Quản lý xe | A | `admin-xe` | P2 | Admin |
+| 34 | Quản lý tuyến đường & giá | A | `admin-tuyen-duong` | P1 | Admin |
+| 35 | Quản lý chuyến / lịch trình | A | `admin-chuyen` | P1 | Admin |
+| 36 | Quản lý đơn đặt chỗ | A | `admin-don-dat` | P1 | Admin |
+| 37 | Ví đối tác & đối soát | A | `admin-doi-soat` | P2 | Admin |
+| 38 | Quản lý khuyến mãi | A | `admin-khuyen-mai` | P2 | Admin |
+| 39 | Đánh giá & khiếu nại | A | `admin-khieu-nai` | P1 | Admin |
+| 40 | Thông báo broadcast | A | `admin-thong-bao` | P2 | Admin |
+| 41 | Nội dung / CMS | A | `admin-noi-dung` | P2 | Admin |
+| 42 | Cấu hình hệ thống | A | `admin-cau-hinh` | P2 | Admin |
+| 43 | Nhật ký hoạt động | A | `admin-nhat-ky` | P2 | Admin |
+| 44 | Báo cáo & thống kê | A | `admin-bao-cao` | P1 | Admin |
 | — | Trang lỗi 404/500 | shared | `loi` | P1 | Dùng chung |
 
-**Tổng: 48 màn** (1 đã có, 47 cần design). Chi tiết từng màn ở các file 01–04.
+**Tổng: 44 màn** (1 đã có, 43 cần design). Chi tiết từng màn ở các file 01–04.

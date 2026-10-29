@@ -21,7 +21,8 @@
     "cta-footer",
     "motion",
     "responsive-desktop",
-    "responsive-mobile"
+    "responsive-mobile",
+    "responsive-touch"
   ],
   "js": ["header", "booking", "routes", "faq", "reveal"],
   "home": "#",

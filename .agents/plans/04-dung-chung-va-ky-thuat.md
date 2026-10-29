@@ -60,7 +60,7 @@ Bố cục chuẩn: 2 cột — trái là **khối thương hiệu/minh hoạ n�
 | Toast | `components/toast.html` | phản hồi thao tác toàn cục |
 | Empty state | `css/states.css` | mọi danh sách trống |
 | Skeleton loading | `css/states.css` | mọi danh sách/bảng |
-| Cart panel mã giảm giá | partial khu U | áp voucher ở chi tiết/thanh toán |
+| Cart panel mã giảm giá | partial khu U | áp voucher ở chi tiết chuyến |
 
 ---
 
@@ -81,7 +81,7 @@ Mỗi file nguồn **≤ 300 dòng, mỗi dòng ≤ 100 ký tự**.
 ### 3.2 JS mới đề xuất (IIFE thuần, `<script defer>`; đặt trước `reveal`)
 `app-shell.js` (menu app/sidebar, active nav) · `table.js` (sort, chọn dòng,
 phân trang client) · `modal.js` (mở/đóng, focus trap) · `toast.js` ·
-`tabs.js` · `filters.js` · `stepper.js` (điều khiển bước) ·
+`tabs.js` · `filters.js` ·
 `upload.js` (preview/nén ảnh) · `seat-map.js` (chọn ghế) · `dashboard.js`
 (biểu đồ), và cập nhật `sprite.html` với icon mới (§4 trong `00-tong-quan.md`).
 
@@ -115,9 +115,9 @@ phân trang client) · `modal.js` (mở/đóng, focus trap) · `toast.js` ·
 
 | Phase | Màn ưu tiên làm trước |
 |-------|------------------------|
-| **1 — MVP khách** | AU1, AU2 (auth) → B1, B2, B3, B4, B5 → B6, B7, B9, B10 → B12, B13 → shell U |
+| **1 — MVP khách** | AU1, AU2 (auth) → B1, B2, B3, B4, B5 → B6, B7, B8, B9 → B11, B12 → shell U |
 | **2 — Tài xế + vận hành** | D1, D2, D3, D5, D6, D9 → AD1, AD3, AD4, AD6, AD7, AD8 → shell D, shell A |
-| **3 — Hoàn thiện** | AD2, AD5, AD9, AD10, AD11, AD12, AD13, AD14, AD15 → B8, B11, B14 → D4, D7, D8, D10 → A1–A5, SH1 |
+| **3 — Hoàn thiện** | AD2, AD5, AD9, AD10, AD11, AD12, AD13, AD14, AD15 → B7, B10, B13 → D4, D7, D8, D10 → A1–A2, SH1 |
 
 ---
 

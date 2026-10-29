@@ -1,0 +1,73 @@
+/* ============ Responsive — touch targets & iOS form ============ */
+
+/* iOS Safari tự zoom khi focus control < 16px → ép control về 16px. */
+@media (max-width: 900px) {
+  .field input,
+  .field select {
+    font-size: 16px;
+  }
+}
+
+/* Vùng chạm tối thiểu 44px cho mọi phần tử tương tác (WCAG 2.5.5). */
+@media (max-width: 768px) {
+  .brand,
+  .brand--footer,
+  .text-link,
+  .driver-link,
+  .support-phone,
+  .support-mail,
+  .link-login,
+  .mobile-hotline,
+  .footer-col a,
+  .footer-legal a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .text-link {
+    align-items: center;
+  }
+
+  .support-phone,
+  .support-mail,
+  .footer-col a,
+  .footer-legal a {
+    padding-block: 6px;
+  }
+
+  .mobile-nav nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .mobile-nav-actions .link-login {
+    justify-content: center;
+  }
+
+  .swap-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .socials a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer-col ul {
+    gap: 4px;
+  }
+
+  .auth-check {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .auth-check input {
+    width: 20px;
+    height: 20px;
+    margin-top: 0;
+  }
+}

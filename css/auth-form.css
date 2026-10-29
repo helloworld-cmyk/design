@@ -23,32 +23,6 @@
   color: var(--slate-600);
 }
 
-.auth-role {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 18px;
-  padding: 11px 13px;
-  border: 1px solid var(--sky-100);
-  border-radius: 12px;
-  background: var(--sky-50);
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--slate-600);
-}
-
-.auth-role .icon {
-  width: 16px;
-  height: 16px;
-  flex: none;
-  color: var(--sky-700);
-}
-
-.auth-role a {
-  font-weight: 700;
-  color: var(--sky-700);
-}
-
 .auth-form {
   display: grid;
   gap: 14px;

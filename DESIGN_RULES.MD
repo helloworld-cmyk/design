@@ -54,7 +54,7 @@ design/
 - Thêm màn mới: tạo `screens/<màn>/screen.json` + `partials/`, thêm vào build
   là xong; chỉ tạo `.css`/`.js` mới khi thực sự có component chưa tồn tại.
 - Thứ tự load CSS (bắt buộc giữ): `tokens` → `base` → các component →
-  `motion` → `responsive-desktop` → `responsive-mobile`.
+  `motion` → `responsive-desktop` → `responsive-mobile` → `responsive-touch`.
 - Thứ tự load JS (`<script defer>`): `header` → `booking` → `routes` → `faq`
   → `reveal` (cuối cùng, phụ trách cả active-nav).
 - Trước commit: chạy `node build.js` phải pass, không file nguồn nào vượt rule.
@@ -155,6 +155,33 @@ letter-spacing âm. Chỉ dùng các bậc dưới, không tự chọn size/weig
     + `.mobile-nav`; hero/CTA/FAQ/support về 1 cột.
   - ≤768: container `-32px`, `--header-h:70px`, nút search full-width.
   - ≤640 / ≤520 / ≤400: về 1 cột, giảm padding/gap, ẩn phần trang trí phụ.
+
+### 5.1 Responsive là BẮT BUỘC (không ngoại lệ)
+
+> **Mọi màn/hình/component PHẢI responsive ngay từ đầu** — không có "làm desktop
+> xong rồi mới tính mobile". Thiếu responsive = **sai rule**, phải sửa.
+
+- Phải hiển thị đúng và dùng được từ **320px → 1440px+**, cả **portrait lẫn
+  landscape**. Test xong mới được báo hoàn thành.
+- **Sau khi build bắt buộc tự test mobile** (≤400px) + tablet (~768px); nếu phát
+  hiện lỗi responsive phải **sửa ngay trong cùng lượt**, không chờ được nhắc.
+- **Tiêu chí ĐẠT trên điện thoại** (kiểm bằng DevTools device + máy thật):
+  - **Không trượt ngang**: `document.documentElement.scrollWidth <= clientWidth`
+    tại 320 / 360 / 375 / 390 / 414 / 428px.
+  - **Không cắt/đè nội dung**: chữ không tràn khung, không đè nhau; tiêu đề dùng
+    `text-wrap: balance`; cấm `white-space: nowrap` gây tràn trên máy hẹp.
+  - **Control ≥ 16px** `font-size` (input/select/textarea) để iOS Safari **không
+    tự zoom** khi focus (gây "nhảy" layout).
+  - **Vùng chạm ≥ 44px** cho MỌI phần tử tương tác — kể cả link chữ ở footer,
+    FAQ, hotline, email, social (mở rộng bằng `min-height`/`padding`, không cần
+    phóng to chữ).
+  - **Ảnh & minh hoạ** (`<img>`, `<svg>`, `.feature-scene`…) co theo khung
+    (`max-width:100%`), không tràn; mọi lưới phải có nhánh về **1 cột**.
+  - **Không bị che**: header sticky + `scroll-padding-top` khớp `--header-h`.
+- Tầng CSS responsive (chỉ sửa ở đây, **không** hardcode media query rải rác):
+  `responsive-desktop` → `responsive-mobile` → `responsive-touch`.
+- Chỉ dùng đúng bậc breakpoint ở §5; cần breakpoint mới phải ghi vào tài liệu này
+  trước khi dùng.
 
 ---
 
@@ -265,7 +292,8 @@ Xác nhận **tất cả** điểm sau đều ĐÚNG:
 4. Section bọc `.container` + `.section` + `.section-head`; nhịp section §5.
 5. Icon qua sprite; tile icon nền tint đúng biến thể; ảnh đúng chuẩn §7.
 6. Có đủ state hover/focus/active/loading theo pattern; motion §8.
-7. Đủ a11y §9; `node build.js` pass; kiểm desktop + ≤400px, console sạch.
+7. Đủ a11y §9; `node build.js` pass; **test responsive 320–1440px + landscape**
+   (đủ checklist §5.1), **≤400px không lỗi**, console sạch.
 8. Đã dùng skill `ui-ux-pro-max` trong khâu thiết kế (§0) và quy mọi kết quả về
    token/component của design system.
 
@@ -296,5 +324,7 @@ Xác nhận **tất cả** điểm sau đều ĐÚNG:
    component của dự án.
 1. Sửa partial/CSS/JS nguồn tương ứng (file ≤ 300 dòng, dòng ≤ 100 ký tự).
 2. Chạy `node build.js`.
-3. Mở `index.html` kiểm desktop + mobile (≤ 400px) + console không lỗi.
+3. Mở `index.html` kiểm desktop + tablet (~768px) + mobile (≤400px) + landscape,
+   đối chiếu checklist responsive §5.1 (không trượt ngang, không đè chữ, control
+   ≥16px, vùng chạm ≥44px) + console không lỗi.
 4. Đối chiếu CHECKLIST §10 trước khi commit.

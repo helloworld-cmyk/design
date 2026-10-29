@@ -13,7 +13,8 @@
     "auth-form",
     "motion",
     "responsive-desktop",
-    "responsive-mobile"
+    "responsive-mobile",
+    "responsive-touch"
   ],
   "js": ["header", "auth", "reveal"],
   "home": "{{base}}index.html",

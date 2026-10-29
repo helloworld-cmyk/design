@@ -23,7 +23,7 @@
 - **Nhiệm vụ chính:** xem KPI (chuyến hôm nay, doanh thu, khách mới, tài xế
   online, tỉ lệ lấp ghế, tỉ lệ hủy); biểu đồ doanh thu/chuyến theo thời gian;
   bảng top tuyến, top tài xế; hàng chờ cần xử lý (hồ sơ chờ duyệt, khiếu nại
-  mới, hoàn tiền chờ); cảnh báo bất thường.
+  mới, bồi thường chờ); cảnh báo bất thường.
 - **Thành phần:** `.stat-card` ×N, biểu đồ (mở rộng `.chart`), `.data-table`,
   `.badge` mức ưu tiên, `.timeline` (hoạt động gần đây).
 - **Trạng thái:** loading dashboard, "chưa có dữ liệu hôm nay", error.
@@ -32,7 +32,7 @@
 ### AD2. Báo cáo & thống kê — `screens/admin-bao-cao/`
 - **Tác dụng:** phân tích chuyên sâu để ra quyết định & xuất dữ liệu.
 - **Nhiệm vụ chính:** chọn khoảng thời gian; xem báo cáo doanh thu, hành vi đặt
-  chỗ, hiệu quả tuyến/tài xế, hủy & hoàn tiền; so sánh kỳ; xuất CSV/Excel; lưu
+  chỗ, hiệu quả tuyến/tài xế, hủy & bồi thường; so sánh kỳ; xuất CSV/Excel; lưu
   báo cáo yêu thích.
 - **Thành phần:** `.filter-bar` (ngày/chiều), biểu đồ đa dạng, `.data-table`
   có cột số, nút xuất, `.tabs` theo loại báo cáo.
@@ -99,12 +99,12 @@
 
 ### AD8. Quản lý đơn đặt chỗ — `screens/admin-don-dat/`
 - **Tác dụng:** tra soát mọi đơn đặt của khách, xử lý ngoại lệ.
-- **Nhiệm vụ chính:** xem/lọc đơn (mã, khách, tuyến, trạng thái, thanh toán);
-  chi tiết đơn (khách, ghế, giao dịch, lịch sử trạng thái); hỗ trợ huỷ/đổi thay
-  khách; đánh dấu hoàn tiền; gắn ghi chú.
+- **Nhiệm vụ chính:** xem/lọc đơn (mã, khách, tuyến, trạng thái, thu tiền);
+  chi tiết đơn (khách, ghế, lịch sử trạng thái); hỗ trợ huỷ/đổi thay khách;
+  xác nhận thu tiền mặt trên xe; gắn ghi chú.
 - **Thành phần:** `.filter-bar`, `.data-table` đơn, drawer chi tiết (`.tabs`),
   `.timeline`, `.badge`, `.modal` xử lý.
-- **Trạng thái:** empty, đơn lỗi thanh toán, tranh chấp.
+- **Trạng thái:** empty, đơn chưa thu tiền, tranh chấp.
 - **Ưu tiên:** P1.
 
 ---
@@ -162,7 +162,7 @@
 - **Tác dụng:** bảo vệ chất lượng dịch vụ & xử lý tranh chấp khách–tài xế.
 - **Nhiệm vụ chính:** xem/lọc đánh giá, khiếu nại, ticket; mở hồ sơ vụ việc
   (chuyến, khách, tài xế, bằng chứng/ảnh); chat/hồi đáp; ra quyết định (nhắc
-  nhở, cảnh cáo, phạt, hoàn tiền, tạm ngưng tài xế); đóng vụ & lưu kết quả.
+  nhở, cảnh cáo, phạt, bồi thường, tạm ngưng tài xế); đóng vụ & lưu kết quả.
 - **Thành phần:** `.data-table` vụ việc, màn xử lý (2–3 cột: ngữ cảnh / hội
   thoại / quyết định), `.timeline`, `.badge` mức độ, `.modal` xác nhận hình phạt.
 - **Trạng thái:** mới, đang xử lý, chờ khách, đã giải quyết, khiếu nại leo thang.
@@ -174,9 +174,9 @@
 
 ### AD14. Cấu hình hệ thống — `screens/admin-cau-hinh/`
 - **Tác dụng:** điều chỉnh tham số vận hành toàn nền tảng.
-- **Nhiệm vụ chính:** cấu hình hoa hồng, phí hủy, chính sách hoàn tiền, thời
-  gian miễn phí hủy; cấu hình giá/khuyến mãi mặc định; cổng thanh toán; mẫu
-  thông báo; tham số ghép chuyến; bảo trì & phiên bản.
+- **Nhiệm vụ chính:** cấu hình hoa hồng, phí hủy, thời gian miễn phí hủy;
+  cấu hình giá/khuyến mãi mặc định; mẫu thông báo; tham số ghép chuyến;
+  bảo trì & phiên bản.
 - **Thành phần:** `.tabs` theo nhóm cấu hình, form `.field` có validate,
   toggle bật/tắt, `.form-status`, `.modal` xác nhận thay đổi quan trọng.
 - **Trạng thái:** lưu thành công, cảnh báo thay đổi ảnh hưởng lớn, lỗi validate.
@@ -203,4 +203,4 @@
 ```
 
 > **Nguyên tắc an toàn dữ liệu cho admin:** mọi hành động phá huỷ (xoá, khoá,
-> phạt, hoàn tiền) đều qua `.modal` xác nhận + ghi audit log.
+> phạt, bồi thường) đều qua `.modal` xác nhận + ghi audit log.
