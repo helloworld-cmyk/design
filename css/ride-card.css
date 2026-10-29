@@ -1,0 +1,293 @@
+/* ================= Ride card (thẻ chuyến mẫu trong hero) ================= */
+
+.ride-card {
+  position: relative;
+  z-index: 2;
+  width: min(390px, 100%);
+  padding: 22px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow:
+    0 34px 70px -34px rgba(8, 20, 38, 0.4),
+    0 2px 6px rgba(8, 20, 38, 0.04);
+}
+
+.ride-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  border-radius: 22px 22px 0 0;
+  background: linear-gradient(
+    90deg,
+    var(--sky-500),
+    var(--sky-300) 55%,
+    var(--orange-500)
+  );
+}
+
+.ride-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.ride-eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badge--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.badge--orange {
+  background: #fff1e7;
+  color: #9a3412;
+}
+
+.trip-route {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-row {
+  display: grid;
+  grid-template-columns: 46px 22px 1fr;
+  column-gap: 10px;
+  align-items: start;
+  position: relative;
+}
+
+.trip-time {
+  padding-top: 2px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.trip-marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.trip-row:not(:last-child) .trip-marker::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 2px;
+  height: calc(100% + 20px);
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    to bottom,
+    #d8e6f2 0 4px,
+    transparent 4px 8px
+  );
+}
+
+.marker-dot {
+  position: relative;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  margin-top: 4px;
+  border-radius: 50%;
+}
+
+.marker-dot--start {
+  background: var(--sky-600);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.13);
+}
+
+.marker-dot--end {
+  border: 2.5px solid var(--orange-500);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
+}
+
+.trip-row--mid {
+  min-height: 36px;
+}
+
+.trip-duration {
+  padding-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sky-700);
+}
+
+.trip-note {
+  padding-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--slate-400);
+}
+
+.trip-place strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.trip-place span {
+  display: block;
+  margin-top: 1px;
+  font-size: 11.5px;
+  color: var(--slate-500);
+}
+
+.ride-driver {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+}
+
+.driver {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.avatar--driver {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #fff;
+  font-size: 12.5px;
+  background: linear-gradient(135deg, var(--navy-800), var(--sky-700));
+  box-shadow: 0 4px 10px -4px rgba(8, 20, 38, 0.4);
+}
+
+.avatar--photo {
+  object-fit: cover;
+  object-position: 50% 30%;
+  background: var(--sky-100);
+}
+
+.person-avatar {
+  position: relative;
+  flex: none;
+}
+
+.person-avatar .avatar--photo {
+  width: 46px;
+  height: 46px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px -2px rgba(8, 20, 38, 0.25);
+}
+
+.avatar-verified {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--green-600);
+  color: #fff;
+}
+
+.avatar-verified .icon {
+  width: 9px;
+  height: 9px;
+}
+
+.driver-info {
+  min-width: 0;
+}
+
+.driver-info strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.driver-meta {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--slate-500);
+}
+
+.driver-meta .icon {
+  width: 12px;
+  height: 12px;
+}
+
+.driver-car {
+  display: block;
+  font-size: 11px;
+  color: var(--slate-400);
+}
+
+.ride-price {
+  flex: none;
+  text-align: right;
+}
+
+.ride-price strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ride-price span {
+  display: block;
+  font-size: 10.5px;
+  color: var(--slate-400);
+}

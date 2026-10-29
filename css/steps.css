@@ -1,0 +1,110 @@
+/* ================= Steps ================= */
+
+#cach-hoat-dong .container {
+  position: relative;
+}
+
+.steps-deco {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  width: min(42%, 470px);
+  height: auto;
+  pointer-events: none;
+}
+
+.steps-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+}
+
+/* Nối bước — chỉ hiển thị khi cao enough để khớp giữa tile (>=1200px) */
+.steps-grid::before {
+  content: "";
+  position: absolute;
+  top: 104px;
+  left: 9%;
+  right: 9%;
+  border-top: 2px dashed #bae6fd;
+  z-index: 0;
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .steps-grid::before {
+    display: block;
+  }
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+}
+
+.step-art {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e0f2fe;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.step:hover .step-art {
+  transform: translateY(-4px);
+  border-color: #bae6fd;
+  box-shadow: var(--shadow-md);
+}
+
+.step-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.step-scene .step-dash {
+  animation: dash 16s linear infinite;
+}
+
+.step-num {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  padding: 5px 12px;
+  border: 1px solid #bae6fd;
+  border-radius: 999px;
+  background: #fff;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--sky-700);
+  box-shadow: var(--shadow-xs);
+  pointer-events: none;
+}
+
+.step h3 {
+  margin: 18px 0 8px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.step p {
+  max-width: 320px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--slate-600);
+}
+
+@media (max-width: 900px) {
+  .steps-deco {
+    display: none;
+  }
+}

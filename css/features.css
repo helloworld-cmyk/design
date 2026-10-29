@@ -1,0 +1,132 @@
+/* ================= Features ================= */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+
+.features-intro {
+  position: sticky;
+  top: calc(var(--header-h) + 32px);
+}
+
+.features-intro > p {
+  max-width: 360px;
+  margin-top: 16px;
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--slate-600);
+}
+
+.features-intro .text-link {
+  margin-top: 20px;
+}
+
+.intro-note {
+  display: flex;
+  gap: 12px;
+  max-width: 360px;
+  margin-top: 30px;
+  padding: 16px 18px;
+  border: 1px solid rgba(3, 105, 161, 0.16);
+  border-left: 3px solid var(--sky-500);
+  border-radius: 14px;
+  background: var(--sky-100);
+  box-shadow: var(--shadow-xs);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--slate-600);
+}
+
+.note-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: var(--green-600);
+  background: #fff;
+  box-shadow:
+    inset 0 0 0 1px rgba(5, 150, 105, 0.18),
+    0 1px 2px rgba(8, 20, 38, 0.05);
+}
+
+.note-icon .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.intro-note strong {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.feature-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.feature-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: #bae6fd;
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-art {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 320 / 140;
+  overflow: hidden;
+  background: var(--sky-50);
+}
+
+.feature-scene {
+  width: 100%;
+  height: 100%;
+}
+
+.feature-body {
+  padding: 22px 22px 24px;
+}
+
+.feature-card h3 {
+  margin-bottom: 7px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  font-size: 14px;
+  line-height: 1.68;
+  color: var(--slate-600);
+}
+
+.feature-card--dark {
+  border-color: transparent;
+  background: linear-gradient(150deg, var(--navy-800), #123a64);
+  box-shadow: 0 20px 40px -24px rgba(8, 20, 38, 0.55);
+}
+
+.feature-card--dark h3 {
+  color: #fff;
+}
+
+.feature-card--dark p {
+  color: #b9c7d8;
+}

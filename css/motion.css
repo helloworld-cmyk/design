@@ -1,0 +1,170 @@
+/* ================= Motion (reveal + keyframes) ================= */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s var(--ease),
+    transform 0.65s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes artBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes artRing {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.16);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.16);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -300;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes formFlash {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(14, 165, 233, 0.35),
+      0 24px 60px -28px rgba(8, 20, 38, 0.35);
+  }
+  100% {
+    box-shadow:
+      0 0 0 18px rgba(14, 165, 233, 0),
+      0 24px 60px -28px rgba(8, 20, 38, 0.35);
+  }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hoạ tiết sống động trong minh hoạ (feature art) */
+
+.feature-card:hover .feature-scene {
+  transform: scale(1.035);
+}
+
+.feature-scene {
+  transition: transform 0.6s var(--ease);
+}
+
+.art-dash {
+  animation: dash 14s linear infinite;
+}
+
+.art-bob {
+  animation: artBob 4.5s ease-in-out infinite;
+}
+
+.art-ring {
+  transform-origin: 160px 78px;
+  animation: artRing 3.6s ease-out infinite;
+}
+
+.art-ring--2 {
+  animation-delay: 1.8s;
+}
+
+/* Focus trên nền tối + reduced motion */
+
+.driver-panel :focus-visible,
+.site-footer :focus-visible,
+.btn-accent:focus-visible {
+  outline-color: var(--sky-300);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .float-chip,
+  .route-path,
+  .pulse-dot,
+  .art-dash,
+  .art-bob,
+  .art-ring {
+    animation: none;
+  }
+
+  .feature-scene {
+    transition: none;
+  }
+
+  .feature-card:hover .feature-scene {
+    transform: none;
+  }
+}

@@ -1,0 +1,122 @@
+/* ================= Fleet — đội xe thật 9/16/29 chỗ ================= */
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.fleet-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform 0.26s var(--ease),
+    box-shadow 0.26s var(--ease),
+    border-color 0.26s var(--ease);
+}
+
+.fleet-card:hover {
+  transform: translateY(-4px);
+  border-color: #bae6fd;
+  box-shadow: var(--shadow-md);
+}
+
+.fleet-media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--sky-50);
+}
+
+.fleet-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.fleet-card:hover .fleet-media img {
+  transform: scale(1.045);
+}
+
+.fleet-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--sky-800);
+  box-shadow: var(--shadow-xs);
+}
+
+.fleet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+}
+
+.fleet-body h3 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.fleet-model {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--sky-700);
+}
+
+.fleet-desc {
+  font-size: 13.5px;
+  line-height: 1.62;
+  color: var(--slate-600);
+}
+
+.fleet-specs {
+  display: grid;
+  gap: 7px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.fleet-specs li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--slate-700);
+}
+
+.fleet-specs .icon {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  color: var(--green-600);
+}
+
+.fleet-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+.fleet-note .icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--green-600);
+}

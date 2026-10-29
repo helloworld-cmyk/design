@@ -1,0 +1,296 @@
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="dat-xe">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>
+          Ghép chuyến thông minh,<br />
+          <span class="text-sky">đi tỉnh nhẹ nhàng.</span>
+        </h1>
+        <p class="hero-lead">
+          Đặt xe ghép liên tỉnh trong 60 giây. Giá trọn gói, đón trả tận nơi
+          và mọi tài xế đều được xác thực — để mỗi chuyến đi đều nhẹ nhàng hơn.
+        </p>
+
+        <ul class="hero-points">
+          <li>
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-check-circle"></use>
+            </svg>
+            Không phí ẩn
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-check-circle"></use>
+            </svg>
+            Tài xế xác thực
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-check-circle"></use>
+            </svg>
+            Hủy linh hoạt
+          </li>
+        </ul>
+
+        <form class="booking-form" id="bookingForm" novalidate>
+          <div class="booking-route">
+            <div class="field">
+              <label for="origin">Điểm đi</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-pin"></use>
+                </svg>
+                <input
+                  type="text"
+                  id="origin"
+                  name="origin"
+                  list="cityList"
+                  placeholder="VD: Hà Nội"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="swap-btn"
+              id="swapBtn"
+              aria-label="Đổi điểm đi và điểm đến"
+            >
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-swap"></use>
+              </svg>
+            </button>
+            <div class="field">
+              <label for="destination">Điểm đến</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-pin"></use>
+                </svg>
+                <input
+                  type="text"
+                  id="destination"
+                  name="destination"
+                  list="cityList"
+                  placeholder="VD: Hải Phòng"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <datalist id="cityList">
+              <option value="Hà Nội"></option>
+              <option value="Hải Phòng"></option>
+              <option value="Thanh Hóa"></option>
+              <option value="Nam Định"></option>
+              <option value="Thái Nguyên"></option>
+              <option value="Ninh Bình"></option>
+              <option value="Quảng Ninh"></option>
+              <option value="Vinh"></option>
+              <option value="Huế"></option>
+              <option value="Đà Nẵng"></option>
+              <option value="Quy Nhơn"></option>
+              <option value="Nha Trang"></option>
+              <option value="Đà Lạt"></option>
+              <option value="TP. Hồ Chí Minh"></option>
+              <option value="Vũng Tàu"></option>
+              <option value="Cần Thơ"></option>
+              <option value="Bình Dương"></option>
+              <option value="Đồng Nai"></option>
+            </datalist>
+          </div>
+
+          <div class="booking-meta">
+            <div class="field">
+              <label for="travelDate">Ngày đi</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-calendar"></use>
+                </svg>
+                <input type="date" id="travelDate" name="travelDate" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="seats">Số ghế</label>
+              <div class="field-control select-wrap">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-users"></use>
+                </svg>
+                <select id="seats" name="seats">
+                  <option value="1">1 ghế</option>
+                  <option value="2">2 ghế</option>
+                  <option value="3">3 ghế</option>
+                  <option value="4">4 ghế</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-search" id="searchBtn">
+              <span class="btn-label">Tìm chuyến xe</span>
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+          <p class="form-note">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-shield"></use>
+            </svg>
+            Miễn phí hủy trước 2 giờ · Không cần đặt cọc
+          </p>
+          <div
+            class="form-status"
+            id="formStatus"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </div>
+
+      <div class="hero-visual">
+        <svg class="route-art" viewBox="0 0 520 520" fill="none" aria-hidden="true">
+          <path
+            class="route-path"
+            d="M-20 430C90 430 90 300 200 300s110 130 220 130 120-90 120-90"
+            stroke="#BAE6FD"
+            stroke-width="2"
+            stroke-dasharray="7 9"
+          />
+          <path
+            class="route-path route-path-2"
+            d="M-10 470C110 470 120 370 230 370s110 100 220 100 90-70 90-70"
+            stroke="#E0F2FE"
+            stroke-width="2"
+            stroke-dasharray="5 10"
+          />
+          <circle cx="200" cy="300" r="5" fill="#7DD3FC" />
+          <circle cx="420" cy="430" r="5" fill="#7DD3FC" />
+        </svg>
+
+        <div class="float-chip chip-verified">
+          <span class="chip-icon chip-icon--green" aria-hidden="true">
+            <svg class="icon"><use href="#i-shield"></use></svg>
+          </span>
+          <span>
+            <strong>Tài xế đã xác thực</strong>
+            <em>CCCD, GPLX & bảo hiểm</em>
+          </span>
+        </div>
+
+        <article
+          class="ride-card"
+          aria-label="Ví dụ chuyến xe Hà Nội đi Hải Phòng"
+        >
+          <div class="ride-card-top">
+            <span class="ride-eyebrow">Chuyến xe sắp tới</span>
+            <span class="badge badge--green">Còn 2 ghế</span>
+          </div>
+
+          <div class="trip-route">
+            <div class="trip-row">
+              <span class="trip-time">07:00</span>
+              <span class="trip-marker">
+                <span class="marker-dot marker-dot--start"></span>
+              </span>
+              <div class="trip-place">
+                <strong>Hà Nội</strong>
+                <span>Bến xe Mỹ Đình</span>
+              </div>
+            </div>
+            <div class="trip-row trip-row--mid">
+              <span class="trip-duration">2h 10p</span>
+              <span class="trip-marker">
+                <span class="marker-line"></span>
+              </span>
+              <span class="trip-note">Cao tốc Hà Nội – Hải Phòng</span>
+            </div>
+            <div class="trip-row">
+              <span class="trip-time">09:10</span>
+              <span class="trip-marker">
+                <span class="marker-dot marker-dot--end"></span>
+              </span>
+              <div class="trip-place">
+                <strong>Hải Phòng</strong>
+                <span>Trung tâm thành phố</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ride-driver">
+            <div class="driver">
+              <img class="avatar avatar--driver avatar--photo"
+                src="https://images.unsplash.com/photo-1661588156316-cdcbe2e0c8ad?q=80&w=160"
+                alt="" width="44" height="44" loading="lazy" />
+              <div class="driver-info">
+                <strong>Trần Minh Hiếu</strong>
+                <span class="driver-meta">
+                  <svg class="icon icon-star" aria-hidden="true">
+                    <use href="#i-star"></use>
+                  </svg>
+                  4.9 · 128 chuyến
+                </span>
+                <span class="driver-car">Ford Transit · 9 chỗ</span>
+              </div>
+            </div>
+            <div class="ride-price">
+              <strong>180.000đ</strong>
+              <span>/ghế</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="float-chip chip-save">
+          <span class="chip-icon chip-icon--orange" aria-hidden="true">
+            <svg class="icon"><use href="#i-wallet"></use></svg>
+          </span>
+          <span>
+            <strong>Tiết kiệm 40%</strong>
+            <em>so với taxi truyền thống</em>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="trust-strip reveal">
+        <div class="trust-item">
+          <span class="trust-icon trust-icon--sky" aria-hidden="true">
+            <svg class="icon"><use href="#i-car"></use></svg>
+          </span>
+          <div>
+            <strong>12.000+</strong>
+            <span>chuyến xe mỗi tháng</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon trust-icon--navy" aria-hidden="true">
+            <svg class="icon"><use href="#i-map"></use></svg>
+          </span>
+          <div>
+            <strong>40+</strong>
+            <span>tỉnh thành phủ sóng</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon trust-icon--orange" aria-hidden="true">
+            <svg class="icon"><use href="#i-star"></use></svg>
+          </span>
+          <div>
+            <strong>4.9/5</strong>
+            <span>từ 25.400 đánh giá</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon trust-icon--green" aria-hidden="true">
+            <svg class="icon"><use href="#i-headset"></use></svg>
+          </span>
+          <div>
+            <strong>24/7</strong>
+            <span>hỗ trợ khách hàng</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

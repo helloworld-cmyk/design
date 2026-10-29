@@ -1,0 +1,289 @@
+/* ================= Responsive — mobile ================= */
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 70px;
+  }
+
+  .container {
+    width: min(100% - 32px, var(--container));
+  }
+
+  .head-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .rating-summary {
+    align-items: flex-start;
+  }
+
+  .routes-grid {
+    gap: 14px;
+  }
+
+  .fleet-grid {
+    gap: 14px;
+  }
+
+  .feature-cards {
+    gap: 14px;
+  }
+
+  .route-card {
+    padding: 18px;
+  }
+
+  .footer-grid {
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    margin-top: 36px;
+  }
+
+  .booking-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .btn-search {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 36px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.15rem, 9.6vw, 2.9rem);
+  }
+
+  .hero-visual {
+    padding: 26px 0 20px;
+  }
+
+  .float-chip {
+    font-size: 11px;
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+
+  .float-chip strong {
+    font-size: 11px;
+  }
+
+  .float-chip em {
+    font-size: 9.5px;
+  }
+
+  .chip-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+  }
+
+  .chip-icon .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .chip-verified {
+    top: -4px;
+    left: 4px;
+  }
+
+  .chip-save {
+    right: 4px;
+    bottom: -4px;
+  }
+
+  .ride-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .booking-form {
+    padding: 14px;
+  }
+
+  .booking-route {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .swap-btn {
+    position: static;
+    justify-self: center;
+    margin: -12px 0;
+    transform: none;
+  }
+
+  .swap-btn:hover {
+    transform: none;
+  }
+
+  .swap-btn.is-swapping {
+    transform: rotate(180deg);
+  }
+
+  .routes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fleet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fleet-note {
+    text-align: left;
+  }
+
+  .route-cities {
+    font-size: 18px;
+  }
+
+  .feature-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-head {
+    margin-bottom: 30px;
+  }
+
+  .driver-panel {
+    border-radius: 22px;
+    padding: 26px 20px;
+  }
+
+  .driver-actions {
+    gap: 18px;
+  }
+
+  .income-card {
+    padding: 20px;
+  }
+
+  .income-chip {
+    top: -14px;
+    right: 4px;
+  }
+
+  .income-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta-final {
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .cta-actions {
+    width: 100%;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+  }
+
+  .cta-note {
+    text-align: left;
+  }
+
+  .faq-trigger {
+    padding: 18px 2px;
+    font-size: 15px;
+  }
+
+  .faq-panel {
+    padding: 0 34px 18px 2px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 24px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .trust-strip {
+    grid-template-columns: 1fr;
+    padding: 6px 18px;
+    row-gap: 0;
+  }
+
+  .trust-item,
+  .trust-item:nth-child(1),
+  .trust-item:nth-child(2) {
+    padding: 14px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .trust-item:last-child {
+    border-bottom: 0;
+  }
+
+  .booking-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .income-head {
+    flex-wrap: wrap;
+  }
+
+  .driver-points {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand {
+    font-size: 19px;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+  }
+
+  .hero-points {
+    gap: 6px 14px;
+  }
+
+  .float-chip em {
+    display: none;
+  }
+
+  .ride-price strong {
+    font-size: 15.5px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

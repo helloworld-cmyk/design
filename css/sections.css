@@ -1,0 +1,98 @@
+/* ================= Sections (khung chung) ================= */
+
+.section {
+  padding: clamp(64px, 8vw, 108px) 0;
+}
+
+.section--white {
+  background: #fff;
+  border-block: 1px solid var(--border-soft);
+}
+
+.section-head {
+  max-width: 660px;
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+.section-head h2,
+.features-intro h2,
+.faq-intro h2 {
+  margin-top: 12px;
+  font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.032em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.section-head p {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--slate-600);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--sky-500);
+}
+
+.section-eyebrow--light {
+  color: var(--sky-300);
+}
+
+.section-eyebrow--light::before {
+  background: #38bdf8;
+}
+
+.head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  max-width: none;
+  gap: 32px;
+}
+
+.head-row > div {
+  max-width: 640px;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sky-700);
+  transition:
+    gap var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.text-link:hover {
+  gap: 10px;
+  border-bottom-color: var(--sky-300);
+}
+
+.text-link .icon {
+  width: 17px;
+  height: 17px;
+}
