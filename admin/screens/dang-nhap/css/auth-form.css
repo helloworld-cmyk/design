@@ -1,0 +1,115 @@
+/* ================= Auth — card & form (admin) ================= */
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  padding: clamp(26px, 3.4vw, 38px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.auth-card h1 {
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.auth-lead {
+  margin-top: 8px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+.auth-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.field--has-toggle input {
+  padding-right: 46px;
+}
+
+.field-toggle {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: var(--slate-500);
+  transform: translateY(-50%);
+  transition:
+    color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.field-toggle:hover {
+  color: var(--sky-700);
+  background: var(--sky-50);
+}
+
+.field-toggle .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.field-toggle .icon-eye-off {
+  display: none;
+}
+
+.field-toggle.is-on .icon-eye {
+  display: none;
+}
+
+.field-toggle.is-on .icon-eye-off {
+  display: block;
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+
+.auth-check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--slate-600);
+  cursor: pointer;
+}
+
+.auth-check input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--sky-700);
+  cursor: pointer;
+}
+
+.auth-check.is-invalid {
+  color: var(--red-600);
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .auth-card {
+    padding: 22px 18px;
+    border-radius: var(--radius-lg);
+  }
+}

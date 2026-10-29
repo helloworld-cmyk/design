@@ -1,0 +1,44 @@
+{
+  "output": "admin/tong-quan.html",
+  "base": "../",
+  "title": "Tổng quan — Quản trị Vi Vu Việt",
+  "description": "Bảng điều khiển quản trị Vi Vu Việt: KPI chuyến đi, doanh thu, khách mới, tài xế online, top tuyến, hàng chờ xử lý và cảnh báo bất thường.",
+  "home": "tong-quan.html",
+  "linkLoginHref": "index.html",
+  "linkLoginLabel": "Đăng nhập",
+  "profileHref": "ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/ride-card",
+    "shared/css/sections",
+    "admin/screens/tong-quan/css/shell",
+    "admin/screens/tong-quan/css/shell-top",
+    "admin/screens/tong-quan/css/shell-user",
+    "admin/screens/tong-quan/css/stats",
+    "admin/screens/tong-quan/css/charts",
+    "admin/screens/tong-quan/css/tables",
+    "admin/screens/tong-quan/css/monitor",
+    "admin/screens/tong-quan/css/states",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/screens/tong-quan/js/dashboard",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/screens/tong-quan/partials/admin-sprite.html",
+    "admin/screens/tong-quan/partials/shell.html",
+    "admin/screens/tong-quan/partials/states.html",
+    "admin/screens/tong-quan/partials/stats.html",
+    "admin/screens/tong-quan/partials/chart.html",
+    "admin/screens/tong-quan/partials/tables.html",
+    "admin/screens/tong-quan/partials/monitor.html"
+  ]
+}

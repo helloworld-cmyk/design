@@ -1,0 +1,197 @@
+/* ============== Admin shell — user menu + nội dung (tiếp) ============== */
+
+/* ---------- User menu (topbar phải) ---------- */
+
+.adm-user {
+  position: relative;
+}
+
+.adm-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 4px 12px 4px 5px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.adm-user-btn:hover,
+.adm-user.is-open .adm-user-btn {
+  background: var(--sky-50);
+  border-color: var(--sky-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.adm-user-id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.adm-user-id strong {
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.adm-user-id span {
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--slate-500);
+}
+
+.adm-user-caret {
+  width: 16px;
+  height: 16px;
+  color: var(--slate-500);
+  transition: transform var(--dur) var(--ease);
+}
+
+.adm-user.is-open .adm-user-caret {
+  transform: rotate(180deg);
+}
+
+.adm-drop {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 70;
+  width: 232px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    visibility var(--dur) var(--ease);
+}
+
+.adm-drop::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 0;
+  left: 0;
+  height: 10px;
+}
+
+.adm-user.is-open .adm-drop {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.adm-drop-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate-700);
+  text-align: left;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.adm-drop-item .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--slate-500);
+  transition: color var(--dur) var(--ease);
+}
+
+.adm-drop-item:hover {
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.adm-drop-item:hover .icon {
+  color: var(--sky-700);
+}
+
+.adm-drop-item--logout,
+.adm-drop-item--logout .icon {
+  color: var(--red-600);
+}
+
+.adm-drop-item--logout:hover {
+  background: var(--red-50);
+  color: var(--red-600);
+}
+
+/* ---------- Nội dung ---------- */
+
+.adm-content {
+  flex: 1;
+  padding: clamp(20px, 3vw, 30px) 0 clamp(32px, 4vw, 48px);
+}
+
+/* ---------- Sidebar dạng drawer (≤1024) ---------- */
+
+@media (max-width: 1024px) {
+  .adm-side {
+    position: fixed;
+    inset-block: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-104%);
+    transition: transform 0.3s var(--ease);
+  }
+
+  .adm.is-side-open .adm-side {
+    transform: none;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .adm-burger {
+    display: inline-flex;
+  }
+}
+
+/* ---------- Topbar thu gọn ---------- */
+
+@media (max-width: 768px) {
+  .adm-search {
+    display: none;
+  }
+
+  .adm-topbar {
+    height: 70px;
+  }
+}
+
+@media (max-width: 520px) {
+  .adm-user-id,
+  .adm-user-caret {
+    display: none;
+  }
+
+  .adm-user-btn {
+    padding: 4px 5px;
+  }
+}
+
+/* ---------- Focus trên nền tối ---------- */
+
+.adm-side :focus-visible,
+.adm-scrim:focus-visible {
+  outline-color: var(--sky-300);
+}
