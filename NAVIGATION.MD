@@ -11,8 +11,11 @@
 | Trang chủ (app) | `index.html` | `screens/home/screen.json` | `""` |
 | Đăng nhập | `html-screen/dang-nhap.html` | `screens/dang-nhap/screen.json` | `"../"` |
 | Đăng ký | `html-screen/dang-ky.html` | `screens/dang-ky/screen.json` | `"../"` |
+| Lỗi 404/500 | `404.html` | `screens/error/screen.json` | `""` |
 
-- File ở gốc (`index.html`, `assets/`, `css/`, `js/`) dùng path gốc.
+- File ở gốc (`index.html`, `404.html`, `assets/`, `css/`, `js/`) dùng path gốc.
+- Trang lỗi dùng chung 1 output: mặc định là 404; mở `404.html?code=500`
+  để hiển thị trạng thái lỗi máy chủ (nút "Thử lại" reload trang).
 - Màn trong `html-screen/` dùng tiền tố `{{base}}` = `../` để trỏ ra gốc
   (`../css/...`, `../js/...`, `../assets/...`, `../index.html`).
 
@@ -21,12 +24,12 @@
 `screen.json` khai báo 4 trường điều khiển header; giá trị có thể chứa `{{base}}`
 (được build resolve trước, xem `.agents/plans` khi cần chi tiết):
 
-| Token | Ý nghĩa | Home | Đăng nhập / Đăng ký |
-| --- | --- | --- | --- |
-| `home` | đích của brand | `#` | `../index.html` |
-| `navPrefix` | tiền tố trước `#<id>` cho nav + CTA | `` (rỗng) | `../index.html` |
-| `linkLoginHref` | đích `.link-login` | `html-screen/dang-nhap.html` | `../index.html` |
-| `linkLoginLabel` | nhãn `.link-login` | `Đăng nhập` | `Trang chủ` |
+| Token | Ý nghĩa | Home | Đăng nhập / Đăng ký | Lỗi 404/500 |
+| --- | --- | --- | --- | --- |
+| `home` | đích của brand | `#` | `../index.html` | `index.html` |
+| `navPrefix` | tiền tố trước `#<id>` cho nav + CTA | `` (rỗng) | `../index.html` | `index.html` |
+| `linkLoginHref` | đích `.link-login` | `html-screen/dang-nhap.html` | `../index.html` | `html-screen/dang-nhap.html` |
+| `linkLoginLabel` | nhãn `.link-login` | `Đăng nhập` | `Trang chủ` | `Đăng nhập` |
 
 - Trên màn auth, nav bar dùng lại **đúng** header trang chủ; các link section trỏ
   về `../index.html#<id>` nên người dùng luôn quay lại được trang chủ.
