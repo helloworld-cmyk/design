@@ -71,7 +71,6 @@ Các trang sau chưa tồn tại, khi thêm thì đặt **cùng `html-screen/`**
 
 - `dang-ky-tai-xe.html` (Đăng ký làm tài xế)
 - `dat-lai-mat-khau.html` (Quên mật khẩu)
-- `chinh-sach.html` (Điều khoản & Chính sách bảo mật)
 
 ## 5. Thêm màn phụ mới vào `html-screen/`
 
