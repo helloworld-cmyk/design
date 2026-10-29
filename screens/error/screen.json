@@ -1,0 +1,28 @@
+{
+  "output": "404.html",
+  "title": "Không tìm thấy trang — Vi Vu Việt",
+  "description": "Trang bạn tìm không tồn tại hoặc đã bị di chuyển. Về trang chủ, đặt chuyến xe hoặc liên hệ hỗ trợ Vi Vu Việt 24/7.",
+  "css": [
+    "tokens",
+    "base",
+    "header",
+    "sections",
+    "hero",
+    "error",
+    "cta-footer",
+    "motion",
+    "responsive-desktop",
+    "responsive-mobile"
+  ],
+  "js": ["header", "error", "reveal"],
+  "partials": [
+    "components/head.html",
+    "components/sprite.html",
+    "components/art.html",
+    "components/header.html",
+    "screens/error/partials/hero.html",
+    "screens/error/partials/recover.html",
+    "screens/error/partials/support.html",
+    "components/footer.html"
+  ]
+}
