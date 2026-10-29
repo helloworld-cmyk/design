@@ -1,62 +1,62 @@
 # NAVIGATION — Vi Vu Việt (luồng điều hướng)
 
-> Ghi chú luồng navigation giữa **trang chủ khách hàng** (`index.html` ở gốc) và
-> các **màn theo vai trò** trong `khach-hang/`, `tai-xe/`, `admin/` (dùng chung ở
-> `shared/`). Mọi thay đổi phải đi qua `node build.js` (không sửa file build tay
-> — xem `DESIGN_RULES.MD` §1).
+> Ghi chú luồng navigation. **Mỗi đối tượng là một web riêng**: khách hàng
+> (`khach-hang/`), tài xế (`tai-xe/`), admin (`admin/`), dùng chung design
+> system + trang lỗi ở `shared/`. Không có file `.html` build nào ở gốc.
+> Mọi thay đổi phải đi qua `node build.js` (không sửa file build tay — xem
+> `DESIGN_RULES.MD` §1).
 
 ## 1. Cấu trúc output theo nhóm vai trò
 
 | Màn | Output (file build) | Manifest nguồn | `base` |
 | --- | --- | --- | --- |
-| Trang chủ khách hàng | `index.html` | `khach-hang/screens/home/screen.json` | `""` |
-| Lỗi 404/500 (dùng chung) | `404.html` | `shared/screens/loi/screen.json` | `""` |
+| Trang chủ khách hàng | `khach-hang/index.html` | `khach-hang/screens/home/screen.json` | `"../"` |
 | Đăng nhập (khách) | `khach-hang/dang-nhap.html` | `khach-hang/screens/dang-nhap/screen.json` | `"../"` |
 | Đăng ký (khách) | `khach-hang/dang-ky.html` | `khach-hang/screens/dang-ky/screen.json` | `"../"` |
 | Hồ sơ cá nhân | `khach-hang/ho-so.html` | `khach-hang/screens/ho-so/screen.json` | `"../"` |
+| Lỗi 404/500 (dùng chung) | `shared/404.html` | `shared/screens/loi/screen.json` | `"../"` |
 
 - Nhóm thư mục: `shared/` (dùng chung), `khach-hang/` (end user), `tai-xe/`
-  (tài xế), `admin/` (quản trị). **Mỗi vai trò một bộ màn khác nhau.**
-- `index.html` là màn **trang chủ của khách hàng** (nguồn `khach-hang/screens/home`)
-  nhưng xuất ra gốc; trang lỗi dùng chung xuất `404.html` ở gốc.
-- Màn ở **gốc** (`index.html`, `404.html`) dùng `base` = `""` → `shared/...`,
-  `khach-hang/...`.
-- Màn trong **nhóm** (vd `khach-hang/dang-nhap.html`, `khach-hang/ho-so.html`)
-  dùng `{{base}}` = `../` để trỏ ra gốc (`../shared/...`, `../index.html`).
-- Trang lỗi dùng chung 1 output: mặc định là 404; mở `404.html?code=500`
-  để hiển thị trạng thái lỗi máy chủ (nút "Thử lại" reload trang).
+  (tài xế), `admin/` (quản trị). **Mỗi vai trò một web/bộ màn khác nhau**:
+  trang chủ khách là `khach-hang/index.html`; admin/tài xế sẽ có trang chủ riêng
+  `admin/index.html`, `tai-xe/index.html` (màn khác hoàn toàn).
+- Mọi output nằm **trong nhóm** hoặc `shared/` → mọi màn dùng `base` = `"../"`
+  để trỏ ra gốc (`../shared/...`, `../khach-hang/...`). Không có `.html` ở gốc.
+- Trang lỗi dùng chung 1 output `shared/404.html`: mặc định là 404; mở
+  `shared/404.html?code=500` để hiển thị lỗi máy chủ (nút "Thử lại" reload).
 
 ### 1.1 Token header (`build.js` → `shared/components/header.html`)
 
 `screen.json` khai báo 4 trường điều khiển header; giá trị có thể chứa `{{base}}`
 (được build resolve trước, xem `.agents/plans` khi cần chi tiết):
 
-| Token | Ý nghĩa | Home | Đăng nhập / Đăng ký | Lỗi 404/500 |
+| Token | Ý nghĩa | Home khách | Đăng nhập / Đăng ký | Lỗi 404/500 |
 | --- | --- | --- | --- | --- |
-| `home` | đích của brand | `#` | `../index.html` | `index.html` |
-| `navPrefix` | tiền tố trước `#<id>` cho nav + CTA | `` (rỗng) | `../index.html` | `index.html` |
-| `linkLoginHref` | đích `.link-login` | `khach-hang/dang-nhap.html` | `../index.html` | `khach-hang/dang-nhap.html` |
+| `home` | đích của brand | `#` | `index.html` | `../khach-hang/index.html` |
+| `navPrefix` | tiền tố trước `#<id>` cho nav + CTA | `` (rỗng) | `index.html` | `../khach-hang/index.html` |
+| `linkLoginHref` | đích `.link-login` | `dang-nhap.html` | `index.html` | `../khach-hang/dang-nhap.html` |
 | `linkLoginLabel` | nhãn `.link-login` | `Đăng nhập` | `Trang chủ` | `Đăng nhập` |
 
 - Trên màn auth khách, nav bar dùng lại **đúng** header trang chủ; các link
-  section trỏ về `../index.html#<id>` để luôn quay lại được trang chủ.
+  section trỏ về `index.html#<id>` (cùng thư mục `khach-hang/`).
+- Trang lỗi dùng chung trỏ về web khách hiện tại (`../khach-hang/...`).
 
 ## 2. Luồng điều hướng (sơ đồ)
 
 ```
-                 index.html  (Trang chủ khách hàng)
+                khach-hang/index.html  (Trang chủ khách hàng)
                   header: "Đăng nhập"  ──────────┐
                                                   ▼
-                          khach-hang/dang-nhap.html  (Đăng nhập)
+                       khach-hang/dang-nhap.html  (Đăng nhập)
                                                   │
                                    "Đăng ký ngay" │  ▲ "Đăng nhập"
                                                   ▼  │
-                          khach-hang/dang-ky.html    (Đăng ký)
+                       khach-hang/dang-ky.html    (Đăng ký)
 ```
 
-- Hai màn auth khách nằm cùng nhóm `khach-hang/` nên link qua lại là **tương đối
-  cùng cấp** (`dang-nhap.html` ↔ `dang-ky.html`).
-- Logo/brand trên màn auth trỏ về app: `../index.html`.
+- Home + 2 màn auth khách nằm **cùng thư mục `khach-hang/`** nên link nội bộ là
+  tương đối cùng cấp (`index.html`, `dang-nhap.html`, `dang-ky.html`).
+- Logo/brand trên màn auth trỏ về `index.html` (cùng thư mục).
 
 ## 3. Bảng link (nguồn → đích)
 
@@ -80,8 +80,8 @@
 
 Các trang sau chưa tồn tại, khi thêm thì đặt **trong nhóm tương ứng**:
 
-- `khach-hang/screens/dang-ky-tai-xe/` (Đăng ký làm tài xế) — hoặc trong
-  `tai-xe/`; `khach-hang/screens/dat-lai-mat-khau/` (Quên mật khẩu, khách).
+- `khach-hang/screens/dat-lai-mat-khau/` (Quên mật khẩu, khách).
+- `tai-xe/screens/dang-ky-tai-xe/` (Đăng ký làm tài xế) — nhóm `tai-xe/`.
 - `admin/screens/dang-nhap/` (Đăng nhập admin) — nhóm `admin/`.
 
 ## 5. Thêm màn mới vào một nhóm
@@ -106,6 +106,7 @@ Các trang sau chưa tồn tại, khi thêm thì đặt **trong nhóm tương �
      ]
    }
    ```
+   Trang chủ của một web đặt `"output": "<nhóm>/index.html"`.
 2. Chạy `node build.js` → file sinh vào `<nhóm>/`.
 3. Thêm link tới màn mới ở `shared/components/header.html` (hoặc partial liên
-   quan) với tiền tố `{{base}}<nhóm>/` nếu nguồn ở nhóm khác.
+   quan) theo đường dẫn tương đối trong cùng nhóm.
