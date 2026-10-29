@@ -7,10 +7,12 @@
   "navPrefix": "index.html",
   "linkLoginHref": "index.html",
   "linkLoginLabel": "Trang chủ",
+  "profileHref": "ho-so.html",
   "css": [
     "shared/css/tokens",
     "shared/css/base",
     "shared/css/header",
+    "shared/css/user-menu",
     "shared/css/booking",
     "shared/css/sections",
     "shared/css/ride-card",

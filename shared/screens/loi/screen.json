@@ -7,10 +7,12 @@
   "navPrefix": "{{base}}khach-hang/index.html",
   "linkLoginHref": "{{base}}khach-hang/dang-nhap.html",
   "linkLoginLabel": "Đăng nhập",
+  "profileHref": "{{base}}khach-hang/ho-so.html",
   "css": [
     "shared/css/tokens",
     "shared/css/base",
     "shared/css/header",
+    "shared/css/user-menu",
     "shared/css/sections",
     "shared/css/hero",
     "shared/css/error",

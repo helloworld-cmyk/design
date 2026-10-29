@@ -93,6 +93,9 @@ function buildScreen(manifest) {
   const linkLoginHref = (manifest.linkLoginHref || "")
     .replace(/\{\{base\}\}/g, base)
     .replace(/\{\{home\}\}/g, home);
+  const profileHref = (manifest.profileHref || "ho-so.html")
+    .replace(/\{\{base\}\}/g, base)
+    .replace(/\{\{home\}\}/g, home);
 
   const html = ("<!DOCTYPE html>\n" + body + "\n")
     .replace(/\{\{title\}\}/g, () => manifest.title || "")
@@ -101,6 +104,7 @@ function buildScreen(manifest) {
     .replace(/\{\{home\}\}/g, () => home)
     .replace(/\{\{navPrefix\}\}/g, () => navPrefix)
     .replace(/\{\{linkLoginHref\}\}/g, () => linkLoginHref)
+    .replace(/\{\{profileHref\}\}/g, () => profileHref)
     .replace(/\{\{linkLoginLabel\}\}/g, () => manifest.linkLoginLabel || "Đăng nhập")
     .replace(/\{\{css\}\}/g, () => cssTags(base, manifest.css))
     .replace(/\{\{js\}\}/g, () => jsTags(base, manifest.js));

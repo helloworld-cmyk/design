@@ -7,6 +7,7 @@
     "shared/css/tokens",
     "shared/css/base",
     "shared/css/header",
+    "shared/css/user-menu",
     "shared/css/hero",
     "khach-hang/css/hero-visual",
     "shared/css/ride-card",
@@ -36,6 +37,7 @@
   "navPrefix": "",
   "linkLoginHref": "dang-nhap.html",
   "linkLoginLabel": "Đăng nhập",
+  "profileHref": "ho-so.html",
   "partials": [
     "shared/components/head.html",
     "shared/components/sprite.html",

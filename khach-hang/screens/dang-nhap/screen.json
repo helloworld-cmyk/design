@@ -7,6 +7,7 @@
     "shared/css/tokens",
     "shared/css/base",
     "shared/css/header",
+    "shared/css/user-menu",
     "shared/css/booking",
     "shared/css/cta-footer",
     "khach-hang/css/auth",
@@ -21,6 +22,7 @@
   "navPrefix": "index.html",
   "linkLoginHref": "{{home}}",
   "linkLoginLabel": "Trang chủ",
+  "profileHref": "ho-so.html",
   "partials": [
     "shared/components/head.html",
     "shared/components/sprite.html",

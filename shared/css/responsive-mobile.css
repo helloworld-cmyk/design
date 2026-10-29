@@ -265,6 +265,16 @@
     font-size: 19px;
   }
 
+  .user-dropdown-head {
+    gap: 10px;
+  }
+
+  .user-avatar--lg {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
   .brand-mark {
     width: 36px;
     height: 36px;

@@ -5,6 +5,10 @@
     gap: 40px;
   }
 
+  .user-menu-label {
+    max-width: 90px;
+  }
+
   .trust-item {
     padding-inline: 18px;
   }
@@ -75,6 +79,24 @@
   .header-cta,
   .header-actions .link-login {
     display: none;
+  }
+
+  .user-menu-label,
+  .user-menu-caret {
+    display: none;
+  }
+
+  .header-actions {
+    position: relative;
+  }
+
+  .user-menu {
+    position: static;
+  }
+
+  .user-menu-btn {
+    gap: 0;
+    padding: 4px 5px;
   }
 
   .nav-toggle {

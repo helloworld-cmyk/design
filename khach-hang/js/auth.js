@@ -103,11 +103,35 @@
 
     var submit = form.querySelector(".auth-submit");
     if (submit) submit.classList.add("is-loading");
-    setStatus("Đang xử lý, vui lòng chờ…", "is-info");
+    setStatus("Đang xử lý, vui lòng chờ...", "is-info");
+
+    var fieldValue = function (id) {
+      var el = document.getElementById(id);
+      return el && el.value ? el.value.trim() : "";
+    };
+    var fullname = fieldValue("fullname");
+    var identifier = fieldValue("identifier");
+    var email = fieldValue("email");
+    var phone = fieldValue("phone");
+    var isEmail = identifier.indexOf("@") > -1;
+    var user = {
+      name: fullname || identifier || "Khách hàng",
+      email: email || (isEmail ? identifier : ""),
+      phone: phone || (!isEmail ? identifier : "")
+    };
+    var redirect = form.getAttribute("data-redirect") || "index.html";
 
     window.setTimeout(function () {
       if (submit) submit.classList.remove("is-loading");
-      setStatus("Thành công! Đang chuyển hướng…", "is-success");
+      setStatus("Thành công! Đang chuyển hướng...", "is-success");
+      try {
+        window.localStorage.setItem("vvv.auth.user", JSON.stringify(user));
+      } catch (error) {
+        /* chế độ riêng tư: bỏ qua, vẫn chuyển hướng */
+      }
+      window.setTimeout(function () {
+        window.location.href = redirect;
+      }, 700);
     }, 1200);
   });
 })();

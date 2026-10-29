@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../shared/css/tokens.css" />
     <link rel="stylesheet" href="../shared/css/base.css" />
     <link rel="stylesheet" href="../shared/css/header.css" />
+    <link rel="stylesheet" href="../shared/css/user-menu.css" />
     <link rel="stylesheet" href="../shared/css/sections.css" />
     <link rel="stylesheet" href="../shared/css/hero.css" />
     <link rel="stylesheet" href="../shared/css/error.css" />
@@ -429,6 +430,63 @@
     </nav>
 
     <div class="header-actions">
+      <div class="user-menu" id="userMenu">
+        <button
+          class="user-menu-btn"
+          id="userMenuBtn"
+          type="button"
+          aria-label="Tài khoản"
+          aria-expanded="false"
+          aria-controls="userDropdown"
+        >
+          <span class="user-avatar" aria-hidden="true">
+            <svg class="icon user-avatar-icon" aria-hidden="true">
+              <use href="#i-user"></use>
+            </svg>
+            <span class="user-avatar-letter" id="userInitial">K</span>
+          </span>
+          <span class="user-menu-label" id="userMenuLabel">Tài khoản</span>
+          <svg class="icon user-menu-caret" aria-hidden="true">
+            <use href="#i-chevron-down"></use>
+          </svg>
+        </button>
+
+        <div
+          class="user-dropdown"
+          id="userDropdown"
+          aria-labelledby="userMenuBtn"
+        >
+          <div class="user-dropdown-head">
+            <span class="user-avatar user-avatar--lg" aria-hidden="true">
+              <svg class="icon user-avatar-icon" aria-hidden="true">
+                <use href="#i-user"></use>
+              </svg>
+              <span class="user-avatar-letter" id="userInitialLg">K</span>
+            </span>
+            <span class="user-dropdown-id">
+              <strong id="userName">Khách hàng</strong>
+              <span id="userContact">Thành viên Vi Vu Việt</span>
+            </span>
+          </div>
+          <a class="user-dropdown-item" href="../khach-hang/ho-so.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-user"></use>
+            </svg>
+            Xem hồ sơ
+          </a>
+          <button
+            class="user-dropdown-item user-dropdown-item--logout"
+            type="button"
+            data-user-logout
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-logout"></use>
+            </svg>
+            Đăng xuất
+          </button>
+        </div>
+      </div>
+
       <a class="link-login" href="../khach-hang/dang-nhap.html">Đăng nhập</a>
       <a class="btn btn-primary btn-sm header-cta" href="../khach-hang/index.html#dat-xe">
         Đặt chuyến ngay
