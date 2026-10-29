@@ -1,7 +1,8 @@
 "use strict";
 
 /**
- * Build index.html từ partials/ — chạy: node build.js
+ * Build mọi màn hình từ manifest screens/<ten>/screen.json — chạy: node build.js
+ * Partial dùng chung nằm ở components/, partial riêng màn ở screens/<ten>/partials/.
  * Trước khi build, script kiểm tra DESIGN RULES:
  *   - mỗi file nguồn tối đa 300 dòng
  *   - mỗi dòng tối đa 100 ký tự
@@ -14,23 +15,7 @@ const path = require("path");
 const ROOT = __dirname;
 const MAX_LINES = 300;
 const MAX_COLS = 100;
-
-const PARTIALS = [
-  "head.html",
-  "sprite.html",
-  "art.html",
-  "header.html",
-  "hero.html",
-  "fleet.html",
-  "routes.html",
-  "steps.html",
-  "features.html",
-  "testimonials.html",
-  "driver.html",
-  "faq.html",
-  "cta.html",
-  "footer.html",
-];
+const SOURCE_DIRS = ["components", "screens", "css", "js"];
 
 function checkSource(relPath, text) {
   const lines = text.split("\n");
@@ -60,21 +45,49 @@ function checkTree(dir) {
   }
 }
 
-checkTree(path.join(ROOT, "partials"));
-checkTree(path.join(ROOT, "css"));
-checkTree(path.join(ROOT, "js"));
-checkSource("favicon.svg", fs.readFileSync(path.join(ROOT, "favicon.svg"), "utf8"));
+function cssTags(list) {
+  return (list || [])
+    .map((name) => '    <link rel="stylesheet" href="css/' + name + '.css" />')
+    .join("\n");
+}
+
+function jsTags(list) {
+  return (list || [])
+    .map((name) => '<script src="js/' + name + '.js" defer></script>')
+    .join("\n");
+}
+
+function buildScreen(name) {
+  const dir = path.join(ROOT, "screens", name);
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(dir, "screen.json"), "utf8")
+  );
+
+  const body = manifest.partials
+    .map((rel) => fs.readFileSync(path.join(ROOT, rel), "utf8").trimEnd())
+    .join("\n");
+
+  const html = ("<!DOCTYPE html>\n" + body + "\n")
+    .replace(/\{\{title\}\}/g, () => manifest.title || "")
+    .replace(/\{\{description\}\}/g, () => manifest.description || "")
+    .replace(/\{\{css\}\}/g, () => cssTags(manifest.css))
+    .replace(/\{\{js\}\}/g, () => jsTags(manifest.js));
+
+  fs.writeFileSync(path.join(ROOT, manifest.output), html);
+  return { output: manifest.output, lines: html.split("\n").length };
+}
+
+SOURCE_DIRS.forEach((dir) => checkTree(path.join(ROOT, dir)));
+checkSource("assets/favicon.svg", fs.readFileSync(path.join(ROOT, "assets/favicon.svg"), "utf8"));
 checkSource("build.js", fs.readFileSync(path.join(ROOT, "build.js"), "utf8"));
 
-const body = PARTIALS.map((name) => {
-  const file = path.join(ROOT, "partials", name);
-  return fs.readFileSync(file, "utf8").trimEnd();
-}).join("\n");
+const screenNames = fs
+  .readdirSync(path.join(ROOT, "screens"))
+  .filter((name) => fs.statSync(path.join(ROOT, "screens", name)).isDirectory());
 
-const html = "<!DOCTYPE html>\n" + body + "\n";
-fs.writeFileSync(path.join(ROOT, "index.html"), html);
+const results = screenNames.map(buildScreen);
 
-console.log(
-  "Đã build index.html (" + html.split("\n").length + " dòng) từ " +
-    PARTIALS.length + " partials — mọi file nguồn đạt rule."
-);
+console.log("Đã build " + results.length + " màn — mọi file nguồn đạt rule:");
+results.forEach((r) => {
+  console.log("  - " + r.output + " (" + r.lines + " dòng)");
+});

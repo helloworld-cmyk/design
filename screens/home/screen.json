@@ -1,0 +1,43 @@
+{
+  "output": "index.html",
+  "title": "Vi Vu Việt — Đặt xe ghép liên tỉnh | Giá minh bạch, đón tận nơi",
+  "description": "Đặt xe ghép liên tỉnh trong 60 giây — giá trọn gói, đón tận nơi, hỗ trợ 24/7.",
+  "css": [
+    "tokens",
+    "base",
+    "header",
+    "hero",
+    "hero-visual",
+    "ride-card",
+    "booking",
+    "fleet",
+    "sections",
+    "routes",
+    "steps",
+    "features",
+    "testimonials",
+    "driver-cta",
+    "faq",
+    "cta-footer",
+    "motion",
+    "responsive-desktop",
+    "responsive-mobile"
+  ],
+  "js": ["header", "booking", "routes", "faq", "reveal"],
+  "partials": [
+    "components/head.html",
+    "components/sprite.html",
+    "components/art.html",
+    "components/header.html",
+    "screens/home/partials/hero.html",
+    "screens/home/partials/fleet.html",
+    "screens/home/partials/routes.html",
+    "screens/home/partials/steps.html",
+    "screens/home/partials/features.html",
+    "screens/home/partials/testimonials.html",
+    "screens/home/partials/driver.html",
+    "screens/home/partials/faq.html",
+    "screens/home/partials/cta.html",
+    "components/footer.html"
+  ]
+}
