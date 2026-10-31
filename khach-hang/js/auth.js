@@ -53,6 +53,18 @@
     status.textContent = message;
   };
 
+  /* Quay lại màn đặt vé sau khi đăng nhập (?next=<màn>.html) */
+  var nextParam = null;
+  try {
+    var nextValue = new URLSearchParams(window.location.search).get("next");
+    if (nextValue && /^[a-z0-9-]+\.html$/.test(nextValue)) nextParam = nextValue;
+  } catch (error) {
+    nextParam = null;
+  }
+  if (nextParam) {
+    setStatus("Đăng nhập để tiếp tục đặt vé của bạn.", "is-info");
+  }
+
   var validField = function (input) {
     if (input.type === "checkbox") return input.checked;
     var value = input.value.trim();
@@ -119,7 +131,7 @@
       email: email || (isEmail ? identifier : ""),
       phone: phone || (!isEmail ? identifier : "")
     };
-    var redirect = form.getAttribute("data-redirect") || "index.html";
+    var redirect = nextParam || form.getAttribute("data-redirect") || "index.html";
 
     window.setTimeout(function () {
       if (submit) submit.classList.remove("is-loading");

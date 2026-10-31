@@ -1,0 +1,43 @@
+<section class="state-panel empty-state" id="emptyState" hidden>
+  <span class="state-icon" aria-hidden="true">
+    <svg class="icon"><use href="#i-route"></use></svg>
+  </span>
+  <h2>Không có chuyến phù hợp</h2>
+  <p>
+    Chưa còn chuyến nào khớp tìm kiếm và bộ lọc hiện tại. Bạn thử
+    các gợi ý dưới đây nhé:
+  </p>
+  <ul class="state-tips">
+    <li>
+      <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+      Nới rộng khung giờ trên thanh kéo thời gian
+    </li>
+    <li>
+      <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+      Bỏ chọn bớt loại xe
+    </li>
+    <li>
+      <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+      Đổi ngày đi hoặc điểm đón khác
+    </li>
+  </ul>
+  <div class="state-actions">
+    <button type="button" class="btn btn-primary" id="emptyReset">Xóa bộ lọc</button>
+    <a class="btn btn-ghost" href="index.html#dat-xe">Sửa tìm kiếm</a>
+  </div>
+</section>
+
+<section class="state-panel error-state" id="errorState" hidden>
+  <span class="state-icon state-icon--error" aria-hidden="true">
+    <svg class="icon"><use href="#i-refresh"></use></svg>
+  </span>
+  <h2>Không tải được danh sách chuyến</h2>
+  <p>
+    Kết nối bị gián đoạn khi tải chuyến. Vui lòng thử lại sau ít phút.
+  </p>
+  <div class="state-actions">
+    <button type="button" class="btn btn-primary" id="retryBtn">Thử lại</button>
+  </div>
+</section>
+</section>
+</main>

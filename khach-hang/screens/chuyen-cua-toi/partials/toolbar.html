@@ -1,0 +1,106 @@
+      <div class="trips-column">
+        <div class="filter-bar">
+          <div class="tabs" role="tablist" aria-label="Trạng thái chuyến">
+            <button
+              type="button"
+              class="tab"
+              id="tab-sap-toi"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panel-sap-toi"
+              data-status="Đang xem 2 chuyến sắp tới."
+            >
+              Sắp tới <span class="tab-count">2</span>
+            </button>
+            <button
+              type="button"
+              class="tab"
+              id="tab-dang-di"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-dang-di"
+              tabindex="-1"
+              data-status="Không có chuyến nào đang di chuyển."
+            >
+              Đang đi <span class="tab-count">0</span>
+            </button>
+            <button
+              type="button"
+              class="tab"
+              id="tab-hoan-thanh"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-hoan-thanh"
+              tabindex="-1"
+              data-status="Đang xem 5 trong 28 chuyến đã hoàn thành."
+            >
+              Đã hoàn thành <span class="tab-count">28</span>
+            </button>
+            <button
+              type="button"
+              class="tab"
+              id="tab-da-huy"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-da-huy"
+              tabindex="-1"
+              data-status="Đang xem 1 chuyến đã hủy."
+            >
+              Đã hủy <span class="tab-count">1</span>
+            </button>
+          </div>
+
+          <div class="filter-controls">
+            <div class="field filter-search">
+              <label for="tripSearch">Tìm chuyến</label>
+              <span class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-map"></use>
+                </svg>
+                <input
+                  type="search"
+                  id="tripSearch"
+                  name="tripSearch"
+                  placeholder="Mã đặt chỗ, tuyến hoặc tài xế"
+                  autocomplete="off"
+                />
+              </span>
+            </div>
+
+            <div class="field filter-route">
+              <label for="tripRoute">Tuyến</label>
+              <span class="field-control">
+                <span class="select-wrap">
+                  <select id="tripRoute" name="tripRoute">
+                    <option value="all" selected>Tất cả tuyến</option>
+                    <option value="Ninh Bình">Ninh Bình</option>
+                    <option value="Sa Pa">Sa Pa</option>
+                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hạ Long">Hạ Long</option>
+                    <option value="Thái Nguyên">Thái Nguyên</option>
+                  </select>
+                </span>
+              </span>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm filter-clear"
+              id="filterClear"
+              hidden
+            >
+              Xóa lọc
+            </button>
+          </div>
+        </div>
+
+        <p
+          class="filter-status"
+          id="filterStatus"
+          role="status"
+          aria-atomic="true"
+        >
+          Đang xem 2 chuyến sắp tới.
+        </p>
+
+        <div class="trips-panels" id="tripsPanels">

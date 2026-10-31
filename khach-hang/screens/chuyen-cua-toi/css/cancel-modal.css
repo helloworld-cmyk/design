@@ -1,0 +1,166 @@
+/* Modal hủy vé — Chuyến của tôi (khách hàng). Lắp từ token §3, pattern
+   .modal dùng chung kiểu hộp thoại xác nhận của design system. */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--navy-950);
+  opacity: 0.55;
+}
+
+.modal-card {
+  position: relative;
+  width: min(100%, 460px);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 30px;
+  text-align: center;
+  animation: panelIn var(--dur) var(--ease);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--slate-500);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.modal-close:hover {
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.modal-icon .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.modal-icon--orange {
+  background: var(--orange-100);
+  color: var(--orange-600);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.modal-desc {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--slate-600);
+}
+
+.modal-desc strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.modal-fee {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.modal-fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 5px 0;
+  font-size: 14px;
+  color: var(--slate-600);
+}
+
+.modal-fee-row strong {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.modal-fee-danger {
+  color: var(--red-600);
+}
+
+.modal-note {
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--slate-500);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.modal-actions .btn {
+  flex: 1;
+}
+
+@media (max-width: 400px) {
+  .modal {
+    padding: 14px;
+  }
+
+  .modal-card {
+    padding: 24px 18px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+}

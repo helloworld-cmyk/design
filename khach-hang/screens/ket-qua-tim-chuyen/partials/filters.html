@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="filter-bar" role="group" aria-label="Sắp xếp và lọc chuyến đi">
+    <div class="filter-item filter-item--sort field">
+      <label class="filter-label" for="sortSelect">Sắp xếp</label>
+      <div class="field-control select-wrap filter-select">
+        <select id="sortSelect" name="sortSelect">
+          <option value="gio" selected>Giờ đi sớm nhất</option>
+          <option value="gia">Giá thấp nhất</option>
+          <option value="hang">Xếp hạng cao nhất</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-item filter-item--time">
+      <div class="filter-label-row">
+        <span class="filter-label" id="label-gio">Giờ đi</span>
+        <output class="filter-time-value" id="timeValue" for="timeFrom timeTo">Cả ngày</output>
+      </div>
+      <div class="dual-range">
+        <span class="dual-range-track" aria-hidden="true">
+          <span class="dual-range-fill" id="timeFill"></span>
+        </span>
+        <input type="range" id="timeFrom" name="timeFrom" min="0" max="1440" step="30"
+          value="0" aria-label="Giờ đi từ">
+        <input type="range" id="timeTo" name="timeTo" min="0" max="1440" step="30"
+          value="1440" aria-label="Giờ đi đến">
+      </div>
+    </div>
+
+    <div class="filter-item filter-item--drop">
+      <span class="filter-label" id="label-xe">Loại xe</span>
+      <div class="drop">
+        <button type="button" class="drop-btn" id="xeDropBtn" aria-expanded="false"
+          aria-haspopup="listbox" aria-controls="xeMenu">
+          <span class="drop-btn-label" id="xeDropLabel">Tất cả</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+        </button>
+        <div class="drop-menu" id="xeMenu" role="listbox" aria-labelledby="label-xe"
+          aria-multiselectable="true" hidden>
+          <button type="button" class="drop-opt" role="option" aria-selected="false"
+            data-value="cho4"><span>4 chỗ</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button>
+          <button type="button" class="drop-opt" role="option" aria-selected="false"
+            data-value="cho7"><span>7 chỗ</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button>
+          <button type="button" class="drop-opt" role="option" aria-selected="false"
+            data-value="cho9"><span>9 chỗ</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button>
+          <button type="button" class="drop-opt" role="option" aria-selected="false"
+            data-value="cho10"><span>10 chỗ</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button>
+          <button type="button" class="drop-opt" role="option" aria-selected="false"
+            data-value="cho16"><span>16 chỗ</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button>
+          <button type="button" class="drop-opt" role="option" aria-selected="false"
+            data-value="cho29"><span>29 chỗ</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-ghost btn-sm filter-reset" id="clearFilters">
+      Xóa lọc
+    </button>
+  </div>
+</div>

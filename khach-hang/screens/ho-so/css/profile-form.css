@@ -149,22 +149,6 @@
     align-items: stretch;
   }
 
-  .profile-stats {
-    grid-template-columns: 1fr;
-    gap: 0;
-    border-top: 1px solid var(--border-soft);
-  }
-
-  .profile-stat {
-    padding: 13px 0;
-    border-bottom: 1px solid var(--border-soft);
-  }
-
-  .profile-stat:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
   .profile-fields {
     grid-template-columns: 1fr;
   }

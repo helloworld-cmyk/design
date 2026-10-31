@@ -98,17 +98,6 @@
         return;
       }
 
-      const from = originInput.value.trim();
-      const to = destinationInput.value.trim();
-      const dateLabel = new Date(
-        dateInput.value + "T00:00:00"
-      ).toLocaleDateString("vi-VN", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-      const seats = seatsSelect ? seatsSelect.value : "1";
-
       setStatus("", null);
 
       if (searchBtn) {
@@ -120,25 +109,7 @@
       }
 
       window.setTimeout(() => {
-        if (searchBtn) {
-          searchBtn.classList.remove("is-loading");
-          searchBtn.removeAttribute("aria-busy");
-          searchBtn.disabled = false;
-          const label = searchBtn.querySelector(".btn-label");
-          if (label) label.textContent = "Tìm chuyến xe";
-        }
-        setStatus(
-          "Đã tìm thấy 12 chuyến " +
-            from +
-            " → " +
-            to +
-            " vào " +
-            dateLabel +
-            " cho " +
-            seats +
-            " ghế. Vi Vu Việt sẽ liên hệ xác nhận trong 5 phút.",
-          "success"
-        );
+        window.location.href = "ket-qua-tim-chuyen.html";
       }, 950);
     });
 

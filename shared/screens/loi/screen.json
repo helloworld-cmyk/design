@@ -2,7 +2,7 @@
   "output": "shared/404.html",
   "base": "../",
   "title": "Không tìm thấy trang — Vi Vu Việt",
-  "description": "Trang bạn tìm không tồn tại hoặc đã bị di chuyển. Về trang chủ, đặt chuyến xe hoặc liên hệ hỗ trợ Vi Vu Việt 24/7.",
+  "description": "Trang bạn tìm không tồn tại hoặc đã bị di chuyển. Về trang chủ hoặc đặt chuyến xe mới.",
   "home": "{{base}}khach-hang/index.html",
   "navPrefix": "{{base}}khach-hang/index.html",
   "linkLoginHref": "{{base}}khach-hang/dang-nhap.html",
@@ -30,7 +30,6 @@
     "shared/components/header.html",
     "shared/screens/loi/partials/hero.html",
     "shared/screens/loi/partials/recover.html",
-    "shared/screens/loi/partials/support.html",
     "shared/components/footer.html"
   ]
 }

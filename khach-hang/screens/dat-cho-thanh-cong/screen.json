@@ -1,0 +1,39 @@
+{
+  "output": "khach-hang/dat-cho-thanh-cong.html",
+  "base": "../",
+  "title": "Đặt chỗ thành công — Vi Vu Việt",
+  "description": "Vé điện tử, mã đặt chỗ, QR điểm danh và hướng dẫn đón xe cho chuyến đã đặt.",
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "index.html",
+  "linkLoginLabel": "Trang chủ",
+  "profileHref": "ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/sections",
+    "shared/css/ride-card",
+    "shared/css/cta-footer",
+    "khach-hang/screens/dat-cho-thanh-cong/css/success",
+    "khach-hang/screens/dat-cho-thanh-cong/css/side",
+    "khach-hang/screens/dat-cho-thanh-cong/css/ticket",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "khach-hang/screens/dat-cho-thanh-cong/js/ticket",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "khach-hang/screens/dat-cho-thanh-cong/partials/success.html",
+    "khach-hang/components/footer.html"
+  ]
+}

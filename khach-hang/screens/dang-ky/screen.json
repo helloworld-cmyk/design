@@ -29,6 +29,6 @@
     "shared/components/header.html",
     "khach-hang/components/auth-top.html",
     "khach-hang/screens/dang-ky/partials/form.html",
-    "shared/components/footer.html"
+    "khach-hang/components/footer.html"
   ]
 }

@@ -1,0 +1,137 @@
+/* ============ Chuyến của tôi — cuống vé: giá + thao tác ============ */
+
+.ride-foot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  margin-inline: calc(var(--card-pad-x) * -1);
+  padding: 13px var(--card-pad-x) 0;
+  border-top: 1px dashed var(--slate-300);
+}
+
+/* Khoét hai nửa vòng tròn hai bên đường perforation */
+.ride-foot::before,
+.ride-foot::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--ticket-notch) * -1 - 1px);
+  width: var(--ticket-notch);
+  height: calc(var(--ticket-notch) * 2);
+  border: 1px solid var(--slate-300);
+  background: var(--bg);
+  z-index: 1;
+}
+
+.ride-foot::before {
+  left: -1px;
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+}
+
+.ride-foot::after {
+  right: -1px;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.trip-list .ride-card:hover .ride-foot::before,
+.trip-list .ride-card:hover .ride-foot::after {
+  border-color: var(--slate-400);
+}
+
+.ride-price {
+  flex: none;
+  text-align: left;
+}
+
+.ride-price strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ride-price span {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  color: var(--slate-500);
+}
+
+.ride-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ride-actions[hidden] {
+  display: none;
+}
+
+.ride-actions .btn {
+  min-height: 44px;
+}
+
+/* ---------- Ghi chú trạng thái (vé đã hủy) ---------- */
+
+.ride-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--sky-500);
+  border-radius: var(--radius-xs);
+  background: var(--sky-50);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--sky-800);
+}
+
+.ride-alert .icon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--sky-700);
+}
+
+.ride-alert--green {
+  border-left-color: var(--green-600);
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.ride-alert--green .icon {
+  color: var(--green-600);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 520px) {
+  .ride-foot .ride-actions {
+    width: 100%;
+  }
+
+  .ride-foot .ride-actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .ride-price strong {
+    font-size: 17px;
+  }
+}

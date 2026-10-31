@@ -1,0 +1,61 @@
+          </div>
+
+          <div class="trips-state" id="tripsLoading" hidden>
+            <p class="sk-status" aria-live="polite">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-refresh"></use>
+              </svg>
+              Đang tải chuyến của bạn…
+            </p>
+            <div class="sk-card" aria-hidden="true">
+              <div class="sk sk--eyebrow"></div>
+              <div class="sk sk--place"></div>
+              <div class="sk sk--place sk--short"></div>
+              <div class="sk-row">
+                <div class="sk sk--avatar"></div>
+                <div class="sk-group">
+                  <div class="sk sk--line"></div>
+                  <div class="sk sk--line sk--short"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sk-card" aria-hidden="true">
+              <div class="sk sk--eyebrow"></div>
+              <div class="sk sk--place"></div>
+              <div class="sk sk--place sk--short"></div>
+              <div class="sk-row">
+                <div class="sk sk--avatar"></div>
+                <div class="sk-group">
+                  <div class="sk sk--line"></div>
+                  <div class="sk sk--line sk--short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trips-state" id="tripsError" hidden>
+            <div class="empty-state empty-state--error">
+              <span class="empty-state-icon empty-state-icon--red">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-close"></use>
+                </svg>
+              </span>
+              <h3>Không tải được chuyến của bạn</h3>
+              <p>
+                Kiểm tra kết nối mạng rồi thử lại nhé. Vẫn không được thì quay
+                lại sau ít phút.
+              </p>
+              <div class="empty-state-actions">
+                <button type="button" class="btn btn-primary" id="retryBtn">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-refresh"></use>
+                  </svg>
+                  Thử lại
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</main>

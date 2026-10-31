@@ -1,0 +1,88 @@
+/* ================= Khối tổng tiền & nút đặt chỗ trong form ================= */
+
+.price-rows {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #bae6fd;
+}
+
+.price-rows li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--slate-600);
+}
+
+.price-rows strong {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: right;
+}
+
+/* ---------- Tổng tạm tính (ngay trên nút đặt chỗ) ---------- */
+
+.price-total {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--sky-100);
+  border-radius: var(--radius-md);
+  background: var(--sky-50);
+}
+
+.price-total-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.price-total-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--sky-800);
+}
+
+.price-total-row strong {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: opacity var(--dur) var(--ease);
+}
+
+.price-total.is-loading strong {
+  opacity: 0.35;
+}
+
+.detail-submit {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.price-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--slate-500);
+}
+
+.price-note .icon {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  color: var(--green-600);
+}

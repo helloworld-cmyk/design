@@ -1,0 +1,115 @@
+/* ===== Kết quả tìm kiếm — lọc khung giờ: thanh kéo 2 đầu (dual range) ===== */
+
+.filter-item--time {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+
+.filter-time-value {
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--sky-800);
+  font-variant-numeric: tabular-nums;
+}
+
+.dual-range {
+  position: relative;
+  height: 44px;
+}
+
+.dual-range-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: var(--slate-200);
+}
+
+.dual-range-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: var(--sky-500);
+}
+
+.dual-range input[type="range"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  pointer-events: none;
+}
+
+.dual-range input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: none;
+}
+
+.dual-range input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border: 2px solid var(--sky-700);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+  cursor: grab;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.dual-range input[type="range"]::-webkit-slider-thumb:hover {
+  border-color: var(--sky-800);
+}
+
+.dual-range input[type="range"]:focus-visible {
+  outline: none;
+}
+
+.dual-range input[type="range"]:focus-visible::-webkit-slider-thumb {
+  border-color: var(--sky-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.13);
+}
+
+.dual-range input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: none;
+}
+
+.dual-range input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--sky-700);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+  cursor: grab;
+}
+
+.dual-range input[type="range"]:focus-visible::-moz-range-thumb {
+  border-color: var(--sky-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.13);
+}
+
+@media (max-width: 900px) {
+  .filter-item--time {
+    flex-basis: 100%;
+  }
+}

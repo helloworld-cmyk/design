@@ -1,0 +1,59 @@
+<div class="modal" id="cancelModal" hidden>
+  <div class="modal-overlay" data-modal-close></div>
+  <div
+    class="modal-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cancelTitle"
+    aria-describedby="cancelDesc"
+    tabindex="-1"
+  >
+    <button
+      class="modal-close"
+      type="button"
+      data-modal-close
+      aria-label="Đóng hộp thoại"
+    >
+      <svg class="icon" aria-hidden="true">
+        <use href="#i-close"></use>
+      </svg>
+    </button>
+
+    <span class="modal-icon modal-icon--orange" aria-hidden="true">
+      <svg class="icon">
+        <use href="#i-close"></use>
+      </svg>
+    </span>
+    <h2 class="modal-title" id="cancelTitle">Hủy chuyến này?</h2>
+    <p class="modal-desc" id="cancelDesc">
+      Vé <strong id="cancelCode">VV-261030-481</strong> ·
+      <span id="cancelRoute">Hà Nội đi Ninh Bình</span>. Ghế đã chọn sẽ được
+      giải phóng cho hành khách khác.
+    </p>
+
+    <div class="modal-fee">
+      <div class="modal-fee-row">
+        <span>Hủy trước 2 giờ khởi hành</span>
+        <strong>Miễn phí</strong>
+      </div>
+      <div class="modal-fee-row">
+        <span>Trong 2 giờ trước giờ chạy</span>
+        <strong class="modal-fee-danger">Phí 20% giá vé</strong>
+      </div>
+    </div>
+
+    <p class="modal-note">
+      Bạn chưa thanh toán cho chuyến này — không phát sinh hoàn tiền. Vé đã
+      hủy sẽ hiển thị trong tab Đã hủy của Chuyến của tôi.
+    </p>
+
+    <div class="modal-actions">
+      <button class="btn btn-ghost" type="button" data-modal-close>
+        Giữ vé
+      </button>
+      <button class="btn btn-primary" type="button" id="confirmCancelBtn">
+        <span class="btn-label">Xác nhận hủy</span>
+      </button>
+    </div>
+  </div>
+</div>

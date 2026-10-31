@@ -1,0 +1,51 @@
+{
+  "output": "khach-hang/chuyen-cua-toi.html",
+  "base": "../",
+  "title": "Chuyến của tôi — Vi Vu Việt",
+  "description": "Quản lý chuyến đã đặt: sắp tới, đang đi, hoàn thành, hủy — đánh giá nhanh.",
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "index.html",
+  "linkLoginLabel": "Trang chủ",
+  "profileHref": "ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/booking",
+    "shared/css/sections",
+    "shared/css/ride-card",
+    "shared/css/cta-footer",
+    "khach-hang/screens/chuyen-cua-toi/css/trips-page",
+    "khach-hang/screens/chuyen-cua-toi/css/trip-card",
+    "khach-hang/screens/chuyen-cua-toi/css/trip-foot",
+    "khach-hang/screens/chuyen-cua-toi/css/trip-states",
+    "khach-hang/screens/chuyen-cua-toi/css/cancel-modal",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "khach-hang/screens/chuyen-cua-toi/js/trips-data",
+    "khach-hang/screens/chuyen-cua-toi/js/trips",
+    "khach-hang/screens/chuyen-cua-toi/js/cancel",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/head.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/toolbar.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/trips-sap-toi.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/trips-dang-di.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/trips-hoan-thanh.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/trips-da-huy.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/trips-states.html",
+    "khach-hang/screens/chuyen-cua-toi/partials/cancel-modal.html",
+    "khach-hang/components/footer.html"
+  ]
+}

@@ -1,0 +1,140 @@
+            <form class="detail-panel booking-panel reveal" id="bookingForm"
+              novalidate>
+              <div class="panel-head">
+                <span class="panel-step" aria-hidden="true">2</span>
+                <div class="panel-head-text">
+                  <h2>Thông tin người đi</h2>
+                  <p>Vé điện tử gửi về SĐT — tài xế đón đúng địa chỉ bạn nhập.</p>
+                </div>
+              </div>
+
+              <div
+                class="form-status"
+                id="formStatus"
+                role="status"
+                aria-live="polite"
+                tabindex="-1"
+              ></div>
+
+              <div class="booking-grid">
+                <div class="field" id="fieldName">
+                  <label for="passengerName">Họ và tên người đi chính</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-user"></use>
+                    </svg>
+                    <input
+                      type="text"
+                      id="passengerName"
+                      name="passengerName"
+                      placeholder="VD: Nguyễn Thu Hà"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field" id="fieldPhone">
+                  <label for="passengerPhone">SĐT nhận vé</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-phone"></use>
+                    </svg>
+                    <input
+                      type="tel"
+                      id="passengerPhone"
+                      name="passengerPhone"
+                      placeholder="VD: 0912 345 678"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field" id="fieldPickup">
+                  <label for="pickupAddress">Điểm đón</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-pin"></use>
+                    </svg>
+                    <input
+                      type="text"
+                      id="pickupAddress"
+                      name="pickupAddress"
+                      placeholder="VD: 12 Nguyễn Trãi, Thanh Xuân, Hà Nội"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field" id="fieldDropoff">
+                  <label for="dropoffAddress">Điểm trả</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-map"></use>
+                    </svg>
+                    <input
+                      type="text"
+                      id="dropoffAddress"
+                      name="dropoffAddress"
+                      placeholder="VD: Khu du lịch Tràng An, Ninh Bình"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <label class="agree-check" id="agreeWrap">
+                <input
+                  type="checkbox"
+                  id="agreeTerms"
+                  name="agreeTerms"
+                  required
+                />
+                <span>
+                  Tôi đã đọc và đồng ý
+                  <a class="auth-link" href="index.html#faq">điều khoản đặt
+                    chỗ</a> của
+                  Vi Vu Việt, gồm chính sách hủy/đổi và quy định mang hành lý.
+                </span>
+              </label>
+
+              <div class="price-total" id="priceTotal">
+                <ul class="price-rows">
+                  <li>
+                    <span>Giá mỗi ghế</span>
+                    <strong>180.000đ</strong>
+                  </li>
+                  <li>
+                    <span>Số ghế đã chọn</span>
+                    <strong id="priceSeatCount">1 · B1</strong>
+                  </li>
+                </ul>
+                <div class="price-total-row">
+                  <span class="price-total-label">Tổng tạm tính</span>
+                  <strong id="priceTotalValue">180.000đ</strong>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg detail-submit"
+                id="detailSubmit"
+              >
+                <span class="btn-label">Xác nhận đặt chỗ</span>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </button>
+              <p class="price-note">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-shield"></use>
+                </svg>
+                Không cần đặt cọc — giữ chỗ ngay, hủy miễn phí trước 2 giờ.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

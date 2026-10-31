@@ -1,165 +1,241 @@
-# 01 — MÀN HÌNH KHÁCH HÀNG (NGƯỜI DÙNG THƯỜNG)
+# 01 — MÀN HÌNH KHÁCH HÀNG (8 MÀN)
 
-> Vai trò: **Khách hàng** — người đặt xe ghép liên tỉnh.
-> Shell: **U (User app)** cho khu vực đã đăng nhập; **M (Marketing)** cho trang công khai.
-> Mọi màn tuân thủ `DESIGN_RULES.MD`; form dùng `.booking-form` / `.field`;
-> card dùng card chuẩn §6.3; CTA `.btn` + biến thể; trạng thái dùng badge chuẩn.
+> Vai trò: **Khách hàng** — người tìm và đặt ghế trên chuyến xe ghép liên tỉnh.
+> Shell: **M** cho trang chủ, **Auth** cho đăng nhập/đăng ký, **U** cho khu đã
+> đăng nhập.
+>
+> **Mô hình:** admin tạo chuyến và mở bán ghế; khách chọn chuyến có sẵn, chọn
+> ghế/điểm đón rồi đặt vé. Hệ thống **tự xác nhận** đơn hợp lệ — không có bước
+> admin ghép tài xế vào đơn.
+>
+> **Thanh toán MVP:** tiền mặt cho tài xế khi lên xe. Trạng thái thanh toán chỉ
+> gồm `Chưa thu / Đã thu`. **Không có hoàn tiền**: khách chỉ trả khi lên xe nên vé
+> hủy trước khi thu tiền không phát sinh khoản hoàn.
+>
+> **Đã bỏ khỏi phạm vi:** đổi vé, đánh giá, ưu đãi, thông báo, trợ giúp, ticket,
+> chat, FAQ, hotline, hoàn tiền. Hủy vé là nút trong **chi tiết vé**, không có màn
+> riêng.
 
 ---
 
-## B. KHU KHÁCH HÀNG ĐÃ ĐĂNG NHẬP (shell U)
+## 1. Danh sách màn
 
-### B1. Tìm chuyến (dashboard khách) — `screens/tim-chuyen/`
-- **Tác dụng:** điểm vào chính sau khi đăng nhập — tìm và đặt chuyến nhanh.
+| Mã | Màn hình | Thư mục | Shell | Chức năng |
+|----|----------|---------|-------|-----------|
+| B1 | Trang chủ | `home` | M | Giới thiệu ngắn + form tìm chuyến |
+| B2 | Đăng nhập | `dang-nhap` | Auth | Xác thực khách hàng |
+| B3 | Đăng ký | `dang-ky` | Auth | Tạo tài khoản khách |
+| B4 | Kết quả tìm chuyến | `ket-qua-tim-chuyen` | U | Danh sách chuyến phù hợp |
+| B5 | Chi tiết chuyến | `chi-tiet-chuyen` | U | Chọn ghế, điểm đón/trả, đặt vé |
+| B6 | Đặt vé thành công | `dat-cho-thanh-cong` | U | Hiển thị thông tin vé |
+| B7 | Chuyến của tôi | `chuyen-cua-toi` | U | Danh sách vé + chi tiết vé + hủy |
+| B8 | Hồ sơ | `ho-so` | U | Quản lý thông tin cá nhân |
+
+---
+
+## 2. Chi tiết từng màn
+
+### B1. Trang chủ — `screens/home/`
+
+- **Tác dụng:** điểm vào công khai, giúp khách tìm chuyến trong một thao tác.
 - **Nhiệm vụ chính:**
-  - Form tìm: điểm đi, điểm đến, ngày, số ghế (tái dùng `.booking-form`).
-  - Lối tắt: tuyến gần đây, tuyến phổ biến, "đi ngay hôm nay".
-  - Xem chuyến sắp tới của tôi (widget nhỏ) + nhắc nhở.
-- **Thành phần:** `.booking-form`, `.route-card` (lối tắt), `.ride-card`
-  (chuyến sắp tới), `.stat-card` (số chuyến, điểm thưởng).
-- **Trạng thái:** empty (chưa từng đặt), loading.
+  - Hero + form tìm chuyến: điểm đi, điểm đến, ngày, số ghế (`#dat-xe`).
+  - Danh sách tuyến phổ biến (điền sẵn form khi bấm).
+  - Giới thiệu ngắn 3 bước: chọn chuyến → chọn ghế → lên xe trả tiền mặt.
+  - CTA "Tìm chuyến" → B4; liên kết đăng nhập/đăng ký.
+- **Thành phần:** `site-header`, `.booking-form`, `.route-card`, `.feature-card`,
+  `site-footer`.
+- **Trạng thái:** form lỗi validate, đang tìm (loading ngắn).
+- **Đã bỏ:** FAQ, hotline, khối đánh giá/testimonial, khối "Dành cho tài xế"
+  (tài xế không tự đăng ký), banner khuyến mãi.
 - **Ưu tiên:** P0.
 
-### B2. Kết quả tìm kiếm chuyến — `screens/ket-qua-tim-chuyen/`
-- **Tác dụng:** liệt kê các chuyến khớp với tìm kiếm để khách chọn.
+### B2. Đăng nhập — `screens/dang-nhap/`
+
+- **Tác dụng:** xác thực khách hàng trước khi đặt vé.
 - **Nhiệm vụ chính:**
-  - Xem danh sách chuyến: giờ đi/đến, tài xế + xếp hạng, loại xe, ghế còn,
-    giá/ghế.
-  - Sắp xếp (giờ/giá/xếp hạng) và lọc (giờ, loại xe, tiện ích, điểm đón).
-  - Chọn chuyến → **Chi tiết chuyến & chọn ghế**.
-- **Thành phần:** thanh tóm tắt tìm kiếm (sticky), `.filter-bar`, `.ride-card`
-  (biến thể danh sách), `.badge` (còn ghế), `.pagination`, `.empty-state`.
-- **Trạng thái:** empty ("không có chuyến phù hợp + gợi ý"), loading skeleton,
-  error.
+  - Nhập SĐT/email + mật khẩu; ghi nhớ đăng nhập.
+  - Liên kết sang đăng ký.
+  - Đăng nhập thành công → quay lại trang trước đó (hoặc B1).
+- **Thành phần:** panel form, `.field`, `.btn.is-loading`, `.form-status`.
+- **Trạng thái:** sai thông tin, tài khoản bị khóa, loading.
+- **Không có:** đăng nhập mạng xã hội, quên mật khẩu (không nằm trong 8 màn).
 - **Ưu tiên:** P0.
 
-### B3. Chi tiết chuyến & chọn ghế — `screens/chi-tiet-chuyen/`
-- **Tác dụng:** xem đầy đủ một chuyến và chọn ghế/điểm đón trước khi trả tiền.
+### B3. Đăng ký — `screens/dang-ky/`
+
+- **Tác dụng:** tạo tài khoản khách hàng mới.
 - **Nhiệm vụ chính:**
-  - Xem hành trình, mốc thời gian, tài xế (ảnh, xếp hạng, số chuyến, xe).
-  - Sơ đồ ghế (chọn ghế trống), chọn điểm đón/trả (gợi ý gần đây + bản đồ).
-  - Điền thông tin người đi cùng, SĐT nhận vé, đồng ý điều khoản.
-  - Chọn số ghế, thêm ghi chú, áp mã giảm giá.
-  - Xem tổng tiền tạm tính (giá ghế × số ghế − giảm giá).
-  - Nút "Xác nhận đặt chỗ" — không thanh toán trước, trả tiền mặt trực tiếp
-    cho tài xế khi lên xe.
-- **Thành phần:** panel trắng (`.booking-form` / panel chuẩn), sơ đồ ghế (mới,
-  `css/seat-map.css`), bản đồ placeholder (`css/map.css`), `.ride-card`,
-  `.badge`, `.float-chip`.
-- **Trạng thái:** ghế đã bị đặt (disable), điểm đón không hợp lệ, loading giá.
+  - Họ tên, SĐT, email, mật khẩu + xác nhận, đồng ý điều khoản.
+  - Tài khoản mặc định là **khách hàng**; không có lựa chọn vai trò.
+- **Thành phần:** panel form, `.field` + validate, chỉ báo độ mạnh mật khẩu,
+  `.form-status`.
+- **Trạng thái:** SĐT/email đã tồn tại, mật khẩu yếu, lỗi validate.
+- **Ghi chú:** tài khoản tài xế **do admin tạo** ở A3; không có đăng ký tài xế.
 - **Ưu tiên:** P0.
 
-### B4. Đặt chỗ thành công — `screens/dat-cho-thanh-cong/`
-- **Tác dụng:** xác nhận thành công + cung cấp vé & hướng dẫn tiếp theo.
-- **Nhiệm vụ chính:** xem mã đặt chỗ, thông tin chuyến, QR/điểm danh, tài xế,
-  hướng dẫn điểm đón; nhắc trả tiền mặt cho tài xế khi lên xe; tải/thêm vé
-  vào lịch; chia sẻ chuyến; đi tới "Chuyến của tôi".
-- **Thành phần:** khối thành công (icon `i-check-circle` lớn), vé số (card),
-  `.btn` (Xem chuyến, Thêm vào lịch), `.support-card`.
+### B4. Kết quả tìm chuyến — `screens/ket-qua-tim-chuyen/`
+
+- **Tác dụng:** liệt kê chuyến khớp tìm kiếm để khách chọn.
+- **Nhiệm vụ chính:**
+  - Hiển thị giờ đi/đến, tuyến, loại xe, số ghế còn, giá/ghế, tên tài xế.
+  - Lọc theo giờ, khoảng giá, loại xe; sắp xếp theo giờ/giá.
+  - Bấm chuyến → B5.
+- **Thành phần:** thanh tóm tắt tìm kiếm (sticky), `.filter-bar`, `.ride-card`,
+  `.badge`, `.pagination`, `.empty-state`.
+- **Trạng thái:** có kết quả, không có chuyến (gợi ý đổi ngày/tuyến), loading
+  skeleton, lỗi.
+- **Đã bỏ:** điểm đánh giá tài xế, nhãn ưu đãi.
+- **Ưu tiên:** P0.
+
+### B5. Chi tiết chuyến — `screens/chi-tiet-chuyen/`
+
+- **Tác dụng:** xem đầy đủ chuyến và hoàn tất đặt vé.
+- **Nhiệm vụ chính:**
+  - Hành trình, mốc thời gian, điểm dừng; thông tin xe và tên tài xế.
+  - Sơ đồ ghế: chọn ghế trống; ghế đã đặt bị khóa.
+  - Chọn điểm đón/trả trong danh sách cho phép.
+  - Nhập tên/SĐT người đi, ghi chú; xem tổng tiền.
+  - Xác nhận đặt vé → B6 (nếu chưa đăng nhập → B2 rồi quay lại).
+- **Thành phần:** panel chuyến, `.timeline`, `.seat-map` (`css/seat-map.css`),
+  `.map` (placeholder điểm đón), `.booking-form`, `.field`, `.badge`, `.btn`.
+- **Trạng thái:** ghế vừa bị người khác đặt (thông báo + chọn lại), điểm đón
+  không hợp lệ, đang giữ ghế, lỗi.
+- **Thanh toán:** hiển thị rõ "Thanh toán tiền mặt cho tài xế khi lên xe".
+- **Đã bỏ:** mã giảm giá, chọn nhiều điểm đón phức tạp, đổi vé.
+- **Ưu tiên:** P0.
+
+### B6. Đặt vé thành công — `screens/dat-cho-thanh-cong/`
+
+- **Tác dụng:** xác nhận đặt vé thành công và cung cấp vé điện tử.
+- **Nhiệm vụ chính:**
+  - Mã vé, tuyến, giờ, ghế, điểm đón, tên tài xế, tổng tiền.
+  - Hướng dẫn: có mặt trước giờ khởi hành, trả tiền mặt cho tài xế.
+  - Nút "Xem chuyến của tôi" → B7; "Về trang chủ" → B1.
+- **Thành phần:** khối thành công (`i-check-circle`), vé dạng card, `.btn`.
 - **Trạng thái:** success.
+- **Đã bỏ:** `.support-card`, hotline, chia sẻ, thêm vào lịch.
 - **Ưu tiên:** P0.
 
-### B5. Chuyến của tôi — `screens/chuyen-cua-toi/`
-- **Tác dụng:** trung tâm quản lý mọi đơn đặt chỗ của khách theo trạng thái.
+### B7. Chuyến của tôi — `screens/chuyen-cua-toi/`
+
+- **Tác dụng:** trung tâm quản lý vé — danh sách và chi tiết vé trong cùng màn.
 - **Nhiệm vụ chính:**
-  - Tab: Sắp tới · Đang đi · Đã hoàn thành · Đã hủy.
-  - Mỗi đơn: tuyến, giờ, tài xế, trạng thái (`status-badge`), giá.
-  - Thao tác nhanh: theo dõi, hủy/đổi, đánh giá, xem vé, đặt lại.
-- **Thành phần:** `.tabs`, danh sách `.ride-card`, `.status-badge`,
-  `.empty-state` (chưa có chuyến), `.filter-bar` (theo thời gian).
-- **Trạng thái:** empty từng tab, loading, error.
+  - Tab: **Sắp tới · Đang đi · Hoàn thành · Không lên xe · Đã hủy**.
+  - Card vé: tuyến, giờ, ghế, trạng thái, giá.
+  - Bấm card → mở **panel/drawer chi tiết vé** (giữ URL dạng
+    `chuyen-cua-toi.html?ve=<ma>`), gồm:
+    - Thông tin chuyến, xe, tài xế, điểm đón, mã vé.
+    - `.timeline` trạng thái: Đã đặt → Đã đón → Hoàn thành; nhánh Không lên xe,
+      Đã hủy.
+    - Trạng thái thanh toán: Chưa thu / Đã thu.
+    - Nút **Gọi tài xế** (chỉ khi chuyến sắp tới/đang đi).
+    - Nút **Hủy vé** → modal xác nhận (không phát sinh hoàn tiền); nút bị khóa
+      khi quá hạn tự hủy hoặc vé đã ở trạng thái cuối.
+  - Hủy thành công → cập nhật trạng thái vé, chuyển sang tab Đã hủy.
+  - Vé đã hủy có nút "Đặt lại" → B1/B4.
+- **Thành phần:** `.tabs`, `.ride-card`, `.status-badge`, `.timeline`, `.modal`,
+  `.empty-state`, `.filter-bar` (thời gian).
+- **Trạng thái:** empty từng tab, loading, lỗi; vé bị admin hủy (banner lý do);
+  quá hạn hủy (nút hủy bị khóa + giải thích).
+- **Gộp:** `chuyen-da-dat` trở thành panel chi tiết vé trong màn này.
+- **Bỏ:** `huy-doi-chuyen`, đổi vé, đánh giá, liên hệ hỗ trợ.
 - **Ưu tiên:** P0.
 
-### B6. Chi tiết chuyến đã đặt — `screens/chuyen-da-dat/`
-- **Tác dụng:** xem toàn bộ thông tin một đơn — trước, trong và sau chuyến.
+### B8. Hồ sơ — `screens/ho-so/`
+
+- **Tác dụng:** quản lý thông tin tài khoản khách hàng.
 - **Nhiệm vụ chính:**
-  - Xem vé, mã, tài xế (gọi/nhắn), điểm đón, giờ.
-  - Theo dõi trạng thái qua `.timeline`: Đã đặt → Đã xác nhận → Tài xế đang đến
-    → Đang di chuyển → Hoàn thành.
-  - Hủy/đổi, liên hệ hỗ trợ, xem hoá đơn, đánh giá (nếu đã xong).
-- **Thành phần:** `.timeline`, `.ride-card`, `.badge` trạng thái, khối hoá đơn,
-  `.btn` hành động, `.modal` xác nhận hủy.
-- **Trạng thái:** từng mốc trạng thái; chuyến bị hủy bởi tài xế (thông báo).
+  - Xem/sửa họ tên, ảnh đại diện, SĐT, email, ngày sinh.
+  - Đổi mật khẩu.
+  - Đăng xuất.
+  - Lối tắt "Chuyến của tôi" → B7.
+- **Thành phần:** avatar, `.field`, `.form-status`, `.btn`, `.modal` (đổi mật
+  khẩu).
+- **Trạng thái:** lưu thành công, lỗi validate, sai mật khẩu hiện tại.
+- **Đã bỏ:** danh bạ người đi cùng, điểm đón yêu thích, cài đặt thông báo,
+  thiết bị đăng nhập, xóa tài khoản, hiển thị đánh giá.
 - **Ưu tiên:** P0.
-
-### B7. Hủy / đổi chuyến — `screens/huy-doi-chuyen/`
-- **Tác dụng:** cho khách hủy hoặc đổi lịch với điều kiện & phí minh bạch.
-- **Nhiệm vụ chính:**
-  - Chọn hủy: xem phí hủy theo thời điểm (miễn phí trước 2h), chọn lý do,
-    xác nhận; hiển thị phí hủy (nếu có).
-  - Chọn đổi: chọn chuyến mới cùng tuyến, so sánh chênh lệch giá, xác nhận.
-- **Thành phần:** 2 lựa chọn dạng tab/card, `.intro-note` (chính sách),
-  bảng phí, `.modal` xác nhận, `.form-status`, `.btn`.
-- **Trạng thái:** không thể hủy (quá muộn) → chỉ đổi/hỗ trợ; thành công.
-- **Ưu tiên:** P0.
-
-### B8. Đánh giá chuyến đi — `screens/danh-gia/`
-- **Tác dụng:** thu phản hồi sau chuyến để cải thiện & xếp hạng tài xế.
-- **Nhiệm vụ chính:**
-  - Chấm sao tổng + các tiêu chí (tài xế, xe, đúng giờ, thái độ).
-  - Chọn nhãn nhanh (tag) + viết nhận xét, đính kèm ảnh (tuỳ chọn).
-  - Tip cho tài xế (tuỳ chọn); gửi đánh giá.
-- **Thành phần:** `.testimonial-card` biến thể nhập liệu, sao tương tác
-  (`i-star`), `.field` cho nhận xét, `.btn`, `.form-status`.
-- **Trạng thái:** bắt buộc chấm sao mới gửi; gửi thành công; đã đánh giá (đọc lại).
-- **Ưu tiên:** P0.
-
-### B9. Ưu đãi & mã giảm giá — `screens/uu-dai/`
-- **Tác dụng:** khu khuyến mãi — tăng tần suất đặt & giữ chân khách.
-- **Nhiệm vụ chính:**
-  - Xem voucher khả dụng (điều kiện, hạn dùng), điểm thưởng, hạng thành viên.
-  - Sao chép/áp mã; xem ưu đãi sắp hết hạn; xem lịch sử đã dùng.
-- **Thành phần:** `.feature-card` (voucher), `.badge` (sắp hết hạn / hạng),
-  `.tabs` (khả dụng / đã dùng), `.stat-card` (điểm, hạng).
-- **Trạng thái:** empty (không có ưu đãi), hết hạn.
-- **Ưu tiên:** P1.
-
-### B10. Hồ sơ cá nhân — `screens/ho-so/`
-- **Tác dụng:** quản lý thông tin tài khoản & cài đặt cá nhân.
-- **Nhiệm vụ chính:**
-  - Sửa tên, ảnh đại diện, SĐT, email, ngày sinh, giới tính.
-  - Danh bạ người đi cùng thường xuyên; điểm đón/trả yêu thích.
-  - Đổi mật khẩu, quản lý thiết bị đăng nhập.
-  - Tuỳ chọn thông báo (push/email/SMS); xoá tài khoản.
-- **Thành phần:** `.tabs` (Thông tin / Bảo mật / Thông báo), `.field`,
-  avatar (`.avatar--photo`), nút switch (mới `css/toggle.css`), `.modal`.
-- **Trạng thái:** lưu thành công, xác thực SĐT/email, lỗi validate.
-- **Ưu tiên:** P0.
-
-### B11. Thông báo — `screens/thong-bao/`
-- **Tác dụng:** hộp thư hệ thống: trạng thái chuyến, nhắc chuyến sắp đi, khuyến mãi.
-- **Nhiệm vụ chính:**
-  - Danh sách thông báo (đọc/chưa đọc), lọc theo loại, đánh dấu đã đọc.
-  - Click → điều hướng tới chuyến/ưu đãi liên quan.
-  - Cài đặt nhận thông báo.
-- **Thành phần:** danh sách item + chấm chưa đọc, `.tabs`, `.empty-state`,
-  `.filter-bar`; badge số trên topbar (`i-bell`).
-- **Trạng thái:** empty, đã đọc hết, loading.
-- **Ưu tiên:** P1.
-
-### B12. Trung tâm hỗ trợ / khiếu nại (khách) — `screens/ho-tro-khach/`
-- **Tác dụng:** gửi & theo dõi yêu cầu hỗ trợ/khiếu nại gắn với chuyến.
-- **Nhiệm vụ chính:**
-  - Tạo yêu cầu: chọn chuyến liên quan, loại vấn đề, mô tả, đính kèm ảnh.
-  - Theo dõi trạng thái ticket (mới → đang xử lý → đã giải quyết) qua timeline.
-  - Trò chuyện với hỗ trợ; xem kết quả xử lý (bồi thường nếu có).
-- **Thành phần:** form tạo ticket, `.tabs` (đang mở / đã xong), `.timeline`,
-  khung chat đơn giản (mới), `.badge` trạng thái.
-- **Trạng thái:** empty (chưa có ticket), đang xử lý, đã đóng.
-- **Ưu tiên:** P1.
 
 ---
 
-## C. Luồng chính của khách hàng (happy path) — để kiểm tra tính liền mạch
+## 3. Luồng khách hàng
+
+```mermaid
+flowchart TD
+    HOME["B1 Trang chủ<br/>Tìm chuyến"]
+    LOGIN["B2 Đăng nhập"]
+    REG["B3 Đăng ký"]
+    KQ["B4 Kết quả tìm chuyến"]
+    CT["B5 Chi tiết chuyến<br/>Chọn ghế + điểm đón"]
+    OK["B6 Đặt vé thành công"]
+    MY["B7 Chuyến của tôi<br/>Danh sách + chi tiết vé"]
+    HS["B8 Hồ sơ"]
+
+    HOME -- "Tìm chuyến" --> KQ
+    HOME -- "Đăng nhập" --> LOGIN
+    LOGIN -- "Đăng ký" --> REG
+    REG -- "Đăng nhập" --> LOGIN
+    LOGIN -- "xong, quay lại" --> KQ
+    KQ -- "Chọn chuyến" --> CT
+    CT -- "chưa đăng nhập" --> LOGIN
+    CT -- "Xác nhận đặt vé" --> OK
+    OK -- "Xem chuyến của tôi" --> MY
+    MY -- "Hủy vé (modal)" --> MY
+    MY -- "Đặt lại" --> HOME
+    HOME -- "Avatar" --> HS
+    HS -- "Chuyến của tôi" --> MY
+```
+
+**Happy path:**
 
 ```
-Đăng nhập → Tìm chuyến → Kết quả tìm kiếm → Chi tiết & chọn ghế
-→ Đặt chỗ thành công (trả tiền mặt cho tài xế trên xe) → Chuyến của tôi
-→ (trong ngày đi) Hoàn thành → Đánh giá
+Trang chủ → Kết quả tìm chuyến → Chi tiết chuyến (chọn ghế, điểm đón)
+→ Đặt vé thành công → Chuyến của tôi (xem vé)
+→ Đến ngày đi: tài xế đón/trả → vé chuyển Hoàn thành
 ```
 
-Luồng phụ: Hủy/đổi chuyến, Ưu đãi, Hỗ trợ/khiếu nại,
-Thông báo, Hồ sơ.
+**Luồng phụ:**
 
-> Mọi màn danh sách cần thiết kế đủ **4 trạng thái**: rỗng, đang tải, lỗi,
-> có dữ liệu — dùng `.empty-state` và skeleton thống nhất.
+- Chưa đăng nhập khi xác nhận đặt vé → Đăng nhập/Đăng ký → quay lại chi tiết.
+- Hủy vé → modal trong chi tiết vé → tab Đã hủy.
+- Admin hủy chuyến → vé chuyển Đã hủy, khách thấy lý do trong chi tiết vé.
+
+---
+
+## 4. Trạng thái nghiệp vụ
+
+**Trạng thái vé (đơn đặt) — tách biệt khỏi trạng thái thanh toán:**
+
+```
+Đã đặt → Đã đón → Hoàn thành
+   ├── Không lên xe (tài xế đánh dấu ở D4)
+   └── Đã hủy (khách hủy, admin hủy vé, hoặc admin hủy chuyến)
+```
+
+**Ánh xạ trạng thái khách (D4) → trạng thái vé:**
+
+| Tài xế cập nhật (D4) | Trạng thái vé |
+|----------------------|---------------|
+| Chờ đón | Đã đặt |
+| Đã đón | Đã đón |
+| Đã trả | Hoàn thành |
+| Không lên xe | Không lên xe |
+| Đã hủy | Đã hủy |
+
+**Thanh toán:** `Chưa thu` → `Đã thu` (tài xế xác nhận ở D4).
+
+- Vé `Không lên xe` hoặc `Đã hủy` giữ `Chưa thu` — không phát sinh hoàn tiền.
+- `Đã thu` chỉ gắn với vé đã lên xe; không có hoàn tiền trong MVP.
+
+**Quy tắc hủy vé:**
+
+- Khách **tự hủy** được trước giờ khởi hành **≥ 12 giờ** (hằng số nghiệp vụ).
+- Dưới 12 giờ: nút hủy bị khóa; khách liên hệ admin để hủy thay (A6).
+- Vé ở `Đã đón`, `Hoàn thành`, `Không lên xe` **không** hủy được.
+- Vé admin hủy (hoặc chuyến bị admin hủy) chuyển `Đã hủy`, khách thấy lý do.
+- **Không có hoàn tiền** cho mọi trường hợp hủy.
+- Không có đổi vé; khách hủy rồi đặt lại.
+
+> Mọi màn danh sách cần đủ **4 trạng thái**: rỗng, đang tải, lỗi, có dữ liệu.
+> Hover/focus/active/loading cho control; một `h1` mỗi trang; label đầy đủ.

@@ -1,0 +1,46 @@
+{
+  "output": "khach-hang/ket-qua-tim-chuyen.html",
+  "base": "../",
+  "title": "Kết quả tìm kiếm chuyến — Vi Vu Việt",
+  "description": "Danh sách chuyến ghép Hà Nội → Ninh Bình khớp tìm kiếm — sắp xếp, lọc theo khung giờ và loại xe rồi chọn chuyến.",
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "index.html",
+  "linkLoginLabel": "Trang chủ",
+  "profileHref": "ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/booking",
+    "shared/css/ride-card",
+    "shared/css/sections",
+    "khach-hang/screens/ket-qua-tim-chuyen/css/results",
+    "khach-hang/screens/ket-qua-tim-chuyen/css/filters",
+    "khach-hang/screens/ket-qua-tim-chuyen/css/time-range",
+    "khach-hang/screens/ket-qua-tim-chuyen/css/ride-list",
+    "khach-hang/screens/ket-qua-tim-chuyen/css/states",
+    "shared/css/cta-footer",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "khach-hang/screens/ket-qua-tim-chuyen/js/results",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "khach-hang/screens/ket-qua-tim-chuyen/partials/summary.html",
+    "khach-hang/screens/ket-qua-tim-chuyen/partials/filters.html",
+    "khach-hang/screens/ket-qua-tim-chuyen/partials/results.html",
+    "khach-hang/screens/ket-qua-tim-chuyen/partials/list-b.html",
+    "khach-hang/screens/ket-qua-tim-chuyen/partials/foot.html",
+    "khach-hang/components/footer.html"
+  ]
+}

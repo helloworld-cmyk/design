@@ -22,6 +22,7 @@
 
 ## Temporary Files (BẮT BUỘC)
 
-- Khi tạo và sử dụng các file/folder tạm (temporary files, temp folders, scratch files, file preview thử nghiệm...), phải ghi nhớ vị trí của chúng.
+- Khi tạo và sử dụng các file/folder tạm (temporary files, temp folders, scratch files, file preview thử nghiệm...), **phải nhét hết vào**: `/Users/phong/hust-bai-tap-or-code/design-cnpm/design/temp` — không tạo file tạm ở nơi khác trong workspace.
+- Phải ghi nhớ vị trí của các file/folder tạm đã tạo.
 - Trước khi kết thúc session, **phải xóa hết toàn bộ các file/folder tạm đã tạo** trong workspace, không để lại rác.
 - Ngoại lệ: các file/folder tạm nằm trong `/var/folders/...` (thư mục temp của hệ thống) hoặc `.agents/plans` (nơi xuất plans chính thức) không cần xóa.

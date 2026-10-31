@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F7FAFD" />
+    <title>Chi tiết chuyến & chọn ghế — Vi Vu Việt</title>
+    <meta name="description" content="Xem hành trình, chọn ghế trên sơ đồ xe 16 chỗ, nhập địa chỉ đón/trả và xác nhận đặt chỗ." />
+    <link rel="icon" type="image/svg+xml" href="../shared/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <link rel="stylesheet" href="../shared/css/header.css" />
+    <link rel="stylesheet" href="../shared/css/user-menu.css" />
+    <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../shared/css/sections.css" />
+    <link rel="stylesheet" href="../shared/css/ride-card.css" />
+    <link rel="stylesheet" href="../shared/css/cta-footer.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chi-tiet-chuyen/css/detail.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chi-tiet-chuyen/css/bus-body.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chi-tiet-chuyen/css/seat-map.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chi-tiet-chuyen/css/summary.css" />
+    <link rel="stylesheet" href="../shared/css/motion.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-touch.css" />
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+
+    <symbol id="i-calendar" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </symbol>
+
+    <symbol id="i-users" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.6 19.2c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" />
+      <path d="M16 5.2a2.8 2.8 0 0 1 0 5.4" />
+      <path d="M17.4 14.4c2 .4 3.4 1.9 3.4 4.2" />
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.4 3.6-5.4 7-5.4s6.2 2 7 5.4" />
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.2-2h5.4l1.2 2h1.6A2.5 2.5 0 0 1 20 8.5
+           v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"
+      />
+      <circle cx="12" cy="12.4" r="3.2" />
+    </symbol>
+
+    <symbol id="i-lock" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+      <path d="M12 14.5v2" />
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7" />
+      <path d="M10.5 12H20" />
+      <path d="m16.5 8.5 3.5 3.5-3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </symbol>
+
+    <symbol id="i-refresh" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M20 11.5a8 8 0 0 0-14-4.6L4 9" />
+      <path d="M4 4v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 14 4.6L20 15" />
+      <path d="M20 20v-5h-5" />
+    </symbol>
+
+    <symbol id="i-swap" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7.5 4.5v14" />
+      <path d="m4.5 16 3 3 3-3" />
+      <path d="M16.5 19.5v-14" />
+      <path d="m13.5 8 3-3 3 3" />
+    </symbol>
+
+    <symbol id="i-shield" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 3.2 19 6v5.2c0 4.4-3 8.1-7 9.6-4-1.5-7-5.2-7-9.6V6l7-2.8Z" />
+      <path d="m9 12 2.1 2.1L15.4 10" />
+    </symbol>
+
+    <symbol id="i-headset" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3" />
+      <rect x="3" y="14" width="3.6" height="6" rx="1.6" />
+      <rect x="17.4" y="14" width="3.6" height="6" rx="1.6" />
+      <path d="M20 20a3.5 3.5 0 0 1-3.5 2.3H14" />
+    </symbol>
+
+    <symbol id="i-wallet" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.2A2.7 2.7 0 0 1 6.7 5.5H18a2.8 2.8 0 0 1 2.8 2.8v8.9
+           A2.8 2.8 0 0 1 18 20H6.8A2.8 2.8 0 0 1 4 17.2V8.2Z"
+      />
+      <path d="M4 9.5h16.8" />
+      <path d="M16.5 14.5h2" />
+    </symbol>
+
+    <symbol id="i-clock" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m5 12.5 4.2 4.2L19 7.5" />
+    </symbol>
+
+    <symbol id="i-check-circle" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m8.5 12.2 2.4 2.4 4.8-5" />
+    </symbol>
+
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+
+    <symbol id="i-car" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4.5 16.5h15l-1.6-5.2a2.3 2.3 0 0 0-2.2-1.7H8.3a2.3 2.3 0 0 0-2.2 1.7L4.5 16.5Z" />
+      <path d="M4.5 16.5v2.3M19.5 16.5v2.3" />
+      <circle cx="7.6" cy="16.5" r="1.1" />
+      <circle cx="16.4" cy="16.5" r="1.1" />
+      <path d="M8.2 10.2 8.9 7.9h6.2l.7 2.3" />
+    </symbol>
+
+    <symbol id="i-route" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="m7.2 7.2 9.6 9.6" stroke-dasharray="1 4" />
+    </symbol>
+
+    <symbol id="i-star" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M12 3.6l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8L12 3.6Z"
+      />
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M7.2 3.8h2.3l1.2 3.6-1.6 1.3a12.5 12.5 0 0 0 5.7 5.7l1.3-1.6 3.6 1.2v2.3
+           a2.5 2.5 0 0 1-2.7 2.5A16.8 16.8 0 0 1 4.7 6.5a2.5 2.5 0 0 1 2.5-2.7Z"
+      />
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 5.5L19.5 7" />
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m9 4.5-5.5 2v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </symbol>
+
+    <symbol id="i-facebook" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M13.5 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4
+           c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.1v2.8h2.4V21h3Z"
+      />
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+
+    <symbol id="i-youtube" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="2.8" y="5.5" width="18.4" height="13" rx="4" />
+      <path fill="currentColor" stroke="none" d="m10.2 9.2 4.8 2.8-4.8 2.8V9.2Z" />
+    </symbol>
+
+    <symbol id="i-eye" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M2.6 12S6.1 5.9 12 5.9 21.4 12 21.4 12 17.9 18.1 12 18.1 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="2.9" />
+    </symbol>
+
+    <symbol id="i-eye-off" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 12s3-5.2 7.4-5.6c1.3-.1 2.5.2 3.5.7" />
+      <path d="M20 12s-1.2 2-3.2 3.5" />
+      <path d="M9.6 9.7a3.1 3.1 0 0 0 4.4 4.3" />
+      <path d="m4.6 4.6 14.8 14.8" />
+    </symbol>
+  </defs>
+</svg>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Vi Vu Việt — Trang chủ">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
+      </span>
+      <span class="brand-name">Vi Vu <span>Việt</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Điều hướng chính">
+      <a href="index.html#doi-xe">Đội xe</a>
+      <a href="index.html#tuyen-duong">Tuyến đường</a>
+      <a href="index.html#cach-hoat-dong">Cách hoạt động</a>
+      <a href="index.html#vi-sao">Vì sao Vi Vu Việt</a>
+      <a href="index.html#danh-gia">Đánh giá</a>
+      <a href="index.html#faq">Hỏi đáp</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="user-menu" id="userMenu">
+        <button
+          class="user-menu-btn"
+          id="userMenuBtn"
+          type="button"
+          aria-label="Tài khoản"
+          aria-expanded="false"
+          aria-controls="userDropdown"
+        >
+          <span class="user-avatar" aria-hidden="true">
+            <svg class="icon user-avatar-icon" aria-hidden="true">
+              <use href="#i-user"></use>
+            </svg>
+            <span class="user-avatar-letter" id="userInitial">K</span>
+          </span>
+          <span class="user-menu-label" id="userMenuLabel">Tài khoản</span>
+          <svg class="icon user-menu-caret" aria-hidden="true">
+            <use href="#i-chevron-down"></use>
+          </svg>
+        </button>
+
+        <div
+          class="user-dropdown"
+          id="userDropdown"
+          aria-labelledby="userMenuBtn"
+        >
+          <div class="user-dropdown-head">
+            <span class="user-avatar user-avatar--lg" aria-hidden="true">
+              <svg class="icon user-avatar-icon" aria-hidden="true">
+                <use href="#i-user"></use>
+              </svg>
+              <span class="user-avatar-letter" id="userInitialLg">K</span>
+            </span>
+            <span class="user-dropdown-id">
+              <strong id="userName">Khách hàng</strong>
+              <span id="userContact">Thành viên Vi Vu Việt</span>
+            </span>
+          </div>
+          <a class="user-dropdown-item" href="ho-so.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-user"></use>
+            </svg>
+            Xem hồ sơ
+          </a>
+          <button
+            class="user-dropdown-item user-dropdown-item--logout"
+            type="button"
+            data-user-logout
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-logout"></use>
+            </svg>
+            Đăng xuất
+          </button>
+        </div>
+      </div>
+
+      <a class="link-login" href="index.html">Trang chủ</a>
+      <a class="btn btn-primary btn-sm header-cta" href="index.html#dat-xe">
+        Đặt chuyến ngay
+      </a>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+        aria-label="Mở menu"
+      >
+        <svg class="icon icon-menu" aria-hidden="true">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon icon-close" aria-hidden="true">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <nav aria-label="Điều hướng di động">
+      <a href="index.html#doi-xe">Đội xe</a>
+      <a href="index.html#tuyen-duong">Tuyến đường</a>
+      <a href="index.html#cach-hoat-dong">Cách hoạt động</a>
+      <a href="index.html#vi-sao">Vì sao Vi Vu Việt</a>
+      <a href="index.html#danh-gia">Đánh giá</a>
+      <a href="index.html#faq">Hỏi đáp</a>
+    </nav>
+    <div class="mobile-nav-actions">
+      <a class="btn btn-primary" href="index.html#dat-xe">Đặt chuyến ngay</a>
+      <a class="link-login" href="index.html">Trang chủ</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="booking-page" id="chi-tiet-chuyen">
+    <div class="container">
+      <div class="detail-top reveal">
+        <a class="text-link detail-back" href="ket-qua-tim-chuyen.html">
+          <svg class="icon" aria-hidden="true">
+            <use href="#i-arrow-right"></use>
+          </svg>
+          Quay lại kết quả tìm kiếm
+        </a>
+        <span class="section-eyebrow">Xác nhận đặt chỗ</span>
+        <h1>Chi tiết chuyến & chọn ghế</h1>
+        <p>
+          Kiểm tra hành trình, chọn ghế trên sơ đồ xe và nhập địa chỉ đón/trả.
+          Không cần thanh toán trước — trả tiền mặt trực tiếp cho tài xế khi
+          lên xe.
+        </p>
+        <div class="detail-top-badges">
+          <span class="badge badge--green">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-wallet"></use>
+            </svg>
+            Không thanh toán trước
+          </span>
+          <span class="badge badge--orange">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-clock"></use>
+            </svg>
+            Hủy miễn phí trước 2 giờ
+          </span>
+        </div>
+      </div>
+
+      <article class="ride-card detail-trip reveal" id="hanh-trinh">
+        <div class="ride-card-top">
+          <span class="ride-eyebrow">
+            Hà Nội → Ninh Bình · Thứ Năm, 29/10
+          </span>
+          <span class="badge badge--green">Còn 11 ghế</span>
+        </div>
+
+        <div class="trip-route">
+          <div class="trip-row">
+            <span class="trip-time">06:30</span>
+            <span class="trip-marker">
+              <span class="marker-dot marker-dot--start"></span>
+            </span>
+            <div class="trip-place">
+              <strong>Hà Nội</strong>
+              <span>Bến xe Mỹ Đình · Cổng 12</span>
+            </div>
+          </div>
+          <div class="trip-row trip-row--mid">
+            <span class="trip-duration">2h 15p</span>
+            <span class="trip-marker">
+              <span class="marker-line"></span>
+            </span>
+            <span class="trip-note">
+              Cao tốc CT.01 · Ghi nhớ có mặt trước giờ đón 15 phút
+            </span>
+          </div>
+          <div class="trip-row">
+            <span class="trip-time">08:45</span>
+            <span class="trip-marker">
+              <span class="marker-dot marker-dot--end"></span>
+            </span>
+            <div class="trip-place">
+              <strong>Ninh Bình</strong>
+              <span>Trung tâm thành phố</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ride-driver">
+          <div class="driver">
+            <span class="person-avatar">
+              <img
+                class="avatar avatar--driver avatar--photo"
+                src="https://images.unsplash.com/photo-1661588156316-cdcbe2e0c8ad?q=80&w=160"
+                alt="Ảnh tài xế Trần Minh Hiếu"
+                width="44"
+                height="44"
+                loading="lazy"
+              />
+              <span class="avatar-verified" title="Tài xế đã xác thực">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-check"></use>
+                </svg>
+              </span>
+            </span>
+            <div class="driver-info">
+              <strong>Trần Minh Hiếu</strong>
+              <span class="driver-meta">
+                <svg class="icon icon-star" aria-hidden="true">
+                  <use href="#i-star"></use>
+                </svg>
+                4.9 · 312 chuyến
+              </span>
+              <span class="driver-car">Ford Transit · 16 chỗ</span>
+            </div>
+          </div>
+          <div class="ride-price">
+            <strong>180.000đ</strong>
+            <span>/ghế</span>
+          </div>
+        </div>
+
+        <div class="detail-trip-foot">
+          <span>
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-calendar"></use>
+            </svg>
+            Mã chuyến VVB-2510-014
+          </span>
+          <span>
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-car"></use>
+            </svg>
+            Biển số 29A-123.45
+          </span>
+        </div>
+      </article>
+
+      <div class="detail-grid">
+            <section class="detail-panel reveal" id="chon-ghe">
+              <div class="panel-head">
+                <span class="panel-step" aria-hidden="true">1</span>
+                <div class="panel-head-text">
+                  <h2>Chọn ghế</h2>
+                  <p>Sơ đồ xe 16 chỗ nhìn từ trên xuống — chạm ghế trống để
+                    chọn, tối đa 4 ghế mỗi đặt chỗ.</p>
+                </div>
+              </div>
+
+              <svg class="svg-sprite" aria-hidden="true" focusable="false"
+                width="0" height="0">
+                <defs>
+                  <symbol id="s-seat" viewBox="0 0 40 54">
+                    <rect x="1.5" y="14" width="5" height="27" rx="2.5"
+                      style="fill:var(--seat-arm)" />
+                    <rect x="33.5" y="14" width="5" height="27" rx="2.5"
+                      style="fill:var(--seat-arm)" />
+                    <rect x="10.5" y="1.5" width="19" height="9" rx="4"
+                      style="fill:var(--seat-head)" />
+                    <rect x="5.5" y="8.5" width="29" height="24" rx="7"
+                      style="fill:var(--seat-back);stroke:var(--seat-line);stroke-width:2" />
+                    <rect x="8" y="36" width="24" height="16" rx="6"
+                      style="fill:var(--seat-cushion)" />
+                  </symbol>
+                  <symbol id="s-wheel" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="8.4" fill="none"
+                      stroke="currentColor" stroke-width="1.8" />
+                    <circle cx="12" cy="12" r="2.4" fill="none"
+                      stroke="currentColor" stroke-width="1.8" />
+                    <path d="M12 14.4v6M9.7 13.4l-5.3 2.5M14.3 13.4l5.3 2.5"
+                      fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" />
+                  </symbol>
+                </defs>
+              </svg>
+
+              <div class="seat-map" role="group"
+                aria-label="Sơ đồ ghế xe 16 chỗ: cabin tài xế và 4 hàng ghế">
+                <div class="bus-shell">
+                  <span class="bus-wheel bus-wheel--fl" aria-hidden="true"></span>
+                  <span class="bus-wheel bus-wheel--fr" aria-hidden="true"></span>
+                  <span class="bus-wheel bus-wheel--rl" aria-hidden="true"></span>
+                  <span class="bus-wheel bus-wheel--rr" aria-hidden="true"></span>
+                  <span class="bus-glass" aria-hidden="true"></span>
+
+                  <div class="bus-cab">
+                    <div class="bus-driver" aria-hidden="true">
+                      <svg class="bus-steering">
+                        <use href="#s-wheel"></use>
+                      </svg>
+                      <span class="bus-driver-bottom">
+                        <svg class="seat-art seat-art--driver">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="bus-driver-label">Tài xế</span>
+                      </span>
+                    </div>
+                    <button type="button" class="seat" data-seat="A1"
+                      aria-pressed="false">
+                      <svg class="seat-art" aria-hidden="true">
+                        <use href="#s-seat"></use>
+                      </svg>
+                      <span class="seat-num">A1</span>
+                    </button>
+                    <span class="bus-door" aria-hidden="true">Cửa lên xe</span>
+                  </div>
+
+                  <div class="seat-grid">
+                    <div class="seat-row">
+                      <button type="button" class="seat is-selected"
+                        data-seat="B1" aria-pressed="true">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="B2"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B2</span>
+                      </button>
+                      <span class="seat-aisle" aria-hidden="true"></span>
+                      <button type="button" class="seat" data-seat="B3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B3</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="B4"
+                        disabled aria-label="Ghế B4 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B4</span>
+                      </button>
+                    </div>
+                    <div class="seat-row">
+                      <button type="button" class="seat" data-seat="C1"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="C2"
+                        disabled aria-label="Ghế C2 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C2</span>
+                      </button>
+                      <span class="seat-aisle" aria-hidden="true"></span>
+                      <button type="button" class="seat" data-seat="C3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C3</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="C4"
+                        disabled aria-label="Ghế C4 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C4</span>
+                      </button>
+                    </div>
+                    <div class="seat-row">
+                      <button type="button" class="seat" data-seat="D1"
+                        disabled aria-label="Ghế D1 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="D2"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D2</span>
+                      </button>
+                      <span class="seat-aisle" aria-hidden="true"></span>
+                      <button type="button" class="seat" data-seat="D3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D3</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="D4"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D4</span>
+                      </button>
+                    </div>
+                    <div class="seat-row seat-row--trio">
+                      <button type="button" class="seat" data-seat="E1"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">E1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="E2"
+                        disabled aria-label="Ghế E2 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">E2</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="E3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">E3</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="bus-rear" aria-hidden="true">Ford Transit · 16 chỗ</p>
+                </div>
+
+                <div class="seat-legend">
+                  <span class="seat-legend-item">
+                    <svg class="seat-art seat-art--free" aria-hidden="true">
+                      <use href="#s-seat"></use>
+                    </svg>
+                    Còn trống
+                  </span>
+                  <span class="seat-legend-item">
+                    <svg class="seat-art seat-art--picked" aria-hidden="true">
+                      <use href="#s-seat"></use>
+                    </svg>
+                    Đang chọn
+                  </span>
+                  <span class="seat-legend-item">
+                    <svg class="seat-art seat-art--taken" aria-hidden="true">
+                      <use href="#s-seat"></use>
+                    </svg>
+                    Đã đặt
+                  </span>
+                </div>
+
+                <p class="seat-note" id="seatNote" role="status">
+                  Đang chọn <strong id="seatNoteSeats">B1</strong>
+                  <span>· tối đa 4 ghế mỗi đặt chỗ</span>
+                </p>
+              </div>
+            </section>
+            <form class="detail-panel booking-panel reveal" id="bookingForm"
+              novalidate>
+              <div class="panel-head">
+                <span class="panel-step" aria-hidden="true">2</span>
+                <div class="panel-head-text">
+                  <h2>Thông tin người đi</h2>
+                  <p>Vé điện tử gửi về SĐT — tài xế đón đúng địa chỉ bạn nhập.</p>
+                </div>
+              </div>
+
+              <div
+                class="form-status"
+                id="formStatus"
+                role="status"
+                aria-live="polite"
+                tabindex="-1"
+              ></div>
+
+              <div class="booking-grid">
+                <div class="field" id="fieldName">
+                  <label for="passengerName">Họ và tên người đi chính</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-user"></use>
+                    </svg>
+                    <input
+                      type="text"
+                      id="passengerName"
+                      name="passengerName"
+                      placeholder="VD: Nguyễn Thu Hà"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field" id="fieldPhone">
+                  <label for="passengerPhone">SĐT nhận vé</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-phone"></use>
+                    </svg>
+                    <input
+                      type="tel"
+                      id="passengerPhone"
+                      name="passengerPhone"
+                      placeholder="VD: 0912 345 678"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field" id="fieldPickup">
+                  <label for="pickupAddress">Điểm đón</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-pin"></use>
+                    </svg>
+                    <input
+                      type="text"
+                      id="pickupAddress"
+                      name="pickupAddress"
+                      placeholder="VD: 12 Nguyễn Trãi, Thanh Xuân, Hà Nội"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field" id="fieldDropoff">
+                  <label for="dropoffAddress">Điểm trả</label>
+                  <div class="field-control">
+                    <svg class="icon field-icon" aria-hidden="true">
+                      <use href="#i-map"></use>
+                    </svg>
+                    <input
+                      type="text"
+                      id="dropoffAddress"
+                      name="dropoffAddress"
+                      placeholder="VD: Khu du lịch Tràng An, Ninh Bình"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <label class="agree-check" id="agreeWrap">
+                <input
+                  type="checkbox"
+                  id="agreeTerms"
+                  name="agreeTerms"
+                  required
+                />
+                <span>
+                  Tôi đã đọc và đồng ý
+                  <a class="auth-link" href="index.html#faq">điều khoản đặt
+                    chỗ</a> của
+                  Vi Vu Việt, gồm chính sách hủy/đổi và quy định mang hành lý.
+                </span>
+              </label>
+
+              <div class="price-total" id="priceTotal">
+                <ul class="price-rows">
+                  <li>
+                    <span>Giá mỗi ghế</span>
+                    <strong>180.000đ</strong>
+                  </li>
+                  <li>
+                    <span>Số ghế đã chọn</span>
+                    <strong id="priceSeatCount">1 · B1</strong>
+                  </li>
+                </ul>
+                <div class="price-total-row">
+                  <span class="price-total-label">Tổng tạm tính</span>
+                  <strong id="priceTotalValue">180.000đ</strong>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg detail-submit"
+                id="detailSubmit"
+              >
+                <span class="btn-label">Xác nhận đặt chỗ</span>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </button>
+              <p class="price-note">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-shield"></use>
+                </svg>
+                Không cần đặt cọc — giữ chỗ ngay, hủy miễn phí trước 2 giờ.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand--footer" href="index.html" aria-label="Vi Vu Việt — Trang chủ">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
+          </span>
+          <span class="brand-name">Vi Vu <span>Việt</span></span>
+        </a>
+        <p>
+          Đi chung chuyến, chia sẻ hành trình. Vi Vu Việt kết nối bạn với
+          những chuyến xe ghép an toàn và minh bạch trên khắp Việt Nam.
+        </p>
+        <div class="socials">
+          <a href="#" aria-label="Vi Vu Việt trên Facebook">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-facebook"></use>
+            </svg>
+          </a>
+          <a href="#" aria-label="Vi Vu Việt trên Instagram">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-instagram"></use>
+            </svg>
+          </a>
+          <a href="#" aria-label="Vi Vu Việt trên YouTube">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-youtube"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="index.html#dat-xe">Đặt xe ghép</a></li>
+          <li><a href="index.html#doi-xe">Đội xe</a></li>
+          <li><a href="index.html#tuyen-duong">Tuyến đường</a></li>
+          <li><a href="index.html#vi-sao">Bảng giá</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Công ty</h4>
+        <ul>
+          <li><a href="#">Về Vi Vu Việt</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Báo chí</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+        © <span id="year">2026</span> Vi Vu Việt. Nền tảng đặt xe ghép liên tỉnh.
+      </span>
+      <div class="footer-legal">
+        <a href="#">Cookie</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared/js/header.js" defer></script>
+<script src="../khach-hang/screens/chi-tiet-chuyen/js/booking-detail.js" defer></script>
+<script src="../shared/js/reveal.js" defer></script>
+</body>
+</html>

@@ -14,10 +14,7 @@
   .brand--footer,
   .text-link,
   .driver-link,
-  .support-phone,
-  .support-mail,
   .link-login,
-  .mobile-hotline,
   .footer-col a,
   .footer-legal a {
     min-height: 44px;
@@ -29,8 +26,6 @@
     align-items: center;
   }
 
-  .support-phone,
-  .support-mail,
   .footer-col a,
   .footer-legal a {
     padding-block: 6px;

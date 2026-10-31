@@ -1,0 +1,43 @@
+{
+  "output": "khach-hang/chi-tiet-chuyen.html",
+  "base": "../",
+  "title": "Chi tiết chuyến & chọn ghế — Vi Vu Việt",
+  "description": "Xem hành trình, chọn ghế trên sơ đồ xe 16 chỗ, nhập địa chỉ đón/trả và xác nhận đặt chỗ.",
+  "home": "index.html",
+  "navPrefix": "index.html",
+  "linkLoginHref": "index.html",
+  "linkLoginLabel": "Trang chủ",
+  "profileHref": "ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/booking",
+    "shared/css/sections",
+    "shared/css/ride-card",
+    "shared/css/cta-footer",
+    "khach-hang/screens/chi-tiet-chuyen/css/detail",
+    "khach-hang/screens/chi-tiet-chuyen/css/bus-body",
+    "khach-hang/screens/chi-tiet-chuyen/css/seat-map",
+    "khach-hang/screens/chi-tiet-chuyen/css/summary",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "khach-hang/screens/chi-tiet-chuyen/js/booking-detail",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "khach-hang/screens/chi-tiet-chuyen/partials/trip.html",
+    "khach-hang/screens/chi-tiet-chuyen/partials/seats.html",
+    "khach-hang/screens/chi-tiet-chuyen/partials/booking-form.html",
+    "khach-hang/components/footer.html"
+  ]
+}

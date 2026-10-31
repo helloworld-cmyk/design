@@ -1,0 +1,217 @@
+            <section class="detail-panel reveal" id="chon-ghe">
+              <div class="panel-head">
+                <span class="panel-step" aria-hidden="true">1</span>
+                <div class="panel-head-text">
+                  <h2>Chọn ghế</h2>
+                  <p>Sơ đồ xe 16 chỗ nhìn từ trên xuống — chạm ghế trống để
+                    chọn, tối đa 4 ghế mỗi đặt chỗ.</p>
+                </div>
+              </div>
+
+              <svg class="svg-sprite" aria-hidden="true" focusable="false"
+                width="0" height="0">
+                <defs>
+                  <symbol id="s-seat" viewBox="0 0 40 54">
+                    <rect x="1.5" y="14" width="5" height="27" rx="2.5"
+                      style="fill:var(--seat-arm)" />
+                    <rect x="33.5" y="14" width="5" height="27" rx="2.5"
+                      style="fill:var(--seat-arm)" />
+                    <rect x="10.5" y="1.5" width="19" height="9" rx="4"
+                      style="fill:var(--seat-head)" />
+                    <rect x="5.5" y="8.5" width="29" height="24" rx="7"
+                      style="fill:var(--seat-back);stroke:var(--seat-line);stroke-width:2" />
+                    <rect x="8" y="36" width="24" height="16" rx="6"
+                      style="fill:var(--seat-cushion)" />
+                  </symbol>
+                  <symbol id="s-wheel" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="8.4" fill="none"
+                      stroke="currentColor" stroke-width="1.8" />
+                    <circle cx="12" cy="12" r="2.4" fill="none"
+                      stroke="currentColor" stroke-width="1.8" />
+                    <path d="M12 14.4v6M9.7 13.4l-5.3 2.5M14.3 13.4l5.3 2.5"
+                      fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" />
+                  </symbol>
+                </defs>
+              </svg>
+
+              <div class="seat-map" role="group"
+                aria-label="Sơ đồ ghế xe 16 chỗ: cabin tài xế và 4 hàng ghế">
+                <div class="bus-shell">
+                  <span class="bus-wheel bus-wheel--fl" aria-hidden="true"></span>
+                  <span class="bus-wheel bus-wheel--fr" aria-hidden="true"></span>
+                  <span class="bus-wheel bus-wheel--rl" aria-hidden="true"></span>
+                  <span class="bus-wheel bus-wheel--rr" aria-hidden="true"></span>
+                  <span class="bus-glass" aria-hidden="true"></span>
+
+                  <div class="bus-cab">
+                    <div class="bus-driver" aria-hidden="true">
+                      <svg class="bus-steering">
+                        <use href="#s-wheel"></use>
+                      </svg>
+                      <span class="bus-driver-bottom">
+                        <svg class="seat-art seat-art--driver">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="bus-driver-label">Tài xế</span>
+                      </span>
+                    </div>
+                    <button type="button" class="seat" data-seat="A1"
+                      aria-pressed="false">
+                      <svg class="seat-art" aria-hidden="true">
+                        <use href="#s-seat"></use>
+                      </svg>
+                      <span class="seat-num">A1</span>
+                    </button>
+                    <span class="bus-door" aria-hidden="true">Cửa lên xe</span>
+                  </div>
+
+                  <div class="seat-grid">
+                    <div class="seat-row">
+                      <button type="button" class="seat is-selected"
+                        data-seat="B1" aria-pressed="true">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="B2"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B2</span>
+                      </button>
+                      <span class="seat-aisle" aria-hidden="true"></span>
+                      <button type="button" class="seat" data-seat="B3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B3</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="B4"
+                        disabled aria-label="Ghế B4 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">B4</span>
+                      </button>
+                    </div>
+                    <div class="seat-row">
+                      <button type="button" class="seat" data-seat="C1"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="C2"
+                        disabled aria-label="Ghế C2 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C2</span>
+                      </button>
+                      <span class="seat-aisle" aria-hidden="true"></span>
+                      <button type="button" class="seat" data-seat="C3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C3</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="C4"
+                        disabled aria-label="Ghế C4 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">C4</span>
+                      </button>
+                    </div>
+                    <div class="seat-row">
+                      <button type="button" class="seat" data-seat="D1"
+                        disabled aria-label="Ghế D1 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="D2"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D2</span>
+                      </button>
+                      <span class="seat-aisle" aria-hidden="true"></span>
+                      <button type="button" class="seat" data-seat="D3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D3</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="D4"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">D4</span>
+                      </button>
+                    </div>
+                    <div class="seat-row seat-row--trio">
+                      <button type="button" class="seat" data-seat="E1"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">E1</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="E2"
+                        disabled aria-label="Ghế E2 — đã bị đặt">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">E2</span>
+                      </button>
+                      <button type="button" class="seat" data-seat="E3"
+                        aria-pressed="false">
+                        <svg class="seat-art" aria-hidden="true">
+                          <use href="#s-seat"></use>
+                        </svg>
+                        <span class="seat-num">E3</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="bus-rear" aria-hidden="true">Ford Transit · 16 chỗ</p>
+                </div>
+
+                <div class="seat-legend">
+                  <span class="seat-legend-item">
+                    <svg class="seat-art seat-art--free" aria-hidden="true">
+                      <use href="#s-seat"></use>
+                    </svg>
+                    Còn trống
+                  </span>
+                  <span class="seat-legend-item">
+                    <svg class="seat-art seat-art--picked" aria-hidden="true">
+                      <use href="#s-seat"></use>
+                    </svg>
+                    Đang chọn
+                  </span>
+                  <span class="seat-legend-item">
+                    <svg class="seat-art seat-art--taken" aria-hidden="true">
+                      <use href="#s-seat"></use>
+                    </svg>
+                    Đã đặt
+                  </span>
+                </div>
+
+                <p class="seat-note" id="seatNote" role="status">
+                  Đang chọn <strong id="seatNoteSeats">B1</strong>
+                  <span>· tối đa 4 ghế mỗi đặt chỗ</span>
+                </p>
+              </div>
+            </section>

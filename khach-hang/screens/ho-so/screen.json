@@ -22,7 +22,8 @@
     "khach-hang/screens/ho-so/css/profile-form",
     "shared/css/motion",
     "shared/css/responsive-desktop",
-    "shared/css/responsive-mobile"
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
   ],
   "js": [
     "shared/js/header",
@@ -35,6 +36,6 @@
     "shared/components/header.html",
     "khach-hang/screens/ho-so/partials/identity.html",
     "khach-hang/screens/ho-so/partials/settings.html",
-    "shared/components/footer.html"
+    "khach-hang/components/footer.html"
   ]
 }

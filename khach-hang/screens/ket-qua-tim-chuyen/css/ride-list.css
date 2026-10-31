@@ -1,0 +1,258 @@
+/* ===== Kết quả tìm kiếm — lưới chuyến 2 cột, phân trang ===== */
+
+.ride-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ride-card--list {
+  --card-pad-x: 18px;
+  --ticket-notch: 12px;
+  --ticket-stub: 73px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px var(--card-pad-x) 16px;
+  border-color: var(--slate-300);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+/* Vé: khoét nửa vòng tròn hai bên, viền theo cung */
+.ride-card--list::before,
+.ride-card--list::after {
+  content: "";
+  position: absolute;
+  top: auto;
+  bottom: calc(var(--ticket-stub) - var(--ticket-notch) - 1px);
+  width: var(--ticket-notch);
+  height: calc(var(--ticket-notch) * 2);
+  border: 1px solid var(--slate-300);
+  background: var(--bg);
+  z-index: 1;
+}
+
+.ride-card--list::before {
+  right: auto;
+  left: -1px;
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+}
+
+.ride-card--list::after {
+  right: -1px;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.ride-card--list:hover {
+  transform: translateY(-2px);
+  border-color: var(--slate-400);
+  box-shadow: var(--shadow-sm);
+}
+
+.ride-card--list:hover::before,
+.ride-card--list:hover::after {
+  border-color: var(--slate-400);
+}
+
+/* ---------- Nội dung card ---------- */
+
+.ride-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.ride-time {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ride-dur {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.ride-head .badge {
+  margin-left: auto;
+}
+
+.ride-route {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-top: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--slate-600);
+}
+
+.ride-route .icon {
+  width: 15px;
+  height: 15px;
+  color: var(--sky-600);
+  flex: none;
+}
+
+.ride-card--list .ride-driver {
+  margin-top: 11px;
+  margin-bottom: 14px;
+  padding-top: 11px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.ride-card--list .avatar--driver {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: var(--navy-800);
+  box-shadow: none;
+  font-size: 12px;
+}
+
+/* Avatar tài xế — các tông màu khác nhau (xen kẽ đẹp) */
+.avatar--driver--sky {
+  background: linear-gradient(135deg, var(--sky-800), var(--sky-500));
+}
+
+.avatar--driver--orange {
+  background: linear-gradient(135deg, var(--orange-700), var(--orange-500));
+}
+
+.avatar--driver--green {
+  background: linear-gradient(135deg, var(--green-700), var(--green-600));
+}
+
+.avatar--driver--navy {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-900));
+}
+
+.ride-card--list .driver-info strong {
+  font-size: 13px;
+}
+
+.ride-card--list .driver-car {
+  max-width: 46%;
+  text-align: right;
+  line-height: 1.4;
+  color: var(--slate-500);
+}
+
+.ride-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 13px;
+}
+
+.ride-card--list .ride-foot {
+  margin-inline: calc(var(--card-pad-x) * -1);
+  padding-inline: var(--card-pad-x);
+  border-top: 1px dashed var(--slate-300);
+}
+
+.ride-card--list .ride-price strong {
+  font-size: 18px;
+}
+
+.ride-card--list .ride-price span {
+  font-size: 11px;
+  color: var(--slate-500);
+}
+
+/* ---------- Phân trang ---------- */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate-600);
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.page-btn:hover:not(:disabled):not(.is-current) {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+  color: var(--sky-800);
+}
+
+.page-btn.is-current {
+  border-color: var(--sky-700);
+  background: var(--sky-700);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .ride-list {
+    grid-template-columns: 1fr;
+  }
+
+  .ride-card--list {
+    --ticket-stub: 75px;
+  }
+
+  .ride-card--list .ride-driver {
+    flex-wrap: wrap;
+  }
+
+  .ride-card--list .driver {
+    flex: 1 1 100%;
+  }
+
+  .ride-card--list .driver-car {
+    max-width: none;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .ride-time {
+    font-size: 16px;
+  }
+
+  .ride-card--list .ride-price strong {
+    font-size: 17px;
+  }
+}

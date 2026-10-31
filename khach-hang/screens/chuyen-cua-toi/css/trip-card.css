@@ -1,0 +1,208 @@
+/* ============ Chuyến của tôi — vé hai phần, danh sách 2 cột ============ */
+
+.trip-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+}
+
+.trip-list .ride-card {
+  --card-pad-x: 18px;
+  --ticket-notch: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px var(--card-pad-x) 16px;
+  border-color: var(--slate-300);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+/* Vé không dùng dải gradient của thẻ hero */
+.trip-list .ride-card::before {
+  display: none;
+}
+
+.trip-list .ride-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--slate-400);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Đầu vé: giờ chạy · thời lượng · trạng thái ---------- */
+
+.ride-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.ride-time {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ride-dur {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.ride-head .status-badge {
+  margin-left: auto;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.status-badge .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.status-badge--confirmed {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.status-badge--pending {
+  background: #fff1e7;
+  color: #9a3412;
+}
+
+.status-badge--ongoing {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.status-badge--done {
+  background: var(--green-50);
+  color: var(--green-700);
+  box-shadow: inset 0 0 0 1px var(--green-100);
+}
+
+.status-badge--canceled {
+  background: var(--red-50);
+  color: var(--red-600);
+  box-shadow: inset 0 0 0 1px #fecaca;
+}
+
+/* ---------- Tuyến + ngày, mã đặt chỗ ---------- */
+
+.ride-route {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-top: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--slate-600);
+}
+
+.ride-route .icon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--sky-600);
+}
+
+.ride-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--slate-400);
+}
+
+.ride-meta span + span::before {
+  content: "·";
+  margin-right: 8px;
+  color: var(--slate-300);
+}
+
+/* ---------- Tài xế trong vé ---------- */
+
+.trip-list .ride-driver {
+  align-items: center;
+  margin-top: 11px;
+  margin-bottom: 14px;
+  padding-top: 11px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.trip-list .avatar--driver {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: var(--navy-800);
+  box-shadow: none;
+  font-size: 12px;
+}
+
+.trip-list .driver-info strong {
+  font-size: 13px;
+}
+
+.trip-list .driver-car {
+  max-width: 46%;
+  text-align: right;
+  line-height: 1.4;
+  color: var(--slate-500);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .trip-list {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-list .ride-card {
+    --card-pad-x: 16px;
+    padding: 16px var(--card-pad-x) 14px;
+  }
+
+  .trip-list .ride-driver {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .trip-list .driver {
+    flex: 1 1 100%;
+  }
+
+  .trip-list .driver-car {
+    max-width: none;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .ride-time {
+    font-size: 16px;
+  }
+}

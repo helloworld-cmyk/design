@@ -1,0 +1,193 @@
+/* ================= Sơ đồ ghế: ghế, chú giải, ghi chú ================= */
+
+.seat-map {
+  display: grid;
+  gap: 14px;
+}
+
+/* ---------- Ghế (icon ghế thật + số ghế) ---------- */
+
+.seat {
+  --seat-arm: var(--slate-300);
+  --seat-head: var(--slate-200);
+  --seat-back: var(--surface);
+  --seat-cushion: var(--slate-200);
+  --seat-line: var(--slate-300);
+
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  min-height: 44px;
+  padding: 6px 4px;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    transform var(--dur) var(--ease),
+    background var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.seat:hover:not([disabled]) {
+  --seat-back: var(--sky-50);
+  --seat-head: var(--sky-100);
+  --seat-cushion: var(--sky-100);
+  --seat-line: var(--sky-300);
+  --seat-arm: var(--sky-300);
+  background: var(--sky-50);
+  transform: translateY(-1px);
+}
+
+.seat:focus-visible {
+  outline: 3px solid rgba(14, 165, 233, 0.6);
+  outline-offset: 2px;
+}
+
+.seat.is-selected {
+  --seat-back: var(--sky-700);
+  --seat-head: var(--sky-800);
+  --seat-cushion: var(--sky-600);
+  --seat-arm: var(--sky-800);
+  --seat-line: var(--sky-800);
+  background: var(--sky-50);
+  box-shadow: 0 10px 20px -12px rgba(3, 105, 161, 0.95);
+}
+
+.seat.is-selected:hover {
+  --seat-back: var(--sky-800);
+  background: var(--sky-50);
+}
+
+.seat.is-selected .seat-num {
+  color: var(--sky-800);
+}
+
+.seat[disabled] {
+  --seat-back: var(--slate-200);
+  --seat-head: var(--slate-200);
+  --seat-cushion: var(--slate-200);
+  --seat-arm: var(--slate-200);
+  --seat-line: var(--slate-200);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.seat[disabled] .seat-num {
+  color: var(--slate-400);
+  text-decoration: line-through;
+}
+
+.seat-art {
+  width: 40px;
+  height: 54px;
+}
+
+.seat-art--driver {
+  --seat-back: var(--slate-200);
+  --seat-head: var(--slate-200);
+  --seat-cushion: var(--slate-200);
+  width: 24px;
+  height: 32px;
+}
+
+.seat-num {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* ---------- Đuôi xe ---------- */
+
+.bus-rear {
+  margin-top: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--slate-400);
+}
+
+/* ---------- Chú giải + ghi chú ---------- */
+
+.seat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.seat-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate-600);
+}
+
+.seat-legend-item .seat-art {
+  width: 15px;
+  height: 20px;
+}
+
+.seat-art--free {
+  --seat-back: var(--surface);
+  --seat-head: var(--slate-200);
+  --seat-cushion: var(--slate-200);
+  --seat-arm: var(--slate-300);
+  --seat-line: var(--slate-300);
+}
+
+.seat-art--picked {
+  --seat-back: var(--sky-700);
+  --seat-head: var(--sky-800);
+  --seat-cushion: var(--sky-600);
+  --seat-arm: var(--sky-800);
+  --seat-line: var(--sky-800);
+}
+
+.seat-art--taken {
+  --seat-back: var(--slate-200);
+  --seat-head: var(--slate-200);
+  --seat-cushion: var(--slate-200);
+  --seat-arm: var(--slate-200);
+  --seat-line: var(--slate-200);
+}
+
+.seat-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--slate-600);
+}
+
+.seat-note strong {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--sky-800);
+}
+
+.seat-note span {
+  color: var(--slate-400);
+}
+
+/* ---------- Nhánh responsive màn ---------- */
+
+@media (max-width: 520px) {
+  .seat {
+    min-height: 44px;
+    padding: 5px 2px;
+  }
+
+  .seat-art {
+    width: 28px;
+    height: 38px;
+  }
+
+  .seat-num {
+    font-size: 11px;
+  }
+}

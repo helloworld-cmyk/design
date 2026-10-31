@@ -1,0 +1,267 @@
+/* ================= Vé điện tử (ticket card) ================= */
+
+.ticket-card {
+  position: relative;
+  padding: clamp(18px, 2.2vw, 24px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.ticket-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.ticket-heading {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* ---------- Mã đặt chỗ ---------- */
+
+.ticket-code-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px dashed var(--sky-300);
+  border-radius: var(--radius-sm);
+  background: var(--sky-50);
+}
+
+.ticket-code {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  color: var(--sky-800);
+}
+
+.ticket-code-row .btn {
+  margin-left: auto;
+}
+
+/* ---------- Hành trình trên vé ---------- */
+
+.ticket-route {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.ticket-route li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ticket-route .icon {
+  flex: none;
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+  color: var(--sky-600);
+}
+
+.ticket-route li:nth-child(2) .icon {
+  color: var(--orange-500);
+}
+
+.ticket-route strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.ticket-route span {
+  display: block;
+  margin-top: 1px;
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+/* ---------- Đường xé vé ---------- */
+
+.ticket-perf {
+  position: relative;
+  margin: 14px calc(-1 * clamp(18px, 2.2vw, 24px));
+  border-top: 2px dashed var(--border);
+}
+
+.ticket-perf::before,
+.ticket-perf::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.ticket-perf::before {
+  left: -11px;
+}
+
+.ticket-perf::after {
+  right: -11px;
+}
+
+/* ---------- QR + thông tin vé ---------- */
+
+.ticket-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(18px, 2.4vw, 26px);
+}
+
+.ticket-qr {
+  flex: none;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.ticket-qr-svg {
+  display: block;
+  width: 104px;
+  height: 104px;
+}
+
+.ticket-facts {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+  align-content: start;
+}
+
+.ticket-fact span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.ticket-fact strong {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-heading);
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.ticket-fact strong.ticket-price {
+  font-size: 21px;
+  letter-spacing: -0.02em;
+}
+
+.ticket-qr-note {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--slate-500);
+}
+
+/* ---------- Dòng tài xế (dùng lại ride-driver) ---------- */
+
+.ticket-card .ride-driver {
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.ticket-card .driver-meta .icon {
+  color: var(--orange-500);
+}
+
+/* ---------- In vé ---------- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .success-actions,
+  .success-side {
+    display: none;
+  }
+
+  .ticket-card {
+    border-color: var(--border);
+    box-shadow: none;
+  }
+
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 520px) {
+  .ticket-detail {
+    flex-direction: column;
+  }
+
+  .ticket-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ride-driver {
+    flex-wrap: wrap;
+  }
+
+  .ride-driver .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .ticket-code-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ticket-code-row .btn {
+    margin-left: 0;
+  }
+
+  .ticket-code {
+    text-align: center;
+  }
+}

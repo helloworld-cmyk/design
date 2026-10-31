@@ -1,0 +1,201 @@
+/* ================= Chi tiết chuyến & chọn ghế ================= */
+
+.booking-page {
+  padding: clamp(32px, 4.5vw, 56px) 0 clamp(48px, 6vw, 80px);
+}
+
+.detail-top {
+  max-width: 680px;
+}
+
+.detail-back .icon {
+  transform: scaleX(-1);
+}
+
+.detail-top h1 {
+  margin-top: 12px;
+  font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.032em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.detail-top p {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--slate-600);
+}
+
+.detail-top-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.detail-top-badges .icon {
+  width: 13px;
+  height: 13px;
+}
+
+/* ---------- Lưới 2 cột: sơ đồ ghế (trái) + form đặt chỗ (phải) ---------- */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+  margin-top: clamp(26px, 3.5vw, 40px);
+}
+
+/* ---------- Panel trắng chuẩn ---------- */
+
+.detail-panel {
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.panel-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 18px;
+}
+
+.panel-step {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--sky-50);
+  box-shadow: inset 0 0 0 1px var(--sky-100);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--sky-700);
+}
+
+.panel-head-text h2 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.panel-head-text p {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--slate-500);
+}
+
+/* ---------- Thẻ hành trình: mở rộng ride-card ---------- */
+
+.detail-trip {
+  width: 100%;
+  margin-top: clamp(26px, 3.5vw, 40px);
+}
+
+.detail-trip-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.detail-trip-foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.detail-trip-foot .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--sky-600);
+}
+
+/* ---------- Form đặt chỗ (cột phải) ---------- */
+
+.booking-panel {
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+}
+
+#formStatus {
+  margin: 0 0 14px;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+#fieldPickup,
+#fieldDropoff {
+  grid-column: 1 / -1;
+}
+
+.agree-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--slate-600);
+  cursor: pointer;
+}
+
+.agree-check input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--sky-700);
+  cursor: pointer;
+}
+
+.agree-check.is-invalid {
+  color: var(--red-600);
+}
+
+/* ---------- Nhánh responsive màn ---------- */
+
+@media (max-width: 1024px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-panel {
+    position: static;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 520px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .detail-panel {
+    padding: 16px;
+  }
+}

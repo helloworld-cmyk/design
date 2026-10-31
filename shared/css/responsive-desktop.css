@@ -14,7 +14,7 @@
   }
 
   .footer-grid {
-    grid-template-columns: 1.4fr 0.8fr 0.8fr 1.1fr;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr;
     gap: 28px;
   }
 }
@@ -147,21 +147,6 @@
     flex: 1;
   }
 
-  .mobile-hotline {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--sky-700);
-  }
-
-  .mobile-hotline .icon {
-    width: 17px;
-    height: 17px;
-  }
-
   .hero-grid {
     grid-template-columns: 1fr;
   }
@@ -216,10 +201,6 @@
   .faq-grid {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-
-  .support-card {
-    max-width: 100%;
   }
 
   .accordion {

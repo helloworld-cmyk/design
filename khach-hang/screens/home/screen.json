@@ -9,6 +9,7 @@
     "shared/css/header",
     "shared/css/user-menu",
     "shared/css/hero",
+    "khach-hang/css/float-chip",
     "khach-hang/screens/home/css/hero-visual",
     "shared/css/ride-card",
     "shared/css/booking",
@@ -18,7 +19,6 @@
     "khach-hang/screens/home/css/steps",
     "khach-hang/screens/home/css/features",
     "khach-hang/screens/home/css/testimonials",
-    "khach-hang/screens/home/css/driver-cta",
     "khach-hang/screens/home/css/faq",
     "shared/css/cta-footer",
     "shared/css/motion",
@@ -49,9 +49,8 @@
     "khach-hang/screens/home/partials/steps.html",
     "khach-hang/screens/home/partials/features.html",
     "khach-hang/screens/home/partials/testimonials.html",
-    "khach-hang/screens/home/partials/driver.html",
     "khach-hang/screens/home/partials/faq.html",
     "khach-hang/screens/home/partials/cta.html",
-    "shared/components/footer.html"
+    "khach-hang/components/footer.html"
   ]
 }

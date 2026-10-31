@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F7FAFD" />
+    <title>Chuyến của tôi — Vi Vu Việt</title>
+    <meta name="description" content="Quản lý chuyến đã đặt: sắp tới, đang đi, hoàn thành, hủy — đánh giá nhanh." />
+    <link rel="icon" type="image/svg+xml" href="../shared/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <link rel="stylesheet" href="../shared/css/header.css" />
+    <link rel="stylesheet" href="../shared/css/user-menu.css" />
+    <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../shared/css/sections.css" />
+    <link rel="stylesheet" href="../shared/css/ride-card.css" />
+    <link rel="stylesheet" href="../shared/css/cta-footer.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chuyen-cua-toi/css/trips-page.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chuyen-cua-toi/css/trip-card.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chuyen-cua-toi/css/trip-foot.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chuyen-cua-toi/css/trip-states.css" />
+    <link rel="stylesheet" href="../khach-hang/screens/chuyen-cua-toi/css/cancel-modal.css" />
+    <link rel="stylesheet" href="../shared/css/motion.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-touch.css" />
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+
+    <symbol id="i-calendar" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </symbol>
+
+    <symbol id="i-users" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.6 19.2c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" />
+      <path d="M16 5.2a2.8 2.8 0 0 1 0 5.4" />
+      <path d="M17.4 14.4c2 .4 3.4 1.9 3.4 4.2" />
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.4 3.6-5.4 7-5.4s6.2 2 7 5.4" />
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.2-2h5.4l1.2 2h1.6A2.5 2.5 0 0 1 20 8.5
+           v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"
+      />
+      <circle cx="12" cy="12.4" r="3.2" />
+    </symbol>
+
+    <symbol id="i-lock" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+      <path d="M12 14.5v2" />
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7" />
+      <path d="M10.5 12H20" />
+      <path d="m16.5 8.5 3.5 3.5-3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </symbol>
+
+    <symbol id="i-refresh" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M20 11.5a8 8 0 0 0-14-4.6L4 9" />
+      <path d="M4 4v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 14 4.6L20 15" />
+      <path d="M20 20v-5h-5" />
+    </symbol>
+
+    <symbol id="i-swap" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7.5 4.5v14" />
+      <path d="m4.5 16 3 3 3-3" />
+      <path d="M16.5 19.5v-14" />
+      <path d="m13.5 8 3-3 3 3" />
+    </symbol>
+
+    <symbol id="i-shield" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 3.2 19 6v5.2c0 4.4-3 8.1-7 9.6-4-1.5-7-5.2-7-9.6V6l7-2.8Z" />
+      <path d="m9 12 2.1 2.1L15.4 10" />
+    </symbol>
+
+    <symbol id="i-headset" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3" />
+      <rect x="3" y="14" width="3.6" height="6" rx="1.6" />
+      <rect x="17.4" y="14" width="3.6" height="6" rx="1.6" />
+      <path d="M20 20a3.5 3.5 0 0 1-3.5 2.3H14" />
+    </symbol>
+
+    <symbol id="i-wallet" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.2A2.7 2.7 0 0 1 6.7 5.5H18a2.8 2.8 0 0 1 2.8 2.8v8.9
+           A2.8 2.8 0 0 1 18 20H6.8A2.8 2.8 0 0 1 4 17.2V8.2Z"
+      />
+      <path d="M4 9.5h16.8" />
+      <path d="M16.5 14.5h2" />
+    </symbol>
+
+    <symbol id="i-clock" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m5 12.5 4.2 4.2L19 7.5" />
+    </symbol>
+
+    <symbol id="i-check-circle" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m8.5 12.2 2.4 2.4 4.8-5" />
+    </symbol>
+
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+
+    <symbol id="i-car" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4.5 16.5h15l-1.6-5.2a2.3 2.3 0 0 0-2.2-1.7H8.3a2.3 2.3 0 0 0-2.2 1.7L4.5 16.5Z" />
+      <path d="M4.5 16.5v2.3M19.5 16.5v2.3" />
+      <circle cx="7.6" cy="16.5" r="1.1" />
+      <circle cx="16.4" cy="16.5" r="1.1" />
+      <path d="M8.2 10.2 8.9 7.9h6.2l.7 2.3" />
+    </symbol>
+
+    <symbol id="i-route" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="m7.2 7.2 9.6 9.6" stroke-dasharray="1 4" />
+    </symbol>
+
+    <symbol id="i-star" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M12 3.6l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8L12 3.6Z"
+      />
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M7.2 3.8h2.3l1.2 3.6-1.6 1.3a12.5 12.5 0 0 0 5.7 5.7l1.3-1.6 3.6 1.2v2.3
+           a2.5 2.5 0 0 1-2.7 2.5A16.8 16.8 0 0 1 4.7 6.5a2.5 2.5 0 0 1 2.5-2.7Z"
+      />
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 5.5L19.5 7" />
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m9 4.5-5.5 2v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </symbol>
+
+    <symbol id="i-facebook" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M13.5 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4
+           c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.1v2.8h2.4V21h3Z"
+      />
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+
+    <symbol id="i-youtube" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="2.8" y="5.5" width="18.4" height="13" rx="4" />
+      <path fill="currentColor" stroke="none" d="m10.2 9.2 4.8 2.8-4.8 2.8V9.2Z" />
+    </symbol>
+
+    <symbol id="i-eye" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M2.6 12S6.1 5.9 12 5.9 21.4 12 21.4 12 17.9 18.1 12 18.1 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="2.9" />
+    </symbol>
+
+    <symbol id="i-eye-off" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 12s3-5.2 7.4-5.6c1.3-.1 2.5.2 3.5.7" />
+      <path d="M20 12s-1.2 2-3.2 3.5" />
+      <path d="M9.6 9.7a3.1 3.1 0 0 0 4.4 4.3" />
+      <path d="m4.6 4.6 14.8 14.8" />
+    </symbol>
+  </defs>
+</svg>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Vi Vu Việt — Trang chủ">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
+      </span>
+      <span class="brand-name">Vi Vu <span>Việt</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Điều hướng chính">
+      <a href="index.html#doi-xe">Đội xe</a>
+      <a href="index.html#tuyen-duong">Tuyến đường</a>
+      <a href="index.html#cach-hoat-dong">Cách hoạt động</a>
+      <a href="index.html#vi-sao">Vì sao Vi Vu Việt</a>
+      <a href="index.html#danh-gia">Đánh giá</a>
+      <a href="index.html#faq">Hỏi đáp</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="user-menu" id="userMenu">
+        <button
+          class="user-menu-btn"
+          id="userMenuBtn"
+          type="button"
+          aria-label="Tài khoản"
+          aria-expanded="false"
+          aria-controls="userDropdown"
+        >
+          <span class="user-avatar" aria-hidden="true">
+            <svg class="icon user-avatar-icon" aria-hidden="true">
+              <use href="#i-user"></use>
+            </svg>
+            <span class="user-avatar-letter" id="userInitial">K</span>
+          </span>
+          <span class="user-menu-label" id="userMenuLabel">Tài khoản</span>
+          <svg class="icon user-menu-caret" aria-hidden="true">
+            <use href="#i-chevron-down"></use>
+          </svg>
+        </button>
+
+        <div
+          class="user-dropdown"
+          id="userDropdown"
+          aria-labelledby="userMenuBtn"
+        >
+          <div class="user-dropdown-head">
+            <span class="user-avatar user-avatar--lg" aria-hidden="true">
+              <svg class="icon user-avatar-icon" aria-hidden="true">
+                <use href="#i-user"></use>
+              </svg>
+              <span class="user-avatar-letter" id="userInitialLg">K</span>
+            </span>
+            <span class="user-dropdown-id">
+              <strong id="userName">Khách hàng</strong>
+              <span id="userContact">Thành viên Vi Vu Việt</span>
+            </span>
+          </div>
+          <a class="user-dropdown-item" href="ho-so.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-user"></use>
+            </svg>
+            Xem hồ sơ
+          </a>
+          <button
+            class="user-dropdown-item user-dropdown-item--logout"
+            type="button"
+            data-user-logout
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-logout"></use>
+            </svg>
+            Đăng xuất
+          </button>
+        </div>
+      </div>
+
+      <a class="link-login" href="index.html">Trang chủ</a>
+      <a class="btn btn-primary btn-sm header-cta" href="index.html#dat-xe">
+        Đặt chuyến ngay
+      </a>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+        aria-label="Mở menu"
+      >
+        <svg class="icon icon-menu" aria-hidden="true">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon icon-close" aria-hidden="true">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <nav aria-label="Điều hướng di động">
+      <a href="index.html#doi-xe">Đội xe</a>
+      <a href="index.html#tuyen-duong">Tuyến đường</a>
+      <a href="index.html#cach-hoat-dong">Cách hoạt động</a>
+      <a href="index.html#vi-sao">Vì sao Vi Vu Việt</a>
+      <a href="index.html#danh-gia">Đánh giá</a>
+      <a href="index.html#faq">Hỏi đáp</a>
+    </nav>
+    <div class="mobile-nav-actions">
+      <a class="btn btn-primary" href="index.html#dat-xe">Đặt chuyến ngay</a>
+      <a class="link-login" href="index.html">Trang chủ</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="trips-page" id="chuyen-cua-toi">
+    <div class="container">
+      <div class="trips-top">
+        <span class="section-eyebrow">Đặt chỗ của bạn</span>
+        <h1>Chuyến của tôi</h1>
+      </div>
+      <div class="trips-column">
+        <div class="filter-bar">
+          <div class="tabs" role="tablist" aria-label="Trạng thái chuyến">
+            <button
+              type="button"
+              class="tab"
+              id="tab-sap-toi"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panel-sap-toi"
+              data-status="Đang xem 2 chuyến sắp tới."
+            >
+              Sắp tới <span class="tab-count">2</span>
+            </button>
+            <button
+              type="button"
+              class="tab"
+              id="tab-dang-di"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-dang-di"
+              tabindex="-1"
+              data-status="Không có chuyến nào đang di chuyển."
+            >
+              Đang đi <span class="tab-count">0</span>
+            </button>
+            <button
+              type="button"
+              class="tab"
+              id="tab-hoan-thanh"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-hoan-thanh"
+              tabindex="-1"
+              data-status="Đang xem 5 trong 28 chuyến đã hoàn thành."
+            >
+              Đã hoàn thành <span class="tab-count">28</span>
+            </button>
+            <button
+              type="button"
+              class="tab"
+              id="tab-da-huy"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-da-huy"
+              tabindex="-1"
+              data-status="Đang xem 1 chuyến đã hủy."
+            >
+              Đã hủy <span class="tab-count">1</span>
+            </button>
+          </div>
+
+          <div class="filter-controls">
+            <div class="field filter-search">
+              <label for="tripSearch">Tìm chuyến</label>
+              <span class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-map"></use>
+                </svg>
+                <input
+                  type="search"
+                  id="tripSearch"
+                  name="tripSearch"
+                  placeholder="Mã đặt chỗ, tuyến hoặc tài xế"
+                  autocomplete="off"
+                />
+              </span>
+            </div>
+
+            <div class="field filter-route">
+              <label for="tripRoute">Tuyến</label>
+              <span class="field-control">
+                <span class="select-wrap">
+                  <select id="tripRoute" name="tripRoute">
+                    <option value="all" selected>Tất cả tuyến</option>
+                    <option value="Ninh Bình">Ninh Bình</option>
+                    <option value="Sa Pa">Sa Pa</option>
+                    <option value="Hải Phòng">Hải Phòng</option>
+                    <option value="Hạ Long">Hạ Long</option>
+                    <option value="Thái Nguyên">Thái Nguyên</option>
+                  </select>
+                </span>
+              </span>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm filter-clear"
+              id="filterClear"
+              hidden
+            >
+              Xóa lọc
+            </button>
+          </div>
+        </div>
+
+        <p
+          class="filter-status"
+          id="filterStatus"
+          role="status"
+          aria-atomic="true"
+        >
+          Đang xem 2 chuyến sắp tới.
+        </p>
+
+        <div class="trips-panels" id="tripsPanels">
+          <div
+            class="trips-panel"
+            id="panel-sap-toi"
+            role="tabpanel"
+            aria-labelledby="tab-sap-toi"
+            tabindex="0"
+          >
+            <div class="trip-list">
+              <article
+                class="ride-card ride-card--list"
+                data-route="Ninh Bình"
+                aria-label="Chuyến Hà Nội đi Ninh Bình, thứ Sáu 30/10/2026"
+              >
+                <div class="ride-head">
+                  <strong class="ride-time">07:30 – 10:30</strong>
+                  <span class="ride-dur">3g 00p</span>
+                  <span class="status-badge status-badge--confirmed">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-check"></use>
+                    </svg>
+                    Đã xác nhận
+                  </span>
+                </div>
+
+                <p class="ride-route">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-pin"></use>
+                  </svg>
+                  145 Giải Phóng, Hà Nội
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                  Trung tâm Ninh Bình
+                </p>
+
+                <p class="ride-meta">
+                  <span>Thứ Sáu, 30/10/2026</span>
+                  <span class="ride-code">Mã đặt chỗ VV-261030-481</span>
+                </p>
+
+                <div class="ride-driver">
+                  <div class="driver">
+                    <img class="avatar avatar--driver avatar--photo"
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=160"
+                      alt="" width="44" height="44" loading="lazy" />
+                    <div class="driver-info">
+                      <strong>Trần Văn Minh</strong>
+                      <span class="driver-meta">
+                        <svg class="icon icon-star" aria-hidden="true">
+                          <use href="#i-star"></use>
+                        </svg>
+                        4.9 · 326 chuyến
+                      </span>
+                    </div>
+                  </div>
+                  <span class="driver-car">
+                    Ford Transit Limousine · 16 chỗ
+                  </span>
+                </div>
+
+                <div class="ride-foot">
+                  <div class="ride-price">
+                    <strong>360.000đ</strong>
+                    <span>Ghế B2, B3 · trả tiền mặt</span>
+                  </div>
+                  <div class="ride-actions">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="dat-cho-thanh-cong.html"
+                    >
+                      Xem vé
+                    </a>
+                    <button
+                      type="button"
+                      class="btn btn-ghost btn-sm"
+                      data-cancel-open
+                    >
+                      Hủy vé
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <article
+                class="ride-card ride-card--list"
+                data-route="Sa Pa"
+                aria-label="Chuyến Hà Nội đi Sa Pa, chủ nhật 01/11/2026"
+              >
+                <div class="ride-head">
+                  <strong class="ride-time">22:00 – 05:30</strong>
+                  <span class="ride-dur">7g 30p</span>
+                  <span class="status-badge status-badge--pending">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-clock"></use>
+                    </svg>
+                    Chờ tài xế xác nhận
+                  </span>
+                </div>
+
+                <p class="ride-route">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-pin"></use>
+                  </svg>
+                  Bến xe Mỹ Đình, Hà Nội
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                  Khu phố Cầu Mây, Sa Pa
+                </p>
+
+                <p class="ride-meta">
+                  <span>Chủ Nhật, 01/11/2026</span>
+                  <span class="ride-code">Mã đặt chỗ VV-261101-072</span>
+                </p>
+
+                <div class="ride-driver">
+                  <div class="driver">
+                    <img class="avatar avatar--driver avatar--photo"
+                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=160"
+                      alt="" width="44" height="44" loading="lazy" />
+                    <div class="driver-info">
+                      <strong>Lê Đức Anh</strong>
+                      <span class="driver-meta">
+                        <svg class="icon icon-star" aria-hidden="true">
+                          <use href="#i-star"></use>
+                        </svg>
+                        4.8 · 512 chuyến
+                      </span>
+                    </div>
+                  </div>
+                  <span class="driver-car">Ford Transit · 9 chỗ</span>
+                </div>
+
+                <div class="ride-foot">
+                  <div class="ride-price">
+                    <strong>250.000đ</strong>
+                    <span>Ghế A1 · trả tiền mặt</span>
+                  </div>
+                  <div class="ride-actions">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="dat-cho-thanh-cong.html"
+                    >
+                      Xem vé
+                    </a>
+                    <button
+                      type="button"
+                      class="btn btn-ghost btn-sm"
+                      data-cancel-open
+                    >
+                      Hủy vé
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="empty-state empty-state--filter" id="empty-sap-toi" hidden>
+              <span class="empty-state-icon empty-state-icon--sky">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-route"></use>
+                </svg>
+              </span>
+              <h3>Không tìm thấy chuyến phù hợp</h3>
+              <p>
+                Thử từ khóa khác hoặc xóa bộ lọc để xem lại tất cả chuyến
+                trong mục này.
+              </p>
+              <div class="empty-state-actions">
+                <button type="button" class="btn btn-ghost" data-clear-filters>
+                  Xóa lọc
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="trips-panel"
+            id="panel-dang-di"
+            role="tabpanel"
+            aria-labelledby="tab-dang-di"
+            tabindex="0"
+            hidden
+          >
+            <div class="empty-state">
+              <span class="empty-state-icon empty-state-icon--sky">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-route"></use>
+                </svg>
+              </span>
+              <h3>Không có chuyến đang di chuyển</h3>
+              <p>
+                Khi xe chạy, bạn sẽ thấy vị trí trên bản đồ và giờ đến dự
+                kiến tại đây. Chuyến tiếp theo của bạn là đi Ninh Bình vào
+                ngày mai.
+              </p>
+              <div class="empty-state-actions">
+                <button
+                  type="button"
+                  class="btn btn-ghost"
+                  data-goto-tab="tab-sap-toi"
+                >
+                  Xem chuyến sắp tới
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="trips-panel"
+            id="panel-hoan-thanh"
+            role="tabpanel"
+            aria-labelledby="tab-hoan-thanh"
+            tabindex="0"
+            hidden
+          >
+            <div class="trip-list">
+              <article
+                class="ride-card ride-card--list"
+                data-route="Hải Phòng"
+                aria-label="Chuyến Hà Nội đi Hải Phòng, thứ ba 15/09/2026"
+              >
+                <div class="ride-head">
+                  <strong class="ride-time">06:30 – 08:15</strong>
+                  <span class="ride-dur">1g 45p</span>
+                  <span class="status-badge status-badge--done">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-check-circle"></use>
+                    </svg>
+                    Đã hoàn thành
+                  </span>
+                </div>
+
+                <p class="ride-route">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-pin"></use>
+                  </svg>
+                  Bến xe Giáp Bát, Hà Nội
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                  Ngã tư Sở, Hải Phòng
+                </p>
+
+                <p class="ride-meta">
+                  <span>Thứ Ba, 15/09/2026</span>
+                  <span class="ride-code">Mã đặt chỗ VV-260915-118</span>
+                </p>
+
+                <div class="ride-driver">
+                  <div class="driver">
+                    <img class="avatar avatar--driver avatar--photo"
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=160"
+                      alt="" width="44" height="44" loading="lazy" />
+                    <div class="driver-info">
+                      <strong>Phạm Thị Lan</strong>
+                      <span class="driver-meta">
+                        <svg class="icon icon-star" aria-hidden="true">
+                          <use href="#i-star"></use>
+                        </svg>
+                        5.0 · 214 chuyến
+                      </span>
+                    </div>
+                  </div>
+                  <span class="driver-car">
+                    Hyundai Solati · 11 chỗ
+                  </span>
+                </div>
+
+                <div class="ride-foot">
+                  <div class="ride-price">
+                    <strong>180.000đ</strong>
+                    <span>Ghế A2, A3 · đã trả tiền mặt</span>
+                  </div>
+                  <div class="ride-actions">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="dat-cho-thanh-cong.html"
+                    >
+                      Xem vé
+                    </a>
+                    <a
+                      class="btn btn-ghost btn-sm"
+                      href="index.html#dat-xe"
+                    >
+                      Đặt lại
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article
+                class="ride-card ride-card--list"
+                data-route="Hạ Long"
+                aria-label="Chuyến Hà Nội đi Hạ Long, chủ nhật 02/08/2026"
+              >
+                <div class="ride-head">
+                  <strong class="ride-time">07:00 – 10:00</strong>
+                  <span class="ride-dur">3g 00p</span>
+                  <span class="status-badge status-badge--done">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-check-circle"></use>
+                    </svg>
+                    Đã hoàn thành
+                  </span>
+                </div>
+
+                <p class="ride-route">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-pin"></use>
+                  </svg>
+                  145 Giải Phóng, Hà Nội
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                  Bãi chợ Đêm, Hạ Long
+                </p>
+
+                <p class="ride-meta">
+                  <span>Chủ Nhật, 02/08/2026</span>
+                  <span class="ride-code">Mã đặt chỗ VV-260802-356</span>
+                </p>
+
+                <div class="ride-driver">
+                  <div class="driver">
+                    <img class="avatar avatar--driver avatar--photo"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=160"
+                      alt="" width="44" height="44" loading="lazy" />
+                    <div class="driver-info">
+                      <strong>Hoàng Minh Tuấn</strong>
+                      <span class="driver-meta">
+                        <svg class="icon icon-star" aria-hidden="true">
+                          <use href="#i-star"></use>
+                        </svg>
+                        4.9 · 389 chuyến
+                      </span>
+                    </div>
+                  </div>
+                  <span class="driver-car">Ford Transit · 16 chỗ</span>
+                </div>
+
+                <div class="ride-foot">
+                  <div class="ride-price">
+                    <strong>240.000đ</strong>
+                    <span>Ghế C1, C2 · đã trả tiền mặt</span>
+                  </div>
+                  <div class="ride-actions">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="dat-cho-thanh-cong.html"
+                    >
+                      Xem vé
+                    </a>
+                    <a
+                      class="btn btn-ghost btn-sm"
+                      href="index.html#dat-xe"
+                    >
+                      Đặt lại
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div
+              class="empty-state empty-state--filter"
+              id="empty-hoan-thanh"
+              hidden
+            >
+              <span class="empty-state-icon empty-state-icon--sky">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-route"></use>
+                </svg>
+              </span>
+              <h3>Không tìm thấy chuyến phù hợp</h3>
+              <p>
+                Thử từ khóa khác hoặc xóa bộ lọc để xem lại tất cả chuyến
+                trong mục này.
+              </p>
+              <div class="empty-state-actions">
+                <button type="button" class="btn btn-ghost" data-clear-filters>
+                  Xóa lọc
+                </button>
+              </div>
+            </div>
+
+            <div class="trips-more" id="more-hoan-thanh" hidden>
+              <div class="sk-card" aria-hidden="true">
+                <div class="sk sk--eyebrow"></div>
+                <div class="sk sk--place"></div>
+                <div class="sk sk--place sk--short"></div>
+                <div class="sk-row">
+                  <div class="sk sk--avatar"></div>
+                  <div class="sk-group">
+                    <div class="sk sk--line"></div>
+                    <div class="sk sk--line sk--short"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="trips-end" id="end-hoan-thanh" hidden>
+              Bạn đã xem tất cả 28 chuyến đã hoàn thành.
+            </p>
+
+            <div
+              class="trips-sentinel"
+              id="sentinel-hoan-thanh"
+              data-panel="panel-hoan-thanh"
+              aria-hidden="true"
+            ></div>
+          </div>
+          <div
+            class="trips-panel"
+            id="panel-da-huy"
+            role="tabpanel"
+            aria-labelledby="tab-da-huy"
+            tabindex="0"
+            hidden
+          >
+            <div class="trip-list">
+              <article
+                class="ride-card ride-card--list"
+                data-route="Thái Nguyên"
+                aria-label="Chuyến Hà Nội đi Thái Nguyên, chủ nhật 18/10/2026, đã hủy"
+              >
+                <div class="ride-head">
+                  <strong class="ride-time">14:00 – 16:00</strong>
+                  <span class="ride-dur">2g 00p</span>
+                  <span class="status-badge status-badge--canceled">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-close"></use>
+                    </svg>
+                    Đã hủy
+                  </span>
+                </div>
+
+                <p class="ride-route">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-pin"></use>
+                  </svg>
+                  Bến xe Gia Lâm, Hà Nội
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                  Trung tâm Thái Nguyên
+                </p>
+
+                <p class="ride-meta">
+                  <span>Chủ Nhật, 18/10/2026</span>
+                  <span class="ride-code">Mã đặt chỗ VV-261018-004</span>
+                </p>
+
+                <div class="ride-driver">
+                  <div class="driver">
+                    <img class="avatar avatar--driver avatar--photo"
+                      src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=160"
+                      alt="" width="44" height="44" loading="lazy" />
+                    <div class="driver-info">
+                      <strong>Đỗ Quang Huy</strong>
+                      <span class="driver-meta">
+                        <svg class="icon icon-star" aria-hidden="true">
+                          <use href="#i-star"></use>
+                        </svg>
+                        4.7 · 178 chuyến
+                      </span>
+                    </div>
+                  </div>
+                  <span class="driver-car">Toyota Hiace · 9 chỗ</span>
+                </div>
+
+                <p class="ride-alert ride-alert--green">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-wallet"></use>
+                  </svg>
+                  Hủy trước giờ đi hơn 2 giờ nên được miễn phí — 120.000đ sẽ
+                  hoàn về tài khoản trong 1–3 ngày làm việc.
+                </p>
+
+                <div class="ride-foot">
+                  <div class="ride-price">
+                    <strong>120.000đ</strong>
+                    <span>Ghế B1 · đã hoàn tiền</span>
+                  </div>
+                  <div class="ride-actions">
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="index.html#dat-xe"
+                    >
+                      Đặt lại chuyến
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="empty-state empty-state--filter" id="empty-da-huy" hidden>
+              <span class="empty-state-icon empty-state-icon--sky">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-route"></use>
+                </svg>
+              </span>
+              <h3>Không tìm thấy chuyến phù hợp</h3>
+              <p>
+                Thử từ khóa khác hoặc xóa bộ lọc để xem lại tất cả chuyến
+                trong mục này.
+              </p>
+              <div class="empty-state-actions">
+                <button type="button" class="btn btn-ghost" data-clear-filters>
+                  Xóa lọc
+                </button>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="trips-state" id="tripsLoading" hidden>
+            <p class="sk-status" aria-live="polite">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-refresh"></use>
+              </svg>
+              Đang tải chuyến của bạn…
+            </p>
+            <div class="sk-card" aria-hidden="true">
+              <div class="sk sk--eyebrow"></div>
+              <div class="sk sk--place"></div>
+              <div class="sk sk--place sk--short"></div>
+              <div class="sk-row">
+                <div class="sk sk--avatar"></div>
+                <div class="sk-group">
+                  <div class="sk sk--line"></div>
+                  <div class="sk sk--line sk--short"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sk-card" aria-hidden="true">
+              <div class="sk sk--eyebrow"></div>
+              <div class="sk sk--place"></div>
+              <div class="sk sk--place sk--short"></div>
+              <div class="sk-row">
+                <div class="sk sk--avatar"></div>
+                <div class="sk-group">
+                  <div class="sk sk--line"></div>
+                  <div class="sk sk--line sk--short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trips-state" id="tripsError" hidden>
+            <div class="empty-state empty-state--error">
+              <span class="empty-state-icon empty-state-icon--red">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-close"></use>
+                </svg>
+              </span>
+              <h3>Không tải được chuyến của bạn</h3>
+              <p>
+                Kiểm tra kết nối mạng rồi thử lại nhé. Vẫn không được thì quay
+                lại sau ít phút.
+              </p>
+              <div class="empty-state-actions">
+                <button type="button" class="btn btn-primary" id="retryBtn">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-refresh"></use>
+                  </svg>
+                  Thử lại
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="modal" id="cancelModal" hidden>
+  <div class="modal-overlay" data-modal-close></div>
+  <div
+    class="modal-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cancelTitle"
+    aria-describedby="cancelDesc"
+    tabindex="-1"
+  >
+    <button
+      class="modal-close"
+      type="button"
+      data-modal-close
+      aria-label="Đóng hộp thoại"
+    >
+      <svg class="icon" aria-hidden="true">
+        <use href="#i-close"></use>
+      </svg>
+    </button>
+
+    <span class="modal-icon modal-icon--orange" aria-hidden="true">
+      <svg class="icon">
+        <use href="#i-close"></use>
+      </svg>
+    </span>
+    <h2 class="modal-title" id="cancelTitle">Hủy chuyến này?</h2>
+    <p class="modal-desc" id="cancelDesc">
+      Vé <strong id="cancelCode">VV-261030-481</strong> ·
+      <span id="cancelRoute">Hà Nội đi Ninh Bình</span>. Ghế đã chọn sẽ được
+      giải phóng cho hành khách khác.
+    </p>
+
+    <div class="modal-fee">
+      <div class="modal-fee-row">
+        <span>Hủy trước 2 giờ khởi hành</span>
+        <strong>Miễn phí</strong>
+      </div>
+      <div class="modal-fee-row">
+        <span>Trong 2 giờ trước giờ chạy</span>
+        <strong class="modal-fee-danger">Phí 20% giá vé</strong>
+      </div>
+    </div>
+
+    <p class="modal-note">
+      Bạn chưa thanh toán cho chuyến này — không phát sinh hoàn tiền. Vé đã
+      hủy sẽ hiển thị trong tab Đã hủy của Chuyến của tôi.
+    </p>
+
+    <div class="modal-actions">
+      <button class="btn btn-ghost" type="button" data-modal-close>
+        Giữ vé
+      </button>
+      <button class="btn btn-primary" type="button" id="confirmCancelBtn">
+        <span class="btn-label">Xác nhận hủy</span>
+      </button>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand--footer" href="index.html" aria-label="Vi Vu Việt — Trang chủ">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
+          </span>
+          <span class="brand-name">Vi Vu <span>Việt</span></span>
+        </a>
+        <p>
+          Đi chung chuyến, chia sẻ hành trình. Vi Vu Việt kết nối bạn với
+          những chuyến xe ghép an toàn và minh bạch trên khắp Việt Nam.
+        </p>
+        <div class="socials">
+          <a href="#" aria-label="Vi Vu Việt trên Facebook">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-facebook"></use>
+            </svg>
+          </a>
+          <a href="#" aria-label="Vi Vu Việt trên Instagram">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-instagram"></use>
+            </svg>
+          </a>
+          <a href="#" aria-label="Vi Vu Việt trên YouTube">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-youtube"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="index.html#dat-xe">Đặt xe ghép</a></li>
+          <li><a href="index.html#doi-xe">Đội xe</a></li>
+          <li><a href="index.html#tuyen-duong">Tuyến đường</a></li>
+          <li><a href="index.html#vi-sao">Bảng giá</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Công ty</h4>
+        <ul>
+          <li><a href="#">Về Vi Vu Việt</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Báo chí</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+        © <span id="year">2026</span> Vi Vu Việt. Nền tảng đặt xe ghép liên tỉnh.
+      </span>
+      <div class="footer-legal">
+        <a href="#">Cookie</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../shared/js/header.js" defer></script>
+<script src="../khach-hang/screens/chuyen-cua-toi/js/trips-data.js" defer></script>
+<script src="../khach-hang/screens/chuyen-cua-toi/js/trips.js" defer></script>
+<script src="../khach-hang/screens/chuyen-cua-toi/js/cancel.js" defer></script>
+<script src="../shared/js/reveal.js" defer></script>
+</body>
+</html>

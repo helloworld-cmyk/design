@@ -1,131 +1,298 @@
-# 02 — MÀN HÌNH TÀI XẾ (ĐỐI TÁC)
+# 02 — MÀN HÌNH TÀI XẾ (6 MÀN)
 
-> Vai trò: **Tài xế** — đối tác cung cấp xe và vận hành các chuyến ghép.
+> Vai trò: **Tài xế** — người **thực hiện các chuyến được admin phân công**.
 > Shell: **D (Driver app)**.
-> Trang chủ đã có khối "Dành cho tài xế" (`driver-cta`, `.income-card`) — khu
-> tài xế là phiên bản đầy đủ, có thể tái dùng chính `.driver-panel` / `.income-card`.
+>
+> **Thay đổi mô hình so với bản cũ:** tài xế **không tự đăng chuyến**, **không
+> tự đăng ký tài khoản**, **không có Online/Offline**, **không có nút Nhận
+> chuyến**. Admin tạo chuyến, gán xe và phân công tài xế tại A2; tài khoản tài
+> xế do admin tạo tại A3.
+>
+> **Đã bỏ:** màn đăng chuyến, màn đánh giá, màn hỗ trợ, ticket, chat, FAQ,
+> hotline, ngân hàng/ví, upload giấy tờ, duyệt KYC.
+>
+> **Giữ:** báo sự cố chuyến dạng thao tác đơn giản trong chi tiết chuyến.
 
 ---
 
-### D1. Trạng thái chờ duyệt — `screens/tai-xe-cho-duyet/`
-- **Tác dụng:** cho tài xế biết hồ sơ đang ở đâu và cần bổ sung gì.
-- **Nhiệm vụ chính:** xem timeline duyệt (Đã nhận → Đang thẩm định → Duyệt/Từ
-  chối); nếu từ chối → xem lý do và nút sửa/bổ sung; bấm "Liên hệ hỗ trợ".
-- **Thành phần:** `.timeline`, `.intro-note` (lý do từ chối), tài liệu đã gửi
-  (list), `.btn` (Cập nhật hồ sơ / Liên hệ), `.support-card`.
-- **Trạng thái:** waiting, need-info (yêu cầu bổ sung), approved → chuyển sang
-  dashboard, rejected.
-- **Ưu tiên:** P1.
+## 1. Nguyên tắc & mô hình
 
-### D2. Tổng quan tài xế (dashboard) — `screens/tai-xe-tong-quan/`
-- **Tác dụng:** "buồng lái" hằng ngày — tài xế nắm ngay tiền, chuyến, đánh giá.
-- **Nhiệm vụ chính:**
-  - Thẻ KPI: thu nhập hôm nay/tuần/tháng, số chuyến, số khách, xếp hạng sao.
-  - Biểu đồ thu nhập 7 ngày (tái dùng `.chart`/`.bar` trong `.income-card`).
-  - Chuyến kế tiếp với nút "Bắt đầu" / "Xem chi tiết".
-  - Nút bật/tắt trạng thái **Online/Offline** (nhận chuyến hay không).
-  - Nhắc nhở: hồ sơ sắp hết hạn.
-- **Thành phần:** `.stat-card`, `.income-card` + `.chart`, `.ride-card`,
-  toggle Online (mới), `.badge`.
-- **Trạng thái:** offline, đang chờ chuyến, có chuyến mới.
-- **Ưu tiên:** P1.
+- Mỗi chuyến do **admin lập kế hoạch**: tuyến, ngày giờ, xe, tài xế, giá vé,
+  tiền công tài xế.
+- Tài xế chỉ thấy **các chuyến được phân công cho mình**.
+- Chuyến đã công bố vẫn tồn tại khi tài xế đăng xuất; không có trạng thái
+  Online/Offline.
+- Khách đặt vé trên chuyến đã mở bán; đơn được hệ thống tự xác nhận.
+- Tài xế cập nhật trạng thái **từng hành khách** khi chạy chuyến.
+- Trạng thái chuyến/vé đồng bộ giữa khách (B7), tài xế (D2–D4) và admin (A2/A6).
+- Sự cố chuyến: tài xế báo bằng modal; admin thấy cờ sự cố ở A1/A2 và xử lý.
 
-### D3. Chuyến được phân công — `screens/tai-xe-chuyen/`
-- **Tác dụng:** nơi tài xế nhận/từ chối và quản lý các chuyến.
-- **Nhiệm vụ chính:**
-  - Tab: Chuyến mới (yêu cầu) · Sắp chạy · Đang chạy · Đã xong · Đã hủy.
-  - Với chuyến mới: xem tuyến, giờ, số khách, thu nhập dự kiến → Nhận/Từ chối.
-  - Xem danh sách khách trên chuyến (tên, SĐT, điểm đón).
-  - Vào màn **Điều hành chuyến** khi bắt đầu.
-- **Thành phần:** `.tabs`, `.ride-card` (biến thể tài xế), `.badge` (mới /
-  đang chạy), `.empty-state`, nút Nhận/Từ chối, đếm ngược thời gian thực.
-- **Trạng thái:** hết chuyến (empty), chuyến bị thu hồi, quá hạn nhận.
-- **Ưu tiên:** P1.
+### Luồng nghiệp vụ cốt lõi
 
-### D4. Quản lý tuyến & lịch chạy — `screens/tai-xe-tuyen/`
-- **Tác dụng:** tài xế chủ động đăng lịch chạy trên các tuyến để được ghép khách.
-- **Nhiệm vụ chính:**
-  - Tạo/sửa/hủy lịch chạy: tuyến, ngày giờ, loại xe, số ghế mở bán, giá/ghế.
-  - Xem mức độ lấp ghế (bao nhiêu ghế đã bán / tổng).
-  - Đặt mẫu lịch lặp lại (hằng ngày, theo tuần).
-- **Thành phần:** `.data-table` (lịch đã đăng), form tạo lịch (`.booking-form`),
-  `.progress` (tỉ lệ lấp ghế), `.modal` (sửa/hủy), `.badge`.
-- **Trạng thái:** chưa có lịch (empty), trùng lịch, đã khóa (chuyến đã có khách).
-- **Ưu tiên:** P1.
-
-### D5. Điều hành chuyến đang chạy — `screens/tai-xe-dieu-hanh/`
-- **Tác dụng:** công cụ "chạy chuyến" theo thời gian thực cho tài xế.
-- **Nhiệm vụ chính:**
-  - Danh sách khách + điểm đón theo thứ tự tối ưu; nút điều hướng (mở bản đồ).
-  - Cập nhật trạng thái: Đã đến điểm đón → Đã đón → Đến điểm trả → Hoàn thành.
-  - Điểm danh khách (check-in), gọi/nhắn khách.
-  - Cập nhật chia sẻ vị trí; báo sự cố (kẹt xe, hỏng xe).
-  - Xác nhận thu tiền mặt (nếu khách trả tiền mặt).
-- **Thành phần:** `.timeline` dọc, bản đồ (`.map`), checklist khách, `.btn`
-  (trạng thái lớn), `.modal` (báo sự cố).
-- **Trạng thái:** chưa tới điểm, khách không có mặt (no-show), sự cố.
-- **Ưu tiên:** P1.
-
-### D6. Thu nhập — `screens/tai-xe-thu-nhap/`
-- **Tác dụng:** minh bạch thu nhập tài xế kiếm được theo thời gian.
-- **Nhiệm vụ chính:**
-  - Xem tổng thu nhập, thu nhập hôm nay/tuần/tháng.
-  - Biểu đồ thu nhập theo thời gian (tái dùng `.income-card` + `.chart`).
-  - Lịch sử thu nhập theo chuyến: giá chuyến, hoa hồng trừ lại, thưởng, phụ phí.
-- **Thành phần:** `.stat-card`, `.data-table` (thu nhập theo chuyến),
-  `.income-card` (tóm tắt), `.badge`.
-- **Trạng thái:** empty (chưa có chuyến hoàn thành), loading.
-- **Ưu tiên:** P1.
-
-### D7. Quản lý xe — `screens/tai-xe-xe/`
-- **Tác dụng:** quản lý (các) xe tài xế đưa vào khai thác.
-- **Nhiệm vụ chính:** thêm/sửa xe (loại, số chỗ, biển số, ảnh, đăng kiểm/bảo
-  hiểm hạn dùng); đặt xe mặc định; xem cảnh báo giấy tờ sắp hết hạn.
-- **Thành phần:** `.fleet-card` (đang có), form `.field`, `.badge` (sắp hết hạn /
-  đã duyệt), `.modal`, upload ảnh giấy tờ.
-- **Trạng thái:** chưa có xe, xe chờ duyệt, giấy tờ hết hạn.
-- **Ưu tiên:** P2.
-
-### D8. Đánh giá & xếp hạng (tài xế) — `screens/tai-xe-danh-gia/`
-- **Tác dụng:** giúp tài xế thấy phản hồi khách để giữ chất lượng & hạng.
-- **Nhiệm vụ chính:**
-  - Xem điểm sao trung bình, phân bố theo tiêu chí, xu hướng theo thời gian.
-  - Đọc nhận xét khách (đã ẩn thông tin cá nhân), phản hồi (tuỳ chính sách).
-  - Xem hạng thành viên tài xế & quyền lợi đi kèm.
-- **Thành phần:** `.stat-card` (sao, hạng), `.testimonial-card` (nhận xét),
-  biểu đồ xu hướng, `.badge` (hạng ưu tú).
-- **Trạng thái:** chưa có đánh giá (empty), loading.
-- **Ưu tiên:** P2.
-
-### D9. Hồ sơ & giấy tờ tài xế — `screens/tai-xe-ho-so/`
-- **Tác dụng:** quản lý hồ sơ đối tác và tình trạng giấy tờ pháp lý.
-- **Nhiệm vụ chính:**
-  - Xem/cập nhật thông tin cá nhân, ngân hàng, thông tin xe.
-  - Xem trạng thái từng giấy tờ (hợp lệ / sắp hết hạn / cần gia hạn) + tải lại.
-  - Cài đặt thông báo, đổi mật khẩu.
-- **Thành phần:** `.tabs`, `.field`, danh sách giấy tờ + `.badge` hạn dùng,
-  upload.
-- **Trạng thái:** lưu thành công, giấy tờ hết hạn (cảnh báo đỏ), chờ duyệt lại.
-- **Ưu tiên:** P1.
-
-### D10. Hỗ trợ tài xế — `screens/tai-xe-ho-tro/`
-- **Tác dụng:** kênh hỗ trợ riêng cho đối tác (sự cố chuyến, thanh toán, pháp lý).
-- **Nhiệm vụ chính:** xem FAQ tài xế, gửi ticket gắn chuyến, chat với hỗ trợ,
-  tra cứu chính sách hoa hồng/phạt.
-- **Thành phần:** `.faq`, form ticket, `.timeline` trạng thái, khung chat,
-  `.support-card`.
-- **Trạng thái:** empty, đang xử lý, đã giải quyết.
-- **Ưu tiên:** P2.
+```
+Admin tạo tài khoản tài xế (A3)
+  └─ Tài xế nhận thông tin đăng nhập
+Đăng nhập
+  └─ Vào thẳng Tổng quan (D1)
+Admin tạo chuyến + gán xe + phân công tài xế (A2)
+  └─ Chuyến xuất hiện ở D2
+Xem chuyến được phân công (D2)
+  └─ Mở chi tiết chuyến (D3): tuyến, xe, hành khách, điểm đón
+Thực hiện chuyến (D4)
+  └─ Bắt đầu → đón/trả từng khách → thu tiền mặt → hoàn thành
+Hoàn thành chuyến
+  └─ Cập nhật trạng thái vé + ghi nhận tiền công
+Xem xe được giao (D5), hồ sơ (D6)
+```
 
 ---
 
-## Luồng chính của tài xế
+## 2. Sơ đồ luồng tài xế
+
+```mermaid
+flowchart TD
+    A3["A3 admin-tai-xe<br/>Tạo tài khoản + mật khẩu tạm"]
+    LOGIN["Đăng nhập tài xế<br/>(cổng chung hoặc tách)"]
+    D1["D1 Tổng quan<br/>Lịch làm việc · Chuyến sắp tới"]
+    D2["D2 Chuyến được phân công<br/>Theo trạng thái"]
+    D3["D3 Chi tiết chuyến<br/>Tuyến · Xe · Hành khách"]
+    D4["D4 Thực hiện chuyến<br/>Bắt đầu · Đón/trả · Hoàn thành"]
+    D5["D5 Xe được giao"]
+    D6["D6 Hồ sơ cá nhân"]
+
+    A3 -- "bàn giao tài khoản" --> LOGIN
+    LOGIN -- "đăng nhập" --> D1
+    D1 -- "chuyến sắp tới" --> D2
+    D2 -- "mở chuyến" --> D3
+    D3 -- "Bắt đầu chuyến" --> D4
+    D4 -- "Hoàn thành chuyến" --> D2
+    D1 -- "Xe được giao" --> D5
+    D1 -- "Hồ sơ" --> D6
+    D3 -. "Báo sự cố" .-> A2["A2 admin-chuyen<br/>Nhận cờ sự cố"]
+    D4 -. "Báo sự cố" .-> A2
+    A2 -- "phân công / đổi chuyến" --> D2
+```
+
+**Chuỗi rút gọn:**
 
 ```
-Chờ duyệt hồ sơ → (được duyệt) Tổng quan → Bật Online
-→ Nhận chuyến / Đăng lịch tuyến → Điều hành chuyến → Hoàn thành
-→ Thu nhập → Đánh giá
+Admin tạo TK (A3) → Tài xế đăng nhập → Tổng quan (D1)
+→ Chuyến được phân công (D2) → Chi tiết chuyến (D3)
+→ Bắt đầu chuyến → Thực hiện chuyến (D4) → Hoàn thành
+Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2)
 ```
 
-> Khu tài xế nên **tái dùng tối đa** khối nền tối `.driver-panel` và
-> `.income-card` (đã thiết kế ở trang chủ) để giữ nhận diện "không lạc loài".
+---
+
+## 3. Danh sách 6 màn
+
+| Mã | Màn hình | Thư mục | Chức năng |
+|----|----------|---------|-----------|
+| D1 | Tổng quan | `tai-xe-tong-quan` | Lịch làm việc, chuyến sắp tới |
+| D2 | Chuyến được phân công | `tai-xe-chuyen` | Danh sách chuyến theo trạng thái |
+| D3 | Chi tiết chuyến | `tai-xe-chi-tiet-chuyen` | Tuyến, xe, hành khách, báo sự cố |
+| D4 | Thực hiện chuyến | `tai-xe-dieu-hanh` | Bắt đầu, đón/trả khách, hoàn thành |
+| D5 | Xe được giao | `tai-xe-xe` | Thông tin xe, tình trạng xe |
+| D6 | Hồ sơ cá nhân | `tai-xe-ho-so` | Thông tin, giấy phép, tài khoản |
+
+---
+
+## 4. Chi tiết từng màn
+
+### D1. Tổng quan — `screens/tai-xe-tong-quan/`
+
+- **Tác dụng:** "buồng lái" hằng ngày — tài xế nắm lịch chạy và việc cần làm.
+- **Nhiệm vụ chính:**
+  - Lời chào + ngày hôm nay.
+  - KPI: **chuyến hôm nay**, **chuyến sắp tới**, **khách hôm nay** (số đơn giản).
+  - **Lịch làm việc**: danh sách chuyến sắp tới (giờ, tuyến, xe, số khách).
+  - Lối tắt: Chuyến được phân công (D2), Xe được giao (D5), Hồ sơ (D6).
+  - Cảnh báo nhẹ nếu có chuyến bắt đầu trong 2 giờ tới.
+- **Thành phần:** `.stat-card`, `.ride-card` (chuyến sắp tới), `.badge` trạng
+  thái, `.empty-state`, `.btn`.
+- **Trạng thái:** chưa có chuyến, có chuyến hôm nay, loading.
+- **Không có:** toggle Online/Offline, chuông thông báo, nút nhận chuyến.
+- **Ưu tiên:** P1.
+
+### D2. Chuyến được phân công — `screens/tai-xe-chuyen/`
+
+- **Tác dụng:** danh sách toàn bộ chuyến admin đã phân công cho tài xế.
+- **Nhiệm vụ chính:**
+  - Tab theo trạng thái: **Sắp tới · Đang thực hiện · Hoàn thành · Đã hủy**.
+  - Card chuyến: tuyến, giờ khởi hành, biển số xe, `số khách / sức chứa`,
+    trạng thái, cờ sự cố (nếu có).
+  - Bấm chuyến → D3.
+  - Chuyến đang thực hiện có nút nhanh "Tiếp tục chuyến" → D4.
+- **Thành phần:** `.tabs`, `.ride-card`, `.status-badge`, `.progress` (tỉ lệ
+  ghế), `.filter-bar` (ngày), `.empty-state`.
+- **Trạng thái:** chưa được phân công, không có chuyến trong tab, loading, lỗi;
+  chuyến bị admin hủy (hiển thị lý do).
+- **Ưu tiên:** P1.
+
+### D3. Chi tiết chuyến — `screens/tai-xe-chi-tiet-chuyen/`
+
+- **Tác dụng:** xem đầy đủ một chuyến trước và trong khi chạy.
+- **Nhiệm vụ chính:**
+  - Thông tin tuyến: điểm đi/đến, giờ khởi hành, các điểm dừng/đón.
+  - Thông tin xe: biển số, loại xe, sức chứa.
+  - Danh sách hành khách: tên, SĐT (che bớt), điểm đón/trả, trạng thái đón,
+    trạng thái thanh toán.
+  - Tổng quan: số khách, ghế trống, doanh thu tiền mặt dự kiến.
+  - Hành động:
+    - **Bắt đầu chuyến** (chỉ khi trạng thái Sắp tới **và** đang trong ngày chạy;
+      chuyển sang D4).
+    - **Báo sự cố** (modal, xem §6) — báo sự cố **không** hủy chuyến.
+    - **Gọi khách** (chỉ khi chuyến sắp tới/đang chạy).
+  - Nếu chuyến đã hủy: banner lý do, không có thao tác.
+  - Nếu chuyến đang thực hiện: tài xế tiếp tục dùng D4; mọi ngoại lệ do admin
+    quyết định.
+- **Thành phần:** panel chuyến, `.timeline` điểm dừng, `.data-table`/list hành
+  khách, `.status-badge`, `.badge` thanh toán, `.modal`, `.btn`.
+- **Trạng thái:** chưa tới giờ, đã bắt đầu, đã hủy, sự cố đã báo.
+- **Ưu tiên:** P1.
+
+### D4. Thực hiện chuyến — `screens/tai-xe-dieu-hanh/`
+
+- **Tác dụng:** công cụ chạy chuyến — cập nhật trạng thái từng hành khách.
+- **Nhiệm vụ chính:**
+  - Header chuyến: tuyến, giờ, xe, tiến độ `đã trả / tổng khách`.
+  - Danh sách khách theo thứ tự điểm đón:
+    - Chuyển trạng thái: **Chờ đón → Đã đón → Đã trả**.
+    - Đánh dấu **Không lên xe** (kèm xác nhận) — chỉ khi khách chưa `Đã đón`.
+    - Đánh dấu **Đã thu tiền mặt** cho từng khách (chỉ sau khi khách `Đã đón`).
+  - Nút gọi khách.
+  - **Báo sự cố** (modal) — tài xế vẫn tiếp tục cập nhật chuyến; admin quyết định
+    tiếp tục / thay xe / đổi tài xế / xử lý ngoại lệ.
+  - **Hoàn thành chuyến** chỉ khi **mọi khách** đã ở trạng thái cuối (`Đã trả`,
+    `Không lên xe`, `Đã hủy`); modal tổng kết (số khách, tiền mặt đã thu) rồi cập
+    nhật trạng thái chuyến. Ngoại lệ do admin xử lý tại A2.
+- **Thành phần:** checklist hành khách, nút trạng thái lớn (`.btn`), `.progress`,
+  `.modal`, `.toast`, `.status-badge`, `.timeline`.
+- **Trạng thái:** chưa tới điểm, khách vắng (no-show), sự cố, chưa đủ điều kiện
+  hoàn thành, hoàn thành.
+- **Không có:** bản đồ realtime bắt buộc, chia sẻ vị trí, chat với khách.
+- **Ưu tiên:** P1.
+
+### D5. Xe được giao — `screens/tai-xe-xe/`
+
+- **Tác dụng:** tài xế biết xe mình sẽ chạy và tình trạng xe.
+- **Nhiệm vụ chính:**
+  - Danh sách xe được admin gán: biển số, loại xe, sức chứa, tình trạng
+    (`Đang hoạt động / Bảo trì / Ngưng`).
+  - Hạn đăng kiểm, bảo hiểm (chỉ hiển thị).
+  - Ghi chú: thông tin do admin cập nhật tại A4.
+- **Thành phần:** `.fleet-card`, `.badge`, `.empty-state`.
+- **Trạng thái:** chưa được gán xe, xe đang bảo trì, giấy tờ sắp hết hạn.
+- **Không có:** thêm/sửa xe, upload giấy tờ, yêu cầu duyệt.
+- **Ưu tiên:** P2.
+
+### D6. Hồ sơ cá nhân — `screens/tai-xe-ho-so/`
+
+- **Tác dụng:** thông tin tài xế và tài khoản đăng nhập.
+- **Nhiệm vụ chính:**
+  - Ảnh, họ tên, SĐT, email, ngày tham gia.
+  - Giấy phép lái xe: số, hạng, ngày hết hạn (chỉ đọc — admin cập nhật).
+  - Đổi mật khẩu; đăng xuất.
+- **Thành phần:** avatar, `.field` (thông tin chỉ đọc), form đổi mật khẩu,
+  `.form-status`, `.btn`.
+- **Trạng thái:** lưu thành công, sai mật khẩu, lỗi validate.
+- **Không có:** ngân hàng, ví, upload giấy tờ, cài đặt thông báo.
+- **Ưu tiên:** P1.
+
+---
+
+## 5. Trạng thái nghiệp vụ
+
+**Trạng thái chuyến:**
+
+```
+Sắp tới → Đang thực hiện → Hoàn thành
+   └── Đã hủy (admin hủy; chỉ khi chuyến CHƯA bắt đầu)
+```
+
+- Chuyến do admin tạo và phân công; tài xế **không** đổi trạng thái chuyến.
+- Chỉ bắt đầu trong ngày chạy; trước đó chỉ xem.
+- Hoàn thành khi **mọi** hành khách ở trạng thái cuối (`Đã trả` / `Không lên xe`
+  / `Đã hủy`); ngoại lệ (kẹt khách, sự cố) do admin xử lý tại A2.
+- Chuyến **đang thực hiện** không hủy qua luồng thường; dùng báo sự cố để admin
+  xử lý (tiếp tục / thay xe / đổi tài xế / kết thúc sớm).
+
+**Trạng thái hành khách trên chuyến (tài xế cập nhật):**
+
+```
+Chờ đón → Đã đón → Đã trả
+   ├── Không lên xe (chỉ khi chưa Đã đón)
+   └── Đã hủy (khách hủy trước / admin hủy vé / admin hủy chuyến)
+```
+
+Ánh xạ sang trạng thái vé (khách/admin): `Chờ đón→Đã đặt`, `Đã đón→Đã đón`,
+`Đã trả→Hoàn thành`, `Không lên xe→Không lên xe`, `Đã hủy→Đã hủy`.
+
+**Trạng thái thanh toán:** `Chưa thu → Đã thu` (tiền mặt, tài xế xác nhận ở D4;
+chỉ gắn với khách đã `Đã đón`). Không có hoàn tiền.
+
+---
+
+## 6. Báo sự cố chuyến (giữ lại, tối giản)
+
+- **Vị trí:** nút "Báo sự cố" trong D3 và D4.
+- **Cách hoạt động:**
+  1. Mở modal: chọn loại sự cố (Kẹt xe · Hỏng xe · Tai nạn · Thời tiết ·
+     Khác), nhập ghi chú ngắn.
+  2. Gửi → gắn cờ **Sự cố** lên chuyến, lưu thời điểm và người báo.
+  3. Cờ **Sự cố** hiển thị **cảnh báo ở A1** (mục cần xử lý) và được admin
+     **xử lý tại A2** (chi tiết chuyến): đánh dấu **Đã xử lý** kèm ghi chú.
+- **Tài xế vẫn tiếp tục chạy và cập nhật D4** sau khi báo sự cố; báo sự cố không
+  khóa thao tác.
+- **Không có:** ticket, chat, phản hồi qua lại, hotline, đính kèm ảnh.
+- **Không tự động** hủy chuyến hay đổi trạng thái vé; admin quyết định tiếp tục /
+  thay xe / đổi tài xế / kết thúc sớm.
+
+---
+
+## 7. Quy tắc nghiệp vụ
+
+1. Tài xế chỉ thấy chuyến được phân công cho mình.
+2. Không có Online/Offline; chuyến vẫn tồn tại khi tài xế đăng xuất.
+3. Không nhận quá sức chứa; A2 chặn khi tạo/sửa chuyến nếu số ghế vượt sức chứa
+   xe.
+4. Một tài xế và một xe không bị phân công hai chuyến chồng khoảng thời gian vận
+   hành (giờ khởi hành + thời lượng dự kiến); A2 chặn khi lưu.
+5. Tài xế không sửa chuyến, không hủy chuyến, không đổi xe.
+6. Bắt đầu chuyến chỉ trong ngày chạy. Hoàn thành chỉ khi mọi khách ở trạng thái
+   cuối (`Đã trả`/`Không lên xe`/`Đã hủy`); ngoại lệ do admin xử lý tại A2.
+7. Trạng thái khách tài xế cập nhật đồng bộ sang vé ở khách (B7) và admin
+   (A2/A6).
+8. Tiền công chuyến do admin nhập ở A2; tài xế không xem màn thu nhập riêng.
+9. Báo sự cố chỉ tạo cờ, không thay đổi trạng thái chuyến/vé.
+10. Tài khoản tài xế do admin tạo; tài xế không tự đăng ký.
+
+---
+
+## 8. Điều hướng
+
+```
+Tổng quan | Chuyến được phân công | Xe được giao | Hồ sơ
+```
+
+- Trang chủ app: D1.
+- D1 → D2/D5/D6.
+- D2 → D3 → D4.
+- D4 hoàn thành → toast + quay lại D2.
+- Header chỉ có avatar + đăng xuất; **không** có chuông, không có "Hỗ trợ".
+
+---
+
+## 9. Luồng chính rút gọn
+
+```
+Admin tạo TK tài xế (A3) → bàn giao
+→ Tài xế đăng nhập → Tổng quan (D1)
+→ Admin tạo chuyến + phân công (A2) → hiện ở D2
+→ Khách đặt vé (B5) → danh sách khách đầy lên ở D2/D3
+→ Đến ngày chạy: D3 → Bắt đầu → D4
+→ Đón/trả từng khách + thu tiền mặt → Hoàn thành
+```
+
+> Khu tài xế tái dùng tối đa `.driver-panel` đã có ở trang chủ để giữ nhận diện,
+> nhưng **không** tái dùng khối đăng ký/CTA tài xế.

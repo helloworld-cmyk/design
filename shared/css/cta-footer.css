@@ -98,7 +98,7 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 0.8fr 0.8fr 1.1fr;
+  grid-template-columns: 1.5fr 0.8fr 0.8fr;
   gap: 40px;
 }
 
