@@ -1,0 +1,39 @@
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="rtEmpty" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            </span>
+            <h3>Không tìm thấy tuyến phù hợp</h3>
+            <p>
+              Không có tuyến nào khớp với từ khóa và trạng thái đang lọc. Thử
+              từ khóa khác hoặc đặt lại bộ lọc để xem toàn bộ danh mục.
+            </p>
+            <button class="btn btn-ghost" type="button" id="rtEmptyReset">
+              Đặt lại bộ lọc
+            </button>
+          </div>
+
+          <nav class="pagination" id="rtPagination" aria-label="Phân trang danh sách tuyến">
+            <button
+              type="button" class="page-btn" id="rtPrev"
+              aria-label="Trang trước"
+            >
+              <svg class="icon page-icon-prev" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+            <span class="page-nums" id="rtNums"></span>
+            <button
+              type="button" class="page-btn" id="rtNext"
+              aria-label="Trang sau"
+            >
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </nav>
+        </section>
+      </section>

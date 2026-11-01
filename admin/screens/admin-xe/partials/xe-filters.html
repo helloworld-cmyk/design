@@ -1,0 +1,55 @@
+        <section class="xe-toolbar reveal" aria-label="Bộ lọc danh sách xe">
+          <div class="filter-grid">
+            <div class="field filter-search">
+              <label for="xeSearch">Tìm kiếm</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-search"></use>
+                </svg>
+                <input
+                  id="xeSearch"
+                  name="xeSearch"
+                  type="search"
+                  placeholder="Biển số hoặc tài xế phụ trách..."
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="xeType">Loại xe</label>
+              <div class="field-control select-wrap">
+                <select id="xeType" name="xeType">
+                  <option value="">Mọi loại xe</option>
+                  <option value="7 chỗ">7 chỗ</option>
+                  <option value="9 chỗ">9 chỗ</option>
+                  <option value="16 chỗ">16 chỗ</option>
+                  <option value="22 chỗ">22 chỗ</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="xeStatus">Tình trạng</label>
+              <div class="field-control select-wrap">
+                <select id="xeStatus" name="xeStatus">
+                  <option value="">Mọi tình trạng</option>
+                  <option value="Đang hoạt động">Đang hoạt động</option>
+                  <option value="Đang bảo trì">Đang bảo trì</option>
+                  <option value="Ngưng sử dụng">Ngưng sử dụng</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field filter-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="xeReset">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Xóa lọc
+              </button>
+            </div>
+          </div>
+
+          <p class="filter-count" id="xeCount" role="status" aria-live="polite"></p>
+        </section>

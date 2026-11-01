@@ -1,0 +1,41 @@
+        <section class="rt-toolbar reveal" aria-label="Lọc danh sách tuyến">
+          <div class="filter-grid">
+            <div class="field filter-search">
+              <label for="rtSearch">Tìm kiếm</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-search"></use>
+                </svg>
+                <input
+                  id="rtSearch"
+                  name="rtSearch"
+                  type="search"
+                  placeholder="Mã tuyến, điểm đi, điểm đến, điểm dừng..."
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="rtStatus">Trạng thái</label>
+              <div class="field-control select-wrap">
+                <select id="rtStatus" name="rtStatus">
+                  <option value="">Mọi trạng thái</option>
+                  <option value="active">Đang chạy</option>
+                  <option value="paused">Tạm dừng</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field filter-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="rtReset">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Đặt lại bộ lọc
+              </button>
+            </div>
+          </div>
+
+          <p class="filter-count" id="rtCount" role="status" aria-live="polite"></p>
+        </section>

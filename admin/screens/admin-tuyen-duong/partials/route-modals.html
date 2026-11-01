@@ -1,0 +1,206 @@
+      <div
+        class="modal" id="routeModal" role="dialog" aria-modal="true"
+        aria-labelledby="routeModalTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel">
+          <div class="modal-head">
+            <div>
+              <h2 class="modal-title" id="routeModalTitle">Thêm tuyến mới</h2>
+              <p class="modal-sub" id="routeModalSub">
+                Tuyến mới mặc định ở trạng thái Đang chạy sau khi lưu.
+              </p>
+            </div>
+            <button
+              type="button" class="modal-close" data-modal-close
+              aria-label="Đóng hộp thoại tuyến"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </div>
+
+          <form class="modal-body" id="routeForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="rfFrom">Điểm đi <span aria-hidden="true">*</span></label>
+                <div class="field-control select-wrap">
+                  <select id="rfFrom" name="rfFrom" required>
+                    <option value="">— Chọn điểm đi —</option>
+                    <option>Hà Nội</option>
+                    <option>Hải Phòng</option>
+                    <option>Hạ Long</option>
+                    <option>Ninh Bình</option>
+                    <option>Nam Định</option>
+                    <option>Thái Bình</option>
+                    <option>Hưng Yên</option>
+                    <option>Hải Dương</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="rfTo">Điểm đến <span aria-hidden="true">*</span></label>
+                <div class="field-control select-wrap">
+                  <select id="rfTo" name="rfTo" required>
+                    <option value="">— Chọn điểm đến —</option>
+                    <option>Hà Nội</option>
+                    <option>Hải Phòng</option>
+                    <option>Hạ Long</option>
+                    <option>Ninh Bình</option>
+                    <option>Nam Định</option>
+                    <option>Thái Bình</option>
+                    <option>Hưng Yên</option>
+                    <option>Hải Dương</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="rfKm">Khoảng cách (km) <span aria-hidden="true">*</span></label>
+                <div class="field-control">
+                  <input
+                    id="rfKm" name="rfKm" type="number" min="1" step="1"
+                    inputmode="numeric" placeholder="Ví dụ: 120" required
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="rfMin">
+                  Thời lượng dự kiến (phút) <span aria-hidden="true">*</span>
+                </label>
+                <div class="field-control">
+                  <input
+                    id="rfMin" name="rfMin" type="number" min="15" step="5"
+                    inputmode="numeric" placeholder="Ví dụ: 135" required
+                  />
+                </div>
+              </div>
+
+              <div class="field span-2">
+                <label for="rfPrice">Giá vé cơ bản (đ) <span aria-hidden="true">*</span></label>
+                <div class="field-control">
+                  <input
+                    id="rfPrice" name="rfPrice" type="number" min="1000"
+                    step="1000" inputmode="numeric" placeholder="Ví dụ: 180000"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <p class="form-status" id="routeFormStatus" role="status" aria-live="polite"></p>
+
+            <div class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>
+                Hủy
+              </button>
+              <button class="btn btn-primary" type="submit" id="routeFormSubmit">
+                Lưu tuyến
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="modal" id="stopsModal" role="dialog" aria-modal="true"
+        aria-labelledby="stopsTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--wide">
+          <div class="modal-head">
+            <div>
+              <h2 class="modal-title" id="stopsTitle">Điểm dừng theo thứ tự</h2>
+              <p class="modal-sub" id="stopsSub">Chọn tuyến để xem điểm dừng.</p>
+            </div>
+            <button
+              type="button" class="modal-close" data-modal-close
+              aria-label="Đóng hộp thoại điểm dừng"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <ol class="stop-list" id="stopList"></ol>
+
+            <form class="stop-add" id="stopAddForm" novalidate>
+              <div class="field">
+                <label for="stopName">Thêm điểm dừng</label>
+                <div class="field-control">
+                  <input
+                    id="stopName" name="stopName" type="text"
+                    placeholder="Ví dụ: Phủ Lý – Hà Nam" autocomplete="off"
+                  />
+                </div>
+              </div>
+              <button class="btn btn-ghost" type="submit" id="stopAddBtn">
+                <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
+                Thêm
+              </button>
+            </form>
+
+            <p class="form-status" id="stopsStatus" role="status" aria-live="polite"></p>
+
+            <p class="stop-note">
+              <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+              Điểm đầu và điểm cuối trùng với điểm đi – điểm đến của tuyến; các
+              điểm ở giữa là điểm đón/trả để khách chọn khi đặt vé.
+            </p>
+
+            <div class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>
+                Đóng
+              </button>
+              <button class="btn btn-primary" type="button" id="stopsSave">
+                Lưu điểm dừng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal" id="confirmModal" role="dialog" aria-modal="true"
+        aria-labelledby="confirmTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--narrow">
+          <div class="modal-head">
+            <div class="confirm-head">
+              <span class="confirm-icon" aria-hidden="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              </span>
+              <div>
+                <h2 class="modal-title" id="confirmTitle">Ngừng sử dụng tuyến?</h2>
+                <p class="modal-sub" id="confirmSub">
+                  Tuyến sẽ không xuất hiện khi tạo chuyến mới.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button" class="modal-close" data-modal-close
+              aria-label="Đóng hộp thoại xác nhận"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <ul class="confirm-facts" id="confirmFacts"></ul>
+            <p class="confirm-note">
+              Chuyến đã tạo và vé đã bán trên tuyến này vẫn giữ nguyên lịch sử.
+              Bạn có thể kích hoạt lại tuyến bất kỳ lúc nào.
+            </p>
+            <div class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>
+                Giữ tuyến
+              </button>
+              <button class="btn btn-accent" type="button" id="confirmSubmit">
+                Ngừng tuyến
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>

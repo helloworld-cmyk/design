@@ -1,0 +1,40 @@
+/* =========================================================
+   Vi Vu Việt — A8: responsive cho drawer chi tiết khách.
+   Tải sau các file màn để đè đúng thứ tự cascade.
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .drawer-panel {
+    width: 100%;
+  }
+
+  .d-list--grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-item {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .ticket-person {
+    flex: 1 1 calc(100% - 70px);
+  }
+
+  .ticket-tags {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .drawer-foot .btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 400px) {
+  .drawer-head,
+  .drawer-body,
+  .drawer-foot {
+    padding-inline: 16px;
+  }
+}

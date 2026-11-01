@@ -1,0 +1,88 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: bảng chuyển thành dạng thẻ
+   trên màn hẹp (≤640px).
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .data-table,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td {
+    display: block;
+  }
+
+  .data-table {
+    min-width: 0;
+  }
+
+  .data-table thead {
+    display: none;
+  }
+
+  .data-table tbody tr {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .data-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .data-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 7px 0;
+    border: 0;
+  }
+
+  .data-table td::before {
+    content: attr(data-label);
+    flex: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-500);
+  }
+
+  .data-table td:first-child {
+    padding-top: 0;
+  }
+
+  .data-table td:last-child {
+    padding-bottom: 0;
+  }
+
+  .data-table th.num,
+  .data-table td.num {
+    text-align: left;
+  }
+
+  .cell-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .cell-actions::before {
+    display: none;
+  }
+
+  .seat-progress {
+    width: 140px;
+  }
+
+  .table-foot {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+}

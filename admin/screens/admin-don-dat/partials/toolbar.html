@@ -1,0 +1,130 @@
+<section class="orders-toolbar reveal" aria-label="Lọc và tra soát đơn đặt">
+  <div class="orders-toolbar-top">
+    <div class="tabs" role="tablist" aria-label="Trạng thái vé">
+      <button type="button" class="tab is-active" role="tab" aria-selected="true" data-tab="all">
+        Tất cả <span class="tab-count" data-count="all">0</span>
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="Đã đặt">
+        Đã đặt <span class="tab-count" data-count="Đã đặt">0</span>
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="Đã đón">
+        Đã đón <span class="tab-count" data-count="Đã đón">0</span>
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="Hoàn thành">
+        Hoàn thành <span class="tab-count" data-count="Hoàn thành">0</span>
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="Không lên xe">
+        Không lên xe <span class="tab-count" data-count="Không lên xe">0</span>
+      </button>
+      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="Đã hủy">
+        Đã hủy <span class="tab-count" data-count="Đã hủy">0</span>
+      </button>
+    </div>
+
+    <button
+      type="button"
+      class="icon-btn"
+      id="btnRefresh"
+      aria-label="Làm mới danh sách đơn"
+      title="Làm mới danh sách"
+    >
+      <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+    </button>
+  </div>
+
+  <div class="filter-grid">
+    <div class="field filter-search">
+      <label for="fSearch">Tìm kiếm</label>
+      <div class="field-control">
+        <svg class="icon field-icon" aria-hidden="true">
+          <use href="#i-search"></use>
+        </svg>
+        <input
+          id="fSearch"
+          name="fSearch"
+          type="search"
+          placeholder="Mã vé, khách, SĐT, tuyến..."
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fNgay">Ngày khởi hành</label>
+      <div class="field-control select-wrap">
+        <select id="fNgay" name="fNgay">
+          <option value="">Tất cả ngày</option>
+          <option value="01/11/2026">01/11/2026</option>
+          <option value="31/10/2026">31/10/2026 (hôm nay)</option>
+          <option value="30/10/2026">30/10/2026</option>
+          <option value="29/10/2026">29/10/2026</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fTuyen">Tuyến</label>
+      <div class="field-control select-wrap">
+        <select id="fTuyen" name="fTuyen">
+          <option value="">Tất cả tuyến</option>
+          <option>Hà Nội → Ninh Bình</option>
+          <option>Hà Nội → Hạ Long</option>
+          <option>Hà Nội → Thái Nguyên</option>
+          <option>Hà Nội → Sapa</option>
+          <option>Hà Nội → Hải Phòng</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fChuyen">Chuyến</label>
+      <div class="field-control select-wrap">
+        <select id="fChuyen" name="fChuyen">
+          <option value="">Tất cả chuyến</option>
+          <option>C-0111-01</option>
+          <option>C-0111-02</option>
+          <option>C-0111-03</option>
+          <option>C-2910-03</option>
+          <option>C-2910-05</option>
+          <option>C-3010-01</option>
+          <option>C-3010-02</option>
+          <option>C-3010-05</option>
+          <option>C-3110-01</option>
+          <option>C-3110-02</option>
+          <option>C-3110-03</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fTaixe">Tài xế</label>
+      <div class="field-control select-wrap">
+        <select id="fTaixe" name="fTaixe">
+          <option value="">Tất cả tài xế</option>
+          <option>Nguyễn Văn Minh</option>
+          <option>Trần Quốc Tuấn</option>
+          <option>Lê Hoàng Nam</option>
+          <option>Phạm Đức Thắng</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fThanhtoan">Thanh toán</label>
+      <div class="field-control select-wrap">
+        <select id="fThanhtoan" name="fThanhtoan">
+          <option value="">Tất cả thanh toán</option>
+          <option>Chưa thu</option>
+          <option>Đã thu</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="btnReset">
+        <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+        Đặt lại bộ lọc
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,230 @@
+/* ================= A3 · Chi tiết tài xế + cấp thông tin đăng nhập ================= */
+
+body.admin-modal-open {
+  overflow: hidden;
+}
+
+/* ---------- Đầu modal chi tiết ---------- */
+
+.detail-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.detail-head .tx-avatar {
+  width: 46px;
+  height: 46px;
+  font-size: 15px;
+}
+
+.detail-title-wrap {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  justify-items: start;
+}
+
+/* ---------- Lưới thông tin ---------- */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+.detail-grid > div {
+  display: grid;
+  gap: 3px;
+}
+
+.detail-grid dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.detail-grid dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.detail-sub {
+  margin-top: 4px;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* ---------- Danh sách chuyến gần đây ---------- */
+
+.trip-list {
+  display: grid;
+  gap: 8px;
+}
+
+.trip-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  padding: 11px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.trip-code {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--sky-700);
+}
+
+.trip-route {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.trip-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trip-meta > span {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--slate-500);
+  white-space: nowrap;
+}
+
+.trip-empty {
+  padding: 14px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  text-align: center;
+  color: var(--slate-500);
+}
+
+/* ---------- Thông tin đăng nhập cấp một lần ---------- */
+
+.cred-head {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 10px 0 2px;
+  text-align: center;
+}
+
+.cred-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--green-50);
+  color: var(--green-600);
+  box-shadow: inset 0 0 0 1px var(--green-100);
+}
+
+.cred-icon .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.cred-panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--sky-500);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.cred-panel dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.cred-panel dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.cred-panel dd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cred-panel dd code {
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: var(--sky-100);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--sky-800);
+}
+
+.cred-warn {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--orange-700);
+}
+
+.cred-warn .icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: var(--orange-500);
+}
+
+@media (max-width: 520px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .modal-foot .btn {
+    flex: 1;
+  }
+}

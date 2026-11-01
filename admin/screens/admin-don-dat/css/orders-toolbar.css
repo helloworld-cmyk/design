@@ -1,0 +1,164 @@
+/* =========================================================
+   A6 — Quản lý đơn đặt · thanh công cụ (tabs + bộ lọc)
+   Màn-local: admin/screens/admin-don-dat/css/orders-toolbar.css
+   ========================================================= */
+
+.orders-toolbar {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.orders-toolbar-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.tabs {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  min-width: 0;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--navy-50);
+  color: var(--slate-600);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.tab:hover {
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.tab.is-active {
+  background: var(--sky-700);
+  color: #fff;
+}
+
+.tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--slate-500);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tab.is-active .tab-count {
+  background: var(--sky-800);
+  color: #fff;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--slate-600);
+  transition:
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.icon-btn:hover {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.icon-btn.is-loading {
+  color: var(--sky-700);
+}
+
+.icon-btn.is-loading .icon {
+  animation: spin 0.7s linear infinite;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.filter-search {
+  grid-column: span 2;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 1080px) {
+  .filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-search,
+  .filter-actions {
+    grid-column: span 2;
+  }
+
+  .tab {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .orders-toolbar {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-search,
+  .filter-actions {
+    grid-column: auto;
+  }
+
+  .filter-actions .btn {
+    width: 100%;
+  }
+}

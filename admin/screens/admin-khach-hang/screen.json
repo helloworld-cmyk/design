@@ -1,0 +1,44 @@
+{
+  "output": "admin/khach-hang.html",
+  "base": "../",
+  "title": "Quản lý khách hàng — Vi Vu Việt",
+  "description": "Tra cứu tài khoản khách, xem chi tiết và lịch sử vé, khóa/mở khóa tài khoản.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/css/admin-shell",
+    "admin/css/modal",
+    "admin/screens/admin-khach-hang/css/khach-hang",
+    "admin/screens/admin-khach-hang/css/khach-hang-table",
+    "admin/screens/admin-khach-hang/css/khach-hang-drawer",
+    "admin/screens/admin-khach-hang/css/khach-hang-responsive",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/js/admin-shell",
+    "admin/js/modal",
+    "admin/screens/admin-khach-hang/js/khach-hang-data",
+    "admin/screens/admin-khach-hang/js/khach-hang-list",
+    "admin/screens/admin-khach-hang/js/khach-hang-detail",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/components/admin-sprite.html",
+    "admin/components/admin-shell.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-head.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-filters.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-table.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-rows.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-rows-2.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-foot.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-detail.html",
+    "admin/screens/admin-khach-hang/partials/khach-hang-modals.html",
+    "admin/components/admin-shell-end.html"
+  ]
+}

@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F7FAFD" />
+    <title>Quản lý khách hàng — Vi Vu Việt</title>
+    <meta name="description" content="Tra cứu tài khoản khách, xem chi tiết và lịch sử vé, khóa/mở khóa tài khoản." />
+    <link rel="icon" type="image/svg+xml" href="../shared/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../admin/css/admin-shell.css" />
+    <link rel="stylesheet" href="../admin/css/modal.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-khach-hang/css/khach-hang.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-khach-hang/css/khach-hang-table.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-khach-hang/css/khach-hang-drawer.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-khach-hang/css/khach-hang-responsive.css" />
+    <link rel="stylesheet" href="../shared/css/motion.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-touch.css" />
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+
+    <symbol id="i-calendar" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </symbol>
+
+    <symbol id="i-users" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.6 19.2c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" />
+      <path d="M16 5.2a2.8 2.8 0 0 1 0 5.4" />
+      <path d="M17.4 14.4c2 .4 3.4 1.9 3.4 4.2" />
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.4 3.6-5.4 7-5.4s6.2 2 7 5.4" />
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.2-2h5.4l1.2 2h1.6A2.5 2.5 0 0 1 20 8.5
+           v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"
+      />
+      <circle cx="12" cy="12.4" r="3.2" />
+    </symbol>
+
+    <symbol id="i-lock" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+      <path d="M12 14.5v2" />
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7" />
+      <path d="M10.5 12H20" />
+      <path d="m16.5 8.5 3.5 3.5-3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </symbol>
+
+    <symbol id="i-refresh" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M20 11.5a8 8 0 0 0-14-4.6L4 9" />
+      <path d="M4 4v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 14 4.6L20 15" />
+      <path d="M20 20v-5h-5" />
+    </symbol>
+
+    <symbol id="i-swap" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7.5 4.5v14" />
+      <path d="m4.5 16 3 3 3-3" />
+      <path d="M16.5 19.5v-14" />
+      <path d="m13.5 8 3-3 3 3" />
+    </symbol>
+
+    <symbol id="i-shield" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 3.2 19 6v5.2c0 4.4-3 8.1-7 9.6-4-1.5-7-5.2-7-9.6V6l7-2.8Z" />
+      <path d="m9 12 2.1 2.1L15.4 10" />
+    </symbol>
+
+    <symbol id="i-headset" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3" />
+      <rect x="3" y="14" width="3.6" height="6" rx="1.6" />
+      <rect x="17.4" y="14" width="3.6" height="6" rx="1.6" />
+      <path d="M20 20a3.5 3.5 0 0 1-3.5 2.3H14" />
+    </symbol>
+
+    <symbol id="i-wallet" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.2A2.7 2.7 0 0 1 6.7 5.5H18a2.8 2.8 0 0 1 2.8 2.8v8.9
+           A2.8 2.8 0 0 1 18 20H6.8A2.8 2.8 0 0 1 4 17.2V8.2Z"
+      />
+      <path d="M4 9.5h16.8" />
+      <path d="M16.5 14.5h2" />
+    </symbol>
+
+    <symbol id="i-clock" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m5 12.5 4.2 4.2L19 7.5" />
+    </symbol>
+
+    <symbol id="i-check-circle" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m8.5 12.2 2.4 2.4 4.8-5" />
+    </symbol>
+
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+
+    <symbol id="i-car" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4.5 16.5h15l-1.6-5.2a2.3 2.3 0 0 0-2.2-1.7H8.3a2.3 2.3 0 0 0-2.2 1.7L4.5 16.5Z" />
+      <path d="M4.5 16.5v2.3M19.5 16.5v2.3" />
+      <circle cx="7.6" cy="16.5" r="1.1" />
+      <circle cx="16.4" cy="16.5" r="1.1" />
+      <path d="M8.2 10.2 8.9 7.9h6.2l.7 2.3" />
+    </symbol>
+
+    <symbol id="i-route" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="m7.2 7.2 9.6 9.6" stroke-dasharray="1 4" />
+    </symbol>
+
+    <symbol id="i-star" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M12 3.6l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8L12 3.6Z"
+      />
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M7.2 3.8h2.3l1.2 3.6-1.6 1.3a12.5 12.5 0 0 0 5.7 5.7l1.3-1.6 3.6 1.2v2.3
+           a2.5 2.5 0 0 1-2.7 2.5A16.8 16.8 0 0 1 4.7 6.5a2.5 2.5 0 0 1 2.5-2.7Z"
+      />
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 5.5L19.5 7" />
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m9 4.5-5.5 2v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </symbol>
+
+    <symbol id="i-facebook" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M13.5 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4
+           c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.1v2.8h2.4V21h3Z"
+      />
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+
+    <symbol id="i-youtube" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="2.8" y="5.5" width="18.4" height="13" rx="4" />
+      <path fill="currentColor" stroke="none" d="m10.2 9.2 4.8 2.8-4.8 2.8V9.2Z" />
+    </symbol>
+
+    <symbol id="i-eye" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M2.6 12S6.1 5.9 12 5.9 21.4 12 21.4 12 17.9 18.1 12 18.1 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="2.9" />
+    </symbol>
+
+    <symbol id="i-eye-off" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 12s3-5.2 7.4-5.6c1.3-.1 2.5.2 3.5.7" />
+      <path d="M20 12s-1.2 2-3.2 3.5" />
+      <path d="M9.6 9.7a3.1 3.1 0 0 0 4.4 4.3" />
+      <path d="m4.6 4.6 14.8 14.8" />
+    </symbol>
+
+    <symbol id="i-dashboard" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="3.5" y="13" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="13" width="7.5" height="7.5" rx="2" />
+    </symbol>
+
+    <symbol id="i-list" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M8.5 6h12M8.5 12h12M8.5 18h12" />
+      <path d="M4 6h.01M4 12h.01M4 18h.01" />
+    </symbol>
+
+    <symbol id="i-chart" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 20h16" />
+      <path d="M7 20v-6.5M12 20V6.5M17 20v-9.5" />
+    </symbol>
+
+    <symbol id="i-search" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </symbol>
+
+    <symbol id="i-filter" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 5.5h16l-6.2 7.2v5.6L10.2 20v-7.3L4 5.5Z" />
+    </symbol>
+
+    <symbol id="i-edit" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M14.5 5.5 18 9l-8.6 8.6-4 .9.9-4L14.5 5.5Z"
+      />
+      <path d="m12.8 7.2 3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-trash" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 7h14" />
+      <path d="M9.5 7V5.2A1.7 1.7 0 0 1 11.2 3.5h1.6A1.7 1.7 0 0 1 14.5 5.2V7" />
+      <path d="M7 7l.8 11.2A2 2 0 0 0 9.8 20h4.4a2 2 0 0 0 2-1.8L17 7" />
+      <path d="M10.5 11v5M13.5 11v5" />
+    </symbol>
+
+    <symbol id="i-alert" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M12 4 21 19.5H3L12 4Z"
+      />
+      <path d="M12 10v4.2M12 16.8h.01" />
+    </symbol>
+
+    <symbol id="i-plus" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+  </defs>
+</svg>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <!-- Icon riêng nhóm admin (các icon chung đã có trong shared/components/sprite.html).
+         Chỉ khai báo icon CHƯA có ở sprite shared để tránh trùng id. -->
+    <symbol id="i-ticket" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4.5 8.2A2.7 2.7 0 0 1 7.2 5.5h9.6a2.7 2.7 0 0 1 2.7 2.7v1.6
+           a1.9 1.9 0 0 0 0 3.8v1.7a2.7 2.7 0 0 1-2.7 2.7H7.2a2.7 2.7 0 0 1-2.7-2.7
+           v-1.7a1.9 1.9 0 0 0 0-3.8V8.2Z"
+      />
+      <path d="M14.6 6.6v10.8" stroke-dasharray="2 3" />
+    </symbol>
+  </defs>
+</svg>
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
+    <div class="admin-brand">
+      <a class="admin-logo" href="../admin/index.html">
+        <span class="admin-logo-mark" aria-hidden="true">
+          <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        </span>
+        <span class="admin-logo-text">Vi Vu Việt</span>
+      </a>
+      <span class="admin-chip">Quản trị</span>
+    </div>
+
+    <nav class="admin-nav" aria-label="Màn hình quản trị">
+      <a href="../admin/index.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
+        Tổng quan
+      </a>
+      <a href="../admin/admin-chuyen.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        Quản lý chuyến
+      </a>
+      <a href="../admin/tai-xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+        Quản lý tài xế
+      </a>
+      <a href="../admin/xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
+        Quản lý xe
+      </a>
+      <a href="../admin/tuyen-duong.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+        Quản lý tuyến
+      </a>
+      <a href="../admin/don-dat.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
+        Quản lý đơn đặt
+      </a>
+      <a href="../admin/admin-doanh-thu.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+        Doanh thu
+      </a>
+      <a href="../admin/khach-hang.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+        Quản lý khách hàng
+      </a>
+    </nav>
+
+    <p class="admin-side-note">
+      Bản mô phỏng giao diện quản trị · dữ liệu minh hoạ
+    </p>
+  </aside>
+
+  <div class="admin-scrim" id="adminScrim" hidden></div>
+
+  <div class="admin-body">
+    <header class="admin-topbar">
+      <button
+        type="button"
+        class="admin-burger"
+        id="adminBurger"
+        aria-label="Mở menu quản trị"
+        aria-controls="adminSidebar"
+        aria-expanded="false"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
+
+      <nav class="admin-crumb" aria-label="Breadcrumb">
+        <a href="../admin/index.html">Tổng quan</a>
+        <span class="admin-crumb-sep" aria-hidden="true">/</span>
+        <span class="admin-crumb-here" aria-current="page">Quản lý khách hàng — Vi Vu Việt</span>
+      </nav>
+
+      <div class="admin-user">
+        <span class="admin-avatar" aria-hidden="true">QV</span>
+        <span class="admin-user-text">
+          <strong>Quản trị viên</strong>
+          <span>hotro@vivuviet.vn</span>
+        </span>
+        <button
+          type="button"
+          class="admin-logout"
+          data-admin-logout
+          aria-label="Đăng xuất khỏi trang quản trị"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-main" id="main">
+      <div class="admin-container">
+      <section class="kh-page" id="khach-hang" aria-labelledby="khPageTitle">
+        <div class="admin-head reveal">
+          <span class="admin-eyebrow">Khu quản trị · Khách hàng</span>
+          <h1 class="admin-title" id="khPageTitle">Quản lý khách hàng</h1>
+          <p class="admin-lead">
+            Tra cứu tài khoản khách đã đăng ký, xem thông tin và lịch sử vé,
+            khóa hoặc mở khóa tài khoản khi cần hỗ trợ vận hành.
+          </p>
+        </div>
+        <section class="kh-toolbar reveal" aria-label="Lọc danh sách khách hàng">
+          <div class="filter-grid">
+            <div class="field filter-search">
+              <label for="khSearch">Tìm kiếm</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-search"></use>
+                </svg>
+                <input
+                  id="khSearch"
+                  name="khSearch"
+                  type="search"
+                  placeholder="Tên khách, SĐT hoặc email..."
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="khStatus">Trạng thái tài khoản</label>
+              <div class="field-control select-wrap">
+                <select id="khStatus" name="khStatus">
+                  <option value="">Mọi trạng thái</option>
+                  <option value="active">Đang hoạt động</option>
+                  <option value="locked">Bị khóa</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field filter-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="khReset">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Đặt lại bộ lọc
+              </button>
+            </div>
+          </div>
+
+          <p class="filter-count" id="khCount" role="status" aria-live="polite"></p>
+        </section>
+        <section class="kh-panel reveal" aria-label="Danh sách tài khoản khách hàng">
+          <div class="table-scroll" id="khTableScroll">
+            <table class="data-table" id="khTable">
+              <caption class="sr-only">
+                Tài khoản khách hàng — kèm số điện thoại, email, ngày tạo,
+                số vé đã đặt và trạng thái tài khoản
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Khách hàng</th>
+                  <th scope="col">Số điện thoại</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Ngày tạo</th>
+                  <th scope="col" class="num">Vé đã đặt</th>
+                  <th scope="col">Trạng thái</th>
+                  <th scope="col"><span class="sr-only">Thao tác</span></th>
+                </tr>
+              </thead>
+              <tbody id="khBody">
+                <tr
+                  data-id="c01" data-status="active" data-code="MK-10241"
+                  data-name="Nguyễn Mai Anh" data-phone="0903 412 778"
+                  data-email="maianh.nguyen@gmail.com"
+                  data-created="12/03/2025" data-tickets="28"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">MA</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Nguyễn Mai Anh</strong>
+                        <span class="cell-sub">MK-10241</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0903 412 778</td>
+                  <td data-label="Email">
+                    <span class="kh-email">maianh.nguyen@gmail.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">12/03/2025</td>
+                  <td class="num" data-label="Vé đã đặt">28</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--green">Đang hoạt động</span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c01"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+
+                <tr
+                  data-id="c02" data-status="active" data-code="MK-10388"
+                  data-name="Trần Quốc Bảo" data-phone="0912 556 230"
+                  data-email="quocbao.tran@outlook.com"
+                  data-created="04/05/2025" data-tickets="17"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">TB</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Trần Quốc Bảo</strong>
+                        <span class="cell-sub">MK-10388</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0912 556 230</td>
+                  <td data-label="Email">
+                    <span class="kh-email">quocbao.tran@outlook.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">04/05/2025</td>
+                  <td class="num" data-label="Vé đã đặt">17</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--green">Đang hoạt động</span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c02"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+
+                <tr
+                  data-id="c03" data-status="active" data-code="MK-10512"
+                  data-name="Lê Thu Trang" data-phone="0987 001 345"
+                  data-email="thutrang.le@gmail.com"
+                  data-created="22/06/2025" data-tickets="12"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">LT</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Lê Thu Trang</strong>
+                        <span class="cell-sub">MK-10512</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0987 001 345</td>
+                  <td data-label="Email">
+                    <span class="kh-email">thutrang.le@gmail.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">22/06/2025</td>
+                  <td class="num" data-label="Vé đã đặt">12</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--green">Đang hoạt động</span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c03"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+
+                <tr
+                  data-id="c04" data-status="locked" data-code="MK-10704"
+                  data-name="Phạm Văn Đức" data-phone="0356 889 012"
+                  data-email="vanduc.pham@gmail.com"
+                  data-created="09/08/2025" data-tickets="9"
+                  data-reason="Đặt trùng lặp nhiều đơn rồi không lên xe — nghi ngờ gian lận"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">PĐ</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Phạm Văn Đức</strong>
+                        <span class="cell-sub">MK-10704</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0356 889 012</td>
+                  <td data-label="Email">
+                    <span class="kh-email">vanduc.pham@gmail.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">09/08/2025</td>
+                  <td class="num" data-label="Vé đã đặt">9</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--orange">
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-lock"></use>
+                      </svg>
+                      Bị khóa
+                    </span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c04"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+
+                <tr
+                  data-id="c05" data-status="active" data-code="MK-10836"
+                  data-name="Hoàng Thị Mai" data-phone="0946 233 567"
+                  data-email="hoangmai.ht@yahoo.com"
+                  data-created="15/09/2025" data-tickets="7"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">HM</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Hoàng Thị Mai</strong>
+                        <span class="cell-sub">MK-10836</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0946 233 567</td>
+                  <td data-label="Email">
+                    <span class="kh-email">hoangmai.ht@yahoo.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">15/09/2025</td>
+                  <td class="num" data-label="Vé đã đặt">7</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--green">Đang hoạt động</span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c05"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  data-id="c06" data-status="active" data-code="MK-10902"
+                  data-name="Đỗ Gia Hân" data-phone="0388 674 129"
+                  data-email="giahando@gmail.com"
+                  data-created="02/10/2025" data-tickets="5"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">GH</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Đỗ Gia Hân</strong>
+                        <span class="cell-sub">MK-10902</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0388 674 129</td>
+                  <td data-label="Email">
+                    <span class="kh-email">giahando@gmail.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">02/10/2025</td>
+                  <td class="num" data-label="Vé đã đặt">5</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--green">Đang hoạt động</span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c06"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+
+                <tr
+                  data-id="c07" data-status="locked" data-code="MK-10948"
+                  data-name="Vũ Minh Quân" data-phone="0977 340 856"
+                  data-email="minhquan.vu@gmail.com"
+                  data-created="18/10/2025" data-tickets="3"
+                  data-reason="Khách yêu cầu khóa tài khoản — chuyển sang dùng số khác"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">MQ</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Vũ Minh Quân</strong>
+                        <span class="cell-sub">MK-10948</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0977 340 856</td>
+                  <td data-label="Email">
+                    <span class="kh-email">minhquan.vu@gmail.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">18/10/2025</td>
+                  <td class="num" data-label="Vé đã đặt">3</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--orange">
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-lock"></use>
+                      </svg>
+                      Bị khóa
+                    </span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c07"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+
+                <tr
+                  data-id="c08" data-status="active" data-code="MK-10986"
+                  data-name="Bùi Khánh Linh" data-phone="0901 118 246"
+                  data-email="khanhlinh.bui@gmail.com"
+                  data-created="26/10/2025" data-tickets="1"
+                >
+                  <td data-label="Khách hàng">
+                    <div class="kh-cell">
+                      <span class="avatar avatar--mini" aria-hidden="true">KL</span>
+                      <span class="kh-cell-text">
+                        <strong class="cell-strong">Bùi Khánh Linh</strong>
+                        <span class="cell-sub">MK-10986</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td data-label="Số điện thoại">0901 118 246</td>
+                  <td data-label="Email">
+                    <span class="kh-email">khanhlinh.bui@gmail.com</span>
+                  </td>
+                  <td data-label="Ngày tạo">26/10/2025</td>
+                  <td class="num" data-label="Vé đã đặt">1</td>
+                  <td data-label="Trạng thái">
+                    <span class="status-badge sb--green">Đang hoạt động</span>
+                  </td>
+                  <td class="cell-actions" data-label="Thao tác">
+                    <button
+                      type="button" class="btn btn-ghost btn-sm"
+                      data-open-customer="c08"
+                    >
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-eye"></use>
+                      </svg>
+                      Chi tiết
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="khEmpty" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg class="icon"><use href="#i-search"></use></svg>
+            </span>
+            <h3>Không tìm thấy khách hàng</h3>
+            <p>
+              Không có tài khoản nào khớp với từ khóa và trạng thái đang lọc.
+              Thử từ khóa khác hoặc đặt lại bộ lọc để xem toàn bộ danh sách.
+            </p>
+            <button class="btn btn-ghost" type="button" id="khEmptyReset">
+              Đặt lại bộ lọc
+            </button>
+          </div>
+
+          <nav class="pagination" id="khPagination" aria-label="Phân trang danh sách">
+            <button
+              type="button" class="page-btn" id="khPrev"
+              aria-label="Trang trước"
+            >
+              <svg class="icon page-icon-prev" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+            <span class="page-nums" id="khPageNums"></span>
+            <button
+              type="button" class="page-btn" id="khNext"
+              aria-label="Trang sau"
+            >
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </nav>
+        </section>
+      </section>
+        <div
+          class="modal drawer"
+          id="khDrawer"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khDrawerTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel drawer-panel">
+            <header class="drawer-head">
+              <div class="drawer-head-main">
+                <div class="drawer-ident">
+                  <span class="avatar avatar--lg" id="dAvatar" aria-hidden="true">
+                    MA
+                  </span>
+                  <div class="drawer-ident-text">
+                    <p class="drawer-eyebrow" id="dCode">MK-10241</p>
+                    <h2 class="drawer-title" id="khDrawerTitle">Nguyễn Mai Anh</h2>
+                    <p class="drawer-sub" id="dSub">
+                      Tham gia 12/03/2025 · 28 vé đã đặt
+                    </p>
+                  </div>
+                </div>
+                <div class="drawer-badges">
+                  <span class="status-badge sb--green" id="dBadge">
+                    Đang hoạt động
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="modal-close"
+                data-modal-close
+                aria-label="Đóng chi tiết khách hàng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <div class="drawer-body">
+              <ul class="d-list d-list--grid">
+                <li>
+                  <span>Số điện thoại</span><strong id="dPhone">0903 412 778</strong>
+                </li>
+                <li>
+                  <span>Email</span>
+                  <strong id="dEmail">maianh.nguyen@gmail.com</strong>
+                </li>
+                <li>
+                  <span>Ngày tạo tài khoản</span>
+                  <strong id="dCreated">12/03/2025</strong>
+                </li>
+                <li>
+                  <span>Số vé đã đặt</span><strong id="dTickets">28</strong>
+                </li>
+              </ul>
+
+              <div class="warn-block" id="dLockAlert" role="note" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+                <p>
+                  <strong>Tài khoản đang bị khóa.</strong>
+                  <span id="dLockReason">
+                    Khách không thể đăng nhập và đặt vé mới cho tới khi được mở khóa.
+                  </span>
+                </p>
+              </div>
+
+              <section class="d-block">
+                <div class="d-block-head">
+                  <h3 class="d-label">Lịch sử vé gần đây</h3>
+                  <a class="drawer-link" href="don-dat.html">
+                    Xem tất cả đơn đặt
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+                <ul class="ticket-list" id="dTicketList"></ul>
+              </section>
+            </div>
+
+            <footer class="drawer-foot">
+              <button type="button" class="btn btn-ghost" id="dResetPass">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Đặt lại mật khẩu
+              </button>
+              <button type="button" class="btn btn-primary" id="dToggleLock">
+                <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+                <span id="dToggleLockLabel">Khóa tài khoản</span>
+              </button>
+            </footer>
+          </div>
+        </div>
+        <div
+          class="modal"
+          id="khModalLock"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khLockTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel modal-panel--narrow">
+            <header class="modal-head">
+              <div>
+                <h2 class="modal-title" id="khLockTitle">
+                  Khóa tài khoản khách hàng?
+                </h2>
+                <p class="modal-sub" id="khLockSub">
+                  Khách sẽ không thể đăng nhập và đặt vé mới. Các vé đã đặt
+                  trước đó được giữ nguyên.
+                </p>
+              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <form id="khLockForm" class="modal-body" novalidate>
+              <div class="warn-block" role="note">
+                <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+                <p>
+                  Chỉ khóa khi phát hiện gian lận hoặc theo yêu cầu của khách.
+                  Ghi rõ <strong>lý do</strong> để lần sau tra cứu lại được.
+                </p>
+              </div>
+
+              <div class="field" id="khLockReasonField">
+                <label for="khLockReason">
+                  Lý do khóa <span aria-hidden="true">*</span>
+                </label>
+                <div class="field-control select-wrap">
+                  <select id="khLockReason" name="khLockReason" required>
+                    <option value="">Chọn lý do khóa...</option>
+                    <option>Nghi ngờ gian lận đặt vé</option>
+                    <option>Khách yêu cầu khóa tài khoản</option>
+                    <option>Thông tin tài khoản không hợp lệ</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="khLockNote">Ghi chú thêm (tuỳ chọn)</label>
+                <div class="field-control">
+                  <input
+                    id="khLockNote"
+                    name="khLockNote"
+                    type="text"
+                    placeholder="Ví dụ: khách gọi điện báo ngày 30/10"
+                  />
+                </div>
+              </div>
+
+              <p
+                class="form-status"
+                id="khLockStatus"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+
+            <footer class="modal-foot">
+              <button type="button" class="btn btn-ghost" data-modal-close>
+                Đóng
+              </button>
+              <button class="btn btn-primary" type="submit" form="khLockForm">
+                Khóa tài khoản
+              </button>
+            </footer>
+          </div>
+        </div>
+
+        <div
+          class="modal"
+          id="khModalUnlock"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khUnlockTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel modal-panel--narrow">
+            <header class="modal-head">
+              <div>
+                <h2 class="modal-title" id="khUnlockTitle">
+                  Mở khóa tài khoản?
+                </h2>
+                <p class="modal-sub" id="khUnlockSub">
+                  Khách có thể đăng nhập và đặt vé trở lại ngay sau khi mở khóa.
+                </p>
+              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <footer class="modal-foot">
+              <button type="button" class="btn btn-ghost" data-modal-close>
+                Đóng
+              </button>
+              <button type="button" class="btn btn-primary" id="khUnlockConfirm">
+                Mở khóa
+              </button>
+            </footer>
+          </div>
+        </div>
+
+        <div
+          class="modal"
+          id="khModalPass"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khPassTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel modal-panel--narrow">
+            <header class="modal-head">
+              <div>
+                <h2 class="modal-title" id="khPassTitle">
+                  Đặt lại mật khẩu khách hàng?
+                </h2>
+                <p class="modal-sub">
+                  Hệ thống tạo một mật khẩu tạm và chỉ hiển thị một lần để bạn
+                  bàn giao cho khách.
+                </p>
+              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <div class="modal-body">
+              <p class="form-status is-info" id="khPassStatus">
+                Nhấn “Tạo mật khẩu tạm” để sinh mật khẩu mới cho khách.
+              </p>
+            </div>
+
+            <footer class="modal-foot">
+              <button type="button" class="btn btn-ghost" data-modal-close>
+                Đóng
+              </button>
+              <button type="button" class="btn btn-primary" id="khPassConfirm">
+                Tạo mật khẩu tạm
+              </button>
+            </footer>
+          </div>
+        </div>
+</div>
+    </main>
+  </div>
+
+  <div class="toast" id="adminToast" role="status" aria-live="polite" hidden>
+    <svg class="icon toast-icon" aria-hidden="true">
+      <use href="#i-check-circle"></use>
+    </svg>
+    <span class="toast-text"></span>
+  </div>
+</div>
+
+<script src="../admin/js/admin-shell.js" defer></script>
+<script src="../admin/js/modal.js" defer></script>
+<script src="../admin/screens/admin-khach-hang/js/khach-hang-data.js" defer></script>
+<script src="../admin/screens/admin-khach-hang/js/khach-hang-list.js" defer></script>
+<script src="../admin/screens/admin-khach-hang/js/khach-hang-detail.js" defer></script>
+<script src="../shared/js/reveal.js" defer></script>
+</body>
+</html>

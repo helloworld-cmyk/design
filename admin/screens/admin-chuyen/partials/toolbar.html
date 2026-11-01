@@ -1,0 +1,111 @@
+        <div class="chuyen-toolbar reveal">
+          <div class="tabs" role="tablist" aria-label="Lọc theo trạng thái chuyến">
+            <button
+              class="tab is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-status="all"
+            >
+              Tất cả <span class="tab-count">7</span>
+            </button>
+            <button
+              class="tab" type="button" role="tab" aria-selected="false"
+              data-status="sap-toi"
+            >
+              Sắp tới <span class="tab-count">3</span>
+            </button>
+            <button
+              class="tab" type="button" role="tab" aria-selected="false"
+              data-status="dang-thuc-hien"
+            >
+              Đang thực hiện <span class="tab-count">1</span>
+            </button>
+            <button
+              class="tab" type="button" role="tab" aria-selected="false"
+              data-status="hoan-thanh"
+            >
+              Hoàn thành <span class="tab-count">2</span>
+            </button>
+            <button
+              class="tab" type="button" role="tab" aria-selected="false"
+              data-status="da-huy"
+            >
+              Đã hủy <span class="tab-count">1</span>
+            </button>
+          </div>
+
+          <div class="filter-grid">
+            <div class="field filter-search">
+              <label for="fTim">Tìm kiếm</label>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true">
+                  <use href="#i-search"></use>
+                </svg>
+                <input
+                  id="fTim"
+                  name="tim"
+                  type="search"
+                  placeholder="Mã chuyến, tuyến, tài xế…"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label for="fNgayLoc">Ngày</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true">
+                  <use href="#i-calendar"></use>
+                </svg>
+                <select id="fNgayLoc" name="ngay">
+                  <option value="all">Mọi ngày</option>
+                  <option value="hom-nay">Hôm nay · 31/10</option>
+                  <option value="ngay-mai">Ngày mai · 01/11</option>
+                  <option value="hom-qua">Hôm qua · 30/10</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fTuyenLoc">Tuyến</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true">
+                  <use href="#i-route"></use>
+                </svg>
+                <select id="fTuyenLoc" name="tuyen">
+                  <option value="all">Mọi tuyến</option>
+                  <option value="hn-hp">Hà Nội → Hải Phòng</option>
+                  <option value="hn-nd">Hà Nội → Nam Định</option>
+                  <option value="hn-qnam">Hà Nội → Quảng Ninh</option>
+                  <option value="hn-tb">Hà Nội → Thái Bình</option>
+                  <option value="hn-hd">Hà Nội → Hải Dương</option>
+                  <option value="hn-hyen">Hà Nội → Hưng Yên</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fTxLoc">Tài xế</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true">
+                  <use href="#i-user"></use>
+                </svg>
+                <select id="fTxLoc" name="taixe">
+                  <option value="all">Mọi tài xế</option>
+                  <option value="tran-van-binh">Trần Văn Bình</option>
+                  <option value="nguyen-duc-long">Nguyễn Đức Long</option>
+                  <option value="pham-thi-hoa">Phạm Thị Hoa</option>
+                  <option value="le-van-tu">Lê Văn Tú</option>
+                  <option value="vu-dinh-khoa">Vũ Đình Khoa</option>
+                  <option value="chua-phan-cong">Chưa phân công</option>
+                </select>
+              </div>
+            </div>
+            <div class="filter-actions">
+              <button class="btn btn-ghost" type="button" data-action="reset-filters">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Đặt lại
+              </button>
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F7FAFD" />
+    <title>Doanh thu — Quản trị Vi Vu Việt</title>
+    <meta name="description" content="Doanh thu thực thu theo kỳ và bảng đối soát đơn giản theo chuyến cho quản trị viên Vi Vu Việt." />
+    <link rel="icon" type="image/svg+xml" href="../shared/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/shell.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/ui.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/stats.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/filters.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/table.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/states.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-doanh-thu/css/doanh-thu.css" />
+    <link rel="stylesheet" href="../shared/css/motion.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-touch.css" />
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+
+    <symbol id="i-calendar" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </symbol>
+
+    <symbol id="i-users" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.6 19.2c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" />
+      <path d="M16 5.2a2.8 2.8 0 0 1 0 5.4" />
+      <path d="M17.4 14.4c2 .4 3.4 1.9 3.4 4.2" />
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.4 3.6-5.4 7-5.4s6.2 2 7 5.4" />
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.2-2h5.4l1.2 2h1.6A2.5 2.5 0 0 1 20 8.5
+           v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"
+      />
+      <circle cx="12" cy="12.4" r="3.2" />
+    </symbol>
+
+    <symbol id="i-lock" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+      <path d="M12 14.5v2" />
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7" />
+      <path d="M10.5 12H20" />
+      <path d="m16.5 8.5 3.5 3.5-3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </symbol>
+
+    <symbol id="i-refresh" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M20 11.5a8 8 0 0 0-14-4.6L4 9" />
+      <path d="M4 4v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 14 4.6L20 15" />
+      <path d="M20 20v-5h-5" />
+    </symbol>
+
+    <symbol id="i-swap" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7.5 4.5v14" />
+      <path d="m4.5 16 3 3 3-3" />
+      <path d="M16.5 19.5v-14" />
+      <path d="m13.5 8 3-3 3 3" />
+    </symbol>
+
+    <symbol id="i-shield" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 3.2 19 6v5.2c0 4.4-3 8.1-7 9.6-4-1.5-7-5.2-7-9.6V6l7-2.8Z" />
+      <path d="m9 12 2.1 2.1L15.4 10" />
+    </symbol>
+
+    <symbol id="i-headset" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3" />
+      <rect x="3" y="14" width="3.6" height="6" rx="1.6" />
+      <rect x="17.4" y="14" width="3.6" height="6" rx="1.6" />
+      <path d="M20 20a3.5 3.5 0 0 1-3.5 2.3H14" />
+    </symbol>
+
+    <symbol id="i-wallet" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.2A2.7 2.7 0 0 1 6.7 5.5H18a2.8 2.8 0 0 1 2.8 2.8v8.9
+           A2.8 2.8 0 0 1 18 20H6.8A2.8 2.8 0 0 1 4 17.2V8.2Z"
+      />
+      <path d="M4 9.5h16.8" />
+      <path d="M16.5 14.5h2" />
+    </symbol>
+
+    <symbol id="i-clock" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m5 12.5 4.2 4.2L19 7.5" />
+    </symbol>
+
+    <symbol id="i-check-circle" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m8.5 12.2 2.4 2.4 4.8-5" />
+    </symbol>
+
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+
+    <symbol id="i-car" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4.5 16.5h15l-1.6-5.2a2.3 2.3 0 0 0-2.2-1.7H8.3a2.3 2.3 0 0 0-2.2 1.7L4.5 16.5Z" />
+      <path d="M4.5 16.5v2.3M19.5 16.5v2.3" />
+      <circle cx="7.6" cy="16.5" r="1.1" />
+      <circle cx="16.4" cy="16.5" r="1.1" />
+      <path d="M8.2 10.2 8.9 7.9h6.2l.7 2.3" />
+    </symbol>
+
+    <symbol id="i-route" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="m7.2 7.2 9.6 9.6" stroke-dasharray="1 4" />
+    </symbol>
+
+    <symbol id="i-star" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M12 3.6l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8L12 3.6Z"
+      />
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M7.2 3.8h2.3l1.2 3.6-1.6 1.3a12.5 12.5 0 0 0 5.7 5.7l1.3-1.6 3.6 1.2v2.3
+           a2.5 2.5 0 0 1-2.7 2.5A16.8 16.8 0 0 1 4.7 6.5a2.5 2.5 0 0 1 2.5-2.7Z"
+      />
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 5.5L19.5 7" />
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m9 4.5-5.5 2v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </symbol>
+
+    <symbol id="i-facebook" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M13.5 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4
+           c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.1v2.8h2.4V21h3Z"
+      />
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+
+    <symbol id="i-youtube" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="2.8" y="5.5" width="18.4" height="13" rx="4" />
+      <path fill="currentColor" stroke="none" d="m10.2 9.2 4.8 2.8-4.8 2.8V9.2Z" />
+    </symbol>
+
+    <symbol id="i-eye" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M2.6 12S6.1 5.9 12 5.9 21.4 12 21.4 12 17.9 18.1 12 18.1 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="2.9" />
+    </symbol>
+
+    <symbol id="i-eye-off" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 12s3-5.2 7.4-5.6c1.3-.1 2.5.2 3.5.7" />
+      <path d="M20 12s-1.2 2-3.2 3.5" />
+      <path d="M9.6 9.7a3.1 3.1 0 0 0 4.4 4.3" />
+      <path d="m4.6 4.6 14.8 14.8" />
+    </symbol>
+
+    <symbol id="i-dashboard" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="3.5" y="13" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="13" width="7.5" height="7.5" rx="2" />
+    </symbol>
+
+    <symbol id="i-list" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M8.5 6h12M8.5 12h12M8.5 18h12" />
+      <path d="M4 6h.01M4 12h.01M4 18h.01" />
+    </symbol>
+
+    <symbol id="i-chart" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 20h16" />
+      <path d="M7 20v-6.5M12 20V6.5M17 20v-9.5" />
+    </symbol>
+
+    <symbol id="i-search" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </symbol>
+
+    <symbol id="i-filter" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 5.5h16l-6.2 7.2v5.6L10.2 20v-7.3L4 5.5Z" />
+    </symbol>
+
+    <symbol id="i-edit" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M14.5 5.5 18 9l-8.6 8.6-4 .9.9-4L14.5 5.5Z"
+      />
+      <path d="m12.8 7.2 3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-trash" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 7h14" />
+      <path d="M9.5 7V5.2A1.7 1.7 0 0 1 11.2 3.5h1.6A1.7 1.7 0 0 1 14.5 5.2V7" />
+      <path d="M7 7l.8 11.2A2 2 0 0 0 9.8 20h4.4a2 2 0 0 0 2-1.8L17 7" />
+      <path d="M10.5 11v5M13.5 11v5" />
+    </symbol>
+
+    <symbol id="i-alert" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M12 4 21 19.5H3L12 4Z"
+      />
+      <path d="M12 10v4.2M12 16.8h.01" />
+    </symbol>
+
+    <symbol id="i-plus" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+  </defs>
+</svg>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-ticket" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.6a2.1 2.1 0 0 1 2.1-2.1h11.8A2.1 2.1 0 0 1 20 8.6v1.8
+           a1.9 1.9 0 0 0 0 3.8v1.8a2.1 2.1 0 0 1-2.1 2.1H6.1A2.1 2.1 0 0 1 4 16
+           v-1.8a1.9 1.9 0 0 0 0-3.8V8.6Z"
+      />
+      <path d="M14.6 7.2v9.6" stroke-dasharray="2.4 2.6" />
+    </symbol>
+
+    <symbol id="i-download" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 4v10.5" />
+      <path d="m7.5 10.5 4.5 4.5 4.5-4.5" />
+      <path d="M4.5 19.5h15" />
+    </symbol>
+  </defs>
+</svg>
+<div class="admin-shell" data-admin-shell>
+  <aside class="admin-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
+    <a class="admin-brand" href="../khach-hang/index.html">
+      <img
+        src="../shared/assets/logo.svg"
+        alt="Vi Vu Việt"
+        width="38"
+        height="38"
+      />
+      <span class="admin-brand-name">Vi Vu <em>Việt</em></span>
+    </a>
+
+    <nav class="admin-nav" aria-label="Màn hình quản trị">
+      <a class="admin-nav-link" href="admin-tong-quan.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
+        Tổng quan
+      </a>
+      <a class="admin-nav-link" href="admin-chuyen.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-list"></use></svg>
+        Quản lý chuyến
+      </a>
+      <a class="admin-nav-link" href="admin-tai-xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+        Quản lý tài xế
+      </a>
+      <a class="admin-nav-link" href="admin-xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
+        Quản lý xe
+      </a>
+      <a class="admin-nav-link" href="admin-tuyen-duong.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        Quản lý tuyến
+      </a>
+      <a class="admin-nav-link" href="admin-don-dat.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
+        Quản lý đơn đặt
+      </a>
+      <a
+        class="admin-nav-link is-active"
+        href="admin-doanh-thu.html"
+        aria-current="page"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg>
+        Doanh thu
+      </a>
+      <a class="admin-nav-link" href="admin-khach-hang.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+        Quản lý khách hàng
+      </a>
+    </nav>
+
+    <div class="admin-side-foot">
+      <span class="admin-user-avatar" aria-hidden="true">PT</span>
+      <span class="admin-user-id">
+        <strong>Phong Trần</strong>
+        <span>Quản trị viên</span>
+      </span>
+      <button
+        class="admin-logout"
+        type="button"
+        data-admin-logout
+        aria-label="Đăng xuất"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="admin-backdrop" id="adminBackdrop" hidden></div>
+
+  <div class="admin-body">
+    <header class="admin-topbar">
+      <button
+        class="admin-menu-btn"
+        id="adminMenuBtn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="adminSidebar"
+        aria-label="Mở menu điều hướng"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
+
+      <p class="admin-topbar-note">Khu vực quản trị — Vi Vu Việt</p>
+
+      <div class="admin-topbar-user">
+        <span class="admin-topbar-avatar" aria-hidden="true">PT</span>
+        <span class="admin-topbar-name">Phong Trần</span>
+      </div>
+    </header>
+
+    <main id="main" class="admin-main">
+<div class="admin-page-head" data-admin-page="admin-doanh-thu">
+  <nav class="admin-crumb" aria-label="Breadcrumb">
+    <a href="#">Tổng quan</a>
+    <span class="admin-crumb-sep" aria-hidden="true">/</span>
+    <span class="admin-crumb-current" aria-current="page">Doanh thu</span>
+  </nav>
+  <h1>Doanh thu</h1>
+  <p>
+    Doanh thu thực thu của kỳ — chỉ tính tiền mặt đã ghi nhận ở các vé
+    <strong>Đã thu</strong>, kèm bảng đối soát đơn giản theo từng chuyến.
+  </p>
+</div>
+<section class="dt-section reveal" id="bo-loc" aria-labelledby="bo-loc-title">
+  <h2 class="sr-only" id="bo-loc-title">Chọn kỳ doanh thu</h2>
+
+  <form class="filter-bar" id="dtFilter" action="#">
+    <div class="filter-field">
+      <label for="dtPeriod">Kỳ thống kê</label>
+      <div class="filter-control filter-control--select">
+        <select id="dtPeriod" name="period">
+          <option>Hôm nay</option>
+          <option>Tuần này</option>
+          <option selected>Tháng này</option>
+          <option>Tháng trước</option>
+          <option>Tuỳ chọn</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-field">
+      <label for="dtFrom">Từ ngày</label>
+      <div class="filter-control">
+        <input type="date" id="dtFrom" name="from" value="2026-10-01" />
+      </div>
+    </div>
+
+    <div class="filter-field">
+      <label for="dtTo">Đến ngày</label>
+      <div class="filter-control">
+        <input type="date" id="dtTo" name="to" value="2026-10-31" />
+      </div>
+    </div>
+
+    <div class="filter-field filter-field--wide">
+      <label for="dtRoute">Tuyến</label>
+      <div class="filter-control filter-control--select">
+        <select id="dtRoute" name="route">
+          <option selected>Tất cả tuyến</option>
+          <option>Hà Nội → Hạ Long</option>
+          <option>Hà Nội → Ninh Bình</option>
+          <option>Hà Nội → Sapa</option>
+          <option>Hà Nội → Phong Nha</option>
+          <option>Hà Nội → Hải Phòng</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="dtExport">
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-download"></use>
+        </svg>
+        Xuất CSV
+      </button>
+    </div>
+
+    <p class="filter-status" id="dtExportStatus" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<section class="dt-section reveal" id="tong-quan-ky" aria-labelledby="kpi-title">
+  <h2 class="sr-only" id="kpi-title">Chỉ số kỳ</h2>
+
+  <div class="stat-grid">
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-label">Doanh thu thực thu</span>
+        <span class="stat-icon stat-icon--sky">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+        </span>
+      </div>
+      <p class="stat-value">46.750.000đ</p>
+      <p class="stat-sub">
+        <span class="stat-delta stat-delta--up">
+          <svg class="icon" aria-hidden="true" width="13" height="13">
+            <use href="#i-arrow-up-right"></use>
+          </svg>
+          +8,4%
+        </span>
+        so với tháng trước
+      </p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-label">Lãi gộp tạm tính</span>
+        <span class="stat-icon stat-icon--green">
+          <svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg>
+        </span>
+      </div>
+      <p class="stat-value">24.850.000đ</p>
+      <p class="stat-sub">Đã trừ tiền công tài xế 21.900.000đ</p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-label">Vé đã thu</span>
+        <span class="stat-icon stat-icon--navy">
+          <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
+        </span>
+      </div>
+      <p class="stat-value">214</p>
+      <p class="stat-sub">Trên 258 vé đã đặt · chiếm 83%</p>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-top">
+        <span class="stat-label">Chuyến hoàn thành</span>
+        <span class="stat-icon stat-icon--orange">
+          <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
+        </span>
+      </div>
+      <p class="stat-value">28</p>
+      <p class="stat-sub">Trên 30 chuyến đã khởi hành</p>
+    </article>
+  </div>
+
+  <div class="kpi-strip" role="list" aria-label="Số liệu bổ sung của kỳ">
+    <div class="kpi-cell" role="listitem">
+      <span class="kpi-icon kpi-icon--orange">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </span>
+      <div>
+        <p class="kpi-label">Vé đã hủy</p>
+        <p class="kpi-value">17</p>
+      </div>
+    </div>
+    <div class="kpi-cell" role="listitem">
+      <span class="kpi-icon kpi-icon--navy">
+        <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+      </span>
+      <div>
+        <p class="kpi-label">Không lên xe</p>
+        <p class="kpi-value">9</p>
+      </div>
+    </div>
+    <div class="kpi-cell" role="listitem">
+      <span class="kpi-icon kpi-icon--sky">
+        <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+      </span>
+      <div>
+        <p class="kpi-label">Tiền công tài xế</p>
+        <p class="kpi-value">21.900.000đ</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dt-section reveal" id="bieu-do" aria-labelledby="chart-title">
+  <div class="dt-grid">
+    <article class="admin-card">
+      <div class="admin-card-head">
+        <div>
+          <h2 id="chart-title">Doanh thu theo ngày</h2>
+          <p>Đơn vị: triệu đồng · kỳ 01–31/10/2026</p>
+        </div>
+        <span class="badge badge--green">
+          <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+          Chỉ vé Đã thu
+        </span>
+      </div>
+      <div class="admin-card-body">
+        <figure class="dt-chart">
+          <svg
+            viewBox="0 0 720 250"
+            role="img"
+            aria-label="Doanh thu theo ngày tháng 10/2026, xu hướng tăng nhẹ"
+          >
+            <title>Doanh thu thực thu theo ngày trong tháng 10/2026</title>
+            <g class="chart-grid" aria-hidden="true">
+              <line x1="48" y1="20" x2="704" y2="20"></line>
+              <line x1="48" y1="83" x2="704" y2="83"></line>
+              <line x1="48" y1="145" x2="704" y2="145"></line>
+              <line x1="48" y1="208" x2="704" y2="208"></line>
+            </g>
+            <g class="chart-axis" aria-hidden="true">
+              <text x="40" y="24" text-anchor="end">3</text>
+              <text x="40" y="87" text-anchor="end">2</text>
+              <text x="40" y="149" text-anchor="end">1</text>
+              <text x="40" y="212" text-anchor="end">0</text>
+              <text x="48" y="232" text-anchor="middle">01/10</text>
+              <text x="121" y="232" text-anchor="middle">04/10</text>
+              <text x="194" y="232" text-anchor="middle">07/10</text>
+              <text x="267" y="232" text-anchor="middle">10/10</text>
+              <text x="340" y="232" text-anchor="middle">13/10</text>
+              <text x="412" y="232" text-anchor="middle">16/10</text>
+              <text x="485" y="232" text-anchor="middle">19/10</text>
+              <text x="558" y="232" text-anchor="middle">22/10</text>
+              <text x="631" y="232" text-anchor="middle">25/10</text>
+              <text x="704" y="232" text-anchor="middle">28/10</text>
+            </g>
+            <path
+              class="chart-area"
+              d="M48,136 L121,115 L194,88 L267,110 L340,68
+                 L412,97 L485,59 L558,91 L631,71 L704,50
+                 L704,208 L48,208 Z"
+            ></path>
+            <path
+              class="chart-line"
+              d="M48,136 L121,115 L194,88 L267,110 L340,68
+                 L412,97 L485,59 L558,91 L631,71 L704,50"
+            ></path>
+            <g class="chart-dots" aria-hidden="true">
+              <circle cx="48" cy="136" r="3.5"></circle>
+              <circle cx="121" cy="115" r="3.5"></circle>
+              <circle cx="194" cy="88" r="3.5"></circle>
+              <circle cx="267" cy="110" r="3.5"></circle>
+              <circle cx="340" cy="68" r="3.5"></circle>
+              <circle cx="412" cy="97" r="3.5"></circle>
+              <circle cx="485" cy="59" r="3.5"></circle>
+              <circle cx="558" cy="91" r="3.5"></circle>
+              <circle cx="631" cy="71" r="3.5"></circle>
+              <circle cx="704" cy="50" r="3.5"></circle>
+            </g>
+          </svg>
+          <figcaption class="sr-only">
+            Doanh thu ngày cao nhất 2,52 triệu đồng (28/10), thấp nhất 1,15
+            triệu đồng (01/10).
+          </figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="admin-card">
+      <div class="admin-card-head">
+        <div>
+          <h2 id="route-title">Doanh thu theo tuyến</h2>
+          <p>Tổng tiền thực thu trong kỳ</p>
+        </div>
+      </div>
+      <div class="admin-card-body">
+        <ul class="route-list" aria-label="Doanh thu theo từng tuyến">
+          <li class="route-row">
+            <span class="route-name">Hà Nội → Hạ Long</span>
+            <span class="route-track" aria-hidden="true">
+              <span class="route-fill" style="width: 100%"></span>
+            </span>
+            <span class="route-val">14.200.000đ</span>
+          </li>
+          <li class="route-row">
+            <span class="route-name">Hà Nội → Ninh Bình</span>
+            <span class="route-track" aria-hidden="true">
+              <span class="route-fill" style="width: 83%"></span>
+            </span>
+            <span class="route-val">11.850.000đ</span>
+          </li>
+          <li class="route-row">
+            <span class="route-name">Hà Nội → Sapa</span>
+            <span class="route-track" aria-hidden="true">
+              <span class="route-fill" style="width: 66%"></span>
+            </span>
+            <span class="route-val">9.400.000đ</span>
+          </li>
+          <li class="route-row">
+            <span class="route-name">Hà Nội → Phong Nha</span>
+            <span class="route-track" aria-hidden="true">
+              <span class="route-fill" style="width: 44%"></span>
+            </span>
+            <span class="route-val">6.300.000đ</span>
+          </li>
+          <li class="route-row">
+            <span class="route-name">Hà Nội → Hải Phòng</span>
+            <span class="route-track" aria-hidden="true">
+              <span class="route-fill" style="width: 35%"></span>
+            </span>
+            <span class="route-val">5.000.000đ</span>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="dt-section reveal" id="doi-soat" aria-labelledby="recon-title">
+  <div class="admin-card">
+    <div class="admin-card-head">
+      <div>
+        <h2 id="recon-title">Đối soát theo chuyến</h2>
+        <p>
+          Chênh lệch = tiền mặt thực thu − (số vé đã thu × giá vé) ·
+          6 chuyến gần nhất
+        </p>
+      </div>
+      <span class="badge badge--orange">
+        <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+        2 chuyến lệch
+      </span>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table" id="reconTable">
+        <caption class="sr-only">
+          Bảng đối soát doanh thu theo chuyến trong tháng 10/2026
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Chuyến</th>
+            <th scope="col">Ngày</th>
+            <th scope="col" class="num">Vé đặt</th>
+            <th scope="col" class="num">Vé đã thu</th>
+            <th scope="col" class="num">Tiền mặt đã thu</th>
+            <th scope="col" class="num">Tiền công</th>
+            <th scope="col">Chênh lệch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="cell-code">CC-1042</span>
+              <span class="cell-sub">Hà Nội → Hạ Long</span>
+            </td>
+            <td>30/10</td>
+            <td class="num" data-value="9">9</td>
+            <td class="num" data-value="8">8</td>
+            <td class="num" data-value="7200000">7.200.000đ</td>
+            <td class="num" data-value="900000">900.000đ</td>
+            <td><span class="badge badge--green">Khớp</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cell-code">CC-1038</span>
+              <span class="cell-sub">Hà Nội → Ninh Bình</span>
+            </td>
+            <td>30/10</td>
+            <td class="num" data-value="7">7</td>
+            <td class="num" data-value="7">7</td>
+            <td class="num" data-value="4900000">4.900.000đ</td>
+            <td class="num" data-value="700000">700.000đ</td>
+            <td><span class="badge badge--green">Khớp</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cell-code">CC-1035</span>
+              <span class="cell-sub">Hà Nội → Sapa</span>
+            </td>
+            <td>29/10</td>
+            <td class="num" data-value="8">8</td>
+            <td class="num" data-value="7">7</td>
+            <td class="num" data-value="4450000">4.450.000đ</td>
+            <td class="num" data-value="650000">650.000đ</td>
+            <td><span class="badge badge--orange">−100.000đ</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cell-code">CC-1031</span>
+              <span class="cell-sub">Hà Nội → Phong Nha</span>
+            </td>
+            <td>29/10</td>
+            <td class="num" data-value="6">6</td>
+            <td class="num" data-value="6">6</td>
+            <td class="num" data-value="3600000">3.600.000đ</td>
+            <td class="num" data-value="600000">600.000đ</td>
+            <td><span class="badge badge--green">Khớp</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cell-code">CC-1027</span>
+              <span class="cell-sub">Hà Nội → Hạ Long</span>
+            </td>
+            <td>28/10</td>
+            <td class="num" data-value="11">11</td>
+            <td class="num" data-value="10">10</td>
+            <td class="num" data-value="9000000">9.000.000đ</td>
+            <td class="num" data-value="900000">900.000đ</td>
+            <td><span class="badge badge--green">Khớp</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cell-code">CC-1024</span>
+              <span class="cell-sub">Hà Nội → Hải Phòng</span>
+            </td>
+            <td>28/10</td>
+            <td class="num" data-value="5">5</td>
+            <td class="num" data-value="4">4</td>
+            <td class="num" data-value="1600000">1.600.000đ</td>
+            <td class="num" data-value="500000">500.000đ</td>
+            <td><span class="badge badge--orange">−400.000đ</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Tổng 6 chuyến</td>
+            <td>—</td>
+            <td class="num" data-value="46">46</td>
+            <td class="num" data-value="42">42</td>
+            <td class="num" data-value="30750000">30.750.000đ</td>
+            <td class="num" data-value="4250000">4.250.000đ</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+    </main>
+  </div>
+</div>
+
+<script src="../admin/screens/admin-doanh-thu/js/shell.js" defer></script>
+<script src="../admin/screens/admin-doanh-thu/js/doanh-thu.js" defer></script>
+<script src="../shared/js/reveal.js" defer></script>
+</body>
+</html>

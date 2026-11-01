@@ -1,0 +1,39 @@
+{
+  "output": "admin/xe.html",
+  "base": "../",
+  "title": "Quản lý xe — Vi Vu Việt",
+  "description": "Danh mục phương tiện Vi Vu Việt: biển số, sức chứa, tài xế phụ trách, tình trạng vận hành và hạn giấy tờ.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/css/admin-shell",
+    "admin/css/modal",
+    "admin/screens/admin-xe/css/xe",
+    "admin/screens/admin-xe/css/xe-table",
+    "admin/screens/admin-xe/css/xe-modal",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/js/admin-shell",
+    "admin/js/modal",
+    "admin/screens/admin-xe/js/xe",
+    "admin/screens/admin-xe/js/xe-form",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/components/admin-sprite.html",
+    "admin/components/admin-shell.html",
+    "admin/screens/admin-xe/partials/xe-head.html",
+    "admin/screens/admin-xe/partials/xe-filters.html",
+    "admin/screens/admin-xe/partials/xe-table.html",
+    "admin/screens/admin-xe/partials/xe-rows.html",
+    "admin/screens/admin-xe/partials/xe-modals.html",
+    "admin/components/admin-shell-end.html"
+  ]
+}

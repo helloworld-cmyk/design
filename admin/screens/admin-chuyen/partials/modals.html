@@ -1,0 +1,227 @@
+      <div
+        class="modal"
+        id="modalChuyen"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalChuyenTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--wide">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="modalChuyenTitle">Tạo chuyến</h2>
+              <p class="modal-sub">
+                Hệ thống kiểm tra trùng lịch xe/tài xế và sức chứa khi lưu.
+              </p>
+            </div>
+            <button
+              type="button" class="modal-close" data-modal-close aria-label="Đóng"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <form id="formChuyen" class="modal-body" novalidate>
+            <div class="form-grid">
+              <div class="field span-2">
+                <label for="fTuyenChon">Tuyến *</label>
+                <div class="field-control select-wrap">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-route"></use>
+                  </svg>
+                  <select id="fTuyenChon" name="tuyen" required>
+                    <option value="">— Chọn tuyến đang hoạt động —</option>
+                    <option value="hn-hp">Hà Nội → Hải Phòng · 105 km · 1g30</option>
+                    <option value="hn-nd">Hà Nội → Nam Định · 90 km · 1g30</option>
+                    <option value="hn-qnam">Hà Nội → Quảng Ninh · 130 km · 2g00</option>
+                    <option value="hn-tb">Hà Nội → Thái Bình · 110 km · 1g45</option>
+                    <option value="hn-hd">Hà Nội → Hải Dương · 60 km · 1g00</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="fNgayDi">Ngày khởi hành *</label>
+                <div class="field-control">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-calendar"></use>
+                  </svg>
+                  <input
+                    id="fNgayDi" name="ngay" type="date" required value="2026-11-01"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label for="fGioDi">Giờ khởi hành *</label>
+                <div class="field-control">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-clock"></use>
+                  </svg>
+                  <input
+                    id="fGioDi" name="gio" type="time" required value="07:30"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label for="fXeChon">Xe *</label>
+                <div class="field-control select-wrap">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-car"></use>
+                  </svg>
+                  <select id="fXeChon" name="xe" required>
+                    <option value="">— Chọn xe đang hoạt động —</option>
+                    <option value="30A-123.45">30A-123.45 · 16 ghế · Hoạt động</option>
+                    <option value="29B-678.90">29B-678.90 · 7 ghế · Hoạt động</option>
+                    <option value="29A-456.78">29A-456.78 · 7 ghế · Hoạt động</option>
+                    <option value="30B-890.12">30B-890.12 · 16 ghế · Bảo trì</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="fTaiXeChon">Tài xế *</label>
+                <div class="field-control select-wrap">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-user"></use>
+                  </svg>
+                  <select id="fTaiXeChon" name="taixe" required>
+                    <option value="">— Chọn tài xế đang hoạt động —</option>
+                    <option value="tran-van-binh">Trần Văn Bình · B2</option>
+                    <option value="nguyen-duc-long">Nguyễn Đức Long · B2</option>
+                    <option value="pham-thi-hoa">Phạm Thị Hoa · B2</option>
+                    <option value="vu-dinh-khoa">Vũ Đình Khoa · B2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="fGheMo">Số ghế mở bán *</label>
+                <div class="field-control">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-users"></use>
+                  </svg>
+                  <input
+                    id="fGheMo" name="ghe" type="number" min="1" max="16"
+                    inputmode="numeric" placeholder="Không vượt sức chứa xe" required
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label for="fGiaVe">Giá vé mỗi ghế (đ) *</label>
+                <div class="field-control">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-wallet"></use>
+                  </svg>
+                  <input
+                    id="fGiaVe" name="gia" type="number" min="0" step="1000"
+                    inputmode="numeric" placeholder="Ví dụ: 180000" required
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label for="fCongTx">Tiền công tài xế (đ)</label>
+                <div class="field-control">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-wallet"></use>
+                  </svg>
+                  <input
+                    id="fCongTx" name="cong" type="number" min="0" step="1000"
+                    inputmode="numeric" placeholder="Ví dụ: 400000"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label for="fGhiChuTx">Ghi chú cho tài xế</label>
+                <div class="field-control">
+                  <svg class="field-icon" aria-hidden="true">
+                    <use href="#i-map"></use>
+                  </svg>
+                  <input
+                    id="fGhiChuTx" name="ghichu" type="text"
+                    placeholder="Điểm đón đặc biệt, dừng nghỉ…"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-status" id="formChuyenStatus" role="status" aria-live="polite"></div>
+            <p class="form-note">
+              <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+              Giá vé và tiền công dùng để tính lãi gộp ở màn Doanh thu.
+            </p>
+          </form>
+
+          <footer class="modal-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
+            <button class="btn btn-primary" type="submit" form="formChuyen">
+              Lưu chuyến
+            </button>
+          </footer>
+        </div>
+      </div>
+
+      <div
+        class="modal"
+        id="modalHuy"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalHuyTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="modalHuyTitle">Hủy chuyến</h2>
+              <p class="modal-sub">Hành động này không thể hoàn tác.</p>
+            </div>
+            <button
+              type="button" class="modal-close" data-modal-close aria-label="Đóng"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <form id="formHuy" class="modal-body" novalidate>
+            <p class="huy-lead">
+              Hủy chuyến <strong id="huyMa">VC-1043</strong>. <span id="huyVe">5</span>
+              vé đã đặt sẽ chuyển sang <strong>Đã hủy</strong> — không phát sinh
+              hoàn tiền; các vé này vào danh sách xử lý ở Quản lý đơn đặt.
+            </p>
+            <div class="modal-note modal-note--orange">
+              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              <span>
+                Chỉ hủy được chuyến chưa bắt đầu. Chuyến đang thực hiện
+                xử lý qua báo sự cố, không hủy trực tiếp.
+              </span>
+            </div>
+            <div class="field">
+              <label for="fLyDo">Lý do hủy *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+                <select id="fLyDo" name="lydo" required>
+                  <option value="">— Chọn lý do —</option>
+                  <option value="thoi-tiet">Thời tiết xấu</option>
+                  <option value="xe-hong">Xe sự cố, không kịp thay</option>
+                  <option value="dieu-hanh">Yêu cầu điều hành</option>
+                  <option value="khac">Lý do khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fMoTaHuy">Mô tả thêm</label>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <textarea
+                  id="fMoTaHuy" name="mota" rows="3"
+                  placeholder="Ghi rõ nguyên nhân để đối soát với khách"
+                ></textarea>
+              </div>
+            </div>
+            <div class="form-status" id="formHuyStatus" role="status" aria-live="polite"></div>
+          </form>
+
+          <footer class="modal-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Giữ chuyến</button>
+            <button class="btn btn-danger" type="submit" form="formHuy">
+              Xác nhận hủy chuyến
+            </button>
+          </footer>
+        </div>
+      </div>

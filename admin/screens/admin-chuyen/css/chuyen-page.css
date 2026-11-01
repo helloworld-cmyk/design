@@ -1,0 +1,176 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: đầu màn, tabs trạng thái,
+   thanh lọc. Chỉ dùng token ở shared/css/tokens.css.
+   ========================================================= */
+
+.chuyen-page {
+  display: block;
+}
+
+/* ---------- Đầu màn ---------- */
+
+.admin-head {
+  margin-bottom: 22px;
+}
+
+.admin-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.admin-title {
+  margin-top: 6px;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--ink);
+}
+
+.admin-lead {
+  max-width: 660px;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+.admin-head--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-head-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- Thanh công cụ (tabs + lọc) ---------- */
+
+.chuyen-toolbar {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding: 16px 20px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--slate-600);
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.tab:hover {
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.tab.is-active {
+  background: var(--sky-700);
+  color: #fff;
+}
+
+.tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--slate-200);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--slate-600);
+}
+
+.tab.is-active .tab-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 1.3fr) repeat(3, minmax(150px, 0.9fr)) auto;
+  align-items: end;
+  gap: 12px;
+}
+
+.filter-search {
+  min-width: 0;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1180px) {
+  .filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-search,
+  .filter-actions {
+    grid-column: 1 / -1;
+  }
+
+  .filter-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-head--row {
+    align-items: flex-start;
+  }
+
+  .admin-head-actions {
+    width: 100%;
+  }
+
+  .admin-head-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .chuyen-toolbar {
+    padding: 14px 14px 16px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}

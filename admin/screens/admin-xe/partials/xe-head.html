@@ -1,0 +1,67 @@
+        <div class="admin-head reveal">
+          <div class="admin-head-text">
+            <span class="admin-eyebrow">Khu quản trị · Đội xe</span>
+            <h1 class="admin-title" id="xePageTitle">Quản lý xe</h1>
+            <p class="admin-lead">
+              Danh mục phương tiện dùng để phân công chuyến: sức chứa, tình
+              trạng và hạn giấy tờ. Xe đã gắn chuyến chỉ có thể ngưng sử dụng.
+            </p>
+          </div>
+          <button class="btn btn-primary" type="button" data-modal-open="vehicleModal"
+            data-mode="add">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-plus"></use>
+            </svg>
+            Thêm xe
+          </button>
+        </div>
+
+        <section class="xe-stats" id="xeStats" aria-label="Thống kê đội xe">
+          <article class="stat-card reveal">
+            <span class="stat-icon stat-icon--sky">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-car"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>6</strong>
+              <span>Tổng số xe</span>
+            </div>
+          </article>
+
+          <article class="stat-card reveal" style="--reveal-delay: 0.06s">
+            <span class="stat-icon stat-icon--green">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-check-circle"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>4</strong>
+              <span>Đang hoạt động</span>
+            </div>
+          </article>
+
+          <article class="stat-card reveal" style="--reveal-delay: 0.12s">
+            <span class="stat-icon stat-icon--orange">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-alert"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>1</strong>
+              <span>Đang bảo trì</span>
+            </div>
+          </article>
+
+          <article class="stat-card reveal" style="--reveal-delay: 0.18s">
+            <span class="stat-icon stat-icon--orange">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-clock"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>2</strong>
+              <span>Giấy tờ sắp hết hạn</span>
+            </div>
+          </article>
+        </section>

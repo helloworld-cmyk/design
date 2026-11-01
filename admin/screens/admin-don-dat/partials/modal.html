@@ -1,0 +1,59 @@
+<div class="panel-scrim" id="panelScrim" hidden></div>
+
+<div class="modal" id="cancelModal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
+  <div class="modal-card">
+    <header class="modal-head">
+      <div class="drawer-head-main">
+        <p class="drawer-eyebrow">Xử lý đơn đặt</p>
+        <h2 class="drawer-title" id="mTitle">Hủy vé VV-0000-0000</h2>
+      </div>
+      <button
+        type="button"
+        class="panel-close js-modal-close"
+        aria-label="Đóng hộp thoại hủy vé"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+
+    <div class="modal-body">
+      <div class="warn-block" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+        <p>
+          Vé sẽ chuyển sang <strong>Đã hủy</strong> và khách nhận thông báo trong
+          “Chuyến của tôi”. Vé chưa thu tiền <strong>không phát sinh hoàn tiền</strong>;
+          ghế được trả lại cho chuyến.
+        </p>
+      </div>
+
+      <div class="field" id="mReasonField">
+        <label for="mReason">Lý do hủy <span aria-hidden="true">*</span></label>
+        <div class="field-control select-wrap">
+          <select id="mReason" name="mReason" required>
+            <option value="">Chọn lý do hủy...</option>
+            <option>Khách yêu cầu hủy (đã quá hạn tự hủy)</option>
+            <option>Không liên hệ được khách</option>
+            <option>Lý do vận hành</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mNote">Ghi chú thêm (tuỳ chọn)</label>
+        <textarea
+          id="mNote"
+          name="mNote"
+          rows="3"
+          placeholder="Ví dụ: khách gọi điện hủy lúc 08:30, đã báo lại tài xế..."
+        ></textarea>
+      </div>
+
+      <p class="form-status" id="mStatus" role="status" aria-live="polite"></p>
+    </div>
+
+    <footer class="modal-foot">
+      <button type="button" class="btn btn-ghost js-modal-close">Giữ vé</button>
+      <button type="button" class="btn btn-primary" id="mConfirm">Xác nhận hủy vé</button>
+    </footer>
+  </div>
+</div>

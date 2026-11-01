@@ -1,0 +1,116 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: mở rộng modal (ghi chú, hủy
+   chuyến, nút phá hủy), textarea và khoá cuộn nền.
+   ========================================================= */
+
+body.admin-modal-open {
+  overflow: hidden;
+}
+
+/* ---------- Textarea (booking.css chỉ style input/select) ---------- */
+
+.field textarea {
+  width: 100%;
+  min-height: 74px;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafcfe;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  resize: vertical;
+  color-scheme: light;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.field textarea::placeholder {
+  font-weight: 400;
+  color: var(--slate-400);
+}
+
+.field textarea:hover {
+  border-color: var(--slate-300);
+}
+
+.field textarea:focus {
+  outline: none;
+  border-color: var(--sky-500);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.13);
+}
+
+/* ---------- Nút phá hủy (biến thể .btn, token đỏ) ---------- */
+
+.btn-danger {
+  background: var(--red-600);
+  color: #fff;
+  box-shadow: 0 12px 26px -14px rgba(220, 38, 38, 0.85);
+}
+
+.btn-danger:hover {
+  transform: translateY(-1px);
+}
+
+.btn-danger:active {
+  transform: translateY(0);
+}
+
+.btn-danger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Nội dung modal hủy chuyến ---------- */
+
+.huy-lead {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+.huy-lead strong {
+  color: var(--ink);
+}
+
+.modal-note {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--sky-100);
+  border-radius: 12px;
+  background: var(--sky-50);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--slate-700);
+}
+
+.modal-note .icon {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  color: var(--sky-600);
+}
+
+.modal-note--orange {
+  border-color: var(--orange-100);
+  background: var(--orange-50);
+}
+
+.modal-note--orange .icon {
+  color: var(--orange-600);
+}
+
+#formChuyen .form-note {
+  margin-top: 0;
+}
+
+@media (max-width: 560px) {
+  .modal-foot .btn {
+    flex: 1 1 auto;
+  }
+}

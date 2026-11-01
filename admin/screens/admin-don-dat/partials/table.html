@@ -1,0 +1,179 @@
+<section class="orders-panel reveal" id="ordersPanel" aria-label="Danh sách đơn đặt">
+  <div class="orders-table-wrap">
+    <table class="orders-table" id="ordersTable">
+      <caption class="sr-only">
+        Danh sách vé theo chuyến — kèm trạng thái vé và trạng thái thu tiền mặt
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Mã vé</th>
+          <th scope="col">Khách</th>
+          <th scope="col">Chuyến</th>
+          <th scope="col">Ghế</th>
+          <th scope="col">Vé</th>
+          <th scope="col">Thanh toán</th>
+          <th scope="col" class="th-money">Số tiền</th>
+          <th scope="col" class="th-act">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="ordersBody">
+        <tr data-ve="VV-3110-0128" data-ngay="31/10/2026" data-ttve="Đã đặt" data-tttt="Chưa thu"
+          data-khach="Nguyễn Thị Lan" data-sdt="0903 221 154" data-ghe="A1, A2" data-tien="360.000đ"
+          data-chuyen="C-3110-01" data-tuyen="Hà Nội → Ninh Bình" data-taixe="Nguyễn Văn Minh"
+          data-xe="29A-123.45 · 16 chỗ" data-gio="07:30" data-don="Bến xe Giáp Bát"
+          data-tra="Bến xe Ninh Bình" data-dat="31/10 06:02">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0128</strong>
+            <span class="t-sub">Đặt 31/10 06:02</span></td>
+          <td data-label="Khách"><strong class="t-name">Nguyễn Thị Lan</strong>
+            <span class="t-sub">0903 221 154</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-01</strong>
+            <span class="t-sub">Hà Nội → Ninh Bình</span></td>
+          <td data-label="Ghế"><span class="seat-chip">A1, A2</span></td>
+          <td data-label="Vé"><span class="status-badge sb--sky">Đã đặt</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--orange">Chưa thu</span></td>
+          <td data-label="Số tiền" class="t-money">360.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3110-0127" data-ngay="31/10/2026" data-ttve="Đã đón" data-tttt="Đã thu"
+          data-khach="Phạm Văn Đức" data-sdt="0912 003 884" data-ghe="B3" data-tien="220.000đ"
+          data-chuyen="C-3110-02" data-tuyen="Hà Nội → Hạ Long" data-taixe="Trần Quốc Tuấn"
+          data-xe="30K-456.78 · 7 chỗ" data-gio="08:00" data-don="Bến xe Gia Lâm"
+          data-tra="Bến xe Bãi Cháy" data-dat="30/10 20:15">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0127</strong>
+            <span class="t-sub">Đặt 30/10 20:15</span></td>
+          <td data-label="Khách"><strong class="t-name">Phạm Văn Đức</strong>
+            <span class="t-sub">0912 003 884</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-02</strong>
+            <span class="t-sub">Hà Nội → Hạ Long</span></td>
+          <td data-label="Ghế"><span class="seat-chip">B3</span></td>
+          <td data-label="Vé"><span class="status-badge sb--orange">Đã đón</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--green">Đã thu</span></td>
+          <td data-label="Số tiền" class="t-money">220.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3110-0126" data-ngay="31/10/2026" data-ttve="Đã đón" data-tttt="Chưa thu"
+          data-khach="Lê Thu Trang" data-sdt="0977 654 321" data-ghe="A5" data-tien="180.000đ"
+          data-chuyen="C-3110-01" data-tuyen="Hà Nội → Ninh Bình" data-taixe="Nguyễn Văn Minh"
+          data-xe="29A-123.45 · 16 chỗ" data-gio="07:30" data-don="Bến xe Giáp Bát"
+          data-tra="Bến xe Ninh Bình" data-dat="30/10 18:40">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0126</strong>
+            <span class="t-sub">Đặt 30/10 18:40</span></td>
+          <td data-label="Khách"><strong class="t-name">Lê Thu Trang</strong>
+            <span class="t-sub">0977 654 321</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-01</strong>
+            <span class="t-sub">Hà Nội → Ninh Bình</span></td>
+          <td data-label="Ghế"><span class="seat-chip">A5</span></td>
+          <td data-label="Vé"><span class="status-badge sb--orange">Đã đón</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--orange">Chưa thu</span></td>
+          <td data-label="Số tiền" class="t-money">180.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3110-0125" data-ngay="31/10/2026" data-ttve="Đã đón" data-tttt="Đã thu"
+          data-khach="Đỗ Minh Quân" data-sdt="0908 112 233" data-ghe="B1, B2" data-tien="300.000đ"
+          data-chuyen="C-3110-03" data-tuyen="Hà Nội → Thái Nguyên" data-taixe="Lê Hoàng Nam"
+          data-xe="30F-889.12 · 16 chỗ" data-gio="09:15" data-don="Bến xe Mỹ Đình"
+          data-tra="Bến xe Thái Nguyên" data-dat="30/10 21:05">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0125</strong>
+            <span class="t-sub">Đặt 30/10 21:05</span></td>
+          <td data-label="Khách"><strong class="t-name">Đỗ Minh Quân</strong>
+            <span class="t-sub">0908 112 233</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-03</strong>
+            <span class="t-sub">Hà Nội → Thái Nguyên</span></td>
+          <td data-label="Ghế"><span class="seat-chip">B1, B2</span></td>
+          <td data-label="Vé"><span class="status-badge sb--orange">Đã đón</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--green">Đã thu</span></td>
+          <td data-label="Số tiền" class="t-money">300.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3110-0124" data-ngay="31/10/2026" data-ttve="Hoàn thành" data-tttt="Đã thu"
+          data-khach="Vũ Hải Yến" data-sdt="0967 445 566" data-ghe="A2" data-tien="220.000đ"
+          data-chuyen="C-3110-02" data-tuyen="Hà Nội → Hạ Long" data-taixe="Trần Quốc Tuấn"
+          data-xe="30K-456.78 · 7 chỗ" data-gio="08:00" data-don="Bến xe Gia Lâm"
+          data-tra="Bến xe Bãi Cháy" data-dat="29/10 15:22">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0124</strong>
+            <span class="t-sub">Đặt 29/10 15:22</span></td>
+          <td data-label="Khách"><strong class="t-name">Vũ Hải Yến</strong>
+            <span class="t-sub">0967 445 566</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-02</strong>
+            <span class="t-sub">Hà Nội → Hạ Long</span></td>
+          <td data-label="Ghế"><span class="seat-chip">A2</span></td>
+          <td data-label="Vé"><span class="status-badge sb--green">Hoàn thành</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--green">Đã thu</span></td>
+          <td data-label="Số tiền" class="t-money">220.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3110-0123" data-ngay="31/10/2026" data-ttve="Hoàn thành" data-tttt="Đã thu"
+          data-khach="Hoàng Gia Bảo" data-sdt="0932 778 899" data-ghe="A3, A4" data-tien="360.000đ"
+          data-chuyen="C-3110-01" data-tuyen="Hà Nội → Ninh Bình" data-taixe="Nguyễn Văn Minh"
+          data-xe="29A-123.45 · 16 chỗ" data-gio="07:30" data-don="Bến xe Giáp Bát"
+          data-tra="Bến xe Ninh Bình" data-dat="28/10 09:14">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0123</strong>
+            <span class="t-sub">Đặt 28/10 09:14</span></td>
+          <td data-label="Khách"><strong class="t-name">Hoàng Gia Bảo</strong>
+            <span class="t-sub">0932 778 899</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-01</strong>
+            <span class="t-sub">Hà Nội → Ninh Bình</span></td>
+          <td data-label="Ghế"><span class="seat-chip">A3, A4</span></td>
+          <td data-label="Vé"><span class="status-badge sb--green">Hoàn thành</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--green">Đã thu</span></td>
+          <td data-label="Số tiền" class="t-money">360.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3110-0122" data-ngay="31/10/2026" data-ttve="Không lên xe"
+          data-tttt="Chưa thu"
+          data-khach="Ngô Phương Anh" data-sdt="0911 227 788" data-ghe="B1" data-tien="220.000đ"
+          data-chuyen="C-3110-02" data-tuyen="Hà Nội → Hạ Long" data-taixe="Trần Quốc Tuấn"
+          data-xe="30K-456.78 · 7 chỗ" data-gio="08:00" data-don="Bến xe Gia Lâm"
+          data-tra="Bến xe Bãi Cháy" data-dat="30/10 12:31">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3110-0122</strong>
+            <span class="t-sub">Đặt 30/10 12:31</span></td>
+          <td data-label="Khách"><strong class="t-name">Ngô Phương Anh</strong>
+            <span class="t-sub">0911 227 788</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3110-02</strong>
+            <span class="t-sub">Hà Nội → Hạ Long</span></td>
+          <td data-label="Ghế"><span class="seat-chip">B1</span></td>
+          <td data-label="Vé"><span class="status-badge sb--slate">Không lên xe</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--orange">Chưa thu</span></td>
+          <td data-label="Số tiền" class="t-money">220.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>
+
+        <tr data-ve="VV-3010-0121" data-ngay="30/10/2026" data-ttve="Hoàn thành" data-tttt="Đã thu"
+          data-khach="Đinh Bá Thành" data-sdt="0904 556 677" data-ghe="C2" data-tien="180.000đ"
+          data-chuyen="C-3010-01" data-tuyen="Hà Nội → Ninh Bình" data-taixe="Nguyễn Văn Minh"
+          data-xe="29A-123.45 · 16 chỗ" data-gio="07:30" data-don="Bến xe Giáp Bát"
+          data-tra="Bến xe Ninh Bình" data-dat="29/10 10:08">
+          <td data-label="Mã vé"><strong class="t-ve">VV-3010-0121</strong>
+            <span class="t-sub">Đặt 29/10 10:08</span></td>
+          <td data-label="Khách"><strong class="t-name">Đinh Bá Thành</strong>
+            <span class="t-sub">0904 556 677</span></td>
+          <td data-label="Chuyến"><strong class="t-code">C-3010-01</strong>
+            <span class="t-sub">Hà Nội → Ninh Bình</span></td>
+          <td data-label="Ghế"><span class="seat-chip">C2</span></td>
+          <td data-label="Vé"><span class="status-badge sb--green">Hoàn thành</span></td>
+          <td data-label="Thanh toán"><span class="status-badge sb--green">Đã thu</span></td>
+          <td data-label="Số tiền" class="t-money">180.000đ</td>
+          <td data-label="Thao tác" class="t-act">
+            <button type="button" class="btn btn-ghost btn-sm" data-act="detail">Chi tiết</button>
+          </td>
+        </tr>

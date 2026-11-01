@@ -1,0 +1,41 @@
+        <section class="kh-toolbar reveal" aria-label="Lọc danh sách khách hàng">
+          <div class="filter-grid">
+            <div class="field filter-search">
+              <label for="khSearch">Tìm kiếm</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-search"></use>
+                </svg>
+                <input
+                  id="khSearch"
+                  name="khSearch"
+                  type="search"
+                  placeholder="Tên khách, SĐT hoặc email..."
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="khStatus">Trạng thái tài khoản</label>
+              <div class="field-control select-wrap">
+                <select id="khStatus" name="khStatus">
+                  <option value="">Mọi trạng thái</option>
+                  <option value="active">Đang hoạt động</option>
+                  <option value="locked">Bị khóa</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field filter-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="khReset">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Đặt lại bộ lọc
+              </button>
+            </div>
+          </div>
+
+          <p class="filter-count" id="khCount" role="status" aria-live="polite"></p>
+        </section>

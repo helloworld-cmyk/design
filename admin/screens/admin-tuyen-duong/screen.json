@@ -1,0 +1,44 @@
+{
+  "output": "admin/tuyen-duong.html",
+  "base": "../",
+  "title": "Quản lý tuyến",
+  "description": "Danh mục tuyến xe ghép Vi Vu Việt: điểm đi – điểm đến, điểm dừng theo thứ tự và giá vé cơ bản dùng khi tạo chuyến.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/css/admin-shell",
+    "admin/css/modal",
+    "admin/screens/admin-tuyen-duong/css/route",
+    "admin/screens/admin-tuyen-duong/css/route-table",
+    "admin/screens/admin-tuyen-duong/css/route-states",
+    "admin/screens/admin-tuyen-duong/css/route-stops",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/js/admin-shell",
+    "admin/js/modal",
+    "admin/screens/admin-tuyen-duong/js/route-data",
+    "admin/screens/admin-tuyen-duong/js/route-list",
+    "admin/screens/admin-tuyen-duong/js/route-form",
+    "admin/screens/admin-tuyen-duong/js/route-stops",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/components/admin-sprite.html",
+    "admin/components/admin-shell.html",
+    "admin/screens/admin-tuyen-duong/partials/route-head.html",
+    "admin/screens/admin-tuyen-duong/partials/route-toolbar.html",
+    "admin/screens/admin-tuyen-duong/partials/route-table.html",
+    "admin/screens/admin-tuyen-duong/partials/route-rows.html",
+    "admin/screens/admin-tuyen-duong/partials/route-rows-2.html",
+    "admin/screens/admin-tuyen-duong/partials/route-foot.html",
+    "admin/screens/admin-tuyen-duong/partials/route-modals.html",
+    "admin/components/admin-shell-end.html"
+  ]
+}

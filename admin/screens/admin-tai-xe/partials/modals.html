@@ -1,0 +1,262 @@
+<div class="modal" id="modalForm" role="dialog" aria-modal="true"
+  aria-labelledby="txFormTitle">
+  <div class="modal-scrim"></div>
+  <div class="modal-panel">
+    <header class="modal-head">
+      <div>
+        <h2 class="modal-title" id="txFormTitle">Tạo tài khoản tài xế</h2>
+        <p class="modal-sub" id="txFormSub">
+          Thông tin đăng nhập sẽ hiển thị một lần sau khi tạo để bàn giao.
+        </p>
+      </div>
+      <button class="modal-close" type="button" data-modal-close
+        aria-label="Đóng hộp thoại">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+
+    <form class="modal-body" id="txForm" novalidate>
+      <div class="form-grid">
+        <div class="field span-2">
+          <label for="txName">Họ và tên *</label>
+          <div class="field-control">
+            <input id="txName" name="txName" type="text" required
+              placeholder="VD: Nguyễn Văn An" autocomplete="off" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="txPhone">Số điện thoại *</label>
+          <div class="field-control">
+            <input id="txPhone" name="txPhone" type="tel" required
+              placeholder="VD: 0912 345 001" autocomplete="off" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="txEmail">Email</label>
+          <div class="field-control">
+            <input id="txEmail" name="txEmail" type="email"
+              placeholder="VD: an.nguyen@vivuviet.vn" autocomplete="off" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="txGplx">Số GPLX *</label>
+          <div class="field-control">
+            <input id="txGplx" name="txGplx" type="text" inputmode="numeric"
+              required placeholder="12 chữ số trên giấy phép" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="txHang">Hạng GPLX *</label>
+          <div class="field-control select-wrap">
+            <select id="txHang" name="txHang" required>
+              <option value="">— Chọn hạng —</option>
+              <option>B1</option>
+              <option>B2</option>
+              <option>C1</option>
+              <option>C</option>
+              <option>D1</option>
+              <option>D2</option>
+              <option>E</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="txHan">Hạn GPLX *</label>
+          <div class="field-control">
+            <input id="txHan" name="txHan" type="date" required />
+          </div>
+        </div>
+        <div class="field" data-tx-password-field>
+          <label for="txPassword">Mật khẩu tạm *</label>
+          <div class="field-control">
+            <input id="txPassword" name="txPassword" type="text" readonly />
+          </div>
+        </div>
+      </div>
+
+      <p class="form-note">
+        <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+        Tài xế đăng nhập bằng SĐT và sẽ được yêu cầu đổi mật khẩu ngay sau đó.
+      </p>
+
+      <p class="form-status" id="txFormStatus" role="status"
+        aria-live="polite"></p>
+
+      <div class="modal-foot">
+        <button class="btn btn-ghost" type="button" data-modal-close>
+          Hủy
+        </button>
+        <button class="btn btn-primary" type="submit" id="txFormSubmit">
+          Tạo tài khoản
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="modalCredential" role="dialog" aria-modal="true"
+  aria-labelledby="txCredTitle">
+  <div class="modal-scrim"></div>
+  <div class="modal-panel modal-panel--narrow">
+    <header class="modal-head">
+      <div>
+        <h2 class="modal-title" id="txCredTitle">Thông tin đăng nhập</h2>
+      </div>
+      <button class="modal-close" type="button" data-modal-close
+        aria-label="Đóng hộp thoại">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+    <div class="modal-body">
+      <div class="cred-head">
+        <span class="cred-icon" aria-hidden="true">
+          <svg class="icon" aria-hidden="true">
+            <use href="#i-check-circle"></use>
+          </svg>
+        </span>
+        <p class="modal-sub" id="txCredSub">
+          Tài khoản đã sẵn sàng — sao chép và bàn giao cho tài xế.
+        </p>
+      </div>
+      <div class="cred-panel">
+        <dl>
+          <div>
+            <dt>Tài xế</dt>
+            <dd id="txCredName">—</dd>
+          </div>
+          <div>
+            <dt>Tên đăng nhập (SĐT)</dt>
+            <dd id="txCredLogin">—</dd>
+          </div>
+          <div>
+            <dt>Mật khẩu tạm</dt>
+            <dd><code id="txCredPassword">—</code></dd>
+          </div>
+        </dl>
+      </div>
+      <p class="cred-warn">
+        <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+        Thông tin chỉ hiển thị một lần. Hãy sao chép ngay — mật khẩu tạm sẽ
+        không xem lại được sau khi đóng.
+      </p>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" type="button" data-modal-close>
+          Xong
+        </button>
+        <button class="btn btn-primary" type="button" data-tx-copy>
+          Sao chép thông tin
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalDetail" role="dialog" aria-modal="true"
+  aria-labelledby="txDetailTitle">
+  <div class="modal-scrim"></div>
+  <div class="modal-panel modal-panel--wide">
+    <header class="modal-head">
+      <div class="detail-head">
+        <span class="tx-avatar tx-avatar--sky" id="txDetailAvatar"
+          aria-hidden="true">NA</span>
+        <span class="detail-title-wrap">
+          <h2 class="modal-title" id="txDetailTitle">Tài xế</h2>
+          <span class="status-badge status-badge--green" id="txDetailStatus">
+            <span class="status-dot" aria-hidden="true"></span>Đang hoạt động
+          </span>
+        </span>
+      </div>
+      <button class="modal-close" type="button" data-modal-close
+        aria-label="Đóng hộp thoại">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+
+    <div class="modal-body">
+      <dl class="detail-grid">
+        <div>
+          <dt>Số điện thoại</dt>
+          <dd id="txDetailPhone">—</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd id="txDetailEmail">—</dd>
+        </div>
+        <div>
+          <dt>Giấy phép lái xe</dt>
+          <dd id="txDetailGplx">—</dd>
+        </div>
+        <div>
+          <dt>Hạn GPLX</dt>
+          <dd>
+            <span id="txDetailHan">—</span>
+            <span class="status-badge status-badge--orange" id="txDetailHanWarn"
+              hidden>Sắp hết hạn</span>
+          </dd>
+        </div>
+        <div>
+          <dt>Chuyến (30 ngày)</dt>
+          <dd id="txDetailTrips">—</dd>
+        </div>
+        <div>
+          <dt>Ngày tạo tài khoản</dt>
+          <dd id="txDetailCreated">—</dd>
+        </div>
+      </dl>
+
+      <h3 class="detail-sub">Chuyến được phân công gần đây</h3>
+      <ul class="trip-list" id="txTripList"></ul>
+      <p class="trip-empty" id="txTripEmpty" hidden>
+        Tài xế chưa được phân công chuyến nào gần đây.
+      </p>
+
+      <div class="modal-foot">
+        <button class="btn btn-ghost" type="button" data-tx-action="reset">
+          Đặt lại mật khẩu
+        </button>
+        <button class="btn btn-accent" type="button" data-tx-action="lock"
+          id="txDetailLockBtn">
+          Khóa tài khoản
+        </button>
+        <button class="btn btn-primary" type="button" data-tx-action="edit">
+          Sửa thông tin
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalConfirm" role="dialog" aria-modal="true"
+  aria-labelledby="txConfirmTitle">
+  <div class="modal-scrim"></div>
+  <div class="modal-panel modal-panel--narrow">
+    <header class="modal-head">
+      <div>
+        <h2 class="modal-title" id="txConfirmTitle">Xác nhận</h2>
+        <p class="modal-sub" id="txConfirmDesc"></p>
+      </div>
+      <button class="modal-close" type="button" data-modal-close
+        aria-label="Đóng hộp thoại">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+    <div class="modal-body">
+      <div class="field">
+        <label for="txConfirmNote">Ghi chú (không bắt buộc)</label>
+        <div class="field-control">
+          <input id="txConfirmNote" name="txConfirmNote" type="text"
+            placeholder="VD: Tạm khóa theo yêu cầu điều phối" />
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" type="button" data-modal-close>
+          Hủy
+        </button>
+        <button class="btn btn-accent" type="button" id="txConfirmSubmit"
+          data-tx-confirm>
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
