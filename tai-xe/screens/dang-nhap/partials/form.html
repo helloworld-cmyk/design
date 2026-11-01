@@ -1,0 +1,81 @@
+    <section class="auth-card reveal" aria-labelledby="dang-nhap">
+      <h1 id="dang-nhap">Đăng nhập tài xế</h1>
+      <p class="auth-lead">
+        Đăng nhập buồng lái để nhận chuyến, theo dõi lịch trình và quản lý thu
+        nhập của bạn trên Vi Vu Việt.
+      </p>
+
+      <form class="auth-form" id="authForm" data-redirect="tong-quan.html" novalidate>
+        <div class="field">
+          <label for="identifier">Số điện thoại hoặc email</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-mail"></use>
+            </svg>
+            <input
+              type="text"
+              id="identifier"
+              name="identifier"
+              placeholder="VD: 0912 345 678"
+              autocomplete="username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field field--has-toggle">
+          <label for="password">Mật khẩu</label>
+          <div class="field-control">
+            <svg class="icon field-icon" aria-hidden="true">
+              <use href="#i-shield"></use>
+            </svg>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Nhập mật khẩu"
+              autocomplete="current-password"
+              required
+            />
+            <button
+              type="button"
+              class="field-toggle"
+              aria-controls="password"
+              aria-pressed="false"
+              aria-label="Hiện mật khẩu"
+            >
+              <svg class="icon icon-eye" aria-hidden="true">
+                <use href="#i-eye"></use>
+              </svg>
+              <svg class="icon icon-eye-off" aria-hidden="true">
+                <use href="#i-eye-off"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-row">
+          <label class="auth-check" for="remember">
+            <input type="checkbox" id="remember" name="remember" />
+            Ghi nhớ đăng nhập
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg auth-submit">
+          Đăng nhập
+        </button>
+        <div
+          class="form-status"
+          id="formStatus"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </form>
+    </section>
+
+  </div>
+</main>
+
+{{js}}
+</body>
+</html>

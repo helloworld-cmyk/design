@@ -1,0 +1,42 @@
+{
+  "output": "tai-xe/tong-quan.html",
+  "base": "../",
+  "title": "Tổng quan tài xế — Vi Vu Việt",
+  "description": "Buồng lái tài xế Vi Vu Việt: lịch chạy hôm nay, chuyến kế tiếp và xe được giao trong một màn hình.",
+  "home": "tong-quan.html",
+  "navPrefix": "../khach-hang/index.html",
+  "linkLoginHref": "../khach-hang/index.html",
+  "linkLoginLabel": "Trang chủ",
+  "profileHref": "tai-xe-ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/hero",
+    "shared/css/ride-card",
+    "tai-xe/css/badges",
+    "shared/css/sections",
+    "shared/css/cta-footer",
+    "tai-xe/screens/tai-xe-tong-quan/css/dash-shell",
+    "tai-xe/screens/tai-xe-tong-quan/css/tq-today",
+    "tai-xe/screens/tai-xe-tong-quan/css/tq-day",
+    "tai-xe/screens/tai-xe-tong-quan/css/dash-cards",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "tai-xe/screens/tai-xe-tong-quan/partials/driver-header.html",
+    "tai-xe/screens/tai-xe-tong-quan/partials/cockpit.html",
+    "tai-xe/screens/tai-xe-tong-quan/partials/overview.html",
+    "shared/components/footer.html"
+  ]
+}

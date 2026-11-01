@@ -1,0 +1,24 @@
+{
+  "output": "tai-xe/index.html",
+  "base": "../",
+  "title": "Đăng nhập tài xế — Vi Vu Việt",
+  "description": "Đăng nhập buồng lái tài xế Vi Vu Việt để nhận chuyến, theo dõi lịch trình và quản lý thu nhập mỗi ngày.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "tai-xe/screens/dang-nhap/css/auth",
+    "tai-xe/screens/dang-nhap/css/auth-form",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": ["tai-xe/screens/dang-nhap/js/auth", "shared/js/reveal"],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "tai-xe/screens/dang-nhap/partials/auth-top.html",
+    "tai-xe/screens/dang-nhap/partials/form.html"
+  ]
+}

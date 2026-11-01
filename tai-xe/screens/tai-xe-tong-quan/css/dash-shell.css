@@ -1,0 +1,125 @@
+/* ================= Tổng quan tài xế (buồng lái) ================= */
+
+.dash-page {
+  padding: clamp(40px, 5vw, 64px) 0 clamp(48px, 6vw, 80px);
+}
+
+.dash-top {
+  max-width: 760px;
+}
+
+.dash-top h1 {
+  margin-top: 12px;
+  font-size: clamp(2.35rem, 5.1vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.038em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.tq-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--slate-500);
+}
+
+.tq-date .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--sky-700);
+}
+
+/* ---------- Chip tài xế trên header ---------- */
+
+.tq-driver-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 4px 12px 4px 5px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.tq-driver-chip:hover {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+  box-shadow: var(--shadow-sm);
+}
+
+.tq-driver-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--navy-800);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.tq-driver-id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.tq-driver-id strong {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.tq-driver-id small {
+  margin-top: 1px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+@media (max-width: 900px) {
+  .tq-driver-chip {
+    gap: 0;
+    padding: 4px 5px;
+  }
+
+  .tq-driver-id {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-top h1 {
+    font-size: clamp(2.2rem, 9.6vw, 2.9rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .tq-date {
+    align-items: flex-start;
+    font-size: 12.5px;
+  }
+
+  .tq-date .icon {
+    margin-top: 1px;
+  }
+}

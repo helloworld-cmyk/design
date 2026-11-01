@@ -1,0 +1,168 @@
+/* ============== Thẻ chuyến biến thể tài xế ============== */
+
+.txc-card {
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.txc-card:hover {
+  transform: translateY(-3px);
+  border-color: #cfe6f6;
+  box-shadow: var(--shadow-sm);
+}
+
+.txc-card--muted {
+  background: var(--bg);
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.txc-card--muted:hover {
+  transform: none;
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.txc-card--done {
+  border-color: var(--border-soft);
+  box-shadow: none;
+}
+
+.txc-card--done:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xs);
+}
+
+.txc-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.txc-top-right {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.txc-card-note {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--slate-500);
+}
+
+.txc-cancel-note {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-xs);
+  background: var(--red-50);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #991b1b;
+}
+
+/* ---------- Chip thời gian nhẹ ---------- */
+
+.txc-when {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--navy-50);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-600);
+  white-space: nowrap;
+}
+
+/* ---------- Dòng thông tin chuyến ---------- */
+
+.txc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.txc-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--slate-600);
+}
+
+.txc-meta .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--sky-700);
+}
+
+.txc-meta strong {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.txc-current {
+  color: var(--sky-700);
+}
+
+.txc-done-route {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16.5px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.txc-done-route .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--slate-400);
+}
+
+.txc-card-actions .text-link {
+  min-height: 44px;
+}
+
+/* ---------- Điểm sáng live trên badge đang thực hiện ---------- */
+
+.txc-live-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--green-600);
+  animation: pulse 1.8s var(--ease) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .txc-live-dot {
+    animation: none;
+  }
+}

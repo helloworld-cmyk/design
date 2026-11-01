@@ -1,0 +1,97 @@
+/* ================= Bảng lịch chạy hôm nay ================= */
+
+.tq-board {
+  margin-top: clamp(24px, 3.4vw, 38px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Đầu bảng: chuyến kế tiếp ---------- */
+
+.tq-board-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(22px, 3vw, 32px);
+  background: radial-gradient(
+    120% 150% at 100% 0%,
+    #123c67 0%,
+    var(--navy-800) 52%,
+    var(--navy-950) 100%
+  );
+}
+
+.tq-board-title {
+  min-width: 0;
+}
+
+.tq-board-title h2 {
+  max-width: 560px;
+  margin-top: 10px;
+  font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.032em;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.tq-board-title p {
+  max-width: 560px;
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #c3d0df;
+}
+
+.tq-board-countdown {
+  display: grid;
+  flex: none;
+  gap: 2px;
+  justify-items: end;
+  min-width: 156px;
+  padding: 12px 16px;
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  border-radius: var(--radius-md);
+  background: #0f2745;
+  box-shadow: 0 16px 40px -24px rgba(0, 0, 0, 0.8);
+}
+
+.tq-countdown-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c3d0df;
+}
+
+.tq-board-countdown strong {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.tq-countdown-meta {
+  font-size: 11px;
+  font-weight: 600;
+  color: #c3d0df;
+}
+
+@media (max-width: 900px) {
+  .tq-board-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tq-board-countdown {
+    justify-items: start;
+    width: 100%;
+  }
+}
