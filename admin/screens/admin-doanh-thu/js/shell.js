@@ -60,7 +60,7 @@
       } catch (err) {
         /* bỏ qua lỗi lưu trữ */
       }
-      window.location.href = "../khach-hang/dang-nhap.html";
+      window.location.href = "index.html";
     });
   }
 })();

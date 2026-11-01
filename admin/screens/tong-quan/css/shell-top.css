@@ -56,51 +56,6 @@
   display: block;
 }
 
-.adm-search {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  max-width: 430px;
-  height: 44px;
-  padding: 0 15px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fff;
-  transition:
-    border-color var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
-}
-
-.adm-search:focus-within {
-  border-color: var(--sky-500);
-  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.14);
-}
-
-.adm-search .icon {
-  width: 17px;
-  height: 17px;
-  flex: none;
-  color: var(--slate-400);
-}
-
-.adm-search input {
-  width: 100%;
-  border: 0;
-  background: none;
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--ink);
-}
-
-.adm-search input:focus {
-  outline: none;
-}
-
-.adm-search input::placeholder {
-  color: var(--slate-400);
-}
-
 .adm-topbar-actions {
   display: flex;
   align-items: center;

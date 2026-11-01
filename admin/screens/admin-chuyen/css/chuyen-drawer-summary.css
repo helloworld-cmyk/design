@@ -1,0 +1,169 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: tóm tắt chuyến và phân công
+   tài xế / xe trong drawer chi tiết.
+   ========================================================= */
+
+.trip-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.trip-kpi {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.trip-kpi-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.trip-kpi-value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  min-width: 0;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.trip-kpi-unit {
+  margin-left: 1px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--slate-500);
+}
+
+.trip-kpi-sub {
+  font-size: 11.5px;
+  color: var(--slate-500);
+}
+
+.trip-seat-bar {
+  width: 100%;
+  height: 7px;
+  margin-top: 5px;
+}
+
+/* ---------- Phân công tài xế & xe ---------- */
+
+.trip-assign {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.assign-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.assign-card.is-missing {
+  border-color: var(--orange-100);
+  background: var(--orange-50);
+}
+
+.avatar--drawer {
+  width: 38px;
+  height: 38px;
+  font-size: 12px;
+  background: linear-gradient(135deg, var(--navy-800), var(--sky-700));
+}
+
+.assign-card.is-missing .avatar--drawer {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.assign-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--navy-50);
+  color: var(--sky-700);
+}
+
+.assign-icon .icon {
+  width: 19px;
+  height: 19px;
+}
+
+.assign-card.is-missing .assign-icon {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.assign-body {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.assign-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.assign-body strong {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.assign-sub {
+  font-size: 11.5px;
+  color: var(--slate-500);
+  overflow-wrap: anywhere;
+}
+
+.assign-card.is-missing .assign-body strong {
+  color: var(--orange-700);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .trip-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trip-kpi--seat {
+    grid-column: 1 / -1;
+  }
+
+  .trip-assign {
+    grid-template-columns: 1fr;
+  }
+}

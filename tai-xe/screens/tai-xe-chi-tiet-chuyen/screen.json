@@ -1,0 +1,43 @@
+{
+  "output": "tai-xe/tai-xe-chi-tiet-chuyen.html",
+  "base": "../",
+  "title": "Chi tiết chuyến — Khu tài xế Vi Vu Việt",
+  "description": "Xem đầy đủ thông tin một chuyến: tuyến, xe, danh sách hành khách và thao tác trước / trong khi chạy.",
+  "home": "tong-quan.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/booking",
+    "shared/css/ride-card",
+    "shared/css/sections",
+    "tai-xe/css/badges",
+    "tai-xe/screens/tai-xe-tong-quan/css/dash-shell",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/trip-detail",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/passengers",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/timeline",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/modal",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/trip-detail",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/incident",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/driver-header.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/page-head.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/trip-panel.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/timeline.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/passengers.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/aside.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/incident-modal.html",
+    "tai-xe/components/page-end.html"
+  ]
+}

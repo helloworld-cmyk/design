@@ -1,49 +1,65 @@
 (function () {
   "use strict";
 
-  /* ---------- Sidebar off-canvas (≤1080px) ---------- */
-  const sidebar = document.getElementById("adminSidebar");
-  const burger = document.getElementById("adminBurger");
-  const scrim = document.getElementById("adminScrim");
+  var USER_KEY = "vvv.auth.admin";
 
-  const isSideOpen = () =>
-    !!sidebar && sidebar.classList.contains("is-open");
+  /* ---------- Sidebar drawer (adm, <=1024px) ---------- */
+  var root = document.getElementById("admShell");
+  var burger = document.getElementById("admBurger");
+  var side = document.getElementById("admSide");
+  var scrim = document.getElementById("admScrim");
 
-  const setSideOpen = (open) => {
-    if (!sidebar || !burger) return;
-    sidebar.classList.toggle("is-open", open);
-    burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Đóng menu quản trị" : "Mở menu quản trị");
-    if (scrim) scrim.hidden = !open;
-  };
+  function isSideOpen() {
+    return !!root && root.classList.contains("is-side-open");
+  }
 
-  if (sidebar && burger) {
-    burger.addEventListener("click", () => setSideOpen(!isSideOpen()));
-
-    if (scrim) {
-      scrim.addEventListener("click", () => setSideOpen(false));
+  function setSideOpen(open) {
+    if (!root) return;
+    root.classList.toggle("is-side-open", open);
+    if (burger) {
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute(
+        "aria-label",
+        open ? "Đóng menu quản trị" : "Mở menu quản trị"
+      );
     }
+    if (scrim) scrim.hidden = !open;
+  }
 
-    sidebar.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => setSideOpen(false));
+  if (burger && side) {
+    burger.addEventListener("click", function () {
+      setSideOpen(!isSideOpen());
     });
 
-    document.addEventListener("keydown", (event) => {
+    if (scrim) {
+      scrim.addEventListener("click", function () {
+        setSideOpen(false);
+        if (burger) burger.focus();
+      });
+    }
+
+    side.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setSideOpen(false);
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && isSideOpen()) {
         setSideOpen(false);
-        burger.focus();
+        if (burger) burger.focus();
       }
     });
 
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 1080 && isSideOpen()) setSideOpen(false);
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1024 && isSideOpen()) setSideOpen(false);
     });
   }
 
-  /* ---------- Đánh dấu mục sidebar đang mở (theo pathname) ---------- */
-  const current = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".admin-nav a").forEach((link) => {
-    const href = (link.getAttribute("href") || "").split("/").pop();
+  /* ---------- Active nav item (theo pathname) ---------- */
+  var current = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".adm-nav-item").forEach(function (link) {
+    var href = (link.getAttribute("href") || "").split("/").pop();
     if (href && href === current) {
       link.classList.add("is-active");
       link.setAttribute("aria-current", "page");
@@ -53,16 +69,80 @@
     }
   });
 
-  /* ---------- Toast dùng chung cho mọi màn admin ---------- */
-  const toast = document.getElementById("adminToast");
-  const toastText = toast ? toast.querySelector(".toast-text") : null;
-  const toastIcon = toast ? toast.querySelector(".toast-icon use") : null;
-  const ICONS = { success: "#i-check-circle", info: "#i-clock", error: "#i-alert" };
-  let toastTimer = null;
+  /* ---------- User dropdown ---------- */
+  var userMenu = document.getElementById("admUser");
+  var userBtn = document.getElementById("admUserBtn");
 
-  window.adminToast = (message, type) => {
+  function isUserOpen() {
+    return !!userMenu && userMenu.classList.contains("is-open");
+  }
+
+  function setUserOpen(open) {
+    if (!userMenu || !userBtn) return;
+    userMenu.classList.toggle("is-open", open);
+    userBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  if (userMenu && userBtn) {
+    userBtn.addEventListener("click", function () {
+      setUserOpen(!isUserOpen());
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && isUserOpen()) {
+        setUserOpen(false);
+        userBtn.focus();
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (isUserOpen() && !userMenu.contains(event.target)) setUserOpen(false);
+    });
+  }
+
+  /* ---------- Đăng xuất ---------- */
+  document.querySelectorAll("[data-adm-logout]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      try {
+        window.localStorage.removeItem(USER_KEY);
+      } catch (error) {
+        /* chế độ riêng tư: bỏ qua */
+      }
+      window.location.href = "index.html";
+    });
+  });
+
+  /* ---------- Cá nhân hoá theo phiên đăng nhập ---------- */
+  function readUser() {
+    try {
+      return JSON.parse(window.localStorage.getItem(USER_KEY));
+    } catch (error) {
+      return null;
+    }
+  }
+
+  var user = readUser();
+  if (user) {
+    var source = user.name || user.email || user.phone || "";
+    var initial = source.trim().charAt(0).toUpperCase();
+    document.querySelectorAll("[data-adm-initial]").forEach(function (el) {
+      el.textContent = initial || "A";
+    });
+    document.querySelectorAll("[data-adm-name]").forEach(function (el) {
+      el.textContent = user.name || "Quản trị viên";
+    });
+  }
+
+  /* ---------- Toast dùng chung ---------- */
+  var toast = document.getElementById("adminToast");
+  var toastText = toast ? toast.querySelector(".toast-text") : null;
+  var toastIcon = toast ? toast.querySelector(".toast-icon use") : null;
+  var ICONS = { success: "#i-check-circle", info: "#i-clock", error: "#i-alert" };
+  var toastTimer = null;
+
+  window.adminToast = function (message, type) {
     if (!toast || !toastText) return;
-    const kind = ICONS[type] ? type : "success";
+    var kind = ICONS[type] ? type : "success";
 
     toastText.textContent = message;
     toast.classList.remove("toast--success", "toast--info", "toast--error");
@@ -70,18 +150,13 @@
     if (toastIcon) toastIcon.setAttribute("href", ICONS[kind]);
 
     toast.hidden = false;
-    window.requestAnimationFrame(() => toast.classList.add("is-show"));
+    window.requestAnimationFrame(function () {
+      toast.classList.add("is-show");
+    });
 
     window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => {
+    toastTimer = window.setTimeout(function () {
       toast.classList.remove("is-show");
     }, 3400);
   };
-
-  /* ---------- Đăng xuất (mô phỏng) ---------- */
-  document.querySelectorAll("[data-admin-logout]").forEach((button) => {
-    button.addEventListener("click", () => {
-      window.adminToast("Đã đăng xuất khỏi trang quản trị (mô phỏng)", "info");
-    });
-  });
 })();

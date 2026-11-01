@@ -1,0 +1,59 @@
+<div class="tcd-modal" id="tcdIncidentModal" hidden aria-hidden="true">
+  <div class="tcd-modal-backdrop" data-modal-close></div>
+  <div
+    class="tcd-modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tcdIncidentTitle"
+  >
+    <div class="tcd-modal-head">
+      <h2 id="tcdIncidentTitle">Báo sự cố</h2>
+      <button
+        type="button"
+        class="tcd-modal-close"
+        data-modal-close
+        aria-label="Đóng"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <p class="tcd-modal-lead">
+      Báo sự cố để admin hỗ trợ. Chuyến vẫn giữ nguyên — không tự hủy.
+    </p>
+
+    <form class="tcd-modal-form" id="tcdIncidentForm" novalidate>
+      <div class="field">
+        <label for="incidentType">Loại sự cố</label>
+        <div class="field-control">
+          <select id="incidentType" name="incidentType" required>
+            <option value="">— Chọn loại sự cố —</option>
+            <option value="xe">Xe gặp sự cố</option>
+            <option value="duong">Tắc đường / thời tiết</option>
+            <option value="khach">Khách không có mặt</option>
+            <option value="khac">Khác</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="incidentNote">Mô tả ngắn</label>
+        <textarea
+          id="incidentNote"
+          name="incidentNote"
+          class="tcd-textarea"
+          rows="3"
+          placeholder="VD: Xe nổ lốp tại Cầu Giẽ"
+          required
+        ></textarea>
+      </div>
+
+      <p class="form-status" id="tcdIncidentStatus" role="status" aria-live="polite"></p>
+
+      <div class="tcd-modal-actions">
+        <button type="button" class="btn btn-ghost" data-modal-close>Hủy</button>
+        <button type="submit" class="btn btn-primary">Gửi báo cáo</button>
+      </div>
+    </form>
+  </div>
+</div>

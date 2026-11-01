@@ -39,6 +39,6 @@
     "tai-xe/screens/tai-xe-chuyen/partials/board-moi.html",
     "tai-xe/screens/tai-xe-chuyen/partials/board-rest.html",
     "tai-xe/screens/tai-xe-chuyen/partials/board-done.html",
-    "shared/components/footer.html"
+    "tai-xe/components/page-end.html"
   ]
 }

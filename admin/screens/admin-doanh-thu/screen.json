@@ -6,7 +6,9 @@
   "css": [
     "shared/css/tokens",
     "shared/css/base",
-    "admin/screens/admin-doanh-thu/css/shell",
+    "admin/screens/tong-quan/css/shell",
+    "admin/screens/tong-quan/css/shell-top",
+    "admin/screens/tong-quan/css/shell-user",
     "admin/screens/admin-doanh-thu/css/ui",
     "admin/screens/admin-doanh-thu/css/stats",
     "admin/screens/admin-doanh-thu/css/filters",
@@ -19,7 +21,7 @@
     "shared/css/responsive-touch"
   ],
   "js": [
-    "admin/screens/admin-doanh-thu/js/shell",
+    "admin/js/admin-shell",
     "admin/screens/admin-doanh-thu/js/doanh-thu",
     "shared/js/reveal"
   ],
@@ -27,12 +29,12 @@
     "shared/components/head.html",
     "shared/components/sprite.html",
     "admin/screens/admin-doanh-thu/partials/extra-sprite.html",
-    "admin/screens/admin-doanh-thu/partials/shell-open.html",
+    "admin/components/admin-shell.html",
     "admin/screens/admin-doanh-thu/partials/page-head.html",
     "admin/screens/admin-doanh-thu/partials/filters.html",
     "admin/screens/admin-doanh-thu/partials/kpi.html",
     "admin/screens/admin-doanh-thu/partials/charts.html",
     "admin/screens/admin-doanh-thu/partials/recon.html",
-    "admin/screens/admin-doanh-thu/partials/shell-end.html"
+    "admin/components/admin-shell-end.html"
   ]
 }

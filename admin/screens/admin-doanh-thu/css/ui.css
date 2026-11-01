@@ -71,47 +71,23 @@
   color: var(--orange-700);
 }
 
-/* ---------- Breadcrumb + tiêu đề màn ---------- */
+/* ---------- Đầu trang ---------- */
 
-.admin-page-head {
-  margin-bottom: 24px;
+.admin-head {
+  margin-bottom: 22px;
 }
 
-.admin-crumb {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 10px;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--slate-400);
-}
-
-.admin-crumb a {
-  color: var(--slate-500);
-  transition: color var(--dur) var(--ease);
-}
-
-.admin-crumb a:hover {
+.admin-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--sky-700);
 }
 
-.admin-crumb a:focus-visible {
-  outline: 3px solid rgba(14, 165, 233, 0.6);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.admin-crumb-sep {
-  color: var(--slate-300);
-}
-
-.admin-crumb-current {
-  color: var(--sky-700);
-}
-
-.admin-page-head h1 {
+.admin-title {
+  margin-top: 6px;
   font-size: clamp(24px, 3vw, 30px);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -119,7 +95,7 @@
   color: var(--ink);
 }
 
-.admin-page-head > p {
+.admin-lead {
   max-width: 640px;
   margin-top: 8px;
   font-size: 15px;
@@ -140,7 +116,7 @@
     padding: 16px;
   }
 
-  .admin-page-head {
+  .admin-head {
     margin-bottom: 18px;
   }
 }

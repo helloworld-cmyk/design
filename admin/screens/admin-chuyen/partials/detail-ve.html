@@ -1,0 +1,158 @@
+                <div>
+                  <h3 class="d-label" id="ctVeTitle">Hành khách &amp; vé</h3>
+                  <p class="d-block-sub" id="ctVeNote">
+                    Thanh toán tiền mặt do tài xế ghi ở D4
+                  </p>
+                </div>
+                <span class="status-badge sb--sky sb--sm" id="ctVeCount">
+                  4 vé
+                </span>
+              </div>
+
+              <ul class="ticket-list" id="ctTicketList">
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">MA</span>
+                  <span class="ticket-person">
+                    <strong>Nguyễn Mai Anh</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2041</span>
+                      · Đón BX Nước Ngầm · 05:50
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">A04</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--sky sb--sm">Đã đón</span>
+                      <span class="status-badge sb--green sb--sm">Đã thu</span>
+                    </span>
+                  </span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">TK</span>
+                  <span class="ticket-person">
+                    <strong>Trần Quốc Khánh</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2042</span>
+                      · Đón BX Nước Ngầm · 05:50
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">A05</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--sky sb--sm">Đã đón</span>
+                      <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                    </span>
+                  </span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">TH</span>
+                  <span class="ticket-person">
+                    <strong>Phạm Thu Hằng</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2043</span>
+                      · Đón Cầu Rào 2 · 06:10
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">B02</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--sky sb--sm">Đã đặt</span>
+                      <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                    </span>
+                  </span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">TT</span>
+                  <span class="ticket-person">
+                    <strong>Vũ Đức Thịnh</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2044</span>
+                      · Đón Cầu Rào 2 · 06:10
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">B03</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--gray sb--sm">Đã hủy</span>
+                      <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                    </span>
+                  </span>
+                </li>
+              </ul>
+
+              <div class="drawer-empty" id="ctVeEmpty" hidden>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-ticket"></use>
+                </svg>
+                <strong>Chưa có vé nào</strong>
+                <span>Vé khách đặt sẽ xuất hiện ở đây.</span>
+              </div>
+            </section>
+
+            <section class="d-block" aria-labelledby="ctHistoryTitle">
+              <h3 class="d-label" id="ctHistoryTitle">Lịch sử trạng thái</h3>
+              <ol class="timeline" aria-label="Các mốc trạng thái của chuyến">
+                <li class="timeline-item is-done">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đã tạo chuyến</strong>
+                    <span class="timeline-meta">
+                      28/10 · 09:12 · Quản trị viên
+                    </span>
+                  </div>
+                </li>
+                <li class="timeline-item is-done">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đã phân công xe + tài xế</strong>
+                    <span class="timeline-meta">
+                      28/10 · 09:15 · 30A-123.45 · Trần Văn Bình
+                    </span>
+                  </div>
+                </li>
+                <li class="timeline-item is-done">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đã công bố bán vé</strong>
+                    <span class="timeline-meta">
+                      28/10 · 09:16 · Khách bắt đầu đặt
+                    </span>
+                  </div>
+                </li>
+                <li class="timeline-item is-current">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đang thực hiện</strong>
+                    <span class="timeline-meta">
+                      31/10 · 07:30 · Tài xế bắt đầu chuyến
+                    </span>
+                  </div>
+                </li>
+              </ol>
+            </section>
+          </div>
+
+          <footer class="drawer-foot">
+            <p class="drawer-foot-note" id="ctFootNote">
+              Có thể sửa hoặc hủy trước giờ khởi hành.
+            </p>
+            <div class="drawer-foot-actions">
+              <button class="btn btn-ghost" type="button" data-modal-close>
+                Đóng
+              </button>
+              <button
+                class="btn btn-ghost" type="button" id="ctEditBtn"
+                aria-describedby="ctFootNote"
+              >
+                Sửa chuyến
+              </button>
+              <button
+                class="btn btn-danger" type="button" id="ctCancelBtn"
+                aria-describedby="ctFootNote"
+              >
+                Hủy chuyến
+              </button>
+            </div>
+          </footer>
+        </div>
+      </div>

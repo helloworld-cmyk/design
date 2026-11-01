@@ -4,175 +4,164 @@
         role="dialog"
         aria-modal="true"
         aria-labelledby="chitietTitle"
+        aria-describedby="ctThoiGian"
       >
         <div class="modal-scrim" data-modal-close></div>
         <div class="modal-panel drawer-panel">
           <header class="drawer-head">
-            <div class="drawer-head-main">
+            <div class="drawer-head-row">
               <div class="drawer-ident">
-                <p class="drawer-eyebrow" id="ctMa">VC-1042</p>
-                <h2 class="drawer-title" id="chitietTitle">Hà Nội → Hải Phòng</h2>
-                <p class="drawer-sub" id="ctThoiGian">Hôm nay · 07:30 – dự kiến 09:00</p>
+                <p class="drawer-eyebrow">
+                  Chi tiết chuyến
+                  <span class="drawer-code" id="ctMa">VC-1042</span>
+                </p>
+                <h2 class="drawer-title" id="chitietTitle">
+                  Hà Nội → Hải Phòng
+                </h2>
+                <p class="drawer-sub">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-clock"></use>
+                  </svg>
+                  <span id="ctThoiGian">07:30 · 31/10 · Hôm nay</span>
+                </p>
               </div>
-              <div class="drawer-badges">
-                <span class="status-badge sb--orange" id="ctBadge">Đang thực hiện</span>
-              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng chi tiết chuyến"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-close"></use>
+                </svg>
+              </button>
             </div>
-            <button
-              type="button" class="modal-close" data-modal-close
-              aria-label="Đóng chi tiết chuyến"
-            >
-              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
-            </button>
+
+            <div class="drawer-meta">
+              <div class="drawer-badges">
+                <span class="status-badge sb--orange" id="ctBadge">
+                  Đang thực hiện
+                </span>
+                <span
+                  class="status-badge sb--orange sb--sm"
+                  id="ctSuCoBadge"
+                  hidden
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-alert"></use>
+                  </svg>
+                  Sự cố
+                </span>
+              </div>
+              <p class="drawer-stops">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-pin"></use>
+                </svg>
+                <span id="ctTuyenPhu">BX Nước Ngầm → Cầu Rào 2</span>
+              </p>
+            </div>
           </header>
 
           <div class="drawer-body">
-            <ul class="d-list d-list--grid">
-              <li>
-                <span>Tài xế</span><strong id="ctTaiXe">Trần Văn Bình</strong>
-              </li>
-              <li>
-                <span>Xe</span><strong id="ctXe">30A-123.45 · 16 ghế</strong>
-              </li>
-              <li>
-                <span>Lấp ghế</span><strong><span id="ctGhe">9</span>/16 vé</strong>
-              </li>
-              <li>
-                <span>Giá vé · tiền công</span>
-                <strong id="ctTien">180.000đ · công 400.000đ</strong>
-              </li>
-            </ul>
-
-            <div class="warn-block" id="ctSuCo" role="note" hidden>
-              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
-              <div>
-                <p>
-                  <strong>Sự cố đang mở.</strong>
-                  <span id="ctSuCoText">
-                    Xe bị thủng lốp giữa tuyến (km 22) — 07:58
+            <section class="trip-summary" aria-label="Tóm tắt chuyến">
+              <div class="trip-kpi trip-kpi--seat">
+                <span class="trip-kpi-label">Lấp ghế</span>
+                <strong class="trip-kpi-value">
+                  <span id="ctGhe">9</span>
+                  <span class="trip-kpi-unit">
+                    /<span id="ctSucChua">16</span> ghế
                   </span>
+                </strong>
+                <span
+                  class="seat-progress trip-seat-bar" id="ctGheBar"
+                  role="img" aria-label="Đã đặt 9 trên 16 ghế"
+                >
+                  <span
+                    class="seat-progress-fill" id="ctGheFill"
+                    style="width: 56%"
+                  ></span>
+                </span>
+              </div>
+              <div class="trip-kpi">
+                <span class="trip-kpi-label">Giá vé</span>
+                <strong class="trip-kpi-value" id="ctGia">180.000đ</strong>
+                <span class="trip-kpi-sub">mỗi ghế</span>
+              </div>
+              <div class="trip-kpi">
+                <span class="trip-kpi-label">Tiền công</span>
+                <strong class="trip-kpi-value" id="ctCong">400.000đ</strong>
+                <span class="trip-kpi-sub">trả tài xế</span>
+              </div>
+            </section>
+
+            <div class="trip-assign">
+              <div class="assign-card" id="ctDriverCard">
+                <span
+                  class="avatar avatar--drawer" id="ctAvatar"
+                  aria-hidden="true"
+                >
+                  TB
+                </span>
+                <div class="assign-body">
+                  <span class="assign-label">Tài xế</span>
+                  <strong id="ctTaiXe">Trần Văn Bình</strong>
+                  <span class="assign-sub" id="ctTaiXeSub">
+                    Tài xế phụ trách
+                  </span>
+                </div>
+              </div>
+              <div class="assign-card" id="ctVehicleCard">
+                <span class="assign-icon" aria-hidden="true">
+                  <svg class="icon"><use href="#i-car"></use></svg>
+                </span>
+                <div class="assign-body">
+                  <span class="assign-label">Xe</span>
+                  <strong id="ctXe">30A-123.45</strong>
+                  <span class="assign-sub" id="ctXeLoai">
+                    Ghế ngồi · 16 chỗ
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <section class="warn-block" id="ctSuCo" role="alert" hidden>
+              <span class="warn-icon" aria-hidden="true">
+                <svg class="icon"><use href="#i-alert"></use></svg>
+              </span>
+              <div class="warn-body">
+                <div class="warn-head">
+                  <strong>Sự cố đang mở</strong>
+                  <span id="ctSuCoTime">Báo lúc 07:58</span>
+                </div>
+                <p id="ctSuCoText">
+                  Xe bị thủng lốp giữa tuyến (km 22) — tài xế đã báo.
                 </p>
                 <div class="warn-actions">
-                  <button class="btn btn-sm btn-ghost" type="button" data-suco="tiep-tuc">
+                  <button
+                    class="btn btn-sm btn-ghost" type="button"
+                    data-suco="tiep-tuc"
+                  >
                     Tiếp tục chạy
                   </button>
                   <button
                     class="btn btn-sm btn-ghost" type="button"
-                    data-modal-open="modalChuyen" data-mode="edit"
+                    data-chuyen-edit="xe"
                   >
                     Thay xe
                   </button>
                   <button
                     class="btn btn-sm btn-ghost" type="button"
-                    data-modal-open="modalChuyen" data-mode="edit"
+                    data-chuyen-edit="taixe"
                   >
                     Đổi tài xế
                   </button>
-                  <button class="btn btn-sm btn-ghost" type="button" data-suco="ket-thuc">
+                  <button
+                    class="btn btn-sm btn-ghost" type="button"
+                    data-suco="ket-thuc"
+                  >
                     Kết thúc sớm
                   </button>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <section class="d-block">
+            <section class="d-block" aria-labelledby="ctVeTitle">
               <div class="d-block-head">
-                <h3 class="d-label">Hành khách & vé</h3>
-                <p class="page-note">Thanh toán tiền mặt tài xế ghi ở D4</p>
-              </div>
-              <ul class="ticket-list">
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2041</span>
-                  <span class="ticket-person">
-                    <strong>Nguyễn Mai Anh</strong>
-                    <span>Đón BX Nước Ngầm · 05:50</span>
-                  </span>
-                  <span class="seat-chip">A04</span>
-                  <span class="status-badge sb--sky sb--sm">Đã đón</span>
-                  <span class="status-badge sb--green sb--sm">Đã thu</span>
-                </li>
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2042</span>
-                  <span class="ticket-person">
-                    <strong>Trần Quốc Khánh</strong>
-                    <span>Đón BX Nước Ngầm · 05:50</span>
-                  </span>
-                  <span class="seat-chip">A05</span>
-                  <span class="status-badge sb--sky sb--sm">Đã đón</span>
-                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
-                </li>
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2043</span>
-                  <span class="ticket-person">
-                    <strong>Phạm Thu Hằng</strong>
-                    <span>Đón Cầu Rào 2 · 06:10</span>
-                  </span>
-                  <span class="seat-chip">B02</span>
-                  <span class="status-badge sb--sky sb--sm">Đã đặt</span>
-                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
-                </li>
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2044</span>
-                  <span class="ticket-person">
-                    <strong>Vũ Đức Thịnh</strong>
-                    <span>Đón Cầu Rào 2 · 06:10</span>
-                  </span>
-                  <span class="seat-chip">B03</span>
-                  <span class="status-badge sb--gray sb--sm">Đã hủy</span>
-                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
-                </li>
-              </ul>
-            </section>
-
-            <section class="d-block">
-              <h3 class="d-label">Lịch sử trạng thái</h3>
-              <ol class="timeline">
-                <li class="timeline-item is-done">
-                  <span class="timeline-dot" aria-hidden="true"></span>
-                  <div>
-                    <strong>Đã tạo chuyến</strong>
-                    <span>28/10 · 09:12 · Quản trị viên</span>
-                  </div>
-                </li>
-                <li class="timeline-item is-done">
-                  <span class="timeline-dot" aria-hidden="true"></span>
-                  <div>
-                    <strong>Đã phân công xe + tài xế</strong>
-                    <span>28/10 · 09:15 · 30A-123.45 · Trần Văn Bình</span>
-                  </div>
-                </li>
-                <li class="timeline-item is-done">
-                  <span class="timeline-dot" aria-hidden="true"></span>
-                  <div>
-                    <strong>Đã công bố bán vé</strong>
-                    <span>28/10 · 09:16 · Khách bắt đầu đặt</span>
-                  </div>
-                </li>
-                <li class="timeline-item is-current">
-                  <span class="timeline-dot" aria-hidden="true"></span>
-                  <div>
-                    <strong>Đang thực hiện</strong>
-                    <span>31/10 · 07:30 · Tài xế bắt đầu chuyến</span>
-                  </div>
-                </li>
-              </ol>
-            </section>
-          </div>
-
-          <footer class="drawer-foot">
-            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
-            <button
-              class="btn btn-ghost" type="button" id="ctEditBtn" disabled
-              title="Chuyến đang thực hiện — không sửa trực tiếp"
-            >
-              Sửa chuyến
-            </button>
-            <button
-              class="btn btn-danger" type="button" id="ctCancelBtn" disabled
-              title="Chuyến đang thực hiện — xử lý qua báo sự cố"
-            >
-              Hủy chuyến
-            </button>
-          </footer>
-        </div>
-      </div>

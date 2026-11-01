@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="../shared/css/tokens.css" />
     <link rel="stylesheet" href="../shared/css/base.css" />
     <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/shell.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/shell-top.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/shell-user.css" />
     <link rel="stylesheet" href="../admin/css/admin-shell.css" />
     <link rel="stylesheet" href="../admin/css/modal.css" />
     <link rel="stylesheet" href="../admin/screens/admin-tuyen-duong/css/route.css" />
@@ -270,8 +273,6 @@
 </svg>
 <svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
   <defs>
-    <!-- Icon riêng nhóm admin (các icon chung đã có trong shared/components/sprite.html).
-         Chỉ khai báo icon CHƯA có ở sprite shared để tránh trùng id. -->
     <symbol id="i-ticket" viewBox="0 0 24 24" class="icon-sym">
       <path
         d="M4.5 8.2A2.7 2.7 0 0 1 7.2 5.5h9.6a2.7 2.7 0 0 1 2.7 2.7v1.6
@@ -280,109 +281,157 @@
       />
       <path d="M14.6 6.6v10.8" stroke-dasharray="2 3" />
     </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="4" y="4" width="6.6" height="6.6" rx="1.8" />
+      <rect x="13.4" y="4" width="6.6" height="6.6" rx="1.8" />
+      <rect x="4" y="13.4" width="6.6" height="6.6" rx="1.8" />
+      <rect x="13.4" y="13.4" width="6.6" height="6.6" rx="1.8" />
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M18 9.5a6 6 0 1 0-12 0c0 3.8-1.3 5.3-2.2 6.2h16.4C19.3 14.8 18 13.3 18 9.5Z"
+      />
+      <path d="M10 19a2.2 2.2 0 0 0 4 0" />
+    </symbol>
   </defs>
 </svg>
-<div class="admin-shell">
-  <aside class="admin-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
-    <div class="admin-brand">
-      <a class="admin-logo" href="../admin/index.html">
-        <span class="admin-logo-mark" aria-hidden="true">
-          <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+<div class="adm" id="admShell">
+  <aside class="adm-side" id="admSide" aria-label="Điều hướng quản trị">
+    <div class="adm-side-top">
+      <a class="brand adm-brand" href="tong-quan.html" aria-label="Vi Vu Việt — Tổng quan">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
         </span>
-        <span class="admin-logo-text">Vi Vu Việt</span>
+        <span class="brand-name">Vi Vu <span>Việt</span></span>
       </a>
-      <span class="admin-chip">Quản trị</span>
+      <p class="adm-side-cap">Quản trị hệ thống</p>
     </div>
 
-    <nav class="admin-nav" aria-label="Màn hình quản trị">
-      <a href="../admin/index.html">
-        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
-        Tổng quan
+    <nav class="adm-nav" aria-label="Mục quản trị">
+      <a class="adm-nav-item" href="tong-quan.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+        <span>Tổng quan</span>
       </a>
-      <a href="../admin/admin-chuyen.html">
+      <a class="adm-nav-item" href="admin-chuyen.html">
         <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
-        Quản lý chuyến
+        <span>Quản lý chuyến</span>
       </a>
-      <a href="../admin/tai-xe.html">
+      <a class="adm-nav-item" href="tai-xe.html">
         <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
-        Quản lý tài xế
+        <span>Quản lý tài xế</span>
       </a>
-      <a href="../admin/xe.html">
+      <a class="adm-nav-item" href="xe.html">
         <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
-        Quản lý xe
+        <span>Quản lý xe</span>
       </a>
-      <a href="../admin/tuyen-duong.html">
+      <a class="adm-nav-item" href="tuyen-duong.html">
         <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
-        Quản lý tuyến
+        <span>Quản lý tuyến</span>
       </a>
-      <a href="../admin/don-dat.html">
+      <a class="adm-nav-item" href="don-dat.html">
         <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
-        Quản lý đơn đặt
+        <span>Quản lý đơn đặt</span>
       </a>
-      <a href="../admin/admin-doanh-thu.html">
+      <a class="adm-nav-item" href="admin-doanh-thu.html">
         <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
-        Doanh thu
+        <span>Doanh thu</span>
       </a>
-      <a href="../admin/khach-hang.html">
+      <a class="adm-nav-item" href="khach-hang.html">
         <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
-        Quản lý khách hàng
+        <span>Quản lý khách hàng</span>
       </a>
     </nav>
 
-    <p class="admin-side-note">
-      Bản mô phỏng giao diện quản trị · dữ liệu minh hoạ
-    </p>
+    <div class="adm-side-foot">
+      <div class="adm-side-user">
+        <span class="adm-avatar" aria-hidden="true">
+          <span data-adm-initial>Q</span>
+        </span>
+        <span class="adm-side-user-id">
+          <strong data-adm-name>Quản trị viên</strong>
+          <span>Quản trị viên</span>
+        </span>
+      </div>
+      <button class="adm-side-logout" type="button" data-adm-logout>
+        <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+        Đăng xuất
+      </button>
+    </div>
   </aside>
 
-  <div class="admin-scrim" id="adminScrim" hidden></div>
+  <div class="adm-scrim" id="admScrim" hidden></div>
 
-  <div class="admin-body">
-    <header class="admin-topbar">
+  <div class="adm-main">
+    <header class="adm-topbar">
       <button
+        class="adm-burger"
+        id="admBurger"
         type="button"
-        class="admin-burger"
-        id="adminBurger"
-        aria-label="Mở menu quản trị"
-        aria-controls="adminSidebar"
         aria-expanded="false"
+        aria-controls="admSide"
+        aria-label="Mở menu quản trị"
       >
-        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        <svg class="icon icon-menu" aria-hidden="true">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon icon-close" aria-hidden="true">
+          <use href="#i-close"></use>
+        </svg>
       </button>
 
-      <nav class="admin-crumb" aria-label="Breadcrumb">
-        <a href="../admin/index.html">Tổng quan</a>
-        <span class="admin-crumb-sep" aria-hidden="true">/</span>
-        <span class="admin-crumb-here" aria-current="page">Quản lý tuyến</span>
-      </nav>
-
-      <div class="admin-user">
-        <span class="admin-avatar" aria-hidden="true">QV</span>
-        <span class="admin-user-text">
-          <strong>Quản trị viên</strong>
-          <span>hotro@vivuviet.vn</span>
-        </span>
-        <button
-          type="button"
-          class="admin-logout"
-          data-admin-logout
-          aria-label="Đăng xuất khỏi trang quản trị"
-        >
-          <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+      <div class="adm-topbar-actions">
+        <button class="adm-bell" type="button" aria-label="Thông báo — 3 mục mới">
+          <svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg>
+          <span class="adm-bell-dot" aria-hidden="true"></span>
         </button>
+
+        <div class="adm-user" id="admUser">
+          <button
+            class="adm-user-btn"
+            id="admUserBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="admUserDrop"
+            aria-label="Tài khoản quản trị"
+          >
+            <span class="adm-avatar" aria-hidden="true">
+              <span data-adm-initial>Q</span>
+            </span>
+            <span class="adm-user-id">
+              <strong data-adm-name>Quản trị viên</strong>
+              <span>Quản trị viên</span>
+            </span>
+            <svg class="icon adm-user-caret" aria-hidden="true">
+              <use href="#i-chevron-down"></use>
+            </svg>
+          </button>
+
+          <div class="adm-drop" id="admUserDrop" aria-labelledby="admUserBtn">
+            <a class="adm-drop-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+              Hồ sơ quản trị
+            </a>
+            <button
+              class="adm-drop-item adm-drop-item--logout"
+              type="button"
+              data-adm-logout
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+              Đăng xuất
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
-    <main class="admin-main" id="main">
-      <div class="admin-container">
+    <main class="adm-content" id="main">
+      <div class="container adm-inner">
       <section class="rt-page" aria-labelledby="rtPageTitle">
         <div class="admin-head admin-head--row reveal">
           <div>
             <span class="admin-eyebrow">Vận hành · Tuyến đường</span>
             <h1 class="admin-title" id="rtPageTitle">Quản lý tuyến</h1>
-            <p class="admin-lead">
-              Danh mục tuyến xe ghép: điểm đi – điểm đến, quãng đường, điểm dừng
-              theo thứ tự và giá vé cơ bản dùng khi tạo chuyến.
-            </p>
+
           </div>
           <button class="btn btn-primary" type="button" data-route-action="create">
             <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
@@ -1156,16 +1205,16 @@
           </div>
         </div>
       </div>
-</div>
+      </div>
     </main>
   </div>
+</div>
 
-  <div class="toast" id="adminToast" role="status" aria-live="polite" hidden>
-    <svg class="icon toast-icon" aria-hidden="true">
-      <use href="#i-check-circle"></use>
-    </svg>
-    <span class="toast-text"></span>
-  </div>
+<div class="toast" id="adminToast" role="status" aria-live="polite" hidden>
+  <svg class="icon toast-icon" aria-hidden="true">
+    <use href="#i-check-circle"></use>
+  </svg>
+  <span class="toast-text"></span>
 </div>
 
 <script src="../admin/js/admin-shell.js" defer></script>

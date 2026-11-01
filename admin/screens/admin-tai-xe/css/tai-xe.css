@@ -8,6 +8,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
+  margin-bottom: 22px;
 }
 
 .admin-page-head h1 {
@@ -26,14 +27,6 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--sky-700);
-}
-
-.admin-page-desc {
-  max-width: 560px;
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--slate-600);
 }
 
 /* ---------- Thanh lọc ---------- */

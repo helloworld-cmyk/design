@@ -1,0 +1,108 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: cảnh báo sự cố và trạng thái
+   chưa có vé trong drawer chi tiết.
+   ========================================================= */
+
+.warn-block {
+  display: flex;
+  gap: 11px;
+  padding: 14px;
+  border: 1px solid var(--orange-100);
+  border-radius: 12px;
+  background: var(--orange-50);
+}
+
+.warn-block[hidden] {
+  display: none;
+}
+
+.warn-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.warn-icon .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.warn-body {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.warn-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.warn-head strong {
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.warn-head span {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--orange-700);
+}
+
+.warn-body p {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--slate-600);
+}
+
+.warn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.warn-actions .btn {
+  padding: 0 14px;
+}
+
+/* ---------- Trạng thái chưa có vé ---------- */
+
+.drawer-empty {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 22px 14px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.drawer-empty[hidden] {
+  display: none;
+}
+
+.drawer-empty .icon {
+  width: 26px;
+  height: 26px;
+  color: var(--slate-400);
+}
+
+.drawer-empty strong {
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.drawer-empty span {
+  font-size: 12px;
+  color: var(--slate-500);
+}

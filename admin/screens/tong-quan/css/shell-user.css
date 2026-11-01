@@ -169,10 +169,6 @@
 /* ---------- Topbar thu gọn ---------- */
 
 @media (max-width: 768px) {
-  .adm-search {
-    display: none;
-  }
-
   .adm-topbar {
     height: 70px;
   }

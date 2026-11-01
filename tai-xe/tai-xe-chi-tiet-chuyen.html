@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F7FAFD" />
+    <title>Chi tiết chuyến — Khu tài xế Vi Vu Việt</title>
+    <meta name="description" content="Xem đầy đủ thông tin một chuyến: tuyến, xe, danh sách hành khách và thao tác trước / trong khi chạy." />
+    <link rel="icon" type="image/svg+xml" href="../shared/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <link rel="stylesheet" href="../shared/css/header.css" />
+    <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../shared/css/ride-card.css" />
+    <link rel="stylesheet" href="../shared/css/sections.css" />
+    <link rel="stylesheet" href="../tai-xe/css/badges.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-tong-quan/css/dash-shell.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/trip-detail.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/passengers.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/timeline.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/modal.css" />
+    <link rel="stylesheet" href="../shared/css/motion.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-touch.css" />
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+
+    <symbol id="i-calendar" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </symbol>
+
+    <symbol id="i-users" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.6 19.2c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" />
+      <path d="M16 5.2a2.8 2.8 0 0 1 0 5.4" />
+      <path d="M17.4 14.4c2 .4 3.4 1.9 3.4 4.2" />
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.4 3.6-5.4 7-5.4s6.2 2 7 5.4" />
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.2-2h5.4l1.2 2h1.6A2.5 2.5 0 0 1 20 8.5
+           v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"
+      />
+      <circle cx="12" cy="12.4" r="3.2" />
+    </symbol>
+
+    <symbol id="i-lock" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+      <path d="M12 14.5v2" />
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7" />
+      <path d="M10.5 12H20" />
+      <path d="m16.5 8.5 3.5 3.5-3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </symbol>
+
+    <symbol id="i-refresh" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M20 11.5a8 8 0 0 0-14-4.6L4 9" />
+      <path d="M4 4v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 14 4.6L20 15" />
+      <path d="M20 20v-5h-5" />
+    </symbol>
+
+    <symbol id="i-swap" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7.5 4.5v14" />
+      <path d="m4.5 16 3 3 3-3" />
+      <path d="M16.5 19.5v-14" />
+      <path d="m13.5 8 3-3 3 3" />
+    </symbol>
+
+    <symbol id="i-shield" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 3.2 19 6v5.2c0 4.4-3 8.1-7 9.6-4-1.5-7-5.2-7-9.6V6l7-2.8Z" />
+      <path d="m9 12 2.1 2.1L15.4 10" />
+    </symbol>
+
+    <symbol id="i-headset" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3" />
+      <rect x="3" y="14" width="3.6" height="6" rx="1.6" />
+      <rect x="17.4" y="14" width="3.6" height="6" rx="1.6" />
+      <path d="M20 20a3.5 3.5 0 0 1-3.5 2.3H14" />
+    </symbol>
+
+    <symbol id="i-wallet" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.2A2.7 2.7 0 0 1 6.7 5.5H18a2.8 2.8 0 0 1 2.8 2.8v8.9
+           A2.8 2.8 0 0 1 18 20H6.8A2.8 2.8 0 0 1 4 17.2V8.2Z"
+      />
+      <path d="M4 9.5h16.8" />
+      <path d="M16.5 14.5h2" />
+    </symbol>
+
+    <symbol id="i-clock" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m5 12.5 4.2 4.2L19 7.5" />
+    </symbol>
+
+    <symbol id="i-check-circle" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m8.5 12.2 2.4 2.4 4.8-5" />
+    </symbol>
+
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+
+    <symbol id="i-car" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4.5 16.5h15l-1.6-5.2a2.3 2.3 0 0 0-2.2-1.7H8.3a2.3 2.3 0 0 0-2.2 1.7L4.5 16.5Z" />
+      <path d="M4.5 16.5v2.3M19.5 16.5v2.3" />
+      <circle cx="7.6" cy="16.5" r="1.1" />
+      <circle cx="16.4" cy="16.5" r="1.1" />
+      <path d="M8.2 10.2 8.9 7.9h6.2l.7 2.3" />
+    </symbol>
+
+    <symbol id="i-route" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="m7.2 7.2 9.6 9.6" stroke-dasharray="1 4" />
+    </symbol>
+
+    <symbol id="i-star" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M12 3.6l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8L12 3.6Z"
+      />
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M7.2 3.8h2.3l1.2 3.6-1.6 1.3a12.5 12.5 0 0 0 5.7 5.7l1.3-1.6 3.6 1.2v2.3
+           a2.5 2.5 0 0 1-2.7 2.5A16.8 16.8 0 0 1 4.7 6.5a2.5 2.5 0 0 1 2.5-2.7Z"
+      />
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 5.5L19.5 7" />
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m9 4.5-5.5 2v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </symbol>
+
+    <symbol id="i-facebook" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M13.5 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4
+           c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.1v2.8h2.4V21h3Z"
+      />
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+
+    <symbol id="i-youtube" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="2.8" y="5.5" width="18.4" height="13" rx="4" />
+      <path fill="currentColor" stroke="none" d="m10.2 9.2 4.8 2.8-4.8 2.8V9.2Z" />
+    </symbol>
+
+    <symbol id="i-eye" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M2.6 12S6.1 5.9 12 5.9 21.4 12 21.4 12 17.9 18.1 12 18.1 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="2.9" />
+    </symbol>
+
+    <symbol id="i-eye-off" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 12s3-5.2 7.4-5.6c1.3-.1 2.5.2 3.5.7" />
+      <path d="M20 12s-1.2 2-3.2 3.5" />
+      <path d="M9.6 9.7a3.1 3.1 0 0 0 4.4 4.3" />
+      <path d="m4.6 4.6 14.8 14.8" />
+    </symbol>
+
+    <symbol id="i-dashboard" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="3.5" y="13" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="13" width="7.5" height="7.5" rx="2" />
+    </symbol>
+
+    <symbol id="i-list" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M8.5 6h12M8.5 12h12M8.5 18h12" />
+      <path d="M4 6h.01M4 12h.01M4 18h.01" />
+    </symbol>
+
+    <symbol id="i-chart" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 20h16" />
+      <path d="M7 20v-6.5M12 20V6.5M17 20v-9.5" />
+    </symbol>
+
+    <symbol id="i-search" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </symbol>
+
+    <symbol id="i-filter" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 5.5h16l-6.2 7.2v5.6L10.2 20v-7.3L4 5.5Z" />
+    </symbol>
+
+    <symbol id="i-edit" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M14.5 5.5 18 9l-8.6 8.6-4 .9.9-4L14.5 5.5Z"
+      />
+      <path d="m12.8 7.2 3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-trash" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 7h14" />
+      <path d="M9.5 7V5.2A1.7 1.7 0 0 1 11.2 3.5h1.6A1.7 1.7 0 0 1 14.5 5.2V7" />
+      <path d="M7 7l.8 11.2A2 2 0 0 0 9.8 20h4.4a2 2 0 0 0 2-1.8L17 7" />
+      <path d="M10.5 11v5M13.5 11v5" />
+    </symbol>
+
+    <symbol id="i-alert" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M12 4 21 19.5H3L12 4Z"
+      />
+      <path d="M12 10v4.2M12 16.8h.01" />
+    </symbol>
+
+    <symbol id="i-plus" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+  </defs>
+</svg>
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="tong-quan.html" aria-label="Vi Vu Việt — Khu tài xế">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
+      </span>
+      <span class="brand-name">Vi Vu <span>Việt</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Điều hướng tài xế">
+      <a href="tong-quan.html">Tổng quan</a>
+      <a href="tai-xe-chuyen.html" class="is-active" aria-current="page">
+        Chuyến được phân công
+      </a>
+      <a href="tai-xe-xe.html">Xe được giao</a>
+      <a href="tai-xe-ho-so.html">Hồ sơ</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="tq-driver-chip" href="tai-xe-ho-so.html" aria-label="Hồ sơ tài xế">
+        <span class="tq-driver-avatar" aria-hidden="true">M</span>
+        <span class="tq-driver-id">
+          <strong>Anh Minh</strong>
+          <small>Tài xế</small>
+        </span>
+      </a>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+        aria-label="Mở menu"
+      >
+        <svg class="icon icon-menu" aria-hidden="true">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon icon-close" aria-hidden="true">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav" hidden>
+    <nav aria-label="Điều hướng tài xế trên di động">
+      <a href="tong-quan.html">Tổng quan</a>
+      <a href="tai-xe-chuyen.html" class="is-active" aria-current="page">
+        Chuyến được phân công
+      </a>
+      <a href="tai-xe-xe.html">Xe được giao</a>
+      <a href="tai-xe-ho-so.html">Hồ sơ</a>
+    </nav>
+  </div>
+</header>
+<main id="main" data-trip-status="sap-toi">
+  <div class="tcd-page">
+    <div class="container">
+
+      <nav class="tcd-crumb" aria-label="Đường dẫn">
+        <a href="tai-xe-chuyen.html">
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          Chuyến được phân công
+        </a>
+      </nav>
+
+      <header class="tcd-head">
+        <div class="tcd-head-main">
+          <span class="section-eyebrow">Chuyến #VVK-1256</span>
+          <h1>Hôm nay · 14:30</h1>
+          <p class="tcd-sub">Bến xe Giáp Bát → Bến xe Hòa Bình</p>
+        </div>
+        <span class="badge badge--sky tcd-status" id="tcdStatusBadge">Sắp tới</span>
+      </header>
+
+      <div class="tcd-banner" id="tcdBanner" role="status" aria-live="polite" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+        <div>
+          <strong id="tcdBannerTitle">Chuyến đã bị hủy</strong>
+          <p id="tcdBannerText">
+            Admin hủy lúc 09:12 — lý do: trùng lịch xe 51A-123.45.
+            Chuyến không thực hiện, bạn không cần thao tác thêm.
+          </p>
+        </div>
+      </div>
+
+      <div class="tcd-actions-bar" id="tcdActionsBar">
+        <button type="button" class="btn btn-primary btn-lg" id="tcdStartBtn">
+          Bắt đầu chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </button>
+        <button
+          type="button"
+          class="btn btn-ghost"
+          id="tcdIncidentBtn"
+          aria-haspopup="dialog"
+          aria-controls="tcdIncidentModal"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+          Báo sự cố
+        </button>
+        <a class="btn btn-ghost" id="tcdContinueLink" href="tai-xe-dieu-hanh.html" hidden>
+          Tiếp tục chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+        <p class="form-status" id="tcdStatus" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="tcd-grid">
+        <div class="tcd-main">
+          <article class="tcd-panel reveal" aria-labelledby="tcd-trip-title">
+            <div class="tcd-panel-head">
+              <h2 id="tcd-trip-title">Thông tin chuyến</h2>
+              <span class="tcd-panel-note">Khởi hành 14:30</span>
+            </div>
+
+            <div class="trip-route">
+              <div class="trip-row">
+                <span class="trip-time">14:30</span>
+                <span class="trip-marker">
+                  <span class="marker-dot marker-dot--start"></span>
+                </span>
+                <div class="trip-place">
+                  <strong>Bến xe Giáp Bát</strong>
+                  <span>Giải Phóng, Hoàng Mai, Hà Nội</span>
+                </div>
+              </div>
+              <div class="trip-row trip-row--mid">
+                <span class="trip-duration">15:05</span>
+                <span class="trip-marker"></span>
+                <span class="trip-note">
+                  Đón ghép tại Đại Lộ Thăng Long — +1 điểm giữa tuyến
+                </span>
+              </div>
+              <div class="trip-row">
+                <span class="trip-time">16:20</span>
+                <span class="trip-marker">
+                  <span class="marker-dot marker-dot--end"></span>
+                </span>
+                <div class="trip-place">
+                  <strong>Bến xe Hòa Bình</strong>
+                  <span>Trần Hưng Đạo, TP Hòa Bình</span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="tcd-stats">
+              <li>
+                <span class="tcd-stat-label">Thời lượng</span>
+                <strong>1 giờ 50 phút</strong>
+              </li>
+              <li>
+                <span class="tcd-stat-label">Quãng đường</span>
+                <strong>~95 km</strong>
+              </li>
+              <li>
+                <span class="tcd-stat-label">Ghế trống</span>
+                <strong>11 / 16</strong>
+              </li>
+              <li>
+                <span class="tcd-stat-label">Tiền mặt dự kiến</span>
+                <strong>1.200.000đ</strong>
+              </li>
+            </ul>
+
+            <div class="tcd-vehicle">
+              <span class="trust-icon trust-icon--navy" aria-hidden="true">
+                <svg class="icon"><use href="#i-car"></use></svg>
+              </span>
+              <div class="tcd-vehicle-info">
+                <strong>Ford Transit 16 chỗ · 51A-123.45</strong>
+                <span>Đăng kiểm 12/2026 · Xe admin gán</span>
+              </div>
+            </div>
+          </article>
+          <article class="tcd-panel reveal" aria-labelledby="tcd-timeline-title">
+            <div class="tcd-panel-head">
+              <h2 id="tcd-timeline-title">Điểm dừng &amp; đón</h2>
+              <span class="tcd-panel-note">3 điểm · 1 đón · 1 trả</span>
+            </div>
+
+            <ol class="tcd-timeline">
+              <li class="tcd-stop tcd-stop--start">
+                <span class="tcd-stop-dot" aria-hidden="true"></span>
+                <div class="tcd-stop-body">
+                  <div class="tcd-stop-head">
+                    <strong>Bến xe Giáp Bát</strong>
+                    <time>14:30</time>
+                  </div>
+                  <p>Điểm khởi hành · Giải Phóng, Hoàng Mai, Hà Nội</p>
+                </div>
+              </li>
+              <li class="tcd-stop tcd-stop--pickup">
+                <span class="tcd-stop-dot" aria-hidden="true"></span>
+                <div class="tcd-stop-body">
+                  <div class="tcd-stop-head">
+                    <strong>Đại Lộ Thăng Long</strong>
+                    <time>15:05</time>
+                  </div>
+                  <p>Đón ghép · 1 khách · Nguyễn Văn A</p>
+                </div>
+              </li>
+              <li class="tcd-stop tcd-stop--end">
+                <span class="tcd-stop-dot" aria-hidden="true"></span>
+                <div class="tcd-stop-body">
+                  <div class="tcd-stop-head">
+                    <strong>Bến xe Hòa Bình</strong>
+                    <time>16:20</time>
+                  </div>
+                  <p>Điểm kết thúc · Trần Hưng Đạo, TP Hòa Bình</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+          <article class="tcd-panel reveal" aria-labelledby="tcd-passengers-title">
+            <div class="tcd-panel-head">
+              <h2 id="tcd-passengers-title">Hành khách</h2>
+              <span class="tcd-panel-note">5 / 16 ghế đã đặt</span>
+            </div>
+
+            <div class="tcd-passengers">
+              <article class="tcd-passenger tcd-passenger--picked">
+                <div class="tcd-passenger-top">
+                  <div class="tcd-passenger-id">
+                    <span class="tcd-passenger-avatar" aria-hidden="true">A</span>
+                    <div>
+                      <strong>Nguyễn Văn A</strong>
+                      <span class="tcd-passenger-phone">0903 *** 789</span>
+                    </div>
+                  </div>
+                  <div class="tcd-passenger-badges">
+                    <span class="badge badge--green">Đã đón</span>
+                    <span class="badge badge--green">Đã TT</span>
+                  </div>
+                </div>
+                <div class="tcd-passenger-meta">
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                    Đón: Đại Lộ Thăng Long
+                  </span>
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+                    Trả: Bến xe Hòa Bình
+                  </span>
+                </div>
+                <div class="tcd-passenger-actions">
+                  <a class="tcd-call" href="tel:0903789789" aria-label="Gọi Nguyễn Văn A">
+                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+                    Gọi khách
+                  </a>
+                </div>
+              </article>
+
+              <article class="tcd-passenger tcd-passenger--picked">
+                <div class="tcd-passenger-top">
+                  <div class="tcd-passenger-id">
+                    <span class="tcd-passenger-avatar" aria-hidden="true">B</span>
+                    <div>
+                      <strong>Trần Thị B</strong>
+                      <span class="tcd-passenger-phone">0912 *** 345</span>
+                    </div>
+                  </div>
+                  <div class="tcd-passenger-badges">
+                    <span class="badge badge--green">Đã đón</span>
+                    <span class="badge badge--green">Đã TT</span>
+                  </div>
+                </div>
+                <div class="tcd-passenger-meta">
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                    Đón: Bến xe Giáp Bát
+                  </span>
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+                    Trả: Bến xe Hòa Bình
+                  </span>
+                </div>
+                <div class="tcd-passenger-actions">
+                  <a class="tcd-call" href="tel:0912345345" aria-label="Gọi Trần Thị B">
+                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+                    Gọi khách
+                  </a>
+                </div>
+              </article>
+
+              <article class="tcd-passenger">
+                <div class="tcd-passenger-top">
+                  <div class="tcd-passenger-id">
+                    <span class="tcd-passenger-avatar" aria-hidden="true">C</span>
+                    <div>
+                      <strong>Lê Văn C</strong>
+                      <span class="tcd-passenger-phone">0987 *** 123</span>
+                    </div>
+                  </div>
+                  <div class="tcd-passenger-badges">
+                    <span class="badge badge--sky">Chờ đón</span>
+                    <span class="badge badge--orange">Chưa TT</span>
+                  </div>
+                </div>
+                <div class="tcd-passenger-meta">
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                    Đón: Bến xe Giáp Bát
+                  </span>
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+                    Trả: Bến xe Hòa Bình
+                  </span>
+                </div>
+                <div class="tcd-passenger-actions">
+                  <a class="tcd-call" href="tel:0987123123" aria-label="Gọi Lê Văn C">
+                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+                    Gọi khách
+                  </a>
+                </div>
+              </article>
+
+              <article class="tcd-passenger">
+                <div class="tcd-passenger-top">
+                  <div class="tcd-passenger-id">
+                    <span class="tcd-passenger-avatar" aria-hidden="true">D</span>
+                    <div>
+                      <strong>Phạm Thị D</strong>
+                      <span class="tcd-passenger-phone">0903 *** 111</span>
+                    </div>
+                  </div>
+                  <div class="tcd-passenger-badges">
+                    <span class="badge badge--sky">Chờ đón</span>
+                    <span class="badge badge--orange">Chưa TT</span>
+                  </div>
+                </div>
+                <div class="tcd-passenger-meta">
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                    Đón: Bến xe Giáp Bát
+                  </span>
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+                    Trả: Bến xe Hòa Bình
+                  </span>
+                </div>
+                <div class="tcd-passenger-actions">
+                  <a class="tcd-call" href="tel:0903111111" aria-label="Gọi Phạm Thị D">
+                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+                    Gọi khách
+                  </a>
+                </div>
+              </article>
+
+              <article class="tcd-passenger">
+                <div class="tcd-passenger-top">
+                  <div class="tcd-passenger-id">
+                    <span class="tcd-passenger-avatar" aria-hidden="true">E</span>
+                    <div>
+                      <strong>Hoàng Văn E</strong>
+                      <span class="tcd-passenger-phone">0903 *** 678</span>
+                    </div>
+                  </div>
+                  <div class="tcd-passenger-badges">
+                    <span class="badge badge--sky">Chờ đón</span>
+                    <span class="badge badge--orange">Chưa TT</span>
+                  </div>
+                </div>
+                <div class="tcd-passenger-meta">
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                    Đón: Bến xe Giáp Bát
+                  </span>
+                  <span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+                    Trả: Bến xe Hòa Bình
+                  </span>
+                </div>
+                <div class="tcd-passenger-actions">
+                  <a class="tcd-call" href="tel:0903678678" aria-label="Gọi Hoàng Văn E">
+                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+                    Gọi khách
+                  </a>
+                </div>
+              </article>
+            </div>
+          </article>
+        </div>
+
+        <aside class="tcd-aside">
+          <section class="tcd-summary reveal" aria-labelledby="tcd-summary-title">
+            <h2 id="tcd-summary-title">Tổng quan</h2>
+            <dl class="tcd-summary-list">
+              <div>
+                <dt>Số khách</dt>
+                <dd>5 khách</dd>
+              </div>
+              <div>
+                <dt>Ghế trống</dt>
+                <dd>11 chỗ</dd>
+              </div>
+              <div>
+                <dt>Tiền mặt dự kiến</dt>
+                <dd>1.200.000đ</dd>
+              </div>
+              <div>
+                <dt>Điểm đón</dt>
+                <dd>2 điểm</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="tcd-summary tcd-summary--muted reveal">
+            <h2>Cần hỗ trợ?</h2>
+            <p>Liên hệ tổng đài nếu cần admin xử lý nhanh trong chuyến.</p>
+            <a class="tcd-call tcd-call--wide" href="tel:1900123456">
+              <svg class="icon" aria-hidden="true"><use href="#i-headset"></use></svg>
+              Gọi tổng đài
+            </a>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </div>
+</main>
+<div class="tcd-modal" id="tcdIncidentModal" hidden aria-hidden="true">
+  <div class="tcd-modal-backdrop" data-modal-close></div>
+  <div
+    class="tcd-modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tcdIncidentTitle"
+  >
+    <div class="tcd-modal-head">
+      <h2 id="tcdIncidentTitle">Báo sự cố</h2>
+      <button
+        type="button"
+        class="tcd-modal-close"
+        data-modal-close
+        aria-label="Đóng"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <p class="tcd-modal-lead">
+      Báo sự cố để admin hỗ trợ. Chuyến vẫn giữ nguyên — không tự hủy.
+    </p>
+
+    <form class="tcd-modal-form" id="tcdIncidentForm" novalidate>
+      <div class="field">
+        <label for="incidentType">Loại sự cố</label>
+        <div class="field-control">
+          <select id="incidentType" name="incidentType" required>
+            <option value="">— Chọn loại sự cố —</option>
+            <option value="xe">Xe gặp sự cố</option>
+            <option value="duong">Tắc đường / thời tiết</option>
+            <option value="khach">Khách không có mặt</option>
+            <option value="khac">Khác</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="incidentNote">Mô tả ngắn</label>
+        <textarea
+          id="incidentNote"
+          name="incidentNote"
+          class="tcd-textarea"
+          rows="3"
+          placeholder="VD: Xe nổ lốp tại Cầu Giẽ"
+          required
+        ></textarea>
+      </div>
+
+      <p class="form-status" id="tcdIncidentStatus" role="status" aria-live="polite"></p>
+
+      <div class="tcd-modal-actions">
+        <button type="button" class="btn btn-ghost" data-modal-close>Hủy</button>
+        <button type="submit" class="btn btn-primary">Gửi báo cáo</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="../shared/js/header.js" defer></script>
+<script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/trip-detail.js" defer></script>
+<script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/incident.js" defer></script>
+<script src="../shared/js/reveal.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<main id="main" data-trip-status="sap-toi">
+  <div class="tcd-page">
+    <div class="container">
+
+      <nav class="tcd-crumb" aria-label="Đường dẫn">
+        <a href="tai-xe-chuyen.html">
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          Chuyến được phân công
+        </a>
+      </nav>
+
+      <header class="tcd-head">
+        <div class="tcd-head-main">
+          <span class="section-eyebrow">Chuyến #VVK-1256</span>
+          <h1>Hôm nay · 14:30</h1>
+          <p class="tcd-sub">Bến xe Giáp Bát → Bến xe Hòa Bình</p>
+        </div>
+        <span class="badge badge--sky tcd-status" id="tcdStatusBadge">Sắp tới</span>
+      </header>
+
+      <div class="tcd-banner" id="tcdBanner" role="status" aria-live="polite" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+        <div>
+          <strong id="tcdBannerTitle">Chuyến đã bị hủy</strong>
+          <p id="tcdBannerText">
+            Admin hủy lúc 09:12 — lý do: trùng lịch xe 51A-123.45.
+            Chuyến không thực hiện, bạn không cần thao tác thêm.
+          </p>
+        </div>
+      </div>
+
+      <div class="tcd-actions-bar" id="tcdActionsBar">
+        <button type="button" class="btn btn-primary btn-lg" id="tcdStartBtn">
+          Bắt đầu chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </button>
+        <button
+          type="button"
+          class="btn btn-ghost"
+          id="tcdIncidentBtn"
+          aria-haspopup="dialog"
+          aria-controls="tcdIncidentModal"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+          Báo sự cố
+        </button>
+        <a class="btn btn-ghost" id="tcdContinueLink" href="tai-xe-dieu-hanh.html" hidden>
+          Tiếp tục chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+        <p class="form-status" id="tcdStatus" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="tcd-grid">
+        <div class="tcd-main">

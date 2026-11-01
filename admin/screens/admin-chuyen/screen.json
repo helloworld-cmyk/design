@@ -7,6 +7,9 @@
     "shared/css/tokens",
     "shared/css/base",
     "shared/css/booking",
+    "admin/screens/tong-quan/css/shell",
+    "admin/screens/tong-quan/css/shell-top",
+    "admin/screens/tong-quan/css/shell-user",
     "admin/css/admin-shell",
     "admin/css/modal",
     "admin/screens/admin-chuyen/css/chuyen-page",
@@ -17,6 +20,8 @@
     "admin/screens/admin-chuyen/css/chuyen-responsive",
     "admin/screens/admin-chuyen/css/chuyen-modals",
     "admin/screens/admin-chuyen/css/chuyen-drawer",
+    "admin/screens/admin-chuyen/css/chuyen-drawer-summary",
+    "admin/screens/admin-chuyen/css/chuyen-drawer-incident",
     "admin/screens/admin-chuyen/css/chuyen-drawer-lists",
     "shared/css/motion",
     "shared/css/responsive-desktop",
@@ -28,6 +33,7 @@
     "admin/js/modal",
     "admin/screens/admin-chuyen/js/chuyen-list",
     "admin/screens/admin-chuyen/js/chuyen-flows",
+    "admin/screens/admin-chuyen/js/chuyen-drawer",
     "shared/js/reveal"
   ],
   "partials": [
@@ -41,6 +47,7 @@
     "admin/screens/admin-chuyen/partials/table-end.html",
     "admin/screens/admin-chuyen/partials/modals.html",
     "admin/screens/admin-chuyen/partials/detail.html",
+    "admin/screens/admin-chuyen/partials/detail-ve.html",
     "admin/components/admin-shell-end.html"
   ]
 }

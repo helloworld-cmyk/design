@@ -1,6 +1,6 @@
 /* =========================================================
-   Vi Vu Việt — A2 Quản lý chuyến: drawer chi tiết chuyến
-   (khung, đầu/thân/chân, thông tin, cảnh báo sự cố).
+   Vi Vu Việt — A2 Quản lý chuyến: khung drawer chi tiết chuyến
+   (đầu, thân, khối nội dung, chân và responsive).
    ========================================================= */
 
 .modal.drawer {
@@ -14,56 +14,125 @@
 }
 
 .drawer-panel {
-  width: min(540px, 100%);
+  width: min(600px, 100%);
   max-height: 100%;
   height: 100%;
+  border-left: 1px solid var(--border);
   border-radius: 0;
 }
 
 /* ---------- Đầu drawer ---------- */
 
 .drawer-head {
+  display: grid;
+  gap: 14px;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--sky-50), var(--surface) 78%);
+}
+
+.drawer-head-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
-  padding: 20px 22px 16px;
-  border-bottom: 1px solid var(--border-soft);
 }
 
-.drawer-head-main {
-  display: grid;
-  gap: 8px;
+.drawer-ident {
   min-width: 0;
 }
 
 .drawer-eyebrow {
-  font-size: 11.5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--sky-700);
 }
 
+.drawer-code {
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--sky-800);
+}
+
 .drawer-title {
-  margin-top: 3px;
+  margin-top: 7px;
+  font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 800;
+  line-height: 1.16;
   letter-spacing: -0.02em;
-  line-height: 1.15;
   color: var(--ink);
+  text-wrap: balance;
 }
 
 .drawer-sub {
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
   font-size: 12.5px;
   color: var(--slate-500);
+}
+
+.drawer-sub .icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--slate-400);
+}
+
+.drawer .modal-close {
+  width: 44px;
+  height: 44px;
+  margin: -4px -6px 0 0;
+}
+
+.drawer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .drawer-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+
+.drawer-badges .status-badge[hidden] {
+  display: none;
+}
+
+.drawer-stops {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--slate-600);
+}
+
+.drawer-stops .icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--sky-600);
+}
+
+.drawer-stops span {
+  overflow-wrap: anywhere;
 }
 
 /* ---------- Thân drawer ---------- */
@@ -77,81 +146,6 @@
   overflow-y: auto;
 }
 
-.d-list {
-  display: grid;
-  gap: 10px;
-}
-
-.d-list--grid {
-  grid-template-columns: 1fr 1fr;
-}
-
-.d-list li {
-  padding: 11px 13px;
-  border: 1px solid var(--border-soft);
-  border-radius: 12px;
-  background: var(--bg);
-}
-
-.d-list li span {
-  display: block;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--slate-500);
-}
-
-.d-list li strong {
-  display: block;
-  margin-top: 3px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ink);
-  overflow-wrap: anywhere;
-}
-
-/* ---------- Cảnh báo sự cố ---------- */
-
-.warn-block {
-  display: flex;
-  gap: 11px;
-  padding: 14px;
-  border: 1px solid var(--orange-100);
-  border-radius: 12px;
-  background: var(--orange-50);
-}
-
-.warn-block[hidden] {
-  display: none;
-}
-
-.warn-block > .icon {
-  flex: none;
-  width: 19px;
-  height: 19px;
-  color: var(--orange-600);
-}
-
-.warn-block p {
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--slate-600);
-}
-
-.warn-block p strong {
-  display: block;
-  font-size: 13.5px;
-  color: var(--ink);
-}
-
-.warn-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 11px;
-}
-
 /* ---------- Khối nội dung ---------- */
 
 .d-block {
@@ -161,7 +155,7 @@
 
 .d-block-head {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
@@ -174,15 +168,42 @@
   color: var(--ink);
 }
 
+.d-block-sub {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--slate-500);
+}
+
 /* ---------- Chân drawer ---------- */
 
 .drawer-foot {
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding: 14px 22px 18px;
   border-top: 1px solid var(--border-soft);
+  background: var(--surface);
+}
+
+.drawer-foot-note {
+  flex: 1 1 180px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--slate-500);
+}
+
+.drawer-foot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.drawer-foot-actions .btn {
+  min-width: 108px;
 }
 
 /* ---------- Responsive ---------- */
@@ -199,12 +220,36 @@
     padding-right: 16px;
   }
 
-  .d-list--grid {
-    grid-template-columns: 1fr;
+  .drawer-title {
+    font-size: 19px;
   }
 
-  .drawer-foot .btn {
+  .drawer-foot-actions {
+    flex: 1 1 100%;
+  }
+
+  .drawer-foot-actions .btn {
     flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .drawer-meta {
+    align-items: flex-start;
+  }
+
+  .drawer-foot-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .drawer-foot-actions .btn {
+    width: 100%;
+  }
+
+  .drawer-foot-actions .btn-danger {
+    grid-column: 1 / -1;
   }
 }
 

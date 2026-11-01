@@ -1,19 +1,19 @@
 /* ================= Tổng quan tài xế (buồng lái) ================= */
 
 .dash-page {
-  padding: clamp(40px, 5vw, 64px) 0 clamp(48px, 6vw, 80px);
+  padding: clamp(28px, 3.4vw, 44px) 0 clamp(48px, 6vw, 80px);
 }
 
 .dash-top {
-  max-width: 760px;
+  max-width: 720px;
 }
 
 .dash-top h1 {
-  margin-top: 12px;
-  font-size: clamp(2.35rem, 5.1vw, 4rem);
+  margin-top: 8px;
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.038em;
+  line-height: 1.2;
+  letter-spacing: -0.026em;
   color: var(--ink);
   text-wrap: balance;
 }
@@ -22,17 +22,17 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 14px;
-  font-size: 13.5px;
-  font-weight: 600;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
   line-height: 1.4;
   color: var(--slate-500);
 }
 
 .tq-date .icon {
-  width: 16px;
-  height: 16px;
-  color: var(--sky-700);
+  width: 15px;
+  height: 15px;
+  color: var(--slate-400);
 }
 
 /* ---------- Chip tài xế trên header ---------- */

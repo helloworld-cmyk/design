@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="../shared/css/tokens.css" />
     <link rel="stylesheet" href="../shared/css/base.css" />
     <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/shell.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/shell-top.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/shell-user.css" />
     <link rel="stylesheet" href="../admin/css/admin-shell.css" />
     <link rel="stylesheet" href="../admin/css/modal.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-page.css" />
@@ -30,6 +33,8 @@
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-responsive.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-modals.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer-summary.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer-incident.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer-lists.css" />
     <link rel="stylesheet" href="../shared/css/motion.css" />
     <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
@@ -275,8 +280,6 @@
 </svg>
 <svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
   <defs>
-    <!-- Icon riêng nhóm admin (các icon chung đã có trong shared/components/sprite.html).
-         Chỉ khai báo icon CHƯA có ở sprite shared để tránh trùng id. -->
     <symbol id="i-ticket" viewBox="0 0 24 24" class="icon-sym">
       <path
         d="M4.5 8.2A2.7 2.7 0 0 1 7.2 5.5h9.6a2.7 2.7 0 0 1 2.7 2.7v1.6
@@ -285,109 +288,156 @@
       />
       <path d="M14.6 6.6v10.8" stroke-dasharray="2 3" />
     </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="4" y="4" width="6.6" height="6.6" rx="1.8" />
+      <rect x="13.4" y="4" width="6.6" height="6.6" rx="1.8" />
+      <rect x="4" y="13.4" width="6.6" height="6.6" rx="1.8" />
+      <rect x="13.4" y="13.4" width="6.6" height="6.6" rx="1.8" />
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M18 9.5a6 6 0 1 0-12 0c0 3.8-1.3 5.3-2.2 6.2h16.4C19.3 14.8 18 13.3 18 9.5Z"
+      />
+      <path d="M10 19a2.2 2.2 0 0 0 4 0" />
+    </symbol>
   </defs>
 </svg>
-<div class="admin-shell">
-  <aside class="admin-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
-    <div class="admin-brand">
-      <a class="admin-logo" href="../admin/index.html">
-        <span class="admin-logo-mark" aria-hidden="true">
-          <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+<div class="adm" id="admShell">
+  <aside class="adm-side" id="admSide" aria-label="Điều hướng quản trị">
+    <div class="adm-side-top">
+      <a class="brand adm-brand" href="tong-quan.html" aria-label="Vi Vu Việt — Tổng quan">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="../shared/assets/logo.svg" alt="" width="42" height="42" />
         </span>
-        <span class="admin-logo-text">Vi Vu Việt</span>
+        <span class="brand-name">Vi Vu <span>Việt</span></span>
       </a>
-      <span class="admin-chip">Quản trị</span>
+      <p class="adm-side-cap">Quản trị hệ thống</p>
     </div>
 
-    <nav class="admin-nav" aria-label="Màn hình quản trị">
-      <a href="../admin/index.html">
-        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
-        Tổng quan
+    <nav class="adm-nav" aria-label="Mục quản trị">
+      <a class="adm-nav-item" href="tong-quan.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+        <span>Tổng quan</span>
       </a>
-      <a href="../admin/admin-chuyen.html">
+      <a class="adm-nav-item" href="admin-chuyen.html">
         <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
-        Quản lý chuyến
+        <span>Quản lý chuyến</span>
       </a>
-      <a href="../admin/tai-xe.html">
+      <a class="adm-nav-item" href="tai-xe.html">
         <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
-        Quản lý tài xế
+        <span>Quản lý tài xế</span>
       </a>
-      <a href="../admin/xe.html">
+      <a class="adm-nav-item" href="xe.html">
         <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
-        Quản lý xe
+        <span>Quản lý xe</span>
       </a>
-      <a href="../admin/tuyen-duong.html">
+      <a class="adm-nav-item" href="tuyen-duong.html">
         <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
-        Quản lý tuyến
+        <span>Quản lý tuyến</span>
       </a>
-      <a href="../admin/don-dat.html">
+      <a class="adm-nav-item" href="don-dat.html">
         <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
-        Quản lý đơn đặt
+        <span>Quản lý đơn đặt</span>
       </a>
-      <a href="../admin/admin-doanh-thu.html">
+      <a class="adm-nav-item" href="admin-doanh-thu.html">
         <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
-        Doanh thu
+        <span>Doanh thu</span>
       </a>
-      <a href="../admin/khach-hang.html">
+      <a class="adm-nav-item" href="khach-hang.html">
         <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
-        Quản lý khách hàng
+        <span>Quản lý khách hàng</span>
       </a>
     </nav>
 
-    <p class="admin-side-note">
-      Bản mô phỏng giao diện quản trị · dữ liệu minh hoạ
-    </p>
+    <div class="adm-side-foot">
+      <div class="adm-side-user">
+        <span class="adm-avatar" aria-hidden="true">
+          <span data-adm-initial>Q</span>
+        </span>
+        <span class="adm-side-user-id">
+          <strong data-adm-name>Quản trị viên</strong>
+          <span>Quản trị viên</span>
+        </span>
+      </div>
+      <button class="adm-side-logout" type="button" data-adm-logout>
+        <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+        Đăng xuất
+      </button>
+    </div>
   </aside>
 
-  <div class="admin-scrim" id="adminScrim" hidden></div>
+  <div class="adm-scrim" id="admScrim" hidden></div>
 
-  <div class="admin-body">
-    <header class="admin-topbar">
+  <div class="adm-main">
+    <header class="adm-topbar">
       <button
+        class="adm-burger"
+        id="admBurger"
         type="button"
-        class="admin-burger"
-        id="adminBurger"
-        aria-label="Mở menu quản trị"
-        aria-controls="adminSidebar"
         aria-expanded="false"
+        aria-controls="admSide"
+        aria-label="Mở menu quản trị"
       >
-        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        <svg class="icon icon-menu" aria-hidden="true">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon icon-close" aria-hidden="true">
+          <use href="#i-close"></use>
+        </svg>
       </button>
 
-      <nav class="admin-crumb" aria-label="Breadcrumb">
-        <a href="../admin/index.html">Tổng quan</a>
-        <span class="admin-crumb-sep" aria-hidden="true">/</span>
-        <span class="admin-crumb-here" aria-current="page">Quản lý chuyến — Vi Vu Việt</span>
-      </nav>
-
-      <div class="admin-user">
-        <span class="admin-avatar" aria-hidden="true">QV</span>
-        <span class="admin-user-text">
-          <strong>Quản trị viên</strong>
-          <span>hotro@vivuviet.vn</span>
-        </span>
-        <button
-          type="button"
-          class="admin-logout"
-          data-admin-logout
-          aria-label="Đăng xuất khỏi trang quản trị"
-        >
-          <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+      <div class="adm-topbar-actions">
+        <button class="adm-bell" type="button" aria-label="Thông báo — 3 mục mới">
+          <svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg>
+          <span class="adm-bell-dot" aria-hidden="true"></span>
         </button>
+
+        <div class="adm-user" id="admUser">
+          <button
+            class="adm-user-btn"
+            id="admUserBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="admUserDrop"
+            aria-label="Tài khoản quản trị"
+          >
+            <span class="adm-avatar" aria-hidden="true">
+              <span data-adm-initial>Q</span>
+            </span>
+            <span class="adm-user-id">
+              <strong data-adm-name>Quản trị viên</strong>
+              <span>Quản trị viên</span>
+            </span>
+            <svg class="icon adm-user-caret" aria-hidden="true">
+              <use href="#i-chevron-down"></use>
+            </svg>
+          </button>
+
+          <div class="adm-drop" id="admUserDrop" aria-labelledby="admUserBtn">
+            <a class="adm-drop-item" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+              Hồ sơ quản trị
+            </a>
+            <button
+              class="adm-drop-item adm-drop-item--logout"
+              type="button"
+              data-adm-logout
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+              Đăng xuất
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
-    <main class="admin-main" id="main">
-      <div class="admin-container">
+    <main class="adm-content" id="main">
+      <div class="container adm-inner">
       <section class="chuyen-page" id="quan-ly-chuyen" aria-labelledby="chuyenPageTitle">
         <div class="admin-head admin-head--row reveal">
           <div>
             <span class="admin-eyebrow">Khu quản trị · Vận hành</span>
             <h1 class="admin-title" id="chuyenPageTitle">Quản lý chuyến</h1>
-            <p class="admin-lead">
-              Tạo chuyến, gán xe và phân công tài xế; theo dõi trạng thái, xử lý
-              sự cố và hủy chuyến khi chưa khởi hành.
-            </p>
           </div>
           <div class="admin-head-actions">
             <button
@@ -538,7 +588,7 @@
                 <tr
                   data-status="dang-thuc-hien" data-tuyen="hn-hp"
                   data-taixe="tran-van-binh" data-ngay="hom-nay"
-                  data-ma="VC-1042" data-ve="9"
+                  data-ma="VC-1042" data-ve="9" data-cong="400000"
                   data-su-co="Xe bị thủng lốp giữa tuyến (km 22) — báo lúc 07:58"
                 >
                   <td data-label="Mã chuyến">
@@ -612,7 +662,7 @@
                 <tr
                   data-status="sap-toi" data-tuyen="hn-hp"
                   data-taixe="chua-phan-cong" data-ngay="hom-nay"
-                  data-ma="VC-1044" data-ve="0"
+                  data-ma="VC-1044" data-ve="0" data-cong="350000"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1044</span>
@@ -686,7 +736,7 @@
                 <tr
                   data-status="sap-toi" data-tuyen="hn-nd"
                   data-taixe="nguyen-duc-long" data-ngay="hom-nay"
-                  data-ma="VC-1043" data-ve="5"
+                  data-ma="VC-1043" data-ve="5" data-cong="340000"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1043</span>
@@ -752,7 +802,7 @@
                 <tr
                   data-status="sap-toi" data-tuyen="hn-hd"
                   data-taixe="vu-dinh-khoa" data-ngay="ngay-mai"
-                  data-ma="VC-1041" data-ve="3"
+                  data-ma="VC-1041" data-ve="3" data-cong="300000"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1041</span>
@@ -819,7 +869,7 @@
                 <tr
                   data-status="hoan-thanh" data-tuyen="hn-qnam"
                   data-taixe="pham-thi-hoa" data-ngay="hom-qua"
-                  data-ma="VC-1038" data-ve="16"
+                  data-ma="VC-1038" data-ve="16" data-cong="620000"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1038</span>
@@ -872,7 +922,7 @@
                 <tr
                   data-status="hoan-thanh" data-tuyen="hn-tb"
                   data-taixe="le-van-tu" data-ngay="hom-qua"
-                  data-ma="VC-1039" data-ve="6"
+                  data-ma="VC-1039" data-ve="6" data-cong="420000"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1039</span>
@@ -925,7 +975,7 @@
                 <tr
                   data-status="da-huy" data-tuyen="hn-hyen"
                   data-taixe="tran-van-binh" data-ngay="hom-qua"
-                  data-ma="VC-1035" data-ve="8"
+                  data-ma="VC-1035" data-ve="8" data-cong="520000"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1035</span>
@@ -1247,155 +1297,295 @@
         role="dialog"
         aria-modal="true"
         aria-labelledby="chitietTitle"
+        aria-describedby="ctThoiGian"
       >
         <div class="modal-scrim" data-modal-close></div>
         <div class="modal-panel drawer-panel">
           <header class="drawer-head">
-            <div class="drawer-head-main">
+            <div class="drawer-head-row">
               <div class="drawer-ident">
-                <p class="drawer-eyebrow" id="ctMa">VC-1042</p>
-                <h2 class="drawer-title" id="chitietTitle">Hà Nội → Hải Phòng</h2>
-                <p class="drawer-sub" id="ctThoiGian">Hôm nay · 07:30 – dự kiến 09:00</p>
+                <p class="drawer-eyebrow">
+                  Chi tiết chuyến
+                  <span class="drawer-code" id="ctMa">VC-1042</span>
+                </p>
+                <h2 class="drawer-title" id="chitietTitle">
+                  Hà Nội → Hải Phòng
+                </h2>
+                <p class="drawer-sub">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-clock"></use>
+                  </svg>
+                  <span id="ctThoiGian">07:30 · 31/10 · Hôm nay</span>
+                </p>
               </div>
-              <div class="drawer-badges">
-                <span class="status-badge sb--orange" id="ctBadge">Đang thực hiện</span>
-              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng chi tiết chuyến"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-close"></use>
+                </svg>
+              </button>
             </div>
-            <button
-              type="button" class="modal-close" data-modal-close
-              aria-label="Đóng chi tiết chuyến"
-            >
-              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
-            </button>
+
+            <div class="drawer-meta">
+              <div class="drawer-badges">
+                <span class="status-badge sb--orange" id="ctBadge">
+                  Đang thực hiện
+                </span>
+                <span
+                  class="status-badge sb--orange sb--sm"
+                  id="ctSuCoBadge"
+                  hidden
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-alert"></use>
+                  </svg>
+                  Sự cố
+                </span>
+              </div>
+              <p class="drawer-stops">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-pin"></use>
+                </svg>
+                <span id="ctTuyenPhu">BX Nước Ngầm → Cầu Rào 2</span>
+              </p>
+            </div>
           </header>
 
           <div class="drawer-body">
-            <ul class="d-list d-list--grid">
-              <li>
-                <span>Tài xế</span><strong id="ctTaiXe">Trần Văn Bình</strong>
-              </li>
-              <li>
-                <span>Xe</span><strong id="ctXe">30A-123.45 · 16 ghế</strong>
-              </li>
-              <li>
-                <span>Lấp ghế</span><strong><span id="ctGhe">9</span>/16 vé</strong>
-              </li>
-              <li>
-                <span>Giá vé · tiền công</span>
-                <strong id="ctTien">180.000đ · công 400.000đ</strong>
-              </li>
-            </ul>
-
-            <div class="warn-block" id="ctSuCo" role="note" hidden>
-              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
-              <div>
-                <p>
-                  <strong>Sự cố đang mở.</strong>
-                  <span id="ctSuCoText">
-                    Xe bị thủng lốp giữa tuyến (km 22) — 07:58
+            <section class="trip-summary" aria-label="Tóm tắt chuyến">
+              <div class="trip-kpi trip-kpi--seat">
+                <span class="trip-kpi-label">Lấp ghế</span>
+                <strong class="trip-kpi-value">
+                  <span id="ctGhe">9</span>
+                  <span class="trip-kpi-unit">
+                    /<span id="ctSucChua">16</span> ghế
                   </span>
+                </strong>
+                <span
+                  class="seat-progress trip-seat-bar" id="ctGheBar"
+                  role="img" aria-label="Đã đặt 9 trên 16 ghế"
+                >
+                  <span
+                    class="seat-progress-fill" id="ctGheFill"
+                    style="width: 56%"
+                  ></span>
+                </span>
+              </div>
+              <div class="trip-kpi">
+                <span class="trip-kpi-label">Giá vé</span>
+                <strong class="trip-kpi-value" id="ctGia">180.000đ</strong>
+                <span class="trip-kpi-sub">mỗi ghế</span>
+              </div>
+              <div class="trip-kpi">
+                <span class="trip-kpi-label">Tiền công</span>
+                <strong class="trip-kpi-value" id="ctCong">400.000đ</strong>
+                <span class="trip-kpi-sub">trả tài xế</span>
+              </div>
+            </section>
+
+            <div class="trip-assign">
+              <div class="assign-card" id="ctDriverCard">
+                <span
+                  class="avatar avatar--drawer" id="ctAvatar"
+                  aria-hidden="true"
+                >
+                  TB
+                </span>
+                <div class="assign-body">
+                  <span class="assign-label">Tài xế</span>
+                  <strong id="ctTaiXe">Trần Văn Bình</strong>
+                  <span class="assign-sub" id="ctTaiXeSub">
+                    Tài xế phụ trách
+                  </span>
+                </div>
+              </div>
+              <div class="assign-card" id="ctVehicleCard">
+                <span class="assign-icon" aria-hidden="true">
+                  <svg class="icon"><use href="#i-car"></use></svg>
+                </span>
+                <div class="assign-body">
+                  <span class="assign-label">Xe</span>
+                  <strong id="ctXe">30A-123.45</strong>
+                  <span class="assign-sub" id="ctXeLoai">
+                    Ghế ngồi · 16 chỗ
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <section class="warn-block" id="ctSuCo" role="alert" hidden>
+              <span class="warn-icon" aria-hidden="true">
+                <svg class="icon"><use href="#i-alert"></use></svg>
+              </span>
+              <div class="warn-body">
+                <div class="warn-head">
+                  <strong>Sự cố đang mở</strong>
+                  <span id="ctSuCoTime">Báo lúc 07:58</span>
+                </div>
+                <p id="ctSuCoText">
+                  Xe bị thủng lốp giữa tuyến (km 22) — tài xế đã báo.
                 </p>
                 <div class="warn-actions">
-                  <button class="btn btn-sm btn-ghost" type="button" data-suco="tiep-tuc">
+                  <button
+                    class="btn btn-sm btn-ghost" type="button"
+                    data-suco="tiep-tuc"
+                  >
                     Tiếp tục chạy
                   </button>
                   <button
                     class="btn btn-sm btn-ghost" type="button"
-                    data-modal-open="modalChuyen" data-mode="edit"
+                    data-chuyen-edit="xe"
                   >
                     Thay xe
                   </button>
                   <button
                     class="btn btn-sm btn-ghost" type="button"
-                    data-modal-open="modalChuyen" data-mode="edit"
+                    data-chuyen-edit="taixe"
                   >
                     Đổi tài xế
                   </button>
-                  <button class="btn btn-sm btn-ghost" type="button" data-suco="ket-thuc">
+                  <button
+                    class="btn btn-sm btn-ghost" type="button"
+                    data-suco="ket-thuc"
+                  >
                     Kết thúc sớm
                   </button>
                 </div>
               </div>
-            </div>
-
-            <section class="d-block">
-              <div class="d-block-head">
-                <h3 class="d-label">Hành khách & vé</h3>
-                <p class="page-note">Thanh toán tiền mặt tài xế ghi ở D4</p>
-              </div>
-              <ul class="ticket-list">
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2041</span>
-                  <span class="ticket-person">
-                    <strong>Nguyễn Mai Anh</strong>
-                    <span>Đón BX Nước Ngầm · 05:50</span>
-                  </span>
-                  <span class="seat-chip">A04</span>
-                  <span class="status-badge sb--sky sb--sm">Đã đón</span>
-                  <span class="status-badge sb--green sb--sm">Đã thu</span>
-                </li>
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2042</span>
-                  <span class="ticket-person">
-                    <strong>Trần Quốc Khánh</strong>
-                    <span>Đón BX Nước Ngầm · 05:50</span>
-                  </span>
-                  <span class="seat-chip">A05</span>
-                  <span class="status-badge sb--sky sb--sm">Đã đón</span>
-                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
-                </li>
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2043</span>
-                  <span class="ticket-person">
-                    <strong>Phạm Thu Hằng</strong>
-                    <span>Đón Cầu Rào 2 · 06:10</span>
-                  </span>
-                  <span class="seat-chip">B02</span>
-                  <span class="status-badge sb--sky sb--sm">Đã đặt</span>
-                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
-                </li>
-                <li class="ticket-item">
-                  <span class="ticket-code">VE-2044</span>
-                  <span class="ticket-person">
-                    <strong>Vũ Đức Thịnh</strong>
-                    <span>Đón Cầu Rào 2 · 06:10</span>
-                  </span>
-                  <span class="seat-chip">B03</span>
-                  <span class="status-badge sb--gray sb--sm">Đã hủy</span>
-                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
-                </li>
-              </ul>
             </section>
 
-            <section class="d-block">
-              <h3 class="d-label">Lịch sử trạng thái</h3>
-              <ol class="timeline">
+            <section class="d-block" aria-labelledby="ctVeTitle">
+              <div class="d-block-head">
+                <div>
+                  <h3 class="d-label" id="ctVeTitle">Hành khách &amp; vé</h3>
+                  <p class="d-block-sub" id="ctVeNote">
+                    Thanh toán tiền mặt do tài xế ghi ở D4
+                  </p>
+                </div>
+                <span class="status-badge sb--sky sb--sm" id="ctVeCount">
+                  4 vé
+                </span>
+              </div>
+
+              <ul class="ticket-list" id="ctTicketList">
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">MA</span>
+                  <span class="ticket-person">
+                    <strong>Nguyễn Mai Anh</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2041</span>
+                      · Đón BX Nước Ngầm · 05:50
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">A04</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--sky sb--sm">Đã đón</span>
+                      <span class="status-badge sb--green sb--sm">Đã thu</span>
+                    </span>
+                  </span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">TK</span>
+                  <span class="ticket-person">
+                    <strong>Trần Quốc Khánh</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2042</span>
+                      · Đón BX Nước Ngầm · 05:50
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">A05</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--sky sb--sm">Đã đón</span>
+                      <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                    </span>
+                  </span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">TH</span>
+                  <span class="ticket-person">
+                    <strong>Phạm Thu Hằng</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2043</span>
+                      · Đón Cầu Rào 2 · 06:10
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">B02</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--sky sb--sm">Đã đặt</span>
+                      <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                    </span>
+                  </span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-avatar" aria-hidden="true">TT</span>
+                  <span class="ticket-person">
+                    <strong>Vũ Đức Thịnh</strong>
+                    <span class="ticket-meta">
+                      <span class="ticket-code">VE-2044</span>
+                      · Đón Cầu Rào 2 · 06:10
+                    </span>
+                  </span>
+                  <span class="ticket-side">
+                    <span class="seat-chip">B03</span>
+                    <span class="ticket-flags">
+                      <span class="status-badge sb--gray sb--sm">Đã hủy</span>
+                      <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                    </span>
+                  </span>
+                </li>
+              </ul>
+
+              <div class="drawer-empty" id="ctVeEmpty" hidden>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-ticket"></use>
+                </svg>
+                <strong>Chưa có vé nào</strong>
+                <span>Vé khách đặt sẽ xuất hiện ở đây.</span>
+              </div>
+            </section>
+
+            <section class="d-block" aria-labelledby="ctHistoryTitle">
+              <h3 class="d-label" id="ctHistoryTitle">Lịch sử trạng thái</h3>
+              <ol class="timeline" aria-label="Các mốc trạng thái của chuyến">
                 <li class="timeline-item is-done">
                   <span class="timeline-dot" aria-hidden="true"></span>
                   <div>
                     <strong>Đã tạo chuyến</strong>
-                    <span>28/10 · 09:12 · Quản trị viên</span>
+                    <span class="timeline-meta">
+                      28/10 · 09:12 · Quản trị viên
+                    </span>
                   </div>
                 </li>
                 <li class="timeline-item is-done">
                   <span class="timeline-dot" aria-hidden="true"></span>
                   <div>
                     <strong>Đã phân công xe + tài xế</strong>
-                    <span>28/10 · 09:15 · 30A-123.45 · Trần Văn Bình</span>
+                    <span class="timeline-meta">
+                      28/10 · 09:15 · 30A-123.45 · Trần Văn Bình
+                    </span>
                   </div>
                 </li>
                 <li class="timeline-item is-done">
                   <span class="timeline-dot" aria-hidden="true"></span>
                   <div>
                     <strong>Đã công bố bán vé</strong>
-                    <span>28/10 · 09:16 · Khách bắt đầu đặt</span>
+                    <span class="timeline-meta">
+                      28/10 · 09:16 · Khách bắt đầu đặt
+                    </span>
                   </div>
                 </li>
                 <li class="timeline-item is-current">
                   <span class="timeline-dot" aria-hidden="true"></span>
                   <div>
                     <strong>Đang thực hiện</strong>
-                    <span>31/10 · 07:30 · Tài xế bắt đầu chuyến</span>
+                    <span class="timeline-meta">
+                      31/10 · 07:30 · Tài xế bắt đầu chuyến
+                    </span>
                   </div>
                 </li>
               </ol>
@@ -1403,38 +1593,46 @@
           </div>
 
           <footer class="drawer-foot">
-            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
-            <button
-              class="btn btn-ghost" type="button" id="ctEditBtn" disabled
-              title="Chuyến đang thực hiện — không sửa trực tiếp"
-            >
-              Sửa chuyến
-            </button>
-            <button
-              class="btn btn-danger" type="button" id="ctCancelBtn" disabled
-              title="Chuyến đang thực hiện — xử lý qua báo sự cố"
-            >
-              Hủy chuyến
-            </button>
+            <p class="drawer-foot-note" id="ctFootNote">
+              Có thể sửa hoặc hủy trước giờ khởi hành.
+            </p>
+            <div class="drawer-foot-actions">
+              <button class="btn btn-ghost" type="button" data-modal-close>
+                Đóng
+              </button>
+              <button
+                class="btn btn-ghost" type="button" id="ctEditBtn"
+                aria-describedby="ctFootNote"
+              >
+                Sửa chuyến
+              </button>
+              <button
+                class="btn btn-danger" type="button" id="ctCancelBtn"
+                aria-describedby="ctFootNote"
+              >
+                Hủy chuyến
+              </button>
+            </div>
           </footer>
         </div>
       </div>
-</div>
+      </div>
     </main>
   </div>
+</div>
 
-  <div class="toast" id="adminToast" role="status" aria-live="polite" hidden>
-    <svg class="icon toast-icon" aria-hidden="true">
-      <use href="#i-check-circle"></use>
-    </svg>
-    <span class="toast-text"></span>
-  </div>
+<div class="toast" id="adminToast" role="status" aria-live="polite" hidden>
+  <svg class="icon toast-icon" aria-hidden="true">
+    <use href="#i-check-circle"></use>
+  </svg>
+  <span class="toast-text"></span>
 </div>
 
 <script src="../admin/js/admin-shell.js" defer></script>
 <script src="../admin/js/modal.js" defer></script>
 <script src="../admin/screens/admin-chuyen/js/chuyen-list.js" defer></script>
 <script src="../admin/screens/admin-chuyen/js/chuyen-flows.js" defer></script>
+<script src="../admin/screens/admin-chuyen/js/chuyen-drawer.js" defer></script>
 <script src="../shared/js/reveal.js" defer></script>
 </body>
 </html>

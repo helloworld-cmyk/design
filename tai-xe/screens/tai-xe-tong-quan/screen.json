@@ -17,7 +17,6 @@
     "shared/css/ride-card",
     "tai-xe/css/badges",
     "shared/css/sections",
-    "shared/css/cta-footer",
     "tai-xe/screens/tai-xe-tong-quan/css/dash-shell",
     "tai-xe/screens/tai-xe-tong-quan/css/tq-today",
     "tai-xe/screens/tai-xe-tong-quan/css/tq-day",
@@ -37,6 +36,6 @@
     "tai-xe/screens/tai-xe-tong-quan/partials/driver-header.html",
     "tai-xe/screens/tai-xe-tong-quan/partials/cockpit.html",
     "tai-xe/screens/tai-xe-tong-quan/partials/overview.html",
-    "shared/components/footer.html"
+    "tai-xe/components/page-end.html"
   ]
 }
