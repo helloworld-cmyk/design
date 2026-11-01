@@ -1,0 +1,39 @@
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="khEmpty" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg class="icon"><use href="#i-search"></use></svg>
+            </span>
+            <h3>Không tìm thấy khách hàng</h3>
+            <p>
+              Không có tài khoản nào khớp với từ khóa và trạng thái đang lọc.
+              Thử từ khóa khác hoặc đặt lại bộ lọc để xem toàn bộ danh sách.
+            </p>
+            <button class="btn btn-ghost" type="button" id="khEmptyReset">
+              Đặt lại bộ lọc
+            </button>
+          </div>
+
+          <nav class="pagination" id="khPagination" aria-label="Phân trang danh sách">
+            <button
+              type="button" class="page-btn" id="khPrev"
+              aria-label="Trang trước"
+            >
+              <svg class="icon page-icon-prev" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+            <span class="page-nums" id="khPageNums"></span>
+            <button
+              type="button" class="page-btn" id="khNext"
+              aria-label="Trang sau"
+            >
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </nav>
+        </section>
+      </section>

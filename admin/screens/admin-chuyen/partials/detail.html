@@ -1,0 +1,178 @@
+      <div
+        class="modal drawer"
+        id="modalChitiet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="chitietTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel drawer-panel">
+          <header class="drawer-head">
+            <div class="drawer-head-main">
+              <div class="drawer-ident">
+                <p class="drawer-eyebrow" id="ctMa">VC-1042</p>
+                <h2 class="drawer-title" id="chitietTitle">Hà Nội → Hải Phòng</h2>
+                <p class="drawer-sub" id="ctThoiGian">Hôm nay · 07:30 – dự kiến 09:00</p>
+              </div>
+              <div class="drawer-badges">
+                <span class="status-badge sb--orange" id="ctBadge">Đang thực hiện</span>
+              </div>
+            </div>
+            <button
+              type="button" class="modal-close" data-modal-close
+              aria-label="Đóng chi tiết chuyến"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <div class="drawer-body">
+            <ul class="d-list d-list--grid">
+              <li>
+                <span>Tài xế</span><strong id="ctTaiXe">Trần Văn Bình</strong>
+              </li>
+              <li>
+                <span>Xe</span><strong id="ctXe">30A-123.45 · 16 ghế</strong>
+              </li>
+              <li>
+                <span>Lấp ghế</span><strong><span id="ctGhe">9</span>/16 vé</strong>
+              </li>
+              <li>
+                <span>Giá vé · tiền công</span>
+                <strong id="ctTien">180.000đ · công 400.000đ</strong>
+              </li>
+            </ul>
+
+            <div class="warn-block" id="ctSuCo" role="note" hidden>
+              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              <div>
+                <p>
+                  <strong>Sự cố đang mở.</strong>
+                  <span id="ctSuCoText">
+                    Xe bị thủng lốp giữa tuyến (km 22) — 07:58
+                  </span>
+                </p>
+                <div class="warn-actions">
+                  <button class="btn btn-sm btn-ghost" type="button" data-suco="tiep-tuc">
+                    Tiếp tục chạy
+                  </button>
+                  <button
+                    class="btn btn-sm btn-ghost" type="button"
+                    data-modal-open="modalChuyen" data-mode="edit"
+                  >
+                    Thay xe
+                  </button>
+                  <button
+                    class="btn btn-sm btn-ghost" type="button"
+                    data-modal-open="modalChuyen" data-mode="edit"
+                  >
+                    Đổi tài xế
+                  </button>
+                  <button class="btn btn-sm btn-ghost" type="button" data-suco="ket-thuc">
+                    Kết thúc sớm
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <section class="d-block">
+              <div class="d-block-head">
+                <h3 class="d-label">Hành khách & vé</h3>
+                <p class="page-note">Thanh toán tiền mặt tài xế ghi ở D4</p>
+              </div>
+              <ul class="ticket-list">
+                <li class="ticket-item">
+                  <span class="ticket-code">VE-2041</span>
+                  <span class="ticket-person">
+                    <strong>Nguyễn Mai Anh</strong>
+                    <span>Đón BX Nước Ngầm · 05:50</span>
+                  </span>
+                  <span class="seat-chip">A04</span>
+                  <span class="status-badge sb--sky sb--sm">Đã đón</span>
+                  <span class="status-badge sb--green sb--sm">Đã thu</span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-code">VE-2042</span>
+                  <span class="ticket-person">
+                    <strong>Trần Quốc Khánh</strong>
+                    <span>Đón BX Nước Ngầm · 05:50</span>
+                  </span>
+                  <span class="seat-chip">A05</span>
+                  <span class="status-badge sb--sky sb--sm">Đã đón</span>
+                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-code">VE-2043</span>
+                  <span class="ticket-person">
+                    <strong>Phạm Thu Hằng</strong>
+                    <span>Đón Cầu Rào 2 · 06:10</span>
+                  </span>
+                  <span class="seat-chip">B02</span>
+                  <span class="status-badge sb--sky sb--sm">Đã đặt</span>
+                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                </li>
+                <li class="ticket-item">
+                  <span class="ticket-code">VE-2044</span>
+                  <span class="ticket-person">
+                    <strong>Vũ Đức Thịnh</strong>
+                    <span>Đón Cầu Rào 2 · 06:10</span>
+                  </span>
+                  <span class="seat-chip">B03</span>
+                  <span class="status-badge sb--gray sb--sm">Đã hủy</span>
+                  <span class="status-badge sb--gray sb--sm">Chưa thu</span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="d-block">
+              <h3 class="d-label">Lịch sử trạng thái</h3>
+              <ol class="timeline">
+                <li class="timeline-item is-done">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đã tạo chuyến</strong>
+                    <span>28/10 · 09:12 · Quản trị viên</span>
+                  </div>
+                </li>
+                <li class="timeline-item is-done">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đã phân công xe + tài xế</strong>
+                    <span>28/10 · 09:15 · 30A-123.45 · Trần Văn Bình</span>
+                  </div>
+                </li>
+                <li class="timeline-item is-done">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đã công bố bán vé</strong>
+                    <span>28/10 · 09:16 · Khách bắt đầu đặt</span>
+                  </div>
+                </li>
+                <li class="timeline-item is-current">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <strong>Đang thực hiện</strong>
+                    <span>31/10 · 07:30 · Tài xế bắt đầu chuyến</span>
+                  </div>
+                </li>
+              </ol>
+            </section>
+          </div>
+
+          <footer class="drawer-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
+            <button
+              class="btn btn-ghost" type="button" id="ctEditBtn" disabled
+              title="Chuyến đang thực hiện — không sửa trực tiếp"
+            >
+              Sửa chuyến
+            </button>
+            <button
+              class="btn btn-danger" type="button" id="ctCancelBtn" disabled
+              title="Chuyến đang thực hiện — xử lý qua báo sự cố"
+            >
+              Hủy chuyến
+            </button>
+          </footer>
+        </div>
+      </div>

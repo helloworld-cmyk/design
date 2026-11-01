@@ -1,0 +1,215 @@
+/* =========================================================
+   A6 — Quản lý đơn đặt · drawer chi tiết vé (slide-over)
+   Màn-local: admin/screens/admin-don-dat/css/orders-panels.css
+   ========================================================= */
+
+/* ================= Scrim dùng chung cho drawer + modal ================= */
+
+.panel-scrim {
+  position: fixed;
+  z-index: 55;
+  inset: 0;
+  background: rgba(8, 20, 38, 0.5);
+}
+
+.panel-scrim[hidden] {
+  display: none;
+}
+
+/* ================= Drawer ================= */
+
+.drawer {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.drawer[hidden],
+.modal[hidden] {
+  display: none;
+}
+
+.drawer-card {
+  display: flex;
+  flex-direction: column;
+  width: min(440px, 100%);
+  height: 100%;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform 0.28s var(--ease);
+  pointer-events: auto;
+}
+
+.drawer.is-open .drawer-card {
+  transform: none;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawer-head-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.drawer-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.drawer-title {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.drawer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.panel-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--slate-500);
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.panel-close:hover {
+  background: var(--navy-50);
+  color: var(--ink);
+}
+
+.drawer-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px 20px;
+  overflow-y: auto;
+}
+
+.d-label {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.d-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.d-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13.5px;
+}
+
+.d-list span {
+  flex: none;
+  color: var(--slate-500);
+}
+
+.d-list strong {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+
+.d-pay {
+  padding: 14px;
+  border-left: 3px solid var(--sky-500);
+  border-radius: var(--radius-sm);
+  background: var(--sky-50);
+}
+
+.d-pay-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.d-pay-top .d-label {
+  margin-bottom: 0;
+}
+
+.d-pay-amount {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.d-pay-note {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--slate-600);
+}
+
+.drawer-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.drawer-foot .btn {
+  flex: 1;
+  min-width: 118px;
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 640px) {
+  .drawer-card {
+    width: 100%;
+  }
+
+  .drawer-foot .btn {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .drawer-foot {
+    flex-direction: column;
+  }
+
+  .drawer-foot .btn {
+    width: 100%;
+  }
+}

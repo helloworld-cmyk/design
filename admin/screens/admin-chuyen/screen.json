@@ -1,0 +1,46 @@
+{
+  "output": "admin/admin-chuyen.html",
+  "base": "../",
+  "title": "Quản lý chuyến — Vi Vu Việt",
+  "description": "Tạo, sửa, hủy chuyến chưa khởi hành; phân công xe và tài xế; theo dõi trạng thái và xử lý sự cố.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/css/admin-shell",
+    "admin/css/modal",
+    "admin/screens/admin-chuyen/css/chuyen-page",
+    "admin/screens/admin-chuyen/css/chuyen-table",
+    "admin/screens/admin-chuyen/css/chuyen-cells",
+    "admin/screens/admin-chuyen/css/chuyen-badges",
+    "admin/screens/admin-chuyen/css/chuyen-states",
+    "admin/screens/admin-chuyen/css/chuyen-responsive",
+    "admin/screens/admin-chuyen/css/chuyen-modals",
+    "admin/screens/admin-chuyen/css/chuyen-drawer",
+    "admin/screens/admin-chuyen/css/chuyen-drawer-lists",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/js/admin-shell",
+    "admin/js/modal",
+    "admin/screens/admin-chuyen/js/chuyen-list",
+    "admin/screens/admin-chuyen/js/chuyen-flows",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/components/admin-sprite.html",
+    "admin/components/admin-shell.html",
+    "admin/screens/admin-chuyen/partials/page-head.html",
+    "admin/screens/admin-chuyen/partials/toolbar.html",
+    "admin/screens/admin-chuyen/partials/table.html",
+    "admin/screens/admin-chuyen/partials/table-end.html",
+    "admin/screens/admin-chuyen/partials/modals.html",
+    "admin/screens/admin-chuyen/partials/detail.html",
+    "admin/components/admin-shell-end.html"
+  ]
+}

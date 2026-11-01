@@ -1,0 +1,173 @@
+        <section class="xe-table-wrap reveal" id="xeTableWrap" aria-labelledby="xeTableTitle">
+          <div class="table-card">
+            <div class="table-card-head">
+              <div>
+                <h2 class="table-title" id="xeTableTitle">Danh sách xe</h2>
+                <p class="table-sub">
+                  Tình trạng và giấy tờ cập nhật sau mỗi chuyến hoàn thành.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-scroll" role="region" aria-label="Bảng danh sách xe" tabindex="0">
+              <table class="xe-table">
+                <caption class="sr-only">
+                  Danh sách xe của đội: biển số, sức chứa, tài xế phụ trách,
+                  giấy tờ và tình trạng
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Xe</th>
+                    <th scope="col">Sức chứa</th>
+                    <th scope="col">Tài xế phụ trách</th>
+                    <th scope="col">Giấy tờ</th>
+                    <th scope="col">Tình trạng</th>
+                    <th scope="col">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-plate="29A-123.45" data-type="16 chỗ"
+                    data-driver="Nguyễn Văn Mạnh" data-status="Đang hoạt động">
+                    <td data-label="Xe">
+                      <span class="xe-plate">29A-123.45</span>
+                      <span class="xe-type">Ford Transit 16 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        16 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Nguyễn Văn Mạnh</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 05/2027</p>
+                      <p class="xe-doc">Bảo hiểm · 12/2026</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--green">Đang hoạt động</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="29A-123.45" data-type="Ford Transit 16 chỗ"
+                          data-seats="16" data-driver="Nguyễn Văn Mạnh"
+                          data-inspection="2027-05-31" data-insurance="2026-12-31"
+                          data-status="Đang hoạt động">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="29A-123.45">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-plate="29A-456.78" data-type="16 chỗ"
+                    data-driver="Trần Quốc Bảo" data-status="Đang bảo trì">
+                    <td data-label="Xe">
+                      <span class="xe-plate">29A-456.78</span>
+                      <span class="xe-type">Hyundai Solati 16 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        16 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Trần Quốc Bảo</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 03/2027</p>
+                      <p class="xe-doc xe-doc--warn">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-alert"></use>
+                        </svg>
+                        Bảo hiểm · 12/11/2026
+                      </p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--orange">Đang bảo trì</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="29A-456.78" data-type="Hyundai Solati 16 chỗ"
+                          data-seats="16" data-driver="Trần Quốc Bảo"
+                          data-inspection="2027-03-31" data-insurance="2026-11-12"
+                          data-status="Đang bảo trì">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="29A-456.78">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-plate="30K-888.99" data-type="9 chỗ"
+                    data-driver="Lê Thị Hồng" data-status="Đang hoạt động">
+                    <td data-label="Xe">
+                      <span class="xe-plate">30K-888.99</span>
+                      <span class="xe-type">Toyota Hiace 9 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        9 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Lê Thị Hồng</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 08/2027</p>
+                      <p class="xe-doc">Bảo hiểm · 06/2027</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--green">Đang hoạt động</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="30K-888.99" data-type="Toyota Hiace 9 chỗ"
+                          data-seats="9" data-driver="Lê Thị Hồng"
+                          data-inspection="2027-08-31" data-insurance="2027-06-30"
+                          data-status="Đang hoạt động">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="30K-888.99">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>

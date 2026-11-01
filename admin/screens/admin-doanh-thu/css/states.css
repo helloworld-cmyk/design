@@ -1,0 +1,54 @@
+/* =========================================================
+   Vi Vu Việt — A7: trạng thái danh sách .empty-state (screen-local)
+   ========================================================= */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 52px 24px;
+  text-align: center;
+}
+
+.empty-state--card {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+.empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 10px;
+  border-radius: var(--radius-md);
+  background: var(--sky-50);
+  color: var(--sky-700);
+  box-shadow: inset 0 0 0 1px rgba(2, 132, 199, 0.14);
+}
+
+.empty-icon .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.empty-state p {
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--slate-500);
+}
+
+.empty-state .btn {
+  margin-top: 14px;
+}

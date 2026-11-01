@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F7FAFD" />
+    <title>Quản lý xe — Vi Vu Việt</title>
+    <meta name="description" content="Danh mục phương tiện Vi Vu Việt: biển số, sức chứa, tài xế phụ trách, tình trạng vận hành và hạn giấy tờ." />
+    <link rel="icon" type="image/svg+xml" href="../shared/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/base.css" />
+    <link rel="stylesheet" href="../shared/css/booking.css" />
+    <link rel="stylesheet" href="../admin/css/admin-shell.css" />
+    <link rel="stylesheet" href="../admin/css/modal.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-xe/css/xe.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-xe/css/xe-table.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-xe/css/xe-modal.css" />
+    <link rel="stylesheet" href="../shared/css/motion.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
+    <link rel="stylesheet" href="../shared/css/responsive-touch.css" />
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </symbol>
+
+    <symbol id="i-calendar" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </symbol>
+
+    <symbol id="i-users" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.6 19.2c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" />
+      <path d="M16 5.2a2.8 2.8 0 0 1 0 5.4" />
+      <path d="M17.4 14.4c2 .4 3.4 1.9 3.4 4.2" />
+    </symbol>
+
+    <symbol id="i-user" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20c.8-3.4 3.6-5.4 7-5.4s6.2 2 7 5.4" />
+    </symbol>
+
+    <symbol id="i-camera" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.2-2h5.4l1.2 2h1.6A2.5 2.5 0 0 1 20 8.5
+           v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"
+      />
+      <circle cx="12" cy="12.4" r="3.2" />
+    </symbol>
+
+    <symbol id="i-lock" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2.5" />
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+      <path d="M12 14.5v2" />
+    </symbol>
+
+    <symbol id="i-logout" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M14 4.5H7A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h7" />
+      <path d="M10.5 12H20" />
+      <path d="m16.5 8.5 3.5 3.5-3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </symbol>
+
+    <symbol id="i-refresh" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M20 11.5a8 8 0 0 0-14-4.6L4 9" />
+      <path d="M4 4v5h5" />
+      <path d="M4 12.5a8 8 0 0 0 14 4.6L20 15" />
+      <path d="M20 20v-5h-5" />
+    </symbol>
+
+    <symbol id="i-swap" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M7.5 4.5v14" />
+      <path d="m4.5 16 3 3 3-3" />
+      <path d="M16.5 19.5v-14" />
+      <path d="m13.5 8 3-3 3 3" />
+    </symbol>
+
+    <symbol id="i-shield" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 3.2 19 6v5.2c0 4.4-3 8.1-7 9.6-4-1.5-7-5.2-7-9.6V6l7-2.8Z" />
+      <path d="m9 12 2.1 2.1L15.4 10" />
+    </symbol>
+
+    <symbol id="i-headset" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3" />
+      <rect x="3" y="14" width="3.6" height="6" rx="1.6" />
+      <rect x="17.4" y="14" width="3.6" height="6" rx="1.6" />
+      <path d="M20 20a3.5 3.5 0 0 1-3.5 2.3H14" />
+    </symbol>
+
+    <symbol id="i-wallet" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4 8.2A2.7 2.7 0 0 1 6.7 5.5H18a2.8 2.8 0 0 1 2.8 2.8v8.9
+           A2.8 2.8 0 0 1 18 20H6.8A2.8 2.8 0 0 1 4 17.2V8.2Z"
+      />
+      <path d="M4 9.5h16.8" />
+      <path d="M16.5 14.5h2" />
+    </symbol>
+
+    <symbol id="i-clock" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m5 12.5 4.2 4.2L19 7.5" />
+    </symbol>
+
+    <symbol id="i-check-circle" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m8.5 12.2 2.4 2.4 4.8-5" />
+    </symbol>
+
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6.5 9.5 5.5 5.5 5.5-5.5" />
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+
+    <symbol id="i-car" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4.5 16.5h15l-1.6-5.2a2.3 2.3 0 0 0-2.2-1.7H8.3a2.3 2.3 0 0 0-2.2 1.7L4.5 16.5Z" />
+      <path d="M4.5 16.5v2.3M19.5 16.5v2.3" />
+      <circle cx="7.6" cy="16.5" r="1.1" />
+      <circle cx="16.4" cy="16.5" r="1.1" />
+      <path d="M8.2 10.2 8.9 7.9h6.2l.7 2.3" />
+    </symbol>
+
+    <symbol id="i-route" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="5" cy="5" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="m7.2 7.2 9.6 9.6" stroke-dasharray="1 4" />
+    </symbol>
+
+    <symbol id="i-star" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M12 3.6l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8L12 3.6Z"
+      />
+    </symbol>
+
+    <symbol id="i-phone" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M7.2 3.8h2.3l1.2 3.6-1.6 1.3a12.5 12.5 0 0 0 5.7 5.7l1.3-1.6 3.6 1.2v2.3
+           a2.5 2.5 0 0 1-2.7 2.5A16.8 16.8 0 0 1 4.7 6.5a2.5 2.5 0 0 1 2.5-2.7Z"
+      />
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 5.5L19.5 7" />
+    </symbol>
+
+    <symbol id="i-map" viewBox="0 0 24 24" class="icon-sym">
+      <path d="m9 4.5-5.5 2v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2Z" />
+      <path d="M9 4.5v13M15 6.5v13" />
+    </symbol>
+
+    <symbol id="i-facebook" viewBox="0 0 24 24" class="icon-sym icon-sym--fill">
+      <path
+        d="M13.5 21v-7.1h2.4l.4-2.8h-2.8V9.3c0-.8.2-1.4 1.4-1.4h1.5V5.4
+           c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.1v2.8h2.4V21h3Z"
+      />
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </symbol>
+
+    <symbol id="i-youtube" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="2.8" y="5.5" width="18.4" height="13" rx="4" />
+      <path fill="currentColor" stroke="none" d="m10.2 9.2 4.8 2.8-4.8 2.8V9.2Z" />
+    </symbol>
+
+    <symbol id="i-eye" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M2.6 12S6.1 5.9 12 5.9 21.4 12 21.4 12 17.9 18.1 12 18.1 2.6 12 2.6 12Z" />
+      <circle cx="12" cy="12" r="2.9" />
+    </symbol>
+
+    <symbol id="i-eye-off" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 12s3-5.2 7.4-5.6c1.3-.1 2.5.2 3.5.7" />
+      <path d="M20 12s-1.2 2-3.2 3.5" />
+      <path d="M9.6 9.7a3.1 3.1 0 0 0 4.4 4.3" />
+      <path d="m4.6 4.6 14.8 14.8" />
+    </symbol>
+
+    <symbol id="i-dashboard" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="3.5" width="7.5" height="7.5" rx="2" />
+      <rect x="3.5" y="13" width="7.5" height="7.5" rx="2" />
+      <rect x="13" y="13" width="7.5" height="7.5" rx="2" />
+    </symbol>
+
+    <symbol id="i-list" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M8.5 6h12M8.5 12h12M8.5 18h12" />
+      <path d="M4 6h.01M4 12h.01M4 18h.01" />
+    </symbol>
+
+    <symbol id="i-chart" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 20h16" />
+      <path d="M7 20v-6.5M12 20V6.5M17 20v-9.5" />
+    </symbol>
+
+    <symbol id="i-search" viewBox="0 0 24 24" class="icon-sym">
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </symbol>
+
+    <symbol id="i-filter" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M4 5.5h16l-6.2 7.2v5.6L10.2 20v-7.3L4 5.5Z" />
+    </symbol>
+
+    <symbol id="i-edit" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M14.5 5.5 18 9l-8.6 8.6-4 .9.9-4L14.5 5.5Z"
+      />
+      <path d="m12.8 7.2 3.5 3.5" />
+    </symbol>
+
+    <symbol id="i-trash" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M5 7h14" />
+      <path d="M9.5 7V5.2A1.7 1.7 0 0 1 11.2 3.5h1.6A1.7 1.7 0 0 1 14.5 5.2V7" />
+      <path d="M7 7l.8 11.2A2 2 0 0 0 9.8 20h4.4a2 2 0 0 0 2-1.8L17 7" />
+      <path d="M10.5 11v5M13.5 11v5" />
+    </symbol>
+
+    <symbol id="i-alert" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M12 4 21 19.5H3L12 4Z"
+      />
+      <path d="M12 10v4.2M12 16.8h.01" />
+    </symbol>
+
+    <symbol id="i-plus" viewBox="0 0 24 24" class="icon-sym">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+  </defs>
+</svg>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <!-- Icon riêng nhóm admin (các icon chung đã có trong shared/components/sprite.html).
+         Chỉ khai báo icon CHƯA có ở sprite shared để tránh trùng id. -->
+    <symbol id="i-ticket" viewBox="0 0 24 24" class="icon-sym">
+      <path
+        d="M4.5 8.2A2.7 2.7 0 0 1 7.2 5.5h9.6a2.7 2.7 0 0 1 2.7 2.7v1.6
+           a1.9 1.9 0 0 0 0 3.8v1.7a2.7 2.7 0 0 1-2.7 2.7H7.2a2.7 2.7 0 0 1-2.7-2.7
+           v-1.7a1.9 1.9 0 0 0 0-3.8V8.2Z"
+      />
+      <path d="M14.6 6.6v10.8" stroke-dasharray="2 3" />
+    </symbol>
+  </defs>
+</svg>
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
+    <div class="admin-brand">
+      <a class="admin-logo" href="../admin/index.html">
+        <span class="admin-logo-mark" aria-hidden="true">
+          <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        </span>
+        <span class="admin-logo-text">Vi Vu Việt</span>
+      </a>
+      <span class="admin-chip">Quản trị</span>
+    </div>
+
+    <nav class="admin-nav" aria-label="Màn hình quản trị">
+      <a href="../admin/index.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
+        Tổng quan
+      </a>
+      <a href="../admin/admin-chuyen.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        Quản lý chuyến
+      </a>
+      <a href="../admin/tai-xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+        Quản lý tài xế
+      </a>
+      <a href="../admin/xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
+        Quản lý xe
+      </a>
+      <a href="../admin/tuyen-duong.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+        Quản lý tuyến
+      </a>
+      <a href="../admin/don-dat.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
+        Quản lý đơn đặt
+      </a>
+      <a href="../admin/admin-doanh-thu.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+        Doanh thu
+      </a>
+      <a href="../admin/khach-hang.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+        Quản lý khách hàng
+      </a>
+    </nav>
+
+    <p class="admin-side-note">
+      Bản mô phỏng giao diện quản trị · dữ liệu minh hoạ
+    </p>
+  </aside>
+
+  <div class="admin-scrim" id="adminScrim" hidden></div>
+
+  <div class="admin-body">
+    <header class="admin-topbar">
+      <button
+        type="button"
+        class="admin-burger"
+        id="adminBurger"
+        aria-label="Mở menu quản trị"
+        aria-controls="adminSidebar"
+        aria-expanded="false"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
+
+      <nav class="admin-crumb" aria-label="Breadcrumb">
+        <a href="../admin/index.html">Tổng quan</a>
+        <span class="admin-crumb-sep" aria-hidden="true">/</span>
+        <span class="admin-crumb-here" aria-current="page">Quản lý xe — Vi Vu Việt</span>
+      </nav>
+
+      <div class="admin-user">
+        <span class="admin-avatar" aria-hidden="true">QV</span>
+        <span class="admin-user-text">
+          <strong>Quản trị viên</strong>
+          <span>hotro@vivuviet.vn</span>
+        </span>
+        <button
+          type="button"
+          class="admin-logout"
+          data-admin-logout
+          aria-label="Đăng xuất khỏi trang quản trị"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-main" id="main">
+      <div class="admin-container">
+        <div class="admin-head reveal">
+          <div class="admin-head-text">
+            <span class="admin-eyebrow">Khu quản trị · Đội xe</span>
+            <h1 class="admin-title" id="xePageTitle">Quản lý xe</h1>
+            <p class="admin-lead">
+              Danh mục phương tiện dùng để phân công chuyến: sức chứa, tình
+              trạng và hạn giấy tờ. Xe đã gắn chuyến chỉ có thể ngưng sử dụng.
+            </p>
+          </div>
+          <button class="btn btn-primary" type="button" data-modal-open="vehicleModal"
+            data-mode="add">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-plus"></use>
+            </svg>
+            Thêm xe
+          </button>
+        </div>
+
+        <section class="xe-stats" id="xeStats" aria-label="Thống kê đội xe">
+          <article class="stat-card reveal">
+            <span class="stat-icon stat-icon--sky">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-car"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>6</strong>
+              <span>Tổng số xe</span>
+            </div>
+          </article>
+
+          <article class="stat-card reveal" style="--reveal-delay: 0.06s">
+            <span class="stat-icon stat-icon--green">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-check-circle"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>4</strong>
+              <span>Đang hoạt động</span>
+            </div>
+          </article>
+
+          <article class="stat-card reveal" style="--reveal-delay: 0.12s">
+            <span class="stat-icon stat-icon--orange">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-alert"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>1</strong>
+              <span>Đang bảo trì</span>
+            </div>
+          </article>
+
+          <article class="stat-card reveal" style="--reveal-delay: 0.18s">
+            <span class="stat-icon stat-icon--orange">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-clock"></use>
+              </svg>
+            </span>
+            <div class="stat-body">
+              <strong>2</strong>
+              <span>Giấy tờ sắp hết hạn</span>
+            </div>
+          </article>
+        </section>
+        <section class="xe-toolbar reveal" aria-label="Bộ lọc danh sách xe">
+          <div class="filter-grid">
+            <div class="field filter-search">
+              <label for="xeSearch">Tìm kiếm</label>
+              <div class="field-control">
+                <svg class="icon field-icon" aria-hidden="true">
+                  <use href="#i-search"></use>
+                </svg>
+                <input
+                  id="xeSearch"
+                  name="xeSearch"
+                  type="search"
+                  placeholder="Biển số hoặc tài xế phụ trách..."
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="xeType">Loại xe</label>
+              <div class="field-control select-wrap">
+                <select id="xeType" name="xeType">
+                  <option value="">Mọi loại xe</option>
+                  <option value="7 chỗ">7 chỗ</option>
+                  <option value="9 chỗ">9 chỗ</option>
+                  <option value="16 chỗ">16 chỗ</option>
+                  <option value="22 chỗ">22 chỗ</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="xeStatus">Tình trạng</label>
+              <div class="field-control select-wrap">
+                <select id="xeStatus" name="xeStatus">
+                  <option value="">Mọi tình trạng</option>
+                  <option value="Đang hoạt động">Đang hoạt động</option>
+                  <option value="Đang bảo trì">Đang bảo trì</option>
+                  <option value="Ngưng sử dụng">Ngưng sử dụng</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field filter-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="xeReset">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Xóa lọc
+              </button>
+            </div>
+          </div>
+
+          <p class="filter-count" id="xeCount" role="status" aria-live="polite"></p>
+        </section>
+        <section class="xe-table-wrap reveal" id="xeTableWrap" aria-labelledby="xeTableTitle">
+          <div class="table-card">
+            <div class="table-card-head">
+              <div>
+                <h2 class="table-title" id="xeTableTitle">Danh sách xe</h2>
+                <p class="table-sub">
+                  Tình trạng và giấy tờ cập nhật sau mỗi chuyến hoàn thành.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-scroll" role="region" aria-label="Bảng danh sách xe" tabindex="0">
+              <table class="xe-table">
+                <caption class="sr-only">
+                  Danh sách xe của đội: biển số, sức chứa, tài xế phụ trách,
+                  giấy tờ và tình trạng
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Xe</th>
+                    <th scope="col">Sức chứa</th>
+                    <th scope="col">Tài xế phụ trách</th>
+                    <th scope="col">Giấy tờ</th>
+                    <th scope="col">Tình trạng</th>
+                    <th scope="col">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-plate="29A-123.45" data-type="16 chỗ"
+                    data-driver="Nguyễn Văn Mạnh" data-status="Đang hoạt động">
+                    <td data-label="Xe">
+                      <span class="xe-plate">29A-123.45</span>
+                      <span class="xe-type">Ford Transit 16 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        16 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Nguyễn Văn Mạnh</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 05/2027</p>
+                      <p class="xe-doc">Bảo hiểm · 12/2026</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--green">Đang hoạt động</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="29A-123.45" data-type="Ford Transit 16 chỗ"
+                          data-seats="16" data-driver="Nguyễn Văn Mạnh"
+                          data-inspection="2027-05-31" data-insurance="2026-12-31"
+                          data-status="Đang hoạt động">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="29A-123.45">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-plate="29A-456.78" data-type="16 chỗ"
+                    data-driver="Trần Quốc Bảo" data-status="Đang bảo trì">
+                    <td data-label="Xe">
+                      <span class="xe-plate">29A-456.78</span>
+                      <span class="xe-type">Hyundai Solati 16 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        16 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Trần Quốc Bảo</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 03/2027</p>
+                      <p class="xe-doc xe-doc--warn">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-alert"></use>
+                        </svg>
+                        Bảo hiểm · 12/11/2026
+                      </p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--orange">Đang bảo trì</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="29A-456.78" data-type="Hyundai Solati 16 chỗ"
+                          data-seats="16" data-driver="Trần Quốc Bảo"
+                          data-inspection="2027-03-31" data-insurance="2026-11-12"
+                          data-status="Đang bảo trì">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="29A-456.78">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-plate="30K-888.99" data-type="9 chỗ"
+                    data-driver="Lê Thị Hồng" data-status="Đang hoạt động">
+                    <td data-label="Xe">
+                      <span class="xe-plate">30K-888.99</span>
+                      <span class="xe-type">Toyota Hiace 9 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        9 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Lê Thị Hồng</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 08/2027</p>
+                      <p class="xe-doc">Bảo hiểm · 06/2027</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--green">Đang hoạt động</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="30K-888.99" data-type="Toyota Hiace 9 chỗ"
+                          data-seats="9" data-driver="Lê Thị Hồng"
+                          data-inspection="2027-08-31" data-insurance="2027-06-30"
+                          data-status="Đang hoạt động">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="30K-888.99">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-plate="51B-234.56" data-type="16 chỗ" data-driver=""
+                    data-status="Ngưng sử dụng">
+                    <td data-label="Xe">
+                      <span class="xe-plate">51B-234.56</span>
+                      <span class="xe-type">Ford Transit 16 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        16 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">
+                      <span class="xe-driver-none">— Chưa gán</span>
+                    </td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 01/2027</p>
+                      <p class="xe-doc">Bảo hiểm · 01/2027</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--slate">Ngưng sử dụng</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="51B-234.56" data-type="Ford Transit 16 chỗ"
+                          data-seats="16" data-driver=""
+                          data-inspection="2027-01-31" data-insurance="2027-01-31"
+                          data-status="Ngưng sử dụng">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          data-modal-open="vehicleDeleteModal" data-plate="51B-234.56">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-plate="89H-111.22" data-type="22 chỗ"
+                    data-driver="Đỗ Trọng Khánh" data-status="Đang hoạt động">
+                    <td data-label="Xe">
+                      <span class="xe-plate">89H-111.22</span>
+                      <span class="xe-type">Limousine 22 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        22 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Đỗ Trọng Khánh</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc xe-doc--warn">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-alert"></use>
+                        </svg>
+                        Đăng kiểm · 11/2026
+                      </p>
+                      <p class="xe-doc">Bảo hiểm · 05/2027</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--green">Đang hoạt động</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="89H-111.22" data-type="Limousine 22 chỗ"
+                          data-seats="22" data-driver="Đỗ Trọng Khánh"
+                          data-inspection="2026-11-30" data-insurance="2027-05-31"
+                          data-status="Đang hoạt động">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="89H-111.22">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-plate="29C-777.88" data-type="16 chỗ"
+                    data-driver="Phạm Đức Long" data-status="Đang hoạt động">
+                    <td data-label="Xe">
+                      <span class="xe-plate">29C-777.88</span>
+                      <span class="xe-type">Hyundai Solati 16 chỗ</span>
+                    </td>
+                    <td data-label="Sức chứa">
+                      <span class="xe-seats">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-users"></use>
+                        </svg>
+                        16 chỗ
+                      </span>
+                    </td>
+                    <td data-label="Tài xế phụ trách">Phạm Đức Long</td>
+                    <td data-label="Giấy tờ">
+                      <p class="xe-doc">Đăng kiểm · 09/2027</p>
+                      <p class="xe-doc">Bảo hiểm · 09/2027</p>
+                    </td>
+                    <td data-label="Tình trạng">
+                      <span class="status-badge sb--green">Đang hoạt động</span>
+                    </td>
+                    <td data-label="Thao tác">
+                      <div class="cell-actions">
+                        <button class="cell-action" type="button"
+                          data-modal-open="vehicleModal" data-mode="edit"
+                          data-plate="29C-777.88" data-type="Hyundai Solati 16 chỗ"
+                          data-seats="16" data-driver="Phạm Đức Long"
+                          data-inspection="2027-09-30" data-insurance="2027-09-30"
+                          data-status="Đang hoạt động">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-edit"></use>
+                          </svg>
+                          Sửa
+                        </button>
+                        <button class="cell-action cell-action--danger" type="button"
+                          disabled title="Xe đã gắn chuyến — chỉ có thể ngưng sử dụng"
+                          data-modal-open="vehicleDeleteModal" data-plate="29C-777.88">
+                          <svg class="icon" aria-hidden="true">
+                            <use href="#i-trash"></use>
+                          </svg>
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="empty-state" id="xeEmpty" hidden aria-label="Không có kết quả">
+          <span class="empty-icon">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-car"></use>
+            </svg>
+          </span>
+          <h3>Không có xe nào khớp bộ lọc</h3>
+          <p>Thử đổi từ khóa tìm kiếm hoặc xóa bộ lọc để xem toàn bộ đội xe.</p>
+          <button class="btn btn-ghost btn-sm" type="button" id="xeEmptyReset">
+            Xóa lọc
+          </button>
+        </section>
+      <div class="modal" id="vehicleModal" role="dialog" aria-modal="true"
+        aria-labelledby="vehicleModalTitle">
+        <div class="modal-scrim"></div>
+        <div class="modal-panel">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="vehicleModalTitle">Thêm xe mới</h2>
+              <p class="modal-sub">
+                Xe thêm mới sẽ khả dụng để phân công khi đang ở tình trạng
+                hoạt động.
+              </p>
+            </div>
+            <button class="modal-close" type="button" data-modal-close
+              aria-label="Đóng hộp thoại">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-close"></use>
+              </svg>
+            </button>
+          </header>
+
+          <form id="vehicleForm" class="modal-body" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="vPlate">Biển số <span aria-hidden="true">*</span></label>
+                <div class="field-control">
+                  <input id="vPlate" name="plate" type="text" required
+                    placeholder="VD: 29A-123.45" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vSeats">
+                  Sức chứa (số chỗ) <span aria-hidden="true">*</span>
+                </label>
+                <div class="field-control">
+                  <input id="vSeats" name="seats" type="number" min="1" max="50"
+                    required placeholder="VD: 16" />
+                </div>
+              </div>
+
+              <div class="field span-2">
+                <label for="vType">Loại xe <span aria-hidden="true">*</span></label>
+                <div class="field-control">
+                  <input id="vType" name="type" type="text" required
+                    placeholder="VD: Ford Transit 16 chỗ" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vDriver">Tài xế phụ trách</label>
+                <div class="field-control select-wrap">
+                  <select id="vDriver" name="driver">
+                    <option value="">— Chưa gán —</option>
+                    <option>Nguyễn Văn Mạnh</option>
+                    <option>Trần Quốc Bảo</option>
+                    <option>Lê Thị Hồng</option>
+                    <option>Đỗ Trọng Khánh</option>
+                    <option>Phạm Đức Long</option>
+                    <option>Vũ Nhật Tân</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vStatus">Tình trạng</label>
+                <div class="field-control select-wrap">
+                  <select id="vStatus" name="status">
+                    <option>Đang hoạt động</option>
+                    <option>Đang bảo trì</option>
+                    <option>Ngưng sử dụng</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vInspection">Hạn đăng kiểm</label>
+                <div class="field-control">
+                  <input id="vInspection" name="inspection" type="date" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vInsurance">Hạn bảo hiểm</label>
+                <div class="field-control">
+                  <input id="vInsurance" name="insurance" type="date" />
+                </div>
+              </div>
+            </div>
+
+            <p class="form-status" id="vehicleFormStatus" role="status"
+              aria-live="polite"></p>
+
+            <footer class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>Hủy</button>
+              <button class="btn btn-primary" type="submit" id="vehicleSubmit">
+                Lưu xe
+              </button>
+            </footer>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="vehicleDeleteModal" role="dialog" aria-modal="true"
+        aria-labelledby="vehicleDeleteTitle">
+        <div class="modal-scrim"></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="vehicleDeleteTitle">
+                Xóa xe khỏi đội xe?
+              </h2>
+              <p class="modal-sub">
+                Xe biển số <strong id="deletePlate">51B-234.56</strong> chưa từng
+                gắn chuyến nên có thể xóa vĩnh viễn. Hành động này không thể
+                hoàn tác.
+              </p>
+            </div>
+            <button class="modal-close" type="button" data-modal-close
+              aria-label="Đóng hộp thoại">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-close"></use>
+              </svg>
+            </button>
+          </header>
+
+          <div class="modal-body">
+            <footer class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>Giữ xe</button>
+              <button class="btn xe-btn-danger" type="button" id="vehicleDeleteConfirm">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-trash"></use>
+                </svg>
+                Xóa xe
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>
+</div>
+    </main>
+  </div>
+
+  <div class="toast" id="adminToast" role="status" aria-live="polite" hidden>
+    <svg class="icon toast-icon" aria-hidden="true">
+      <use href="#i-check-circle"></use>
+    </svg>
+    <span class="toast-text"></span>
+  </div>
+</div>
+
+<script src="../admin/js/admin-shell.js" defer></script>
+<script src="../admin/js/modal.js" defer></script>
+<script src="../admin/screens/admin-xe/js/xe.js" defer></script>
+<script src="../admin/screens/admin-xe/js/xe-form.js" defer></script>
+<script src="../shared/js/reveal.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+        <div
+          class="modal"
+          id="khModalLock"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khLockTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel modal-panel--narrow">
+            <header class="modal-head">
+              <div>
+                <h2 class="modal-title" id="khLockTitle">
+                  Khóa tài khoản khách hàng?
+                </h2>
+                <p class="modal-sub" id="khLockSub">
+                  Khách sẽ không thể đăng nhập và đặt vé mới. Các vé đã đặt
+                  trước đó được giữ nguyên.
+                </p>
+              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <form id="khLockForm" class="modal-body" novalidate>
+              <div class="warn-block" role="note">
+                <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+                <p>
+                  Chỉ khóa khi phát hiện gian lận hoặc theo yêu cầu của khách.
+                  Ghi rõ <strong>lý do</strong> để lần sau tra cứu lại được.
+                </p>
+              </div>
+
+              <div class="field" id="khLockReasonField">
+                <label for="khLockReason">
+                  Lý do khóa <span aria-hidden="true">*</span>
+                </label>
+                <div class="field-control select-wrap">
+                  <select id="khLockReason" name="khLockReason" required>
+                    <option value="">Chọn lý do khóa...</option>
+                    <option>Nghi ngờ gian lận đặt vé</option>
+                    <option>Khách yêu cầu khóa tài khoản</option>
+                    <option>Thông tin tài khoản không hợp lệ</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="khLockNote">Ghi chú thêm (tuỳ chọn)</label>
+                <div class="field-control">
+                  <input
+                    id="khLockNote"
+                    name="khLockNote"
+                    type="text"
+                    placeholder="Ví dụ: khách gọi điện báo ngày 30/10"
+                  />
+                </div>
+              </div>
+
+              <p
+                class="form-status"
+                id="khLockStatus"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+
+            <footer class="modal-foot">
+              <button type="button" class="btn btn-ghost" data-modal-close>
+                Đóng
+              </button>
+              <button class="btn btn-primary" type="submit" form="khLockForm">
+                Khóa tài khoản
+              </button>
+            </footer>
+          </div>
+        </div>
+
+        <div
+          class="modal"
+          id="khModalUnlock"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khUnlockTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel modal-panel--narrow">
+            <header class="modal-head">
+              <div>
+                <h2 class="modal-title" id="khUnlockTitle">
+                  Mở khóa tài khoản?
+                </h2>
+                <p class="modal-sub" id="khUnlockSub">
+                  Khách có thể đăng nhập và đặt vé trở lại ngay sau khi mở khóa.
+                </p>
+              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <footer class="modal-foot">
+              <button type="button" class="btn btn-ghost" data-modal-close>
+                Đóng
+              </button>
+              <button type="button" class="btn btn-primary" id="khUnlockConfirm">
+                Mở khóa
+              </button>
+            </footer>
+          </div>
+        </div>
+
+        <div
+          class="modal"
+          id="khModalPass"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khPassTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel modal-panel--narrow">
+            <header class="modal-head">
+              <div>
+                <h2 class="modal-title" id="khPassTitle">
+                  Đặt lại mật khẩu khách hàng?
+                </h2>
+                <p class="modal-sub">
+                  Hệ thống tạo một mật khẩu tạm và chỉ hiển thị một lần để bạn
+                  bàn giao cho khách.
+                </p>
+              </div>
+              <button
+                type="button" class="modal-close" data-modal-close
+                aria-label="Đóng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <div class="modal-body">
+              <p class="form-status is-info" id="khPassStatus">
+                Nhấn “Tạo mật khẩu tạm” để sinh mật khẩu mới cho khách.
+              </p>
+            </div>
+
+            <footer class="modal-foot">
+              <button type="button" class="btn btn-ghost" data-modal-close>
+                Đóng
+              </button>
+              <button type="button" class="btn btn-primary" id="khPassConfirm">
+                Tạo mật khẩu tạm
+              </button>
+            </footer>
+          </div>
+        </div>

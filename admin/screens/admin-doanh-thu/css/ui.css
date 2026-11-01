@@ -1,0 +1,146 @@
+/* =========================================================
+   Vi Vu Việt — A7: khối UI dùng trong màn (card, badge,
+   breadcrumb + page head). Card theo §6.3, badge theo §6.4.
+   ========================================================= */
+
+/* ---------- Card/panel chuẩn ---------- */
+
+.admin-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.admin-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.admin-card-head h2 {
+  font-size: 17.5px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.admin-card-head p {
+  margin-top: 3px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--slate-500);
+}
+
+.admin-card-body {
+  padding: 20px 22px;
+}
+
+/* ---------- Badge (§6.4) ---------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.badge--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.badge--orange {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+/* ---------- Breadcrumb + tiêu đề màn ---------- */
+
+.admin-page-head {
+  margin-bottom: 24px;
+}
+
+.admin-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-400);
+}
+
+.admin-crumb a {
+  color: var(--slate-500);
+  transition: color var(--dur) var(--ease);
+}
+
+.admin-crumb a:hover {
+  color: var(--sky-700);
+}
+
+.admin-crumb a:focus-visible {
+  outline: 3px solid rgba(14, 165, 233, 0.6);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.admin-crumb-sep {
+  color: var(--slate-300);
+}
+
+.admin-crumb-current {
+  color: var(--sky-700);
+}
+
+.admin-page-head h1 {
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--ink);
+}
+
+.admin-page-head > p {
+  max-width: 640px;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .admin-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .admin-card-body {
+    padding: 16px;
+  }
+
+  .admin-page-head {
+    margin-bottom: 18px;
+  }
+}

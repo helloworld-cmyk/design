@@ -1,0 +1,169 @@
+/* =========================================================
+   Vi Vu Việt — A5: phân trang, trạng thái rỗng, tiện ích ẩn
+   và tinh chỉnh form trong modal. Dùng token chung.
+   ========================================================= */
+
+/* ---------- Phân trang ---------- */
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.page-nums {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-btn {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--slate-600);
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.page-btn .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.page-icon-prev {
+  transform: rotate(180deg);
+}
+
+.page-btn:hover:not(:disabled):not(.is-current) {
+  background: var(--sky-50);
+  border-color: var(--sky-300);
+  color: var(--sky-700);
+}
+
+.page-btn.is-current {
+  background: var(--sky-700);
+  border-color: var(--sky-700);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-gap {
+  padding: 0 2px;
+  font-weight: 700;
+  color: var(--slate-400);
+}
+
+/* ---------- Trạng thái rỗng ---------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 48px 24px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+.empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 8px;
+  border-radius: var(--radius-md);
+  background: var(--sky-50);
+  color: var(--sky-700);
+  box-shadow: inset 0 0 0 1px rgba(2, 132, 199, 0.14);
+}
+
+.empty-icon .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.empty-state p {
+  max-width: 440px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--slate-500);
+}
+
+.empty-state .btn {
+  margin-top: 12px;
+}
+
+/* ---------- Tiện ích ẩn ---------- */
+
+.empty-state[hidden],
+.pagination[hidden],
+.data-table tr[hidden],
+.field[hidden] {
+  display: none;
+}
+
+body.admin-modal-open {
+  overflow: hidden;
+}
+
+/* ---------- Tinh chỉnh form không có icon bên trái ---------- */
+
+.rt-toolbar .field-control select,
+.modal .field-control input,
+.modal .field-control select {
+  padding-left: 13px;
+}
+
+.modal .field.is-invalid input,
+.modal .field.is-invalid select {
+  border-color: #fca5a5;
+  background: #fff8f8;
+}
+
+.modal .field.is-invalid input:focus,
+.modal .field.is-invalid select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .page-btn {
+    min-width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-gap {
+    display: none;
+  }
+}

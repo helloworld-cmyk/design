@@ -1,0 +1,77 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: badge trạng thái và thao
+   tác trong dòng bảng.
+   ========================================================= */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--slate-200);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--slate-600);
+}
+
+.status-badge .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.sb--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.sb--orange {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.sb--sky {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.sb--gray {
+  background: var(--slate-200);
+  color: var(--slate-600);
+}
+
+.sb--sm {
+  padding: 3px 8px;
+  font-size: 10.5px;
+}
+
+.badge-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ---------- Thao tác trong dòng ---------- */
+
+.cell-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.cell-actions .btn + .btn {
+  margin-left: 6px;
+}
+
+.row-icon-btn {
+  width: 42px;
+  padding: 0;
+}
+
+.cell-actions .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

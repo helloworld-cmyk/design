@@ -1,0 +1,212 @@
+<section class="admin-section" id="danh-sach-tai-xe">
+  <h2 class="sr-only">Danh sách tài xế</h2>
+
+  <div class="table-panel" data-admin-panel>
+    <div class="filter-bar">
+      <div class="field filter-search">
+        <label for="txSearch">Tìm kiếm</label>
+        <div class="field-control">
+          <svg class="field-icon" aria-hidden="true">
+            <use href="#i-search"></use>
+          </svg>
+          <input
+            id="txSearch"
+            name="txSearch"
+            type="search"
+            data-table-search
+            placeholder="Tên, SĐT hoặc email tài xế…"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <label for="txStatus">Trạng thái</label>
+        <div class="field-control select-wrap">
+          <select id="txStatus" name="txStatus" data-table-status>
+            <option value="all">Tất cả trạng thái</option>
+            <option value="active">Đang hoạt động</option>
+            <option value="locked">Bị khóa</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-actions">
+        <button class="btn btn-ghost" type="button" data-table-reset>
+          Đặt lại
+        </button>
+        <span class="filter-count" data-table-count>10 tài xế</span>
+      </div>
+    </div>
+
+    <div
+      class="table-scroll"
+      role="region"
+      aria-label="Bảng danh sách tài xế (cuộn ngang để xem đủ cột)"
+      tabindex="0"
+    >
+      <table class="data-table" data-admin-table>
+        <thead>
+          <tr>
+            <th scope="col">Tài xế</th>
+            <th scope="col">SĐT</th>
+            <th scope="col">Giấy phép</th>
+            <th scope="col">Hạn GPLX</th>
+            <th scope="col" class="col-num col-trips">Chuyến<span class="th-sub">30 ngày</span></th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-id="tx-01" data-status="active" data-tint="sky" data-trips="18"
+            data-name="Nguyễn Văn An" data-phone="0912 345 001"
+            data-email="an.nguyen@vivuviet.vn" data-gplx="0123 4567 8901"
+            data-hang="B2" data-han="14/08/2027" data-created="12/03/2025"
+            data-search="nguyễn văn an 0912345001 an.nguyen@vivuviet.vn">
+            <td>
+              <div class="tx-cell">
+                <span class="tx-avatar tx-avatar--sky" aria-hidden="true">NA</span>
+                <span class="tx-id"><strong>Nguyễn Văn An</strong>
+                  <span>an.nguyen@vivuviet.vn</span></span>
+              </div>
+            </td>
+            <td class="tx-phone">0912 345 001</td>
+            <td><span class="tx-gplx"><strong>B2 · 0123 4567 8901</strong>
+              <span>Giấy phép lái xe</span></span></td>
+            <td>14/08/2027</td>
+            <td class="col-num"><strong class="tx-num">18</strong></td>
+            <td><span class="status-badge status-badge--green">
+              <span class="status-dot" aria-hidden="true"></span>Đang hoạt động</span></td>
+            <td>
+              <div class="tx-actions">
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="edit">Sửa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="lock">Khóa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="detail">Chi tiết</button>
+              </div>
+            </td>
+          </tr>
+          <tr data-id="tx-02" data-status="active" data-tint="orange" data-trips="12"
+            data-name="Trần Thị Bích" data-phone="0356 789 002"
+            data-email="bich.tran@vivuviet.vn" data-gplx="0345 6789 0123"
+            data-hang="B2" data-han="22/03/2027" data-created="04/05/2025"
+            data-search="trần thị bích 0356789002 bich.tran@vivuviet.vn">
+            <td>
+              <div class="tx-cell">
+                <span class="tx-avatar tx-avatar--orange" aria-hidden="true">TB</span>
+                <span class="tx-id"><strong>Trần Thị Bích</strong>
+                  <span>bich.tran@vivuviet.vn</span></span>
+              </div>
+            </td>
+            <td class="tx-phone">0356 789 002</td>
+            <td><span class="tx-gplx"><strong>B2 · 0345 6789 0123</strong>
+              <span>Giấy phép lái xe</span></span></td>
+            <td>22/03/2027</td>
+            <td class="col-num"><strong class="tx-num">12</strong></td>
+            <td><span class="status-badge status-badge--green">
+              <span class="status-dot" aria-hidden="true"></span>Đang hoạt động</span></td>
+            <td>
+              <div class="tx-actions">
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="edit">Sửa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="lock">Khóa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="detail">Chi tiết</button>
+              </div>
+            </td>
+          </tr>
+          <tr data-id="tx-03" data-status="active" data-tint="green" data-trips="9"
+            data-name="Lê Quốc Cường" data-phone="0987 654 003"
+            data-email="cuong.le@vivuviet.vn" data-gplx="0567 8901 2345"
+            data-hang="C" data-han="05/12/2026" data-created="18/07/2025"
+            data-search="lê quốc cường 0987654003 cuong.le@vivuviet.vn">
+            <td>
+              <div class="tx-cell">
+                <span class="tx-avatar tx-avatar--green" aria-hidden="true">LC</span>
+                <span class="tx-id"><strong>Lê Quốc Cường</strong>
+                  <span>cuong.le@vivuviet.vn</span></span>
+              </div>
+            </td>
+            <td class="tx-phone">0987 654 003</td>
+            <td><span class="tx-gplx"><strong>C · 0567 8901 2345</strong>
+              <span>Giấy phép lái xe</span></span></td>
+            <td>
+              <span class="tx-han">05/12/2026
+                <span class="status-badge status-badge--orange">Sắp hết hạn</span>
+              </span>
+            </td>
+            <td class="col-num"><strong class="tx-num">9</strong></td>
+            <td><span class="status-badge status-badge--green">
+              <span class="status-dot" aria-hidden="true"></span>Đang hoạt động</span></td>
+            <td>
+              <div class="tx-actions">
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="edit">Sửa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="lock">Khóa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="detail">Chi tiết</button>
+              </div>
+            </td>
+          </tr>
+          <tr data-id="tx-04" data-status="active" data-tint="sky" data-trips="15"
+            data-name="Phạm Minh Đức" data-phone="0903 221 004"
+            data-email="duc.pham@vivuviet.vn" data-gplx="0789 0123 4567"
+            data-hang="B2" data-han="19/06/2027" data-created="09/09/2025"
+            data-search="phạm minh đức 0903221004 duc.pham@vivuviet.vn">
+            <td>
+              <div class="tx-cell">
+                <span class="tx-avatar tx-avatar--sky" aria-hidden="true">PD</span>
+                <span class="tx-id"><strong>Phạm Minh Đức</strong>
+                  <span>duc.pham@vivuviet.vn</span></span>
+              </div>
+            </td>
+            <td class="tx-phone">0903 221 004</td>
+            <td><span class="tx-gplx"><strong>B2 · 0789 0123 4567</strong>
+              <span>Giấy phép lái xe</span></span></td>
+            <td>19/06/2027</td>
+            <td class="col-num"><strong class="tx-num">15</strong></td>
+            <td><span class="status-badge status-badge--green">
+              <span class="status-dot" aria-hidden="true"></span>Đang hoạt động</span></td>
+            <td>
+              <div class="tx-actions">
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="edit">Sửa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="lock">Khóa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="detail">Chi tiết</button>
+              </div>
+            </td>
+          </tr>
+          <tr data-id="tx-05" data-status="active" data-tint="orange" data-trips="7"
+            data-name="Hoàng Thị Em" data-phone="0345 889 005"
+            data-email="em.hoang@vivuviet.vn" data-gplx="0901 2345 6789"
+            data-hang="C" data-han="02/02/2027" data-created="21/10/2025"
+            data-search="hoàng thị em 0345889005 em.hoang@vivuviet.vn">
+            <td>
+              <div class="tx-cell">
+                <span class="tx-avatar tx-avatar--orange" aria-hidden="true">HE</span>
+                <span class="tx-id"><strong>Hoàng Thị Em</strong>
+                  <span>em.hoang@vivuviet.vn</span></span>
+              </div>
+            </td>
+            <td class="tx-phone">0345 889 005</td>
+            <td><span class="tx-gplx"><strong>C · 0901 2345 6789</strong>
+              <span>Giấy phép lái xe</span></span></td>
+            <td>02/02/2027</td>
+            <td class="col-num"><strong class="tx-num">7</strong></td>
+            <td><span class="status-badge status-badge--green">
+              <span class="status-dot" aria-hidden="true"></span>Đang hoạt động</span></td>
+            <td>
+              <div class="tx-actions">
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="edit">Sửa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="lock">Khóa</button>
+                <button class="btn btn-ghost btn-sm" type="button"
+                  data-tx-action="detail">Chi tiết</button>
+              </div>
+            </td>
+          </tr>

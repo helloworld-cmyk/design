@@ -1,0 +1,122 @@
+/* =========================================================
+   Vi Vu Việt — A5 Quản lý tuyến: đầu màn + thanh lọc.
+   Bám hợp đồng A8/A6: .admin-head, .filter-grid, .filter-count.
+   Chỉ dùng token ở shared/css/tokens.css.
+   ========================================================= */
+
+/* ---------- Đầu màn ---------- */
+
+.admin-head {
+  margin-bottom: 22px;
+}
+
+.admin-head--row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.admin-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.admin-title {
+  margin-top: 6px;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--ink);
+}
+
+.admin-lead {
+  max-width: 660px;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+/* ---------- Thanh lọc ---------- */
+
+.rt-toolbar {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(190px, 240px) auto;
+  align-items: end;
+  gap: 14px;
+}
+
+.filter-search {
+  min-width: 0;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-actions .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.filter-count {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.filter-count:empty {
+  display: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .filter-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .rt-toolbar {
+    padding: 16px;
+  }
+
+  .admin-head--row .btn {
+    width: 100%;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .admin-lead {
+    font-size: 14.5px;
+  }
+}

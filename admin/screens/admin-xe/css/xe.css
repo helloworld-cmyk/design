@@ -1,0 +1,280 @@
+/* =========================================================
+   Vi Vu Việt — A4 Quản lý xe: đầu màn, KPI, bộ lọc.
+   Dùng token chung; không hex rời mới.
+   ========================================================= */
+
+/* ---------- Đầu màn ---------- */
+
+.admin-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.admin-head-text {
+  min-width: 0;
+}
+
+.admin-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.admin-title {
+  margin-top: 6px;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--ink);
+}
+
+.admin-lead {
+  max-width: 660px;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+/* ---------- Thẻ KPI ---------- */
+
+.xe-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.stat-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+}
+
+.stat-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.stat-icon--sky {
+  background: var(--sky-50);
+  color: var(--sky-700);
+  box-shadow: inset 0 0 0 1px var(--sky-100);
+}
+
+.stat-icon--green {
+  background: var(--green-50);
+  color: var(--green-700);
+  box-shadow: inset 0 0 0 1px var(--green-100);
+}
+
+.stat-icon--orange {
+  background: var(--orange-50);
+  color: var(--orange-700);
+  box-shadow: inset 0 0 0 1px var(--orange-100);
+}
+
+.stat-body strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.stat-body span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+/* ---------- Thanh lọc ---------- */
+
+.xe-toolbar {
+  display: grid;
+  gap: 12px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 1.4fr)
+    minmax(170px, 0.8fr)
+    minmax(190px, 0.9fr)
+    auto;
+  align-items: end;
+  gap: 14px;
+}
+
+.filter-search {
+  min-width: 0;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-count {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.filter-count:empty {
+  display: none;
+}
+
+/* Tránh iOS Safari tự zoom khi focus control */
+.xe-toolbar input,
+.xe-toolbar select {
+  font-size: 16px;
+}
+
+.xe-toolbar select {
+  padding-left: 13px;
+}
+
+/* ---------- Trạng thái rỗng (khớp A8) ---------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 48px 24px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+.empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 8px;
+  border-radius: var(--radius-md);
+  background: var(--sky-50);
+  color: var(--sky-700);
+  box-shadow: inset 0 0 0 1px rgba(2, 132, 199, 0.14);
+}
+
+.empty-icon .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.empty-state h3 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.empty-state p {
+  max-width: 400px;
+  font-size: 13.5px;
+  color: var(--slate-500);
+}
+
+.empty-state .btn {
+  margin-top: 10px;
+}
+
+/* ---------- Tiện ích ẩn ---------- */
+
+.xe-table-wrap[hidden],
+.empty-state[hidden] {
+  display: none;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 1080px) {
+  .xe-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .filter-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .xe-toolbar {
+    padding: 16px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .xe-stats {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 13px 14px;
+  }
+
+  .stat-body strong {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .xe-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-lead {
+    font-size: 14.5px;
+  }
+}

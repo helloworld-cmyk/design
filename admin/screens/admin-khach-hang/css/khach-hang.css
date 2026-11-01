@@ -1,0 +1,208 @@
+/* =========================================================
+   Vi Vu Việt — A8 Quản lý khách hàng: đầu màn, bộ lọc,
+   phân trang và tiện ích trạng thái ẩn. Dùng token chung.
+   ========================================================= */
+
+.kh-page {
+  display: block;
+}
+
+/* ---------- Đầu màn ---------- */
+
+.admin-head {
+  margin-bottom: 22px;
+}
+
+.admin-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.admin-title {
+  margin-top: 6px;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--ink);
+}
+
+.admin-lead {
+  max-width: 660px;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+/* ---------- Thanh lọc ---------- */
+
+.kh-toolbar {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(190px, 240px) auto;
+  align-items: end;
+  gap: 14px;
+}
+
+.filter-search {
+  min-width: 0;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-count {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.filter-count:empty {
+  display: none;
+}
+
+/* ---------- Phân trang ---------- */
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.page-nums {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-btn {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--slate-600);
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.page-btn .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.page-icon-prev {
+  transform: rotate(180deg);
+}
+
+.page-btn:hover:not(:disabled):not(.is-current) {
+  background: var(--sky-50);
+  border-color: var(--sky-300);
+  color: var(--sky-700);
+}
+
+.page-btn.is-current {
+  background: var(--sky-700);
+  border-color: var(--sky-700);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-gap {
+  padding: 0 2px;
+  font-weight: 700;
+  color: var(--slate-400);
+}
+
+/* ---------- Tiện ích: ẩn và trạng thái ---------- */
+
+.empty-state[hidden],
+.pagination[hidden],
+.kh-panel[hidden],
+.data-table tr[hidden],
+.field[hidden] {
+  display: none;
+}
+
+body.admin-modal-open {
+  overflow: hidden;
+}
+
+.field.is-invalid select {
+  border-color: #fca5a5;
+  background: #fff8f8;
+}
+
+.field.is-invalid select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .filter-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .kh-toolbar {
+    padding: 16px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-btn {
+    min-width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 400px) {
+  .admin-lead {
+    font-size: 14.5px;
+  }
+
+  .page-gap {
+    display: none;
+  }
+}

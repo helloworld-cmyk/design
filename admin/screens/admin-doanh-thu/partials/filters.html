@@ -1,0 +1,57 @@
+<section class="dt-section reveal" id="bo-loc" aria-labelledby="bo-loc-title">
+  <h2 class="sr-only" id="bo-loc-title">Chọn kỳ doanh thu</h2>
+
+  <form class="filter-bar" id="dtFilter" action="#">
+    <div class="filter-field">
+      <label for="dtPeriod">Kỳ thống kê</label>
+      <div class="filter-control filter-control--select">
+        <select id="dtPeriod" name="period">
+          <option>Hôm nay</option>
+          <option>Tuần này</option>
+          <option selected>Tháng này</option>
+          <option>Tháng trước</option>
+          <option>Tuỳ chọn</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-field">
+      <label for="dtFrom">Từ ngày</label>
+      <div class="filter-control">
+        <input type="date" id="dtFrom" name="from" value="2026-10-01" />
+      </div>
+    </div>
+
+    <div class="filter-field">
+      <label for="dtTo">Đến ngày</label>
+      <div class="filter-control">
+        <input type="date" id="dtTo" name="to" value="2026-10-31" />
+      </div>
+    </div>
+
+    <div class="filter-field filter-field--wide">
+      <label for="dtRoute">Tuyến</label>
+      <div class="filter-control filter-control--select">
+        <select id="dtRoute" name="route">
+          <option selected>Tất cả tuyến</option>
+          <option>Hà Nội → Hạ Long</option>
+          <option>Hà Nội → Ninh Bình</option>
+          <option>Hà Nội → Sapa</option>
+          <option>Hà Nội → Phong Nha</option>
+          <option>Hà Nội → Hải Phòng</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="dtExport">
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-download"></use>
+        </svg>
+        Xuất CSV
+      </button>
+    </div>
+
+    <p class="filter-status" id="dtExportStatus" role="status" aria-live="polite"></p>
+  </form>
+</section>

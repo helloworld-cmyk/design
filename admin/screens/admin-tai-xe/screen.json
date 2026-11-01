@@ -1,0 +1,41 @@
+{
+  "output": "admin/tai-xe.html",
+  "base": "../",
+  "title": "Quản lý tài xế — Vi Vu Việt",
+  "description": "Tạo tài khoản, cập nhật thông tin giấy phép và theo dõi trạng thái hoạt động của đội tài xế Vi Vu Việt.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/css/admin-shell",
+    "admin/css/modal",
+    "admin/screens/admin-tai-xe/css/tai-xe",
+    "admin/screens/admin-tai-xe/css/tai-xe-ui",
+    "admin/screens/admin-tai-xe/css/tai-xe-detail",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/js/admin-shell",
+    "admin/js/modal",
+    "admin/js/table",
+    "admin/screens/admin-tai-xe/js/tai-xe-data",
+    "admin/screens/admin-tai-xe/js/tai-xe",
+    "admin/screens/admin-tai-xe/js/tai-xe-detail",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/components/admin-sprite.html",
+    "admin/components/admin-shell.html",
+    "admin/screens/admin-tai-xe/partials/page-head.html",
+    "admin/screens/admin-tai-xe/partials/list.html",
+    "admin/screens/admin-tai-xe/partials/list-rows.html",
+    "admin/screens/admin-tai-xe/partials/list-end.html",
+    "admin/screens/admin-tai-xe/partials/modals.html",
+    "admin/components/admin-shell-end.html"
+  ]
+}

@@ -1,0 +1,80 @@
+<div
+  class="drawer"
+  id="orderDrawer"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="dTitle"
+  hidden
+>
+  <div class="drawer-card">
+    <header class="drawer-head">
+      <div class="drawer-head-main">
+        <p class="drawer-eyebrow">Chi tiết đơn đặt</p>
+        <h2 class="drawer-title" id="dTitle">VV-0000-0000</h2>
+        <div class="drawer-badges">
+          <span class="status-badge sb--sky" id="dVeBadge">Đã đặt</span>
+          <span class="status-badge sb--orange" id="dPayBadge">Chưa thu</span>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="panel-close js-drawer-close"
+        aria-label="Đóng chi tiết đơn"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+
+    <div class="drawer-body">
+      <section class="d-block">
+        <h3 class="d-label">Hành khách</h3>
+        <ul class="d-list">
+          <li><span>Tên khách</span><strong id="dKhach">—</strong></li>
+          <li><span>Điện thoại</span><strong id="dSdt">—</strong></li>
+        </ul>
+      </section>
+
+      <section class="d-block">
+        <h3 class="d-label">Chuyến xe</h3>
+        <ul class="d-list">
+          <li><span>Mã chuyến</span><strong id="dChuyen">—</strong></li>
+          <li><span>Tuyến</span><strong id="dTuyen">—</strong></li>
+          <li><span>Khởi hành</span><strong id="dNgay">—</strong></li>
+          <li><span>Tài xế</span><strong id="dTaixe">—</strong></li>
+          <li><span>Xe</span><strong id="dXe">—</strong></li>
+          <li><span>Ghế</span><strong id="dGhe">—</strong></li>
+        </ul>
+      </section>
+
+      <section class="d-block">
+        <h3 class="d-label">Điểm đón / trả</h3>
+        <ul class="d-list">
+          <li><span>Điểm đón</span><strong id="dDon">—</strong></li>
+          <li><span>Điểm trả</span><strong id="dTra">—</strong></li>
+        </ul>
+      </section>
+
+      <section class="d-pay">
+        <div class="d-pay-top">
+          <span class="d-label">Thanh toán</span>
+          <strong class="d-pay-amount" id="dTien">0đ</strong>
+        </div>
+        <p class="d-pay-note" id="dPayNote">
+          Tiền mặt do tài xế ghi nhận khi khách lên xe (D4). Admin chỉ theo dõi và
+          chỉnh khi cần đối soát — không có hoàn tiền.
+        </p>
+      </section>
+
+      <section class="d-block">
+        <h3 class="d-label">Lịch sử trạng thái</h3>
+        <ol class="timeline" id="dTimeline"></ol>
+      </section>
+    </div>
+
+    <footer class="drawer-foot">
+      <button type="button" class="btn btn-ghost" id="dCancel" hidden>Hủy vé</button>
+      <button type="button" class="btn btn-primary" id="dPaid" hidden>Đánh dấu đã thu</button>
+      <button type="button" class="btn btn-ghost js-drawer-close">Đóng</button>
+    </footer>
+  </div>
+</div>

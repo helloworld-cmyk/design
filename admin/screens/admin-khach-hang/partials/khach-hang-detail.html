@@ -1,0 +1,95 @@
+        <div
+          class="modal drawer"
+          id="khDrawer"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="khDrawerTitle"
+        >
+          <div class="modal-scrim"></div>
+          <div class="modal-panel drawer-panel">
+            <header class="drawer-head">
+              <div class="drawer-head-main">
+                <div class="drawer-ident">
+                  <span class="avatar avatar--lg" id="dAvatar" aria-hidden="true">
+                    MA
+                  </span>
+                  <div class="drawer-ident-text">
+                    <p class="drawer-eyebrow" id="dCode">MK-10241</p>
+                    <h2 class="drawer-title" id="khDrawerTitle">Nguyễn Mai Anh</h2>
+                    <p class="drawer-sub" id="dSub">
+                      Tham gia 12/03/2025 · 28 vé đã đặt
+                    </p>
+                  </div>
+                </div>
+                <div class="drawer-badges">
+                  <span class="status-badge sb--green" id="dBadge">
+                    Đang hoạt động
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="modal-close"
+                data-modal-close
+                aria-label="Đóng chi tiết khách hàng"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+              </button>
+            </header>
+
+            <div class="drawer-body">
+              <ul class="d-list d-list--grid">
+                <li>
+                  <span>Số điện thoại</span><strong id="dPhone">0903 412 778</strong>
+                </li>
+                <li>
+                  <span>Email</span>
+                  <strong id="dEmail">maianh.nguyen@gmail.com</strong>
+                </li>
+                <li>
+                  <span>Ngày tạo tài khoản</span>
+                  <strong id="dCreated">12/03/2025</strong>
+                </li>
+                <li>
+                  <span>Số vé đã đặt</span><strong id="dTickets">28</strong>
+                </li>
+              </ul>
+
+              <div class="warn-block" id="dLockAlert" role="note" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+                <p>
+                  <strong>Tài khoản đang bị khóa.</strong>
+                  <span id="dLockReason">
+                    Khách không thể đăng nhập và đặt vé mới cho tới khi được mở khóa.
+                  </span>
+                </p>
+              </div>
+
+              <section class="d-block">
+                <div class="d-block-head">
+                  <h3 class="d-label">Lịch sử vé gần đây</h3>
+                  <a class="drawer-link" href="don-dat.html">
+                    Xem tất cả đơn đặt
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+                <ul class="ticket-list" id="dTicketList"></ul>
+              </section>
+            </div>
+
+            <footer class="drawer-foot">
+              <button type="button" class="btn btn-ghost" id="dResetPass">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-refresh"></use>
+                </svg>
+                Đặt lại mật khẩu
+              </button>
+              <button type="button" class="btn btn-primary" id="dToggleLock">
+                <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+                <span id="dToggleLockLabel">Khóa tài khoản</span>
+              </button>
+            </footer>
+          </div>
+        </div>

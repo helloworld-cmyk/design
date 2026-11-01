@@ -1,0 +1,292 @@
+/* =========================================================
+   Vi Vu Việt — A4 Quản lý xe: bảng xe, huy hiệu, trạng thái rỗng.
+   Dùng token chung; không hex rời mới.
+   ========================================================= */
+
+/* ---------- Thẻ bảng ---------- */
+
+.table-card {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.table-card-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.table-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.table-sub {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+/* ---------- Bảng ---------- */
+
+.xe-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+}
+
+.xe-table thead th {
+  padding: 12px 16px;
+  background: var(--navy-50);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--slate-500);
+  white-space: nowrap;
+}
+
+.xe-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 13.5px;
+  color: var(--slate-600);
+  vertical-align: middle;
+}
+
+.xe-table tbody tr {
+  transition: background var(--dur) var(--ease);
+}
+
+.xe-table tbody tr:hover {
+  background: var(--sky-50);
+}
+
+.xe-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.xe-table tbody tr[hidden] {
+  display: none;
+}
+
+.xe-plate {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.xe-type {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+.xe-seats {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.xe-seats .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--sky-600);
+}
+
+.xe-driver-none {
+  color: var(--slate-400);
+}
+
+.xe-doc {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--slate-500);
+}
+
+.xe-doc--warn {
+  font-weight: 600;
+  color: var(--orange-700);
+}
+
+.xe-doc--warn .icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--orange-600);
+}
+
+/* ---------- Huy hiệu trạng thái (khớp A8) ---------- */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.sb--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.sb--orange {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.sb--slate {
+  background: var(--slate-200);
+  color: var(--slate-600);
+}
+
+/* ---------- Hành động trong dòng ---------- */
+
+.cell-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cell-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sky-700);
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.cell-action .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.cell-action:hover {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.cell-action--danger {
+  color: var(--red-600);
+}
+
+.cell-action--danger:hover {
+  background: var(--red-50);
+}
+
+.cell-action:disabled {
+  color: var(--slate-400);
+  cursor: not-allowed;
+}
+
+.cell-action:disabled:hover {
+  background: none;
+}
+
+/* =========================================================
+   Responsive: ≤640px chuyển bảng thành thẻ dọc
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .table-card-head {
+    padding: 16px;
+  }
+
+  .xe-table {
+    min-width: 0;
+  }
+
+  .xe-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .xe-table tbody tr {
+    display: grid;
+    gap: 9px;
+    padding: 16px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .xe-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .xe-table tbody td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 0;
+    border: 0;
+  }
+
+  .xe-table tbody td::before {
+    content: attr(data-label);
+    flex: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--slate-500);
+  }
+
+  .xe-table tbody td[data-label="Xe"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .xe-table tbody td[data-label="Xe"]::before {
+    margin-bottom: 3px;
+  }
+
+  .cell-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .cell-action {
+    padding: 0 8px;
+  }
+}

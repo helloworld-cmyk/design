@@ -1,0 +1,94 @@
+/* =========================================================
+   Vi Vu Việt — A7: bảng dữ liệu .data-table (screen-local)
+   Mobile: .table-scroll cuộn ngang, không vỡ layout.
+   ========================================================= */
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th {
+  padding: 13px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--slate-500);
+}
+
+.data-table td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border-soft);
+  vertical-align: middle;
+  color: var(--slate-600);
+}
+
+.data-table tbody tr {
+  transition: background var(--dur) var(--ease);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(240, 249, 255, 0.55);
+}
+
+.data-table tfoot td {
+  padding: 14px 16px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ---------- Ô dữ liệu ---------- */
+
+.num {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+th.num {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--slate-500);
+}
+
+.cell-code {
+  font-weight: 700;
+  color: var(--sky-700);
+  white-space: nowrap;
+}
+
+.cell-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--slate-400);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .data-table th,
+  .data-table td,
+  .data-table tfoot td {
+    padding: 12px 14px;
+  }
+}

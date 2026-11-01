@@ -1,0 +1,50 @@
+<div class="admin-head">
+  <span class="admin-eyebrow">Vận hành · Đơn đặt</span>
+  <h1 class="admin-title">Quản lý đơn đặt</h1>
+  <p class="admin-lead">
+    Tra soát vé theo chuyến, hủy vé thay khách khi đã quá hạn tự hủy và theo dõi
+    trạng thái thu tiền mặt do tài xế ghi nhận khi lên xe.
+  </p>
+</div>
+
+<div class="stat-grid">
+  <article class="stat-card reveal">
+    <span class="stat-icon stat-icon--sky" aria-hidden="true">
+      <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
+    </span>
+    <div class="stat-body">
+      <strong class="stat-value" id="statDon">0</strong>
+      <span class="stat-label">Đơn khởi hành hôm nay</span>
+    </div>
+  </article>
+
+  <article class="stat-card reveal" style="--reveal-delay: 60ms">
+    <span class="stat-icon stat-icon--orange" aria-hidden="true">
+      <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+    </span>
+    <div class="stat-body">
+      <strong class="stat-value" id="statCho">0</strong>
+      <span class="stat-label">Vé chờ thu tiền</span>
+    </div>
+  </article>
+
+  <article class="stat-card reveal" style="--reveal-delay: 120ms">
+    <span class="stat-icon stat-icon--green" aria-hidden="true">
+      <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+    </span>
+    <div class="stat-body">
+      <strong class="stat-value" id="statThu">0</strong>
+      <span class="stat-label">Vé đã thu tiền</span>
+    </div>
+  </article>
+
+  <article class="stat-card reveal" style="--reveal-delay: 180ms">
+    <span class="stat-icon stat-icon--navy" aria-hidden="true">
+      <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+    </span>
+    <div class="stat-body">
+      <strong class="stat-value stat-value--money" id="statTien">0đ</strong>
+      <span class="stat-label">Tiền mặt đã thu</span>
+    </div>
+  </article>
+</div>

@@ -1,0 +1,138 @@
+      <div class="modal" id="vehicleModal" role="dialog" aria-modal="true"
+        aria-labelledby="vehicleModalTitle">
+        <div class="modal-scrim"></div>
+        <div class="modal-panel">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="vehicleModalTitle">Thêm xe mới</h2>
+              <p class="modal-sub">
+                Xe thêm mới sẽ khả dụng để phân công khi đang ở tình trạng
+                hoạt động.
+              </p>
+            </div>
+            <button class="modal-close" type="button" data-modal-close
+              aria-label="Đóng hộp thoại">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-close"></use>
+              </svg>
+            </button>
+          </header>
+
+          <form id="vehicleForm" class="modal-body" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="vPlate">Biển số <span aria-hidden="true">*</span></label>
+                <div class="field-control">
+                  <input id="vPlate" name="plate" type="text" required
+                    placeholder="VD: 29A-123.45" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vSeats">
+                  Sức chứa (số chỗ) <span aria-hidden="true">*</span>
+                </label>
+                <div class="field-control">
+                  <input id="vSeats" name="seats" type="number" min="1" max="50"
+                    required placeholder="VD: 16" />
+                </div>
+              </div>
+
+              <div class="field span-2">
+                <label for="vType">Loại xe <span aria-hidden="true">*</span></label>
+                <div class="field-control">
+                  <input id="vType" name="type" type="text" required
+                    placeholder="VD: Ford Transit 16 chỗ" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vDriver">Tài xế phụ trách</label>
+                <div class="field-control select-wrap">
+                  <select id="vDriver" name="driver">
+                    <option value="">— Chưa gán —</option>
+                    <option>Nguyễn Văn Mạnh</option>
+                    <option>Trần Quốc Bảo</option>
+                    <option>Lê Thị Hồng</option>
+                    <option>Đỗ Trọng Khánh</option>
+                    <option>Phạm Đức Long</option>
+                    <option>Vũ Nhật Tân</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vStatus">Tình trạng</label>
+                <div class="field-control select-wrap">
+                  <select id="vStatus" name="status">
+                    <option>Đang hoạt động</option>
+                    <option>Đang bảo trì</option>
+                    <option>Ngưng sử dụng</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vInspection">Hạn đăng kiểm</label>
+                <div class="field-control">
+                  <input id="vInspection" name="inspection" type="date" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vInsurance">Hạn bảo hiểm</label>
+                <div class="field-control">
+                  <input id="vInsurance" name="insurance" type="date" />
+                </div>
+              </div>
+            </div>
+
+            <p class="form-status" id="vehicleFormStatus" role="status"
+              aria-live="polite"></p>
+
+            <footer class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>Hủy</button>
+              <button class="btn btn-primary" type="submit" id="vehicleSubmit">
+                Lưu xe
+              </button>
+            </footer>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="vehicleDeleteModal" role="dialog" aria-modal="true"
+        aria-labelledby="vehicleDeleteTitle">
+        <div class="modal-scrim"></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="vehicleDeleteTitle">
+                Xóa xe khỏi đội xe?
+              </h2>
+              <p class="modal-sub">
+                Xe biển số <strong id="deletePlate">51B-234.56</strong> chưa từng
+                gắn chuyến nên có thể xóa vĩnh viễn. Hành động này không thể
+                hoàn tác.
+              </p>
+            </div>
+            <button class="modal-close" type="button" data-modal-close
+              aria-label="Đóng hộp thoại">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-close"></use>
+              </svg>
+            </button>
+          </header>
+
+          <div class="modal-body">
+            <footer class="modal-foot">
+              <button class="btn btn-ghost" type="button" data-modal-close>Giữ xe</button>
+              <button class="btn xe-btn-danger" type="button" id="vehicleDeleteConfirm">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-trash"></use>
+                </svg>
+                Xóa xe
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,43 @@
+{
+  "output": "admin/don-dat.html",
+  "base": "../",
+  "title": "Quản lý đơn đặt",
+  "description": "Tra soát vé theo chuyến, hủy vé thay khách và theo dõi trạng thái thu tiền mặt.",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/booking",
+    "admin/css/admin-shell",
+    "admin/screens/admin-don-dat/css/orders",
+    "admin/screens/admin-don-dat/css/orders-toolbar",
+    "admin/screens/admin-don-dat/css/orders-table",
+    "admin/screens/admin-don-dat/css/orders-states",
+    "admin/screens/admin-don-dat/css/orders-panels",
+    "admin/screens/admin-don-dat/css/orders-timeline",
+    "admin/screens/admin-don-dat/css/orders-modal",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "admin/js/admin-shell",
+    "admin/screens/admin-don-dat/js/orders",
+    "admin/screens/admin-don-dat/js/orders-panels",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "admin/components/admin-sprite.html",
+    "admin/components/admin-shell.html",
+    "admin/screens/admin-don-dat/partials/page-head.html",
+    "admin/screens/admin-don-dat/partials/toolbar.html",
+    "admin/screens/admin-don-dat/partials/table.html",
+    "admin/screens/admin-don-dat/partials/rows-2.html",
+    "admin/screens/admin-don-dat/partials/rows-3.html",
+    "admin/screens/admin-don-dat/partials/drawer.html",
+    "admin/screens/admin-don-dat/partials/modal.html",
+    "admin/components/admin-shell-end.html"
+  ]
+}

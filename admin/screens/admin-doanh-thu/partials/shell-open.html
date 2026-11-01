@@ -1,0 +1,92 @@
+<div class="admin-shell" data-admin-shell>
+  <aside class="admin-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
+    <a class="admin-brand" href="{{base}}khach-hang/index.html">
+      <img
+        src="{{base}}shared/assets/logo.svg"
+        alt="Vi Vu Việt"
+        width="38"
+        height="38"
+      />
+      <span class="admin-brand-name">Vi Vu <em>Việt</em></span>
+    </a>
+
+    <nav class="admin-nav" aria-label="Màn hình quản trị">
+      <a class="admin-nav-link" href="admin-tong-quan.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"></use></svg>
+        Tổng quan
+      </a>
+      <a class="admin-nav-link" href="admin-chuyen.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-list"></use></svg>
+        Quản lý chuyến
+      </a>
+      <a class="admin-nav-link" href="admin-tai-xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+        Quản lý tài xế
+      </a>
+      <a class="admin-nav-link" href="admin-xe.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-car"></use></svg>
+        Quản lý xe
+      </a>
+      <a class="admin-nav-link" href="admin-tuyen-duong.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-route"></use></svg>
+        Quản lý tuyến
+      </a>
+      <a class="admin-nav-link" href="admin-don-dat.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-ticket"></use></svg>
+        Quản lý đơn đặt
+      </a>
+      <a
+        class="admin-nav-link is-active"
+        href="admin-doanh-thu.html"
+        aria-current="page"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg>
+        Doanh thu
+      </a>
+      <a class="admin-nav-link" href="admin-khach-hang.html">
+        <svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>
+        Quản lý khách hàng
+      </a>
+    </nav>
+
+    <div class="admin-side-foot">
+      <span class="admin-user-avatar" aria-hidden="true">PT</span>
+      <span class="admin-user-id">
+        <strong>Phong Trần</strong>
+        <span>Quản trị viên</span>
+      </span>
+      <button
+        class="admin-logout"
+        type="button"
+        data-admin-logout
+        aria-label="Đăng xuất"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="admin-backdrop" id="adminBackdrop" hidden></div>
+
+  <div class="admin-body">
+    <header class="admin-topbar">
+      <button
+        class="admin-menu-btn"
+        id="adminMenuBtn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="adminSidebar"
+        aria-label="Mở menu điều hướng"
+      >
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
+
+      <p class="admin-topbar-note">Khu vực quản trị — Vi Vu Việt</p>
+
+      <div class="admin-topbar-user">
+        <span class="admin-topbar-avatar" aria-hidden="true">PT</span>
+        <span class="admin-topbar-name">Phong Trần</span>
+      </div>
+    </header>
+
+    <main id="main" class="admin-main">

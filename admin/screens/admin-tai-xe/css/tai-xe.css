@@ -1,0 +1,276 @@
+/* ================= A3 · Quản lý tài xế — khung trang + lọc + bảng ================= */
+
+/* ---------- Đầu trang ---------- */
+
+.admin-page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-page-head h1 {
+  margin-top: 8px;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.032em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.admin-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+
+.admin-page-desc {
+  max-width: 560px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+/* ---------- Thanh lọc ---------- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.filter-bar .field {
+  flex: 1 1 210px;
+  min-width: 180px;
+}
+
+.filter-bar .filter-search {
+  flex: 2 1 260px;
+}
+
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-actions .btn {
+  height: 48px;
+}
+
+.filter-count {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-500);
+  white-space: nowrap;
+}
+
+/* ---------- Panel bảng ---------- */
+
+.table-panel {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-panel.is-empty .table-scroll,
+.table-panel.is-empty .table-foot {
+  display: none;
+}
+
+/* ---------- Bảng dữ liệu ---------- */
+
+.data-table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: collapse;
+}
+
+.data-table thead th {
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--slate-500);
+  white-space: nowrap;
+}
+
+.data-table thead .col-trips {
+  width: 92px;
+  white-space: normal;
+}
+
+.data-table thead .th-sub {
+  display: block;
+  white-space: nowrap;
+}
+
+.data-table tbody td {
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 14px;
+  color: var(--slate-600);
+  vertical-align: middle;
+}
+
+.data-table tbody tr {
+  transition: background var(--dur) var(--ease);
+}
+
+.data-table tbody tr:hover {
+  background: var(--sky-50);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.data-table .col-num {
+  text-align: right;
+}
+
+/* ---------- Ô tài xế ---------- */
+
+.tx-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.tx-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.tx-avatar--sky {
+  background: var(--sky-100);
+  color: var(--sky-700);
+}
+
+.tx-avatar--orange {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.tx-avatar--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.tx-id {
+  display: grid;
+  min-width: 0;
+}
+
+.tx-id strong {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.tx-id span {
+  overflow: hidden;
+  font-size: 12.5px;
+  color: var(--slate-500);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Ô giấy phép & số liệu ---------- */
+
+.tx-gplx {
+  display: grid;
+  gap: 2px;
+}
+
+.tx-gplx strong {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.tx-gplx span {
+  font-size: 12px;
+  color: var(--slate-500);
+}
+
+.tx-num {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.tx-han {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  white-space: nowrap;
+}
+
+.tx-phone {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .filter-bar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filter-bar .field,
+  .filter-bar .filter-search {
+    flex: none;
+    min-width: 0;
+  }
+
+  .filter-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-actions .btn {
+    width: 100%;
+  }
+
+  .filter-count {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .admin-page-head .btn {
+    width: 100%;
+  }
+}
