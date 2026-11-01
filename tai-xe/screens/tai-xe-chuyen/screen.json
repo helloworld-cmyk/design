@@ -1,0 +1,44 @@
+{
+  "output": "tai-xe/tai-xe-chuyen.html",
+  "base": "../",
+  "title": "Chuyến được phân công — Khu tài xế Vi Vu Việt",
+  "description": "Theo dõi các chuyến admin phân công theo trạng thái: sắp tới, đang thực hiện, hoàn thành, đã hủy — lọc theo ngày và mở chi tiết chuyến.",
+  "home": "tong-quan.html",
+  "navPrefix": "../khach-hang/index.html",
+  "linkLoginHref": "../khach-hang/index.html",
+  "linkLoginLabel": "Trang chủ",
+  "profileHref": "tai-xe-ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/booking",
+    "shared/css/ride-card",
+    "tai-xe/css/badges",
+    "shared/css/sections",
+    "tai-xe/screens/tai-xe-chuyen/css/board",
+    "tai-xe/screens/tai-xe-chuyen/css/cards",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "tai-xe/screens/tai-xe-chuyen/js/tabs",
+    "tai-xe/screens/tai-xe-chuyen/js/trips",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "shared/components/header.html",
+    "tai-xe/screens/tai-xe-chuyen/partials/page-head.html",
+    "tai-xe/screens/tai-xe-chuyen/partials/board.html",
+    "tai-xe/screens/tai-xe-chuyen/partials/board-moi.html",
+    "tai-xe/screens/tai-xe-chuyen/partials/board-rest.html",
+    "tai-xe/screens/tai-xe-chuyen/partials/board-done.html",
+    "shared/components/footer.html"
+  ]
+}

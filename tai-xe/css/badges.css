@@ -1,0 +1,11 @@
+/* ============== Biến thể badge dùng chung nhóm tài xế ============== */
+
+.badge--sky {
+  background: var(--sky-100);
+  color: var(--sky-700);
+}
+
+.badge--red {
+  background: var(--red-50);
+  color: var(--red-600);
+}

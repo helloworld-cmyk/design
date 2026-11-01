@@ -1,0 +1,112 @@
+      <div class="txc-board">
+        <div class="txc-tabs" role="tablist" aria-label="Trạng thái chuyến">
+          <button
+            class="txc-tab is-active"
+            id="tab-sap-toi"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-sap-toi"
+          >
+            Sắp tới
+            <span class="txc-tab-count" data-count="panel-sap-toi">3</span>
+          </button>
+          <button
+            class="txc-tab"
+            id="tab-dang-chay"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-dang-chay"
+            tabindex="-1"
+          >
+            Đang thực hiện
+            <span class="txc-tab-count" data-count="panel-dang-chay">1</span>
+          </button>
+          <button
+            class="txc-tab"
+            id="tab-xong"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-xong"
+            tabindex="-1"
+          >
+            Hoàn thành
+            <span class="txc-tab-count" data-count="panel-xong">2</span>
+          </button>
+          <button
+            class="txc-tab"
+            id="tab-huy"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-huy"
+            tabindex="-1"
+          >
+            Đã hủy
+            <span class="txc-tab-count" data-count="panel-huy">1</span>
+          </button>
+        </div>
+
+        <div
+          class="txc-filter"
+          role="group"
+          aria-label="Lọc chuyến theo ngày"
+        >
+          <span class="txc-filter-label">Ngày</span>
+          <button
+            class="txc-chip is-active"
+            type="button"
+            data-day="all"
+            aria-pressed="true"
+          >
+            Tất cả
+          </button>
+          <button
+            class="txc-chip"
+            type="button"
+            data-day="hom-nay"
+            aria-pressed="false"
+          >
+            Hôm nay
+          </button>
+          <button
+            class="txc-chip"
+            type="button"
+            data-day="mai"
+            aria-pressed="false"
+          >
+            Ngày mai
+          </button>
+          <button
+            class="txc-chip"
+            type="button"
+            data-day="sau"
+            aria-pressed="false"
+          >
+            Sau đó
+          </button>
+        </div>
+
+        <p class="form-status" id="txcStatus" role="status" aria-live="polite"></p>
+
+        <section
+          class="txc-panel"
+          id="panel-sap-toi"
+          role="tabpanel"
+          aria-labelledby="tab-sap-toi"
+        >
+          <div class="txc-list" id="list-sap-toi">
+            <article
+              class="txc-card"
+              data-code="VVK-1256"
+              data-day="hom-nay"
+            >
+              <div class="txc-card-top">
+                <span class="ride-eyebrow">Hôm nay · #VVK-1256</span>
+                <span class="txc-top-right">
+                  <span class="badge badge--sky">Sắp tới</span>
+                  <span class="txc-when">14:30 · sau 3 giờ</span>
+                </span>
+              </div>
