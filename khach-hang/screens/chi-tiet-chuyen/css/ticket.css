@@ -1,0 +1,276 @@
+/* ================= Vé hành trình: thẻ kiểu vé có rãnh xé ================= */
+
+.detail-trip {
+  --ticket-stub: 176px;
+  --ticket-notch: 11px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--ticket-stub);
+  width: 100%;
+  margin-top: clamp(12px, 1.4vw, 16px);
+  padding: 0;
+  border-color: var(--slate-300);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.detail-trip::before,
+.detail-trip::after {
+  content: "";
+  position: absolute;
+  left: calc(100% - var(--ticket-stub) - var(--ticket-notch) - 1px);
+  width: calc(var(--ticket-notch) * 2);
+  height: var(--ticket-notch);
+  border: 1px solid var(--slate-300);
+  background: var(--bg);
+  z-index: 2;
+}
+
+.detail-trip::before {
+  top: -1px;
+  border-top: 0;
+  border-radius: 0 0 999px 999px;
+}
+
+.detail-trip::after {
+  bottom: -1px;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.ticket-body {
+  min-width: 0;
+  padding: 14px 18px 18px;
+}
+
+.ticket-top {
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.ticket-top .ride-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.ticket-when {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ticket-time-range {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ticket-dash {
+  font-weight: 600;
+  color: var(--slate-400);
+}
+
+/* ---------- Hành trình ngang ---------- */
+
+.ticket-route {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Bỏ hộp bao để chấm tròn đứng sát 2 đầu nét đứt */
+
+.ticket-stop {
+  display: contents;
+}
+
+.ticket-stop--end {
+  text-align: right;
+}
+
+.ticket-node {
+  flex: none;
+  margin-top: 0;
+  --dot-ring: rgba(2, 132, 199, 0.35);
+}
+
+.ticket-node.marker-dot--end {
+  --dot-ring: rgba(249, 115, 22, 0.4);
+}
+
+.ticket-node::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1.5px solid var(--dot-ring);
+  border-radius: 50%;
+  animation: ticketDotPing 2.8s ease-out infinite;
+}
+
+.ticket-node.marker-dot--end::after {
+  animation-delay: 1.4s;
+}
+
+@keyframes ticketDotPing {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.7);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+.ticket-place {
+  min-width: 0;
+}
+
+.ticket-place strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.ticket-place span {
+  display: block;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--slate-500);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket-track {
+  display: grid;
+  flex: 1 1 120px;
+  gap: 2px;
+  justify-items: center;
+  min-width: 92px;
+}
+
+.ticket-line {
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--slate-300) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+.ticket-dur {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--sky-700);
+}
+
+.ticket-note {
+  font-size: 10px;
+  color: var(--slate-400);
+}
+
+/* ---------- Cuống vé: giá + mã chuyến ---------- */
+
+.ticket-stub {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-left: 1px dashed var(--slate-300);
+  text-align: right;
+}
+
+.ticket-price strong {
+  font-size: 22px;
+}
+
+/* ---------- Nhánh responsive màn ---------- */
+
+@media (max-width: 768px) {
+  .detail-trip {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-trip::before,
+  .detail-trip::after {
+    display: none;
+  }
+
+  .ticket-stub {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px dashed var(--slate-300);
+    border-left: 0;
+    text-align: left;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .ticket-route {
+    display: grid;
+    grid-template-columns: 11px minmax(0, 1fr);
+    grid-template-areas:
+      "dot-start place-start"
+      "track track"
+      "dot-end place-end";
+    gap: 6px 7px;
+  }
+
+  .ticket-stop,
+  .ticket-stop--end {
+    text-align: left;
+  }
+
+  .ticket-place {
+    grid-area: place-start;
+  }
+
+  .ticket-stop--end .ticket-place {
+    grid-area: place-end;
+  }
+
+  .ticket-node {
+    grid-area: dot-start;
+    align-self: center;
+  }
+
+  .ticket-node.marker-dot--end {
+    grid-area: dot-end;
+  }
+
+  .ticket-track {
+    grid-area: track;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    margin-left: 18px;
+  }
+
+  .ticket-line {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .ticket-body,
+  .ticket-stub {
+    padding: 14px 14px;
+  }
+}

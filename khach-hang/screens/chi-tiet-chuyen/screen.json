@@ -18,6 +18,7 @@
     "shared/css/ride-card",
     "shared/css/cta-footer",
     "khach-hang/screens/chi-tiet-chuyen/css/detail",
+    "khach-hang/screens/chi-tiet-chuyen/css/ticket",
     "khach-hang/screens/chi-tiet-chuyen/css/bus-body",
     "khach-hang/screens/chi-tiet-chuyen/css/seat-map",
     "khach-hang/screens/chi-tiet-chuyen/css/summary",

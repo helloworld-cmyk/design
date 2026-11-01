@@ -2,122 +2,57 @@
   <section class="booking-page" id="chi-tiet-chuyen">
     <div class="container">
       <div class="detail-top reveal">
-        <a class="text-link detail-back" href="ket-qua-tim-chuyen.html">
-          <svg class="icon" aria-hidden="true">
-            <use href="#i-arrow-right"></use>
-          </svg>
-          Quay lại kết quả tìm kiếm
-        </a>
         <span class="section-eyebrow">Xác nhận đặt chỗ</span>
-        <h1>Chi tiết chuyến & chọn ghế</h1>
-        <p>
-          Kiểm tra hành trình, chọn ghế trên sơ đồ xe và nhập địa chỉ đón/trả.
-          Không cần thanh toán trước — trả tiền mặt trực tiếp cho tài xế khi
-          lên xe.
-        </p>
-        <div class="detail-top-badges">
-          <span class="badge badge--green">
-            <svg class="icon" aria-hidden="true">
-              <use href="#i-wallet"></use>
-            </svg>
-            Không thanh toán trước
-          </span>
-          <span class="badge badge--orange">
-            <svg class="icon" aria-hidden="true">
-              <use href="#i-clock"></use>
-            </svg>
-            Hủy miễn phí trước 2 giờ
-          </span>
-        </div>
+        <h1>Chi tiết chuyến &amp; chọn ghế</h1>
       </div>
 
       <article class="ride-card detail-trip reveal" id="hanh-trinh">
-        <div class="ride-card-top">
-          <span class="ride-eyebrow">
-            Hà Nội → Ninh Bình · Thứ Năm, 29/10
-          </span>
-          <span class="badge badge--green">Còn 11 ghế</span>
+        <div class="ticket-body">
+          <div class="ride-card-top ticket-top">
+            <div class="ticket-when">
+              <span class="ride-eyebrow">
+                Hà Nội → Ninh Bình · Thứ Năm, 29/10
+              </span>
+              <p class="ticket-time-range">
+                <strong>06:30</strong>
+                <span class="ticket-dash" aria-hidden="true">–</span>
+                <span class="sr-only">đến</span>
+                <strong>08:45</strong>
+              </p>
+            </div>
+            <span class="badge badge--green">Còn 11 ghế</span>
+          </div>
+
+          <div class="ticket-route">
+            <div class="ticket-stop">
+              <div class="ticket-place">
+                <strong>Hà Nội</strong>
+                <span>Bến xe Mỹ Đình · Cổng 12</span>
+              </div>
+            </div>
+            <span class="ticket-node marker-dot marker-dot--start"
+              aria-hidden="true"></span>
+            <div class="ticket-track" aria-hidden="true">
+              <span class="ticket-dur">2h 15p</span>
+              <span class="ticket-line"></span>
+              <span class="ticket-note">Cao tốc CT.01</span>
+            </div>
+            <span class="ticket-node marker-dot marker-dot--end"
+              aria-hidden="true"></span>
+            <div class="ticket-stop ticket-stop--end">
+              <div class="ticket-place">
+                <strong>Ninh Bình</strong>
+                <span>Trung tâm thành phố</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="trip-route">
-          <div class="trip-row">
-            <span class="trip-time">06:30</span>
-            <span class="trip-marker">
-              <span class="marker-dot marker-dot--start"></span>
-            </span>
-            <div class="trip-place">
-              <strong>Hà Nội</strong>
-              <span>Bến xe Mỹ Đình · Cổng 12</span>
-            </div>
-          </div>
-          <div class="trip-row trip-row--mid">
-            <span class="trip-duration">2h 15p</span>
-            <span class="trip-marker">
-              <span class="marker-line"></span>
-            </span>
-            <span class="trip-note">
-              Cao tốc CT.01 · Ghi nhớ có mặt trước giờ đón 15 phút
-            </span>
-          </div>
-          <div class="trip-row">
-            <span class="trip-time">08:45</span>
-            <span class="trip-marker">
-              <span class="marker-dot marker-dot--end"></span>
-            </span>
-            <div class="trip-place">
-              <strong>Ninh Bình</strong>
-              <span>Trung tâm thành phố</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="ride-driver">
-          <div class="driver">
-            <span class="person-avatar">
-              <img
-                class="avatar avatar--driver avatar--photo"
-                src="https://images.unsplash.com/photo-1661588156316-cdcbe2e0c8ad?q=80&w=160"
-                alt="Ảnh tài xế Trần Minh Hiếu"
-                width="44"
-                height="44"
-                loading="lazy"
-              />
-              <span class="avatar-verified" title="Tài xế đã xác thực">
-                <svg class="icon" aria-hidden="true">
-                  <use href="#i-check"></use>
-                </svg>
-              </span>
-            </span>
-            <div class="driver-info">
-              <strong>Trần Minh Hiếu</strong>
-              <span class="driver-meta">
-                <svg class="icon icon-star" aria-hidden="true">
-                  <use href="#i-star"></use>
-                </svg>
-                4.9 · 312 chuyến
-              </span>
-              <span class="driver-car">Ford Transit · 16 chỗ</span>
-            </div>
-          </div>
-          <div class="ride-price">
+        <div class="ticket-stub">
+          <p class="ride-price ticket-price">
             <strong>180.000đ</strong>
             <span>/ghế</span>
-          </div>
-        </div>
-
-        <div class="detail-trip-foot">
-          <span>
-            <svg class="icon" aria-hidden="true">
-              <use href="#i-calendar"></use>
-            </svg>
-            Mã chuyến VVB-2510-014
-          </span>
-          <span>
-            <svg class="icon" aria-hidden="true">
-              <use href="#i-car"></use>
-            </svg>
-            Biển số 29A-123.45
-          </span>
+          </p>
         </div>
       </article>
 

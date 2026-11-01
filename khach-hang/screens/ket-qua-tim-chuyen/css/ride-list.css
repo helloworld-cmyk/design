@@ -166,13 +166,24 @@
   border-top: 1px dashed var(--slate-300);
 }
 
+.ride-card--list .ride-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  white-space: nowrap;
+}
+
 .ride-card--list .ride-price strong {
+  display: inline;
   font-size: 18px;
 }
 
 .ride-card--list .ride-price span {
-  font-size: 11px;
+  display: inline;
+  margin-top: 0;
+  font-size: 14px;
   color: var(--slate-500);
+  white-space: nowrap;
 }
 
 /* ---------- Phân trang ---------- */

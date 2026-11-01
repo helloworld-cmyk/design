@@ -6,8 +6,15 @@
   var calBtn = document.getElementById("addToCalendar");
   var printBtn = document.getElementById("downloadTicket");
   var shareBtn = document.getElementById("shareRide");
-  var codeEl = document.getElementById("ticketCode");
-  var code = codeEl ? codeEl.textContent.trim() : "";
+var codeEl = document.getElementById("ticketCode");
+var code = codeEl ? codeEl.textContent.trim() : "";
+
+var phoneBtn = document.getElementById("copyPhone");
+var phoneLink = document.getElementById("driverPhone");
+
+var phone = phoneLink
+  ? phoneLink.getAttribute("href").replace(/^tel:/i, "").trim()
+  : "";
 
   function say(message) {
     if (statusEl) statusEl.textContent = message;
@@ -52,11 +59,19 @@
 
   /* ---------- Sao chép mã đặt chỗ ---------- */
 
-  if (copyBtn && code) {
-    copyBtn.addEventListener("click", function () {
-      copyText(code, "Đã sao chép!", copyBtn);
-    });
-  }
+if (copyBtn && code) {
+  copyBtn.addEventListener("click", function () {
+    copyText(code, "Đã sao chép!", copyBtn);
+  });
+}
+
+/* ---------- Sao chép số điện thoại tài xế ---------- */
+
+if (phoneBtn && phone) {
+  phoneBtn.addEventListener("click", function () {
+    copyText(phone, "Đã sao chép!", phoneBtn);
+  });
+}
 
   /* ---------- Thêm vào lịch (.ics) ---------- */
 

@@ -124,7 +124,7 @@
     if (name.value.trim().length < 2) {
       errors.push(
         invalidField("passengerName", "fieldName",
-          "Nhập họ và tên người đi chính")
+          "Nhập họ và tên")
       );
     }
     var digits = phone.value.replace(/[\s.\-()]/g, "");
