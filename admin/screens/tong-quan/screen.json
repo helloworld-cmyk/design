@@ -21,6 +21,7 @@
     "admin/screens/tong-quan/css/tables",
     "admin/screens/tong-quan/css/monitor",
     "admin/screens/tong-quan/css/states",
+    "admin/screens/tong-quan/css/collab",
     "shared/css/motion",
     "shared/css/responsive-desktop",
     "shared/css/responsive-mobile",

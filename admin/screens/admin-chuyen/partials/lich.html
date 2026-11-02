@@ -1,0 +1,61 @@
+        <section
+          class="table-panel lich-panel reveal"
+          data-view-panel="lich"
+          aria-labelledby="lichTitle"
+          hidden
+        >
+          <h2 class="sr-only" id="lichTitle">Lịch điều phối tài nguyên</h2>
+
+          <div class="lich-bar">
+            <div class="lich-nav">
+              <button class="page-btn" type="button" data-lich-prev
+                aria-label="Ngày trước">
+                <svg class="icon" aria-hidden="true"
+                  style="transform: rotate(180deg)">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </button>
+              <span class="lich-date" id="lichDate">Hôm nay · 31/10/2026</span>
+              <button class="page-btn" type="button" data-lich-next
+                aria-label="Ngày sau">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="view-switch" role="group" aria-label="Nhóm tài nguyên">
+              <button class="is-active" type="button" data-lane-mode="taixe"
+                aria-pressed="true">Theo tài xế</button>
+              <button type="button" data-lane-mode="xe"
+                aria-pressed="false">Theo xe</button>
+            </div>
+          </div>
+
+          <div class="lich-legend" aria-hidden="true">
+            <span><i class="leg-orange"></i> Sắp tới / chưa phân công</span>
+            <span><i class="leg-sky"></i> Đang thực hiện</span>
+            <span><i class="leg-green"></i> Hoàn thành</span>
+            <span><i class="leg-slate"></i> Đã hủy</span>
+          </div>
+          <p class="lich-note">
+            Bấm vào chuyến để mở chi tiết; bấm vào ô trống hoặc dấu + để xếp
+            chuyến mới. Ô trống nghĩa là tài nguyên đang rảnh trong khung giờ đó.
+          </p>
+
+          <div class="lich-scroll" role="region"
+            aria-label="Lịch phân công theo khung giờ (cuộn ngang để xem đủ giờ)"
+            tabindex="0">
+            <div class="lich-grid" id="lichGrid"></div>
+          </div>
+
+          <div class="empty-state" id="lichEmpty" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg class="icon"><use href="#i-calendar"></use></svg>
+            </span>
+            <h3>Ngày này chưa có chuyến nào</h3>
+            <p>
+              Chọn ngày khác bằng mũi tên, hoặc bấm dấu + ở một tài nguyên để
+              xếp chuyến mới cho ngày đang xem.
+            </p>
+          </div>
+        </section>

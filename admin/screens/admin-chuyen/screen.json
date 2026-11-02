@@ -17,12 +17,16 @@
     "admin/screens/admin-chuyen/css/chuyen-cells",
     "admin/screens/admin-chuyen/css/chuyen-badges",
     "admin/screens/admin-chuyen/css/chuyen-states",
-    "admin/screens/admin-chuyen/css/chuyen-responsive",
     "admin/screens/admin-chuyen/css/chuyen-modals",
     "admin/screens/admin-chuyen/css/chuyen-drawer",
     "admin/screens/admin-chuyen/css/chuyen-drawer-summary",
     "admin/screens/admin-chuyen/css/chuyen-drawer-incident",
     "admin/screens/admin-chuyen/css/chuyen-drawer-lists",
+    "admin/screens/admin-chuyen/css/chuyen-lenh",
+    "admin/screens/admin-chuyen/css/chuyen-suco",
+    "admin/screens/admin-chuyen/css/chuyen-lich",
+    "admin/screens/admin-chuyen/css/chuyen-avail",
+    "admin/screens/admin-chuyen/css/chuyen-responsive",
     "shared/css/motion",
     "shared/css/responsive-desktop",
     "shared/css/responsive-mobile",
@@ -34,6 +38,11 @@
     "admin/screens/admin-chuyen/js/chuyen-list",
     "admin/screens/admin-chuyen/js/chuyen-flows",
     "admin/screens/admin-chuyen/js/chuyen-drawer",
+    "admin/screens/admin-chuyen/js/chuyen-lenh",
+    "admin/screens/admin-chuyen/js/chuyen-incident",
+    "admin/screens/admin-chuyen/js/chuyen-lich-data",
+    "admin/screens/admin-chuyen/js/chuyen-lich",
+    "admin/screens/admin-chuyen/js/chuyen-avail",
     "shared/js/reveal"
   ],
   "partials": [
@@ -43,11 +52,13 @@
     "admin/components/admin-shell.html",
     "admin/screens/admin-chuyen/partials/page-head.html",
     "admin/screens/admin-chuyen/partials/toolbar.html",
+    "admin/screens/admin-chuyen/partials/lich.html",
     "admin/screens/admin-chuyen/partials/table.html",
     "admin/screens/admin-chuyen/partials/table-end.html",
     "admin/screens/admin-chuyen/partials/modals.html",
     "admin/screens/admin-chuyen/partials/detail.html",
     "admin/screens/admin-chuyen/partials/detail-ve.html",
+    "admin/screens/admin-chuyen/partials/modals-suco.html",
     "admin/components/admin-shell-end.html"
   ]
 }

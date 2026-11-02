@@ -46,7 +46,7 @@
                     <use href="#i-calendar"></use>
                   </svg>
                   <input
-                    id="fNgayDi" name="ngay" type="date" required value="2026-11-01"
+                    id="fNgayDi" name="ngay" type="date" required value="2026-10-31"
                   />
                 </div>
               </div>
@@ -141,6 +141,27 @@
               </div>
             </div>
 
+            <section class="avail" id="ctAvail" aria-labelledby="ctAvailTitle">
+              <div class="avail-head">
+                <strong id="ctAvailTitle">Tình trạng tài nguyên</strong>
+                <span id="ctAvailWhen">Chọn ngày và giờ khởi hành</span>
+              </div>
+              <div class="avail-row">
+                <span class="avail-name" id="ctAvailXeName">Xe</span>
+                <span class="avail-track" id="ctAvailXeTrack" role="img"
+                  aria-label="Lịch bận của xe trong ngày"></span>
+              </div>
+              <div class="avail-row">
+                <span class="avail-name" id="ctAvailTxName">Tài xế</span>
+                <span class="avail-track" id="ctAvailTxTrack" role="img"
+                  aria-label="Lịch bận của tài xế trong ngày"></span>
+              </div>
+              <p class="avail-note" id="ctAvailNote">
+                Ô cam là chuyến đã xếp; tài nguyên trùng khung giờ sẽ bị khoá
+                trong danh sách chọn.
+              </p>
+            </section>
+
             <div class="form-status" id="formChuyenStatus" role="status" aria-live="polite"></div>
             <p class="form-note">
               <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
@@ -225,3 +246,4 @@
           </footer>
         </div>
       </div>
+

@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="../tai-xe/screens/tai-xe-tong-quan/css/tq-today.css" />
     <link rel="stylesheet" href="../tai-xe/screens/tai-xe-tong-quan/css/tq-day.css" />
     <link rel="stylesheet" href="../tai-xe/screens/tai-xe-tong-quan/css/dash-cards.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-tong-quan/css/tq-lenh.css" />
     <link rel="stylesheet" href="../shared/css/motion.css" />
     <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
     <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
@@ -328,6 +329,11 @@
   </div>
 </header>
 <main id="main">
+  <div class="tqw-toast" id="tqwLenhToast" role="status" aria-live="polite" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+    <span id="tqwLenhToastText">Đã xác nhận</span>
+  </div>
+
   <section class="dash-page" id="tong-quan">
     <div class="container">
       <div class="dash-top">
@@ -463,7 +469,8 @@
 
             <!-- Ngày 1: 1 chuyến -->
             <article class="tqw-day-group" id="lich-ngay-1" data-week-section="1">
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="chua-nhan">
                 <div class="tqw-trip-time">
                   <strong>07:30</strong>
                   <span>Sáng</span>
@@ -487,7 +494,8 @@
 
             <!-- Ngày 2: 2 chuyến -->
             <article class="tqw-day-group" id="lich-ngay-2" data-week-section="2">
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="da-nhan">
                 <div class="tqw-trip-time">
                   <strong>06:00</strong>
                   <span>Sáng</span>
@@ -507,7 +515,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="co-mat">
                 <div class="tqw-trip-time">
                   <strong>14:00</strong>
                   <span>Chiều</span>
@@ -531,7 +540,8 @@
 
             <!-- Ngày 3: 3 chuyến -->
             <article class="tqw-day-group" id="lich-ngay-3" data-week-section="3">
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="chua-nhan" data-tre="15">
                 <div class="tqw-trip-time">
                   <strong>05:30</strong>
                   <span>Sáng</span>
@@ -551,7 +561,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="da-nhan">
                 <div class="tqw-trip-time">
                   <strong>11:00</strong>
                   <span>Sáng</span>
@@ -571,7 +582,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="co-mat">
                 <div class="tqw-trip-time">
                   <strong>16:30</strong>
                   <span>Chiều</span>
@@ -595,7 +607,8 @@
 
             <!-- Ngày 4: 5 chuyến -->
             <article class="tqw-day-group" id="lich-ngay-4" data-week-section="4">
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="chua-nhan">
                 <div class="tqw-trip-time">
                   <strong>05:00</strong>
                   <span>Sáng</span>
@@ -615,7 +628,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="da-nhan">
                 <div class="tqw-trip-time">
                   <strong>08:30</strong>
                   <span>Sáng</span>
@@ -635,7 +649,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="chuan-bi">
                 <div class="tqw-trip-time">
                   <strong>12:00</strong>
                   <span>Trưa</span>
@@ -655,7 +670,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="co-mat">
                 <div class="tqw-trip-time">
                   <strong>15:30</strong>
                   <span>Chiều</span>
@@ -675,7 +691,8 @@
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="da-nhan">
                 <div class="tqw-trip-time">
                   <strong>18:00</strong>
                   <span>Tối</span>
@@ -704,7 +721,8 @@
 
             <!-- Ngày 6: 1 chuyến -->
             <article class="tqw-day-group" id="lich-ngay-6" data-week-section="6">
-              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html"
+                data-lenh="co-mat">
                 <div class="tqw-trip-time">
                   <strong>09:00</strong>
                   <span>Sáng</span>
@@ -837,6 +855,7 @@
 <script src="../tai-xe/screens/tai-xe-tong-quan/js/week-trips.js" defer></script>
 <script src="../tai-xe/screens/tai-xe-tong-quan/js/week-picker.js" defer></script>
 <script src="../tai-xe/screens/tai-xe-tong-quan/js/week-schedule.js" defer></script>
+<script src="../tai-xe/screens/tai-xe-tong-quan/js/lenh.js" defer></script>
 <script src="../shared/js/reveal.js" defer></script>
 </body>
 </html>

@@ -122,42 +122,70 @@
               </div>
             </div>
 
+            <section class="d-block" aria-labelledby="ctLenhTitle">
+              <h3 class="d-label" id="ctLenhTitle">Trạng thái phân công</h3>
+              <div>
+                <span class="status-badge sb--orange" id="ctLenhChip">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-alert"></use>
+                  </svg>
+                  Chưa nhận lệnh
+                </span>
+              </div>
+              <p class="lenh-sub" id="ctLenhSub">
+                Admin đã phân công, tài xế chưa xác nhận nhận lệnh.
+              </p>
+              <div class="lenh-steps" id="ctLenhSteps">
+                <span class="lenh-step" data-step="nhan">
+                  <span class="lenh-dot" aria-hidden="true"></span>Nhận lệnh
+                </span>
+                <span class="lenh-step" data-step="chuan-bi">
+                  <span class="lenh-dot" aria-hidden="true"></span>Chuẩn bị
+                </span>
+                <span class="lenh-step" data-step="co-mat">
+                  <span class="lenh-dot" aria-hidden="true"></span>Có mặt tại bến
+                </span>
+                <span class="lenh-step" data-step="chay">
+                  <span class="lenh-dot" aria-hidden="true"></span>Đang chạy
+                </span>
+              </div>
+              <div class="lenh-warn" id="ctTreWrap" hidden>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-alert"></use>
+                </svg>
+                <span id="ctTreText">Trễ 15'</span>
+              </div>
+            </section>
+
             <section class="warn-block" id="ctSuCo" role="alert" hidden>
               <span class="warn-icon" aria-hidden="true">
                 <svg class="icon"><use href="#i-alert"></use></svg>
               </span>
               <div class="warn-body">
                 <div class="warn-head">
-                  <strong>Sự cố đang mở</strong>
-                  <span id="ctSuCoTime">Báo lúc 07:58</span>
+                  <strong id="ctSuCoTitle">Sự cố đang mở</strong>
+                  <span class="suco-state suco-state--mo" id="ctSuCoState">Mở</span>
                 </div>
                 <p id="ctSuCoText">
                   Xe bị thủng lốp giữa tuyến (km 22) — tài xế đã báo.
                 </p>
-                <div class="warn-actions">
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-suco="tiep-tuc"
-                  >
-                    Tiếp tục chạy
+                <div class="suco-log" id="ctSuCoLog"></div>
+                <div class="warn-actions" id="ctSuCoActions">
+                  <button class="btn btn-sm btn-primary" type="button"
+                    data-suco-action="nhan">
+                    Bắt đầu xử lý
                   </button>
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-chuyen-edit="xe"
-                  >
+                  <button class="btn btn-sm btn-primary" type="button"
+                    data-suco-action="ket-qua" hidden>
+                    Ghi nhận kết quả
+                  </button>
+                  <button class="btn btn-sm btn-ghost" type="button"
+                    data-chuyen-edit="xe">
                     Thay xe
                   </button>
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-chuyen-edit="taixe"
-                  >
+                  <button class="btn btn-sm btn-ghost" type="button"
+                    data-chuyen-edit="taixe">
                     Đổi tài xế
-                  </button>
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-suco="ket-thuc"
-                  >
-                    Kết thúc sớm
                   </button>
                 </div>
               </div>

@@ -1,0 +1,133 @@
+      <div
+        class="modal"
+        id="modalSuCoXuLy"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="suCoXuLyTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="suCoXuLyTitle">Bắt đầu xử lý sự cố</h2>
+              <p class="modal-sub">
+                Ghi nhận người phụ trách và biện pháp dự kiến cho chuyến
+                <strong id="suCoMa">VC-1042</strong>.
+              </p>
+            </div>
+            <button type="button" class="modal-close" data-modal-close
+              aria-label="Đóng">
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <form id="formSuCoXuLy" class="modal-body" novalidate>
+            <div class="step-hint">
+              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              <span id="suCoXuLyMoTa">Xe bị thủng lốp giữa tuyến (km 22).</span>
+            </div>
+            <div class="field">
+              <label for="fsNguoiXuLy">Người xử lý *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-user"></use></svg>
+                <select id="fsNguoiXuLy" name="nguoi" required>
+                  <option value="">— Chọn người phụ trách —</option>
+                  <option value="Admin trực ca">Admin trực ca</option>
+                  <option value="Điều hành Trần Hùng">Điều hành Trần Hùng</option>
+                  <option value="Điều hành Lê Mai">Điều hành Lê Mai</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fsBienPhap">Biện pháp dự kiến *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <select id="fsBienPhap" name="bienphap" required>
+                  <option value="">— Chọn biện pháp —</option>
+                  <option value="Tiep tuc">Tiếp tục chạy</option>
+                  <option value="Thay xe">Thay xe</option>
+                  <option value="Doi tai xe">Đổi tài xế</option>
+                  <option value="Ket thuc som">Kết thúc sớm</option>
+                  <option value="Khac">Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fsGhiChu">Ghi chú xử lý</label>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <textarea id="fsGhiChu" name="ghichu" rows="3"
+                  placeholder="Ví dụ: đã điều xe dự phòng ra km 22"></textarea>
+              </div>
+            </div>
+            <div class="form-status" id="formSuCoXuLyStatus" role="status"
+              aria-live="polite"></div>
+          </form>
+
+          <footer class="modal-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
+            <button class="btn btn-primary" type="submit" form="formSuCoXuLy">
+              Nhận xử lý
+            </button>
+          </footer>
+        </div>
+      </div>
+
+      <div
+        class="modal"
+        id="modalSuCoKetQua"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="suCoKetQuaTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="suCoKetQuaTitle">Ghi nhận kết quả</h2>
+              <p class="modal-sub">
+                Đóng sự cố của chuyến <strong id="suCoKetQuaMa">VC-1042</strong>
+                sau khi đã xử lý xong.
+              </p>
+            </div>
+            <button type="button" class="modal-close" data-modal-close
+              aria-label="Đóng">
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <form id="formSuCoKetQua" class="modal-body" novalidate>
+            <div class="field">
+              <label for="fkBienPhap">Biện pháp thực tế *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <select id="fkBienPhap" name="bienphap" required>
+                  <option value="">— Chọn biện pháp đã thực hiện —</option>
+                  <option value="Tiep tuc">Tiếp tục chạy</option>
+                  <option value="Thay xe">Thay xe</option>
+                  <option value="Doi tai xe">Đổi tài xế</option>
+                  <option value="Ket thuc som">Kết thúc sớm</option>
+                  <option value="Khac">Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fkKetQua">Kết quả xử lý *</label>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                <textarea id="fkKetQua" name="ketqua" rows="3" required
+                  placeholder="Ví dụ: khách lên xe thay lúc 08:40, không ảnh hưởng vé"></textarea>
+              </div>
+            </div>
+            <div class="form-status" id="formSuCoKetQuaStatus" role="status"
+              aria-live="polite"></div>
+          </form>
+
+          <footer class="modal-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
+            <button class="btn btn-primary" type="submit" form="formSuCoKetQua">
+              Ghi nhận &amp; đóng sự cố
+            </button>
+          </footer>
+        </div>
+      </div>

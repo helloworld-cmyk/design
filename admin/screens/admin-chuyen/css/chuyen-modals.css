@@ -109,6 +109,16 @@ body.admin-modal-open {
   margin-top: 0;
 }
 
+/* ---------- Cân padding dọc cho hộp thoại ---------- */
+
+.modal form.modal-body {
+  padding-top: 8px;
+}
+
+.modal-foot {
+  padding: 16px 22px 20px;
+}
+
 @media (max-width: 560px) {
   .modal-foot .btn {
     flex: 1 1 auto;

@@ -4,9 +4,13 @@
 > Shell: **D (Driver app)**.
 >
 > **Thay đổi mô hình so với bản cũ:** tài xế **không tự đăng chuyến**, **không
-> tự đăng ký tài khoản**, **không có Online/Offline**, **không có nút Nhận
-> chuyến**. Admin tạo chuyến, gán xe và phân công tài xế tại A2; tài khoản tài
-> xế do admin tạo tại A3.
+> tự đăng ký tài khoản**, **không có Online/Offline**, **không nhận chuyến tự
+> do** (không có chợ chuyến). Admin tạo chuyến, gán xe và phân công tài xế tại
+> A2; tài khoản tài xế do admin tạo tại A3.
+>
+> **Bổ sung (PA3.2):** tài xế có **2 thao tác xác nhận lệnh** — "Tôi đã nhận
+> lệnh" (D3) và "Tôi đã có mặt tại bến" (D3) — để admin theo dõi tiến độ phối
+> hợp; đây là xác nhận **lệnh đã được phân công**, không phải xin nhận chuyến.
 >
 > **Đã bỏ:** màn đăng chuyến, màn đánh giá, màn hỗ trợ, ticket, chat, FAQ,
 > hotline, ngân hàng/ví, upload giấy tờ, duyệt KYC, màn "Chuyến được phân công"
@@ -103,7 +107,9 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
 - **Nhiệm vụ chính:**
   - Lời chào + ngày hôm nay.
   - KPI: **chuyến hôm nay**, **chuyến sắp tới**, **khách hôm nay** (số đơn giản).
-  - **Lịch làm việc**: danh sách chuyến sắp tới (giờ, tuyến, xe, số khách).
+  - **Lịch làm việc**: danh sách chuyến sắp tới (giờ, tuyến, xe, số khách) kèm
+    **chip trạng thái lệnh** (Chưa nhận / Đã nhận / Có mặt) và **cờ trễ**; nút
+    **"Xác nhận nhận chuyến"** khi chưa nhận lệnh.
   - Lối tắt: Xe được giao (D5), Hồ sơ (D6).
   - Cảnh báo nhẹ nếu có chuyến bắt đầu trong 2 giờ tới.
 - **Thành phần:** `.stat-card`, `.ride-card` (chuyến sắp tới), `.badge` trạng
@@ -121,9 +127,14 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
   - Danh sách hành khách: tên, SĐT (che bớt), điểm đón/trả, trạng thái đón,
     trạng thái thanh toán.
   - Tổng quan: số khách, ghế trống, doanh thu tiền mặt dự kiến.
+  - **Trạng thái lệnh phân công** (khối riêng, xem §5.1): chip mức hiện tại +
+    chuỗi 4 bậc (Chưa nhận → Đã nhận → Đang chuẩn bị → Đã có mặt).
   - Hành động:
-    - **Bắt đầu chuyến** (chỉ khi trạng thái Sắp tới **và** đang trong ngày chạy;
-      chuyển sang D4).
+    - **Tôi đã nhận lệnh** (khi chưa nhận) → chuyển `Đã nhận lệnh`.
+    - **Tôi đã có mặt tại bến** (khi đã nhận lệnh, trong ngày chạy) → chuyển
+      `Đã có mặt`.
+    - **Bắt đầu chuyến** — **chỉ bật khi đã "Đã có mặt"** và chuyến ở trạng
+      thái Sắp tới trong ngày chạy; chuyển sang D4.
     - **Báo sự cố** (modal, xem §6) — báo sự cố **không** hủy chuyến.
     - **Gọi khách** (chỉ khi chuyến sắp tới/đang chạy).
   - Nếu chuyến đã hủy: banner lý do, không có thao tác.
@@ -214,6 +225,23 @@ Chờ đón → Đã đón → Đã trả
 **Trạng thái thanh toán:** `Chưa thu → Đã thu` (tiền mặt, tài xế xác nhận ở D4;
 chỉ gắn với khách đã `Đã đón`). Không có hoàn tiền.
 
+### 5.1 Trạng thái lệnh phân công (lớp mới, tách khỏi trạng thái chuyến)
+
+```
+Chưa nhận lệnh → Đã nhận lệnh → (Đang chuẩn bị) → Đã có mặt
+```
+
+- Bốn mức này **không đổi** 4 trạng thái chuyến ở trên; chúng mô tả tài xế đã
+  phản hồi lệnh của admin tới đâu.
+- Tài xế bấm 2 nút: **Tôi đã nhận lệnh** (bất kỳ lúc nào sau khi được phân
+  công) và **Tôi đã có mặt tại bến** (trong ngày chạy).
+- **Đang chuẩn bị** là mức **suy ra**: đã nhận lệnh + trong ngày chạy + chưa có
+  mặt; không có nút riêng.
+- **Bắt đầu chuyến** chỉ khả dụng sau khi ở mức **Đã có mặt**.
+- Cờ trễ chỉ hiển thị (không thao tác): `Trễ N'` (trễ khởi hành) hoặc
+  `Quá hành trình +N'`.
+- Lớp này đồng bộ sang admin tại A2 (cột Tài xế, drawer) và A1 (chip + KPI).
+
 ---
 
 ## 6. Báo sự cố chuyến (giữ lại, tối giản)
@@ -242,13 +270,17 @@ chỉ gắn với khách đã `Đã đón`). Không có hoàn tiền.
 4. Một tài xế và một xe không bị phân công hai chuyến chồng khoảng thời gian vận
    hành (giờ khởi hành + thời lượng dự kiến); A2 chặn khi lưu.
 5. Tài xế không sửa chuyến, không hủy chuyến, không đổi xe.
-6. Bắt đầu chuyến chỉ trong ngày chạy. Hoàn thành chỉ khi mọi khách ở trạng thái
-   cuối (`Đã trả`/`Không lên xe`/`Đã hủy`); ngoại lệ do admin xử lý tại A2.
+6. Bắt đầu chuyến chỉ trong ngày chạy **và** sau khi tài xế xác nhận **Đã có
+   mặt tại bến**. Hoàn thành chỉ khi mọi khách ở trạng thái cuối (`Đã trả`/
+   `Không lên xe`/`Đã hủy`); ngoại lệ do admin xử lý tại A2.
 7. Trạng thái khách tài xế cập nhật đồng bộ sang vé ở khách (B7) và admin
    (A2/A6).
 8. Tiền công chuyến do admin nhập ở A2; tài xế không xem màn thu nhập riêng.
 9. Báo sự cố chỉ tạo cờ, không thay đổi trạng thái chuyến/vé.
 10. Tài khoản tài xế do admin tạo; tài xế không tự đăng ký.
+11. Tài xế xác nhận lệnh bằng 2 nút (nhận lệnh, có mặt); đây là **xác nhận lệnh
+    đã được admin phân công**, không phải nhận chuyến tự do — tài xế vẫn không
+    tự chọn/đổi/hủy chuyến.
 
 ---
 

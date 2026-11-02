@@ -1,4 +1,18 @@
         <div class="chuyen-toolbar reveal">
+          <div class="view-switch" role="group" aria-label="Chế độ xem">
+            <button
+              class="is-active" type="button" data-view="bang"
+              aria-pressed="true"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-list"></use></svg>
+              Bảng
+            </button>
+            <button type="button" data-view="lich" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+              Lịch điều phối
+            </button>
+          </div>
+
           <div class="tabs" role="tablist" aria-label="Lọc theo trạng thái chuyến">
             <button
               class="tab is-active"

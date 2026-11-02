@@ -125,6 +125,7 @@
             ? "Đã lưu thay đổi chuyến. Lịch xe/tài xế đã được kiểm tra."
             : "Đã tạo chuyến mới và công bố bán vé."
         );
+        if (window.VvvChuyenLich) window.VvvChuyenLich.refresh();
       });
     });
   }

@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/passengers.css" />
     <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/timeline.css" />
     <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/modal.css" />
+    <link rel="stylesheet" href="../tai-xe/screens/tai-xe-chi-tiet-chuyen/css/lenh.css" />
     <link rel="stylesheet" href="../shared/css/motion.css" />
     <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
     <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
@@ -333,7 +334,7 @@
     </nav>
   </div>
 </header>
-<main id="main" data-trip-status="sap-toi">
+<main id="main" data-trip-status="sap-toi" data-lenh="chua-nhan">
   <div class="tcd-page">
     <div class="container">
 
@@ -358,7 +359,12 @@
       </div>
 
       <div class="tcd-actions-bar" id="tcdActionsBar">
-        <button type="button" class="btn btn-primary btn-lg" id="tcdStartBtn">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg"
+          id="tcdStartBtn"
+          aria-describedby="tcdLenhHint"
+        >
           Điều hành chuyến
           <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
         </button>
@@ -381,6 +387,56 @@
 
       <div class="tcd-grid">
         <div class="tcd-main">
+          <article class="tcd-panel tcd-lenh reveal" aria-labelledby="tcdLenhTitle">
+            <div class="tcd-panel-head">
+              <h2 id="tcdLenhTitle">Trạng thái lệnh phân công</h2>
+              <span class="tcd-lenh-flags">
+                <span class="status-badge sb--gray" id="tcdLenhChip">Chưa nhận lệnh</span>
+                <span class="status-badge sb--red" id="tcdLenhLate" hidden>Trễ 15'</span>
+              </span>
+            </div>
+
+            <ol class="tcd-lenh-steps" id="tcdLenhSteps">
+              <li class="tcd-lenh-step" data-step="chua-nhan">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Chưa nhận lệnh</span>
+              </li>
+              <li class="tcd-lenh-step" data-step="da-nhan">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Đã nhận lệnh</span>
+              </li>
+              <li class="tcd-lenh-step" data-step="chuan-bi">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Đang chuẩn bị</span>
+              </li>
+              <li class="tcd-lenh-step" data-step="co-mat">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Đã có mặt</span>
+              </li>
+            </ol>
+
+            <p class="tcd-lenh-hint" id="tcdLenhHint">
+              Xác nhận đã có mặt tại bến trước khi bắt đầu chuyến.
+            </p>
+
+            <div class="tcd-lenh-actions">
+              <button type="button" class="btn btn-primary" id="tcdLenhAccept">
+                <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                Tôi đã nhận lệnh
+              </button>
+              <button type="button" class="btn btn-primary" id="tcdLenhArrive" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                Tôi đã có mặt tại bến
+              </button>
+            </div>
+
+            <p class="form-status" id="tcdLenhStatus" role="status" aria-live="polite"></p>
+          </article>
+
+          <div class="tcd-toast" id="tcdLenhToast" role="status" aria-live="polite" hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+            <span id="tcdLenhToastText">Đã cập nhật</span>
+          </div>
           <article class="tcd-panel reveal" aria-labelledby="tcd-trip-title">
             <div class="tcd-panel-head">
               <h2 id="tcd-trip-title">Thông tin chuyến</h2>
@@ -752,6 +808,7 @@
 <script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/trip-detail.js" defer></script>
 <script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/passengers.js" defer></script>
 <script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/incident.js" defer></script>
+<script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/lenh.js" defer></script>
 <script src="../shared/js/reveal.js" defer></script>
 </body>
 </html>

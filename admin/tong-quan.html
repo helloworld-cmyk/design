@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="../admin/screens/tong-quan/css/tables.css" />
     <link rel="stylesheet" href="../admin/screens/tong-quan/css/monitor.css" />
     <link rel="stylesheet" href="../admin/screens/tong-quan/css/states.css" />
+    <link rel="stylesheet" href="../admin/screens/tong-quan/css/collab.css" />
     <link rel="stylesheet" href="../shared/css/motion.css" />
     <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
     <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
@@ -619,6 +620,26 @@
       </p>
     </article>
 
+    <article class="stat-card stat-card--warn" id="kpiChuaXacNhanCard">
+      <div class="stat-top">
+        <span class="stat-label">Chuyến chưa xác nhận</span>
+        <span class="stat-icon stat-icon--orange" aria-hidden="true">
+          <svg class="icon"><use href="#i-alert"></use></svg>
+        </span>
+      </div>
+      <p class="stat-value">
+        <span id="kpiChuaXacNhan">2</span>
+        <span class="stat-unit">chuyến</span>
+      </p>
+      <p class="stat-delta">
+        <span class="stat-trend stat-trend--bad">
+          <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+          Sắp tới chưa nhận lệnh
+        </span>
+        cần xác nhận
+      </p>
+    </article>
+
     <article class="stat-card">
       <div class="stat-top">
         <span class="stat-label">Doanh thu hôm nay</span>
@@ -909,6 +930,100 @@
       </a>
     </article>
   </section>
+  <section class="dash-row dash-row--trips" id="chuyen-hom-nay">
+    <article class="panel reveal" aria-labelledby="todayTripsTitle"
+      id="chuyenHomNay">
+      <div class="panel-head">
+        <div>
+          <h2 id="todayTripsTitle">Chuyến hôm nay</h2>
+          <p>Trạng thái phối hợp Admin – Tài xế · cập nhật 5 phút trước</p>
+        </div>
+        <a class="text-link" href="admin-chuyen.html">
+          Quản lý chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="sr-only">
+            Chuyến hôm nay kèm trạng thái nhận lệnh và cảnh báo trễ
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Chuyến</th>
+              <th scope="col">Tài xế</th>
+              <th scope="col">Trạng thái lệnh</th>
+              <th scope="col">Cảnh báo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-lenh="chua-nhan" data-tre="8">
+              <th scope="row">HN → HP · 09:30</th>
+              <td>Chưa phân</td>
+              <td>
+                <span class="status-badge sb--orange">
+                  <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+                  Chưa nhận lệnh
+                </span>
+              </td>
+              <td><span class="status-badge sb--red">Trễ 8'</span></td>
+            </tr>
+            <tr data-lenh="da-nhan">
+              <th scope="row">HN → NB · 10:15</th>
+              <td>Trần Thị H.</td>
+              <td>
+                <span class="status-badge sb--green">
+                  <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                  Đã nhận lệnh
+                </span>
+              </td>
+              <td>—</td>
+            </tr>
+            <tr data-lenh="da-nhan" data-prep="1">
+              <th scope="row">HN → Sapa · 11:00</th>
+              <td>Lê Quốc B.</td>
+              <td><span class="status-badge sb--sky">Đang chuẩn bị</span></td>
+              <td>—</td>
+            </tr>
+            <tr data-lenh="co-mat">
+              <th scope="row">HN → HP · 12:30</th>
+              <td>Phạm Minh D.</td>
+              <td>
+                <span class="status-badge sb--green">
+                  <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                  Đã có mặt
+                </span>
+              </td>
+              <td>—</td>
+            </tr>
+            <tr data-lenh="chua-nhan" data-tre="3">
+              <th scope="row">HN → NB · 13:45</th>
+              <td>Chưa phân</td>
+              <td>
+                <span class="status-badge sb--orange">
+                  <svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>
+                  Chưa nhận lệnh
+                </span>
+              </td>
+              <td><span class="status-badge sb--red">Trễ 3'</span></td>
+            </tr>
+            <tr data-lenh="co-mat">
+              <th scope="row">HCM → VT · 14:00</th>
+              <td>Nguyễn Văn M.</td>
+              <td>
+                <span class="status-badge sb--green">
+                  <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                  Đã có mặt
+                </span>
+              </td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
   <section class="dash-row dash-row--tables">
     <article class="panel reveal" aria-labelledby="routesTitle">
       <div class="panel-head">
@@ -1047,6 +1162,90 @@
       </ol>
     </article>
   </section>
+  <section class="dash-row dash-row--incidents" id="su-co-dang-mo">
+    <article class="panel reveal" aria-labelledby="incidentsTitle">
+      <div class="panel-head">
+        <div>
+          <h2 id="incidentsTitle">Sự cố đang mở</h2>
+          <p>3 sự cố chưa khép lại · SLA phản hồi 15 phút</p>
+        </div>
+        <a class="text-link" href="admin-chuyen.html">
+          Mở quản lý chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="sr-only">
+            Sự cố đang mở kèm thời gian trôi, trạng thái và lối xử lý tại A2
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Mã chuyến</th>
+              <th scope="col">Loại sự cố</th>
+              <th scope="col" class="hide-sm">Tài xế</th>
+              <th scope="col">Thời gian trôi</th>
+              <th scope="col">Trạng thái</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-su-co="mo" data-tuoi="22">
+              <th scope="row">CN-1042</th>
+              <td>Tài xế đến muộn</td>
+              <td class="hide-sm">Trần Thị H.</td>
+              <td>22 phút trước</td>
+              <td>
+                <span class="badge-stack">
+                  <span class="status-badge sb--orange">Mở</span>
+                  <span class="status-badge sb--red">Chưa nhận xử lý</span>
+                </span>
+              </td>
+              <td>
+                <a class="btn btn-ghost btn-sm" href="admin-chuyen.html">
+                  Xử lý tại A2
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr data-su-co="dang-xu-ly" data-tuoi="9">
+              <th scope="row">CN-1039</th>
+              <td>Xe hỏng dọc đường</td>
+              <td class="hide-sm">Lê Quốc B.</td>
+              <td>9 phút trước</td>
+              <td><span class="status-badge sb--sky">Đang xử lý</span></td>
+              <td>
+                <a class="btn btn-ghost btn-sm" href="admin-chuyen.html">
+                  Xử lý tại A2
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr data-su-co="mo" data-tuoi="4">
+              <th scope="row">CN-1045</th>
+              <td>Khách khiếu nại ghế</td>
+              <td class="hide-sm">Nguyễn Văn M.</td>
+              <td>4 phút trước</td>
+              <td><span class="status-badge sb--orange">Mở</span></td>
+              <td>
+                <a class="btn btn-ghost btn-sm" href="admin-chuyen.html">
+                  Xử lý tại A2
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
   <section class="dash-row dash-row--monitor">
     <article class="panel reveal" aria-labelledby="alertsTitle">
       <div class="panel-head">

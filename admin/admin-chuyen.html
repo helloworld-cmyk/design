@@ -30,12 +30,16 @@
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-cells.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-badges.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-states.css" />
-    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-responsive.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-modals.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer-summary.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer-incident.css" />
     <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-drawer-lists.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-lenh.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-suco.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-lich.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-avail.css" />
+    <link rel="stylesheet" href="../admin/screens/admin-chuyen/css/chuyen-responsive.css" />
     <link rel="stylesheet" href="../shared/css/motion.css" />
     <link rel="stylesheet" href="../shared/css/responsive-desktop.css" />
     <link rel="stylesheet" href="../shared/css/responsive-mobile.css" />
@@ -457,6 +461,20 @@
           </div>
         </div>
         <div class="chuyen-toolbar reveal">
+          <div class="view-switch" role="group" aria-label="Chế độ xem">
+            <button
+              class="is-active" type="button" data-view="bang"
+              aria-pressed="true"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-list"></use></svg>
+              Bảng
+            </button>
+            <button type="button" data-view="lich" aria-pressed="false">
+              <svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg>
+              Lịch điều phối
+            </button>
+          </div>
+
           <div class="tabs" role="tablist" aria-label="Lọc theo trạng thái chuyến">
             <button
               class="tab is-active"
@@ -567,7 +585,72 @@
             </div>
           </div>
         </div>
-        <section class="table-panel reveal" aria-labelledby="bangChuyenTitle">
+        <section
+          class="table-panel lich-panel reveal"
+          data-view-panel="lich"
+          aria-labelledby="lichTitle"
+          hidden
+        >
+          <h2 class="sr-only" id="lichTitle">Lịch điều phối tài nguyên</h2>
+
+          <div class="lich-bar">
+            <div class="lich-nav">
+              <button class="page-btn" type="button" data-lich-prev
+                aria-label="Ngày trước">
+                <svg class="icon" aria-hidden="true"
+                  style="transform: rotate(180deg)">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </button>
+              <span class="lich-date" id="lichDate">Hôm nay · 31/10/2026</span>
+              <button class="page-btn" type="button" data-lich-next
+                aria-label="Ngày sau">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="view-switch" role="group" aria-label="Nhóm tài nguyên">
+              <button class="is-active" type="button" data-lane-mode="taixe"
+                aria-pressed="true">Theo tài xế</button>
+              <button type="button" data-lane-mode="xe"
+                aria-pressed="false">Theo xe</button>
+            </div>
+          </div>
+
+          <div class="lich-legend" aria-hidden="true">
+            <span><i class="leg-orange"></i> Sắp tới / chưa phân công</span>
+            <span><i class="leg-sky"></i> Đang thực hiện</span>
+            <span><i class="leg-green"></i> Hoàn thành</span>
+            <span><i class="leg-slate"></i> Đã hủy</span>
+          </div>
+          <p class="lich-note">
+            Bấm vào chuyến để mở chi tiết; bấm vào ô trống hoặc dấu + để xếp
+            chuyến mới. Ô trống nghĩa là tài nguyên đang rảnh trong khung giờ đó.
+          </p>
+
+          <div class="lich-scroll" role="region"
+            aria-label="Lịch phân công theo khung giờ (cuộn ngang để xem đủ giờ)"
+            tabindex="0">
+            <div class="lich-grid" id="lichGrid"></div>
+          </div>
+
+          <div class="empty-state" id="lichEmpty" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg class="icon"><use href="#i-calendar"></use></svg>
+            </span>
+            <h3>Ngày này chưa có chuyến nào</h3>
+            <p>
+              Chọn ngày khác bằng mũi tên, hoặc bấm dấu + ở một tài nguyên để
+              xếp chuyến mới cho ngày đang xem.
+            </p>
+          </div>
+        </section>
+        <section
+          class="table-panel reveal"
+          data-view-panel="bang"
+          aria-labelledby="bangChuyenTitle"
+        >
           <h2 class="sr-only" id="bangChuyenTitle">Danh sách chuyến</h2>
           <div
             class="table-scroll"
@@ -594,7 +677,10 @@
                   data-status="dang-thuc-hien" data-tuyen="hn-hp"
                   data-taixe="tran-van-binh" data-ngay="hom-nay"
                   data-ma="VC-1042" data-ve="9" data-cong="400000"
-                  data-su-co="Xe bị thủng lốp giữa tuyến (km 22) — báo lúc 07:58"
+                  data-lenh="co-mat"
+                  data-suco="Xe bị thủng lốp giữa tuyến (km 22)"
+                  data-suco-loai="Hỏng xe" data-suco-luc="07:58"
+                  data-suco-trang-thai="mo"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1042</span>
@@ -612,6 +698,10 @@
                       <span class="avatar avatar--mini" aria-hidden="true">TB</span>
                       <span class="td-name">Trần Văn Bình</span>
                     </div>
+                    <span class="status-badge sb--green sb--sm">
+                      <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                      Đã có mặt
+                    </span>
                   </td>
                   <td data-label="Xe">
                     <span class="td-strong">30A-123.45</span>
@@ -635,7 +725,7 @@
                   <td data-label="Trạng thái">
                     <div class="badge-stack">
                       <span class="status-badge sb--orange">Đang thực hiện</span>
-                      <span class="status-badge sb--orange">
+                      <span class="status-badge sb--orange" data-suco-badge>
                         <svg class="icon" aria-hidden="true">
                           <use href="#i-alert"></use>
                         </svg>
@@ -742,6 +832,7 @@
                   data-status="sap-toi" data-tuyen="hn-nd"
                   data-taixe="nguyen-duc-long" data-ngay="hom-nay"
                   data-ma="VC-1043" data-ve="5" data-cong="340000"
+                  data-lenh="da-nhan" data-tre="15"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1043</span>
@@ -759,6 +850,10 @@
                       <span class="avatar avatar--mini" aria-hidden="true">DL</span>
                       <span class="td-name">Nguyễn Đức Long</span>
                     </div>
+                    <span class="status-badge sb--sky sb--sm">
+                      <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                      Đã nhận lệnh
+                    </span>
                   </td>
                   <td data-label="Xe">
                     <span class="td-strong">29B-678.90</span>
@@ -782,6 +877,12 @@
                   <td data-label="Trạng thái">
                     <div class="badge-stack">
                       <span class="status-badge sb--sky">Sắp tới</span>
+                      <span class="status-badge sb--red">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-alert"></use>
+                        </svg>
+                        Trễ 15'
+                      </span>
                     </div>
                   </td>
                   <td class="cell-actions" data-label="Thao tác">
@@ -808,6 +909,7 @@
                   data-status="sap-toi" data-tuyen="hn-hd"
                   data-taixe="vu-dinh-khoa" data-ngay="ngay-mai"
                   data-ma="VC-1041" data-ve="3" data-cong="300000"
+                  data-lenh="chua-nhan"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1041</span>
@@ -825,6 +927,10 @@
                       <span class="avatar avatar--mini" aria-hidden="true">DK</span>
                       <span class="td-name">Vũ Đình Khoa</span>
                     </div>
+                    <span class="status-badge sb--orange sb--sm">
+                      <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+                      Chưa nhận lệnh
+                    </span>
                   </td>
                   <td data-label="Xe">
                     <span class="td-strong">29A-456.78</span>
@@ -875,6 +981,7 @@
                   data-status="hoan-thanh" data-tuyen="hn-qnam"
                   data-taixe="pham-thi-hoa" data-ngay="hom-qua"
                   data-ma="VC-1038" data-ve="16" data-cong="620000"
+                  data-lenh="co-mat"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1038</span>
@@ -928,6 +1035,7 @@
                   data-status="hoan-thanh" data-tuyen="hn-tb"
                   data-taixe="le-van-tu" data-ngay="hom-qua"
                   data-ma="VC-1039" data-ve="6" data-cong="420000"
+                  data-lenh="co-mat"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1039</span>
@@ -1117,7 +1225,7 @@
                     <use href="#i-calendar"></use>
                   </svg>
                   <input
-                    id="fNgayDi" name="ngay" type="date" required value="2026-11-01"
+                    id="fNgayDi" name="ngay" type="date" required value="2026-10-31"
                   />
                 </div>
               </div>
@@ -1211,6 +1319,27 @@
                 </div>
               </div>
             </div>
+
+            <section class="avail" id="ctAvail" aria-labelledby="ctAvailTitle">
+              <div class="avail-head">
+                <strong id="ctAvailTitle">Tình trạng tài nguyên</strong>
+                <span id="ctAvailWhen">Chọn ngày và giờ khởi hành</span>
+              </div>
+              <div class="avail-row">
+                <span class="avail-name" id="ctAvailXeName">Xe</span>
+                <span class="avail-track" id="ctAvailXeTrack" role="img"
+                  aria-label="Lịch bận của xe trong ngày"></span>
+              </div>
+              <div class="avail-row">
+                <span class="avail-name" id="ctAvailTxName">Tài xế</span>
+                <span class="avail-track" id="ctAvailTxTrack" role="img"
+                  aria-label="Lịch bận của tài xế trong ngày"></span>
+              </div>
+              <p class="avail-note" id="ctAvailNote">
+                Ô cam là chuyến đã xếp; tài nguyên trùng khung giờ sẽ bị khoá
+                trong danh sách chọn.
+              </p>
+            </section>
 
             <div class="form-status" id="formChuyenStatus" role="status" aria-live="polite"></div>
             <p class="form-note">
@@ -1420,42 +1549,70 @@
               </div>
             </div>
 
+            <section class="d-block" aria-labelledby="ctLenhTitle">
+              <h3 class="d-label" id="ctLenhTitle">Trạng thái phân công</h3>
+              <div>
+                <span class="status-badge sb--orange" id="ctLenhChip">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-alert"></use>
+                  </svg>
+                  Chưa nhận lệnh
+                </span>
+              </div>
+              <p class="lenh-sub" id="ctLenhSub">
+                Admin đã phân công, tài xế chưa xác nhận nhận lệnh.
+              </p>
+              <div class="lenh-steps" id="ctLenhSteps">
+                <span class="lenh-step" data-step="nhan">
+                  <span class="lenh-dot" aria-hidden="true"></span>Nhận lệnh
+                </span>
+                <span class="lenh-step" data-step="chuan-bi">
+                  <span class="lenh-dot" aria-hidden="true"></span>Chuẩn bị
+                </span>
+                <span class="lenh-step" data-step="co-mat">
+                  <span class="lenh-dot" aria-hidden="true"></span>Có mặt tại bến
+                </span>
+                <span class="lenh-step" data-step="chay">
+                  <span class="lenh-dot" aria-hidden="true"></span>Đang chạy
+                </span>
+              </div>
+              <div class="lenh-warn" id="ctTreWrap" hidden>
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-alert"></use>
+                </svg>
+                <span id="ctTreText">Trễ 15'</span>
+              </div>
+            </section>
+
             <section class="warn-block" id="ctSuCo" role="alert" hidden>
               <span class="warn-icon" aria-hidden="true">
                 <svg class="icon"><use href="#i-alert"></use></svg>
               </span>
               <div class="warn-body">
                 <div class="warn-head">
-                  <strong>Sự cố đang mở</strong>
-                  <span id="ctSuCoTime">Báo lúc 07:58</span>
+                  <strong id="ctSuCoTitle">Sự cố đang mở</strong>
+                  <span class="suco-state suco-state--mo" id="ctSuCoState">Mở</span>
                 </div>
                 <p id="ctSuCoText">
                   Xe bị thủng lốp giữa tuyến (km 22) — tài xế đã báo.
                 </p>
-                <div class="warn-actions">
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-suco="tiep-tuc"
-                  >
-                    Tiếp tục chạy
+                <div class="suco-log" id="ctSuCoLog"></div>
+                <div class="warn-actions" id="ctSuCoActions">
+                  <button class="btn btn-sm btn-primary" type="button"
+                    data-suco-action="nhan">
+                    Bắt đầu xử lý
                   </button>
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-chuyen-edit="xe"
-                  >
+                  <button class="btn btn-sm btn-primary" type="button"
+                    data-suco-action="ket-qua" hidden>
+                    Ghi nhận kết quả
+                  </button>
+                  <button class="btn btn-sm btn-ghost" type="button"
+                    data-chuyen-edit="xe">
                     Thay xe
                   </button>
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-chuyen-edit="taixe"
-                  >
+                  <button class="btn btn-sm btn-ghost" type="button"
+                    data-chuyen-edit="taixe">
                     Đổi tài xế
-                  </button>
-                  <button
-                    class="btn btn-sm btn-ghost" type="button"
-                    data-suco="ket-thuc"
-                  >
-                    Kết thúc sớm
                   </button>
                 </div>
               </div>
@@ -1621,6 +1778,139 @@
           </footer>
         </div>
       </div>
+      <div
+        class="modal"
+        id="modalSuCoXuLy"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="suCoXuLyTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="suCoXuLyTitle">Bắt đầu xử lý sự cố</h2>
+              <p class="modal-sub">
+                Ghi nhận người phụ trách và biện pháp dự kiến cho chuyến
+                <strong id="suCoMa">VC-1042</strong>.
+              </p>
+            </div>
+            <button type="button" class="modal-close" data-modal-close
+              aria-label="Đóng">
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <form id="formSuCoXuLy" class="modal-body" novalidate>
+            <div class="step-hint">
+              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              <span id="suCoXuLyMoTa">Xe bị thủng lốp giữa tuyến (km 22).</span>
+            </div>
+            <div class="field">
+              <label for="fsNguoiXuLy">Người xử lý *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-user"></use></svg>
+                <select id="fsNguoiXuLy" name="nguoi" required>
+                  <option value="">— Chọn người phụ trách —</option>
+                  <option value="Admin trực ca">Admin trực ca</option>
+                  <option value="Điều hành Trần Hùng">Điều hành Trần Hùng</option>
+                  <option value="Điều hành Lê Mai">Điều hành Lê Mai</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fsBienPhap">Biện pháp dự kiến *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <select id="fsBienPhap" name="bienphap" required>
+                  <option value="">— Chọn biện pháp —</option>
+                  <option value="Tiep tuc">Tiếp tục chạy</option>
+                  <option value="Thay xe">Thay xe</option>
+                  <option value="Doi tai xe">Đổi tài xế</option>
+                  <option value="Ket thuc som">Kết thúc sớm</option>
+                  <option value="Khac">Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fsGhiChu">Ghi chú xử lý</label>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <textarea id="fsGhiChu" name="ghichu" rows="3"
+                  placeholder="Ví dụ: đã điều xe dự phòng ra km 22"></textarea>
+              </div>
+            </div>
+            <div class="form-status" id="formSuCoXuLyStatus" role="status"
+              aria-live="polite"></div>
+          </form>
+
+          <footer class="modal-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
+            <button class="btn btn-primary" type="submit" form="formSuCoXuLy">
+              Nhận xử lý
+            </button>
+          </footer>
+        </div>
+      </div>
+
+      <div
+        class="modal"
+        id="modalSuCoKetQua"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="suCoKetQuaTitle"
+      >
+        <div class="modal-scrim" data-modal-close></div>
+        <div class="modal-panel modal-panel--narrow">
+          <header class="modal-head">
+            <div>
+              <h2 class="modal-title" id="suCoKetQuaTitle">Ghi nhận kết quả</h2>
+              <p class="modal-sub">
+                Đóng sự cố của chuyến <strong id="suCoKetQuaMa">VC-1042</strong>
+                sau khi đã xử lý xong.
+              </p>
+            </div>
+            <button type="button" class="modal-close" data-modal-close
+              aria-label="Đóng">
+              <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+            </button>
+          </header>
+
+          <form id="formSuCoKetQua" class="modal-body" novalidate>
+            <div class="field">
+              <label for="fkBienPhap">Biện pháp thực tế *</label>
+              <div class="field-control select-wrap">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                <select id="fkBienPhap" name="bienphap" required>
+                  <option value="">— Chọn biện pháp đã thực hiện —</option>
+                  <option value="Tiep tuc">Tiếp tục chạy</option>
+                  <option value="Thay xe">Thay xe</option>
+                  <option value="Doi tai xe">Đổi tài xế</option>
+                  <option value="Ket thuc som">Kết thúc sớm</option>
+                  <option value="Khac">Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="fkKetQua">Kết quả xử lý *</label>
+              <div class="field-control">
+                <svg class="field-icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                <textarea id="fkKetQua" name="ketqua" rows="3" required
+                  placeholder="Ví dụ: khách lên xe thay lúc 08:40, không ảnh hưởng vé"></textarea>
+              </div>
+            </div>
+            <div class="form-status" id="formSuCoKetQuaStatus" role="status"
+              aria-live="polite"></div>
+          </form>
+
+          <footer class="modal-foot">
+            <button class="btn btn-ghost" type="button" data-modal-close>Đóng</button>
+            <button class="btn btn-primary" type="submit" form="formSuCoKetQua">
+              Ghi nhận &amp; đóng sự cố
+            </button>
+          </footer>
+        </div>
+      </div>
       </div>
     </main>
   </div>
@@ -1638,6 +1928,11 @@
 <script src="../admin/screens/admin-chuyen/js/chuyen-list.js" defer></script>
 <script src="../admin/screens/admin-chuyen/js/chuyen-flows.js" defer></script>
 <script src="../admin/screens/admin-chuyen/js/chuyen-drawer.js" defer></script>
+<script src="../admin/screens/admin-chuyen/js/chuyen-lenh.js" defer></script>
+<script src="../admin/screens/admin-chuyen/js/chuyen-incident.js" defer></script>
+<script src="../admin/screens/admin-chuyen/js/chuyen-lich-data.js" defer></script>
+<script src="../admin/screens/admin-chuyen/js/chuyen-lich.js" defer></script>
+<script src="../admin/screens/admin-chuyen/js/chuyen-avail.js" defer></script>
 <script src="../shared/js/reveal.js" defer></script>
 </body>
 </html>

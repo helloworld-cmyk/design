@@ -49,6 +49,7 @@
         "Đang hiển thị " + (visible ? "1–" + visible : "0") +
         " trong " + rows.length + " chuyến";
     }
+    if (window.VvvChuyenLich) window.VvvChuyenLich.refresh();
   }
 
   tabs.forEach(function (tab) {

@@ -116,24 +116,6 @@
       ctBadge.textContent = badge.textContent.trim();
       ctBadge.className = badge.className;
     }
-    var suCoText = d.suco || d.suCo || "";
-    var suCoBadge = document.getElementById("ctSuCoBadge");
-    if (suCoBadge) suCoBadge.hidden = !suCoText;
-    var suCo = document.getElementById("ctSuCo");
-    if (suCoText) {
-      var incidentTime = suCoText.match(/(\d{1,2}:\d{2})/);
-      setText(
-        "ctSuCoTime",
-        incidentTime ? "Báo lúc " + incidentTime[1] : "Tài xế báo sự cố"
-      );
-      setText(
-        "ctSuCoText",
-        suCoText.replace(/\s*—\s*báo lúc.*$/i, "")
-      );
-      if (suCo) suCo.hidden = false;
-    } else if (suCo) {
-      suCo.hidden = true;
-    }
     var timelineItems = document.querySelectorAll("#modalChitiet .timeline-item");
     if (timelineItems.length > 1) {
       var assignItem = timelineItems[1];
@@ -266,34 +248,5 @@
     var suffix =
       btn.dataset.chuyenEdit === "xe" ? " — đổi xe" : " — đổi tài xế";
     openEditModal("Sửa chuyến", ma, suffix);
-  });
-
-  /* ---------- Xử lý sự cố trong drawer ---------- */
-  document.addEventListener("click", function (event) {
-    var btn = event.target.closest("[data-suco]");
-    if (!btn || btn.disabled) return;
-    var suCo = document.getElementById("ctSuCo");
-    var suCoBadge = document.getElementById("ctSuCoBadge");
-    if (suCo) suCo.hidden = true;
-    if (suCoBadge) suCoBadge.hidden = true;
-    if (currentRow) {
-      currentRow.removeAttribute("data-suco");
-      currentRow.removeAttribute("data-su-co");
-      var stack = currentRow.querySelector(".badge-stack");
-      var rowBadges = stack ? stack.querySelectorAll(".status-badge") : [];
-      Array.prototype.forEach.call(rowBadges, function (badge) {
-        if (badge.querySelector(".icon")) badge.remove();
-      });
-    }
-    if (btn.dataset.suco === "tiep-tuc") {
-      setText("ctFootNote", "Đã xử lý sự cố — chuyến tiếp tục chạy.");
-      toast("Đã ghi nhận xử lý sự cố: chuyến tiếp tục chạy.");
-    } else {
-      setText("ctFootNote", "Đã ghi nhận kết thúc sớm — đối soát vé ở A6.");
-      toast(
-        "Đã ghi nhận kết thúc sớm — vui lòng đối soát vé ở A6.",
-        "info"
-      );
-    }
   });
 })();

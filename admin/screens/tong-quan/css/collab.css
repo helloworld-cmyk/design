@@ -1,0 +1,103 @@
+/* ===== Dashboard — phối hợp Admin–Tài xế & sự cố đang mở ===== */
+
+/* ---------- Badge trạng thái (chip lệnh · cờ trễ · sự cố) ---------- */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--slate-200);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--slate-600);
+}
+
+.status-badge[hidden] {
+  display: none;
+}
+
+.status-badge .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.sb--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.sb--orange {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.sb--sky {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.sb--gray {
+  background: var(--slate-200);
+  color: var(--slate-600);
+}
+
+.sb--red {
+  background: var(--red-50);
+  color: var(--red-600);
+}
+
+.sb--sm {
+  padding: 3px 8px;
+  font-size: 10.5px;
+}
+
+.badge-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- KPI cảnh báo: chuyến chưa xác nhận ---------- */
+
+.stat-card--warn {
+  border-color: var(--orange-500);
+}
+
+.stat-card--warn .stat-value {
+  color: var(--orange-700);
+}
+
+/* ---------- Bảng phối hợp & sự cố ---------- */
+
+.data-table td .status-badge {
+  vertical-align: middle;
+}
+
+.data-table .btn-sm {
+  min-height: 44px;
+}
+
+.dash-row--trips .text-link,
+.dash-row--incidents .text-link {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .data-table .btn-sm {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dash-row--trips .text-link,
+  .dash-row--incidents .text-link {
+    white-space: normal;
+  }
+}

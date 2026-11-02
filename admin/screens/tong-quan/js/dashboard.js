@@ -231,4 +231,20 @@
     window.addEventListener("scroll", hideTip, { passive: true });
     window.addEventListener("resize", hideTip);
   }
+
+  /* ---------- KPI: chuyến chưa xác nhận lệnh phân công ---------- */
+
+  var tripsPanel = document.getElementById("chuyenHomNay");
+  var kpiPending = document.getElementById("kpiChuaXacNhan");
+  var kpiCard = document.getElementById("kpiChuaXacNhanCard");
+
+  if (tripsPanel && kpiPending) {
+    var pendingCount = tripsPanel.querySelectorAll(
+      'tbody tr[data-lenh="chua-nhan"]'
+    ).length;
+    kpiPending.textContent = String(pendingCount);
+    if (kpiCard) {
+      kpiCard.classList.toggle("stat-card--warn", pendingCount > 0);
+    }
+  }
 })();

@@ -1,4 +1,4 @@
-<main id="main" data-trip-status="sap-toi">
+<main id="main" data-trip-status="sap-toi" data-lenh="chua-nhan">
   <div class="tcd-page">
     <div class="container">
 
@@ -23,7 +23,12 @@
       </div>
 
       <div class="tcd-actions-bar" id="tcdActionsBar">
-        <button type="button" class="btn btn-primary btn-lg" id="tcdStartBtn">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg"
+          id="tcdStartBtn"
+          aria-describedby="tcdLenhHint"
+        >
           Điều hành chuyến
           <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
         </button>

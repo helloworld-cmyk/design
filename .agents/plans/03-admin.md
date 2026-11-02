@@ -50,10 +50,12 @@ Quản lý khách hàng
 - **Tác dụng:** nắm nhanh tình hình vận hành trong ngày.
 - **Nhiệm vụ chính:**
   - KPI: **chuyến hôm nay**, **vé đã bán**, **doanh thu hôm nay**, **khách
-    mới trong tháng**.
+    mới trong tháng**, **chuyến chưa xác nhận lệnh** (cảnh báo nếu > 0).
   - Danh sách **chuyến hôm nay**: giờ, tuyến, tài xế, xe, `đã đặt / sức chứa`,
-    trạng thái.
-  - **Sự cố đang mở** (từ báo sự cố của tài xế) — chỉ **cảnh báo**, xử lý tại A2.
+    trạng thái, kèm **chip trạng thái lệnh** và **cờ trễ** (xem A2 §4).
+  - **Sự cố đang mở** — bảng nhỏ có **thời gian trôi** (tuổi đời), trạng thái
+    sự cố (`Mở` / `Đang xử lý`), cảnh báo đỏ khi `Mở` quá 15 phút, lối **Xử lý
+    tại A2**.
   - **Đơn cần xử lý**: yêu cầu hủy vé (quá hạn khách tự hủy), vé chưa ghi nhận
     thanh toán → mở A6.
   - Lối tắt: Tạo chuyến (A2), thêm tài xế (A3), thêm xe (A4).
@@ -84,11 +86,22 @@ Quản lý khách hàng
     lý do; vé liên quan chuyển `Đã hủy` (không hoàn tiền) và vào danh sách xử lý
     ở A6. Chuyến đang thực hiện → xử lý qua báo sự cố, **không hủy trực tiếp**.
   - Xem chi tiết chuyến: danh sách vé/hành khách, trạng thái đón/trả, thanh
-    toán; **đánh dấu sự cố đã xử lý** và quyết định tiếp tục / thay xe / đổi tài
-    xế / kết thúc sớm.
-- **Thành phần:** `.filter-bar`, `.data-table`, `.tabs` (trạng thái), `.badge`,
-  `.modal` (tạo/sửa/hủy/xử lý sự cố), `.timeline` (lịch sử trạng thái),
-  `.pagination`, `.empty-state`.
+    toán; **trạng thái phân công** (xem §4) và **xử lý sự cố** theo quy trình
+    (xem §4.2).
+  - **Lịch điều phối (PA2.1)** — chế độ xem cạnh bảng: lưới **tài nguyên ×
+    khung giờ** của 1 ngày, chuyển nhóm **Theo tài xế / Theo xe**; chuyến hiển
+    thị thành khối theo giờ; bấm khối mở chi tiết; bấm **dấu +** ở một tài
+    nguyên để mở form tạo chuyến đã điền sẵn tài nguyên + ngày.
+  - **Dải tình trạng tài nguyên (PA2.2)** trong modal tạo/sửa chuyến: khi đã
+    chọn ngày/giờ, hiển thị lịch bận 24h của **xe** và **tài xế** đang chọn,
+    **khoá lựa chọn trùng lịch** (ghi rõ "trùng lịch") và cảnh báo.
+  - **Trạng thái lệnh phân công**: cột Tài xế có chip `Chưa nhận / Đã nhận /
+    Đang chuẩn bị / Đã có mặt`; drawer có khối 4 bậc + **cờ trễ** tự tính.
+- **Thành phần:** `.filter-bar`, `.data-table`, `.tabs`, `.badge`, `.modal`
+  (tạo/sửa/hủy/xử lý sự cố), `.timeline` (lịch sử trạng thái), `.pagination`,
+  `.empty-state`; mở rộng: chế độ xem lịch (`.lich-*`), dải tài nguyên
+  (`.avail-*`), chip lệnh + cờ trễ (`.sb--red`), vòng đời sự cố
+  (`.suco-*`, bước xử lý).
 - **Trạng thái:** chưa có chuyến, trùng lịch tài xế/xe, chuyến đã có khách
   (khóa sửa quan trọng), chuyến đã hủy, sự cố mở.
 - **Ưu tiên:** P0.
@@ -238,6 +251,17 @@ flowchart TD
 **Trạng thái chuyến:** `Sắp tới → Đang thực hiện → Hoàn thành`; nhánh `Đã hủy`
 (chỉ khi chuyến **chưa bắt đầu**).
 
+**Trạng thái lệnh phân công (lớp mới, tách khỏi trạng thái chuyến):**
+`Chưa nhận lệnh → Đã nhận lệnh → (Đang chuẩn bị) → Đã có mặt`. Tài xế bấm 2 nút
+(nhận lệnh, có mặt); `Đang chuẩn bị` là mức suy ra. Admin thấy lớp này ở A2 (cột
+Tài xế + drawer) và A1 (chip + KPI "chuyến chưa xác nhận"). **Cờ trễ** chỉ hiển
+thị: `Trễ N'` (trễ khởi hành) / `Quá hành trình +N'`, suy từ thời gian — không
+thao tác, quyết định vẫn thuộc admin.
+
+**Vòng đời sự cố (§4.2):** `Mở → Đang xử lý → Đã xử lý`; mỗi bước ghi nhận
+người xử lý, biện pháp, ghi chú và thời điểm; A1 hiển thị tuổi đời để chống bỏ
+quên.
+
 **Trạng thái vé:** `Đã đặt → Đã đón → Hoàn thành`; nhánh `Không lên xe`, `Đã hủy`.
 
 **Thanh toán:** `Chưa thu → Đã thu` (tiền mặt, tài xế ghi ở D4; chỉ gắn với vé đã
@@ -259,6 +283,23 @@ flowchart TD
 10. Không có hoàn tiền; khách chỉ tự hủy trước 12 giờ, sau đó admin xử lý.
 11. Không có cấu hình hệ thống: các ngưỡng (hủy trước 12 giờ, giữ ghế, hạn chót
     đặt) là hằng số trong code.
+12. Xếp chuyến phải kiểm tra tài nguyên rảnh: modal tạo/sửa chuyến khoá lựa chọn
+    xe/tài xế **trùng khung giờ vận hành** với chuyến khác trong cùng ngày.
+13. **Bắt đầu chuyến** ở phía tài xế chỉ khả dụng sau khi tài xế xác nhận **Đã
+    có mặt tại bến** (đồng bộ với trạng thái lệnh ở A2).
+14. Sự cố phải đi đúng vòng đời và có bằng chứng: `Mở → Đang xử lý → Đã xử lý`,
+    kèm người xử lý, biện pháp và **kết quả bắt buộc** khi đóng (xem §4.2).
+
+### 4.2 Quy trình xử lý sự cố (A2)
+
+1. Tài xế báo sự cố (loại + ghi chú) → chuyến mang cờ **Sự cố** (`Mở`); xuất
+   hiện ở drawer A2 và hàng đợi A1 (kèm tuổi đời).
+2. Admin **"Bắt đầu xử lý"**: chọn người xử lý + biện pháp dự kiến + ghi chú →
+   `Đang xử lý`; nhật ký ghi thêm một mốc.
+3. Biện pháp `Thay xe` / `Đổi tài xế` dùng luồng đổi tài nguyên của A2.
+4. Admin **"Ghi nhận kết quả"**: biện pháp thực tế + **ghi chú kết quả (bắt
+   buộc)** → `Đã xử lý`; cờ sự cố trên bảng được gỡ, nhật ký lưu đủ 3 mốc.
+5. `Kết thúc sớm` là một kết quả của bước 4 (kèm nhắc đối soát vé ở A6).
 
 ---
 

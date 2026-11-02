@@ -1,0 +1,97 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: vòng đời sự cố
+   Mở → Đang xử lý → Đã xử lý. PA4.1 · PA4.2.
+   ========================================================= */
+
+.suco-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* .btn / .status-badge đặt display nên phải khôi phục [hidden] */
+#ctSuCoActions .btn[hidden],
+.status-badge[hidden] {
+  display: none;
+}
+
+.suco-state--mo {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.suco-state--dang {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.suco-state--xong {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.suco-log {
+  display: grid;
+  gap: 9px;
+  margin-top: 9px;
+}
+
+.suco-entry {
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: 9px;
+}
+
+.suco-entry .suco-dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: var(--slate-300);
+}
+
+.suco-entry.is-start .suco-dot { background: var(--orange-500); }
+.suco-entry.is-work .suco-dot { background: var(--sky-500); }
+.suco-entry.is-done .suco-dot { background: var(--green-600); }
+
+.suco-entry strong {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.suco-entry .suco-meta {
+  display: block;
+  font-size: 11px;
+  color: var(--slate-500);
+}
+
+.suco-entry p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--slate-600);
+}
+
+.step-hint {
+  display: flex;
+  gap: 9px;
+  padding: 11px 12px;
+  border: 1px solid var(--sky-100);
+  border-radius: 10px;
+  background: var(--sky-50);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--slate-700);
+}
+
+.step-hint .icon {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  color: var(--sky-600);
+}

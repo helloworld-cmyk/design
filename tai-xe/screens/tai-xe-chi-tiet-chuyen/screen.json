@@ -17,6 +17,7 @@
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/passengers",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/timeline",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/modal",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/css/lenh",
     "shared/css/motion",
     "shared/css/responsive-desktop",
     "shared/css/responsive-mobile",
@@ -27,6 +28,7 @@
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/trip-detail",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/passengers",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/incident",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/lenh",
     "shared/js/reveal"
   ],
   "partials": [
@@ -35,6 +37,7 @@
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/icons.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/driver-header.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/page-head.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/lenh.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/trip-panel.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/timeline.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/passengers.html",

@@ -1,4 +1,8 @@
-        <section class="table-panel reveal" aria-labelledby="bangChuyenTitle">
+        <section
+          class="table-panel reveal"
+          data-view-panel="bang"
+          aria-labelledby="bangChuyenTitle"
+        >
           <h2 class="sr-only" id="bangChuyenTitle">Danh sách chuyến</h2>
           <div
             class="table-scroll"
@@ -25,7 +29,10 @@
                   data-status="dang-thuc-hien" data-tuyen="hn-hp"
                   data-taixe="tran-van-binh" data-ngay="hom-nay"
                   data-ma="VC-1042" data-ve="9" data-cong="400000"
-                  data-su-co="Xe bị thủng lốp giữa tuyến (km 22) — báo lúc 07:58"
+                  data-lenh="co-mat"
+                  data-suco="Xe bị thủng lốp giữa tuyến (km 22)"
+                  data-suco-loai="Hỏng xe" data-suco-luc="07:58"
+                  data-suco-trang-thai="mo"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1042</span>
@@ -43,6 +50,10 @@
                       <span class="avatar avatar--mini" aria-hidden="true">TB</span>
                       <span class="td-name">Trần Văn Bình</span>
                     </div>
+                    <span class="status-badge sb--green sb--sm">
+                      <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                      Đã có mặt
+                    </span>
                   </td>
                   <td data-label="Xe">
                     <span class="td-strong">30A-123.45</span>
@@ -66,7 +77,7 @@
                   <td data-label="Trạng thái">
                     <div class="badge-stack">
                       <span class="status-badge sb--orange">Đang thực hiện</span>
-                      <span class="status-badge sb--orange">
+                      <span class="status-badge sb--orange" data-suco-badge>
                         <svg class="icon" aria-hidden="true">
                           <use href="#i-alert"></use>
                         </svg>
@@ -173,6 +184,7 @@
                   data-status="sap-toi" data-tuyen="hn-nd"
                   data-taixe="nguyen-duc-long" data-ngay="hom-nay"
                   data-ma="VC-1043" data-ve="5" data-cong="340000"
+                  data-lenh="da-nhan" data-tre="15"
                 >
                   <td data-label="Mã chuyến">
                     <span class="ma-chuyen">VC-1043</span>
@@ -190,6 +202,10 @@
                       <span class="avatar avatar--mini" aria-hidden="true">DL</span>
                       <span class="td-name">Nguyễn Đức Long</span>
                     </div>
+                    <span class="status-badge sb--sky sb--sm">
+                      <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                      Đã nhận lệnh
+                    </span>
                   </td>
                   <td data-label="Xe">
                     <span class="td-strong">29B-678.90</span>
@@ -213,6 +229,12 @@
                   <td data-label="Trạng thái">
                     <div class="badge-stack">
                       <span class="status-badge sb--sky">Sắp tới</span>
+                      <span class="status-badge sb--red">
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-alert"></use>
+                        </svg>
+                        Trễ 15'
+                      </span>
                     </div>
                   </td>
                   <td class="cell-actions" data-label="Thao tác">

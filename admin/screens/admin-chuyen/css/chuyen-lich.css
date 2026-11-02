@@ -1,0 +1,257 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: chế độ xem "Lịch điều phối"
+   (tài nguyên × khung giờ). PA2.1.
+   ========================================================= */
+
+.view-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.view-switch button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--slate-600);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.view-switch button.is-active {
+  background: var(--surface);
+  color: var(--sky-800);
+  box-shadow: var(--shadow-xs);
+}
+
+.view-switch .icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* Khi ở chế độ Lịch: ẩn bộ lọc/tab chỉ dành cho danh sách */
+.chuyen-toolbar.is-lich .tabs,
+.chuyen-toolbar.is-lich .filter-grid {
+  display: none;
+}
+
+/* ---------- Panel lịch ---------- */
+
+.lich-panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px 20px 18px;
+}
+
+.lich-panel[hidden],
+[data-view-panel][hidden] {
+  display: none;
+}
+
+.lich-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lich-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lich-date {
+  min-width: 150px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.lich-nav .page-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.lich-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11.5px;
+  color: var(--slate-600);
+}
+
+.lich-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lich-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.leg-sky { background: var(--sky-500); }
+.leg-green { background: var(--green-600); }
+.leg-orange { background: var(--orange-500); }
+.leg-slate { background: var(--slate-300); }
+
+/* ---------- Lưới ---------- */
+
+.lich-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.lich-scroll[hidden] {
+  display: none;
+}
+
+.lich-grid {
+  min-width: 760px;
+}
+
+.lich-lane {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.lich-lane:last-child {
+  border-bottom: 0;
+}
+
+.lich-lane[hidden] {
+  display: none;
+}
+
+.lich-lane--off {
+  opacity: 0.6;
+}
+
+.lich-lane--off .lich-lane-name {
+  color: var(--slate-500);
+}
+
+.lich-lane-label {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-right: 1px solid var(--border-soft);
+}
+
+.lich-lane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.lich-lane-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.lich-lane-meta {
+  font-size: 11px;
+  color: var(--slate-500);
+}
+
+.lich-hours {
+  display: grid;
+  grid-template-columns: 190px repeat(9, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+
+.lich-hours > span {
+  padding: 8px 2px;
+  border-right: 1px solid var(--border-soft);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--slate-500);
+  text-align: center;
+}
+
+.lich-hours > span:first-child {
+  border-right: 1px solid var(--border-soft);
+  text-align: left;
+  padding-left: 12px;
+}
+
+.lich-track {
+  position: relative;
+  height: 54px;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    var(--border-soft) 1px,
+    transparent 1px
+  );
+  background-size: calc(100% / 9) 100%;
+}
+
+.lich-block {
+  position: absolute;
+  top: 8px;
+  height: 38px;
+  overflow: hidden;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  border: 0;
+  border-radius: 9px;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: transform var(--dur) var(--ease);
+}
+
+.lich-block:hover {
+  transform: translateY(-1px);
+}
+
+.lich-block:focus-visible {
+  outline: 3px solid var(--sky-300);
+}
+
+.lich-block--sky { background: var(--sky-100); color: var(--sky-800); }
+.lich-block--orange { background: var(--orange-100); color: var(--orange-700); }
+.lich-block--green { background: var(--green-100); color: var(--green-700); }
+.lich-block--gray { background: var(--slate-200); color: var(--slate-600); }
+
+.lich-code {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.lich-route {
+  overflow: hidden;
+  font-size: 10.5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lich-note {
+  font-size: 11.5px;
+  color: var(--slate-500);
+}

@@ -1,0 +1,86 @@
+/* =========================================================
+   Vi Vu Việt — A2 Quản lý chuyến: dải "tình trạng tài nguyên"
+   trong modal tạo/sửa chuyến. PA2.2.
+   ========================================================= */
+
+.avail {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 12px 13px;
+  border: 1px solid var(--sky-100);
+  border-radius: 12px;
+  background: var(--sky-50);
+}
+
+.avail[hidden] {
+  display: none;
+}
+
+.avail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.avail-head strong {
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.avail-head span {
+  font-size: 11.5px;
+  color: var(--slate-600);
+}
+
+.avail-row {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.avail-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.avail-track {
+  position: relative;
+  height: 18px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--green-50);
+}
+
+.avail-busy {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--orange-100);
+}
+
+.avail-busy.is-clash {
+  background: var(--red-50);
+  border: 1px solid var(--red-600);
+}
+
+.avail-busy.is-plan {
+  z-index: 1;
+  background: var(--sky-500);
+  opacity: 0.32;
+}
+
+.avail-note {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--slate-600);
+}
+
+.avail-note.is-warn {
+  font-weight: 700;
+  color: var(--red-600);
+}

@@ -24,6 +24,7 @@
     "tai-xe/screens/tai-xe-tong-quan/css/tq-today",
     "tai-xe/screens/tai-xe-tong-quan/css/tq-day",
     "tai-xe/screens/tai-xe-tong-quan/css/dash-cards",
+    "tai-xe/screens/tai-xe-tong-quan/css/tq-lenh",
     "shared/css/motion",
     "shared/css/responsive-desktop",
     "shared/css/responsive-mobile",
@@ -34,6 +35,7 @@
     "tai-xe/screens/tai-xe-tong-quan/js/week-trips",
     "tai-xe/screens/tai-xe-tong-quan/js/week-picker",
     "tai-xe/screens/tai-xe-tong-quan/js/week-schedule",
+    "tai-xe/screens/tai-xe-tong-quan/js/lenh",
     "shared/js/reveal"
   ],
   "partials": [

@@ -1,3 +1,87 @@
+  <section class="dash-row dash-row--incidents" id="su-co-dang-mo">
+    <article class="panel reveal" aria-labelledby="incidentsTitle">
+      <div class="panel-head">
+        <div>
+          <h2 id="incidentsTitle">Sự cố đang mở</h2>
+          <p>3 sự cố chưa khép lại · SLA phản hồi 15 phút</p>
+        </div>
+        <a class="text-link" href="admin-chuyen.html">
+          Mở quản lý chuyến
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption class="sr-only">
+            Sự cố đang mở kèm thời gian trôi, trạng thái và lối xử lý tại A2
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Mã chuyến</th>
+              <th scope="col">Loại sự cố</th>
+              <th scope="col" class="hide-sm">Tài xế</th>
+              <th scope="col">Thời gian trôi</th>
+              <th scope="col">Trạng thái</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-su-co="mo" data-tuoi="22">
+              <th scope="row">CN-1042</th>
+              <td>Tài xế đến muộn</td>
+              <td class="hide-sm">Trần Thị H.</td>
+              <td>22 phút trước</td>
+              <td>
+                <span class="badge-stack">
+                  <span class="status-badge sb--orange">Mở</span>
+                  <span class="status-badge sb--red">Chưa nhận xử lý</span>
+                </span>
+              </td>
+              <td>
+                <a class="btn btn-ghost btn-sm" href="admin-chuyen.html">
+                  Xử lý tại A2
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr data-su-co="dang-xu-ly" data-tuoi="9">
+              <th scope="row">CN-1039</th>
+              <td>Xe hỏng dọc đường</td>
+              <td class="hide-sm">Lê Quốc B.</td>
+              <td>9 phút trước</td>
+              <td><span class="status-badge sb--sky">Đang xử lý</span></td>
+              <td>
+                <a class="btn btn-ghost btn-sm" href="admin-chuyen.html">
+                  Xử lý tại A2
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr data-su-co="mo" data-tuoi="4">
+              <th scope="row">CN-1045</th>
+              <td>Khách khiếu nại ghế</td>
+              <td class="hide-sm">Nguyễn Văn M.</td>
+              <td>4 phút trước</td>
+              <td><span class="status-badge sb--orange">Mở</span></td>
+              <td>
+                <a class="btn btn-ghost btn-sm" href="admin-chuyen.html">
+                  Xử lý tại A2
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
   <section class="dash-row dash-row--monitor">
     <article class="panel reveal" aria-labelledby="alertsTitle">
       <div class="panel-head">

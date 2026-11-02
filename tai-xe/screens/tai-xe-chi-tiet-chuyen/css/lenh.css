@@ -1,0 +1,169 @@
+/* ============== D3 — Trạng thái lệnh phân công ============== */
+
+/* ---------- Chip trạng thái (đồng bộ hợp đồng dùng chung) ---------- */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--slate-200);
+  color: var(--slate-600);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.status-badge[hidden] {
+  display: none;
+}
+
+.status-badge .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.sb--green {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+
+.sb--orange {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
+.sb--sky {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.sb--gray {
+  background: var(--slate-200);
+  color: var(--slate-600);
+}
+
+.sb--red {
+  background: var(--red-50);
+  color: var(--red-600);
+}
+
+.sb--sm {
+  padding: 3px 8px;
+  font-size: 10.5px;
+}
+
+/* ---------- Panel lệnh phân công ---------- */
+
+.tcd-lenh-flags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tcd-lenh-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 0;
+}
+
+.tcd-lenh-step {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.tcd-lenh-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 16px;
+  right: 0;
+  height: 2px;
+  background: var(--border);
+}
+
+.tcd-lenh-dot {
+  position: relative;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--slate-300);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.tcd-lenh-step.is-done .tcd-lenh-dot {
+  border-color: var(--sky-600);
+  background: var(--sky-600);
+}
+
+.tcd-lenh-step.is-current .tcd-lenh-dot {
+  border-color: var(--sky-700);
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.13);
+}
+
+.tcd-lenh-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--slate-500);
+}
+
+.tcd-lenh-step.is-current .tcd-lenh-label {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.tcd-lenh-hint {
+  margin-top: 16px;
+  padding: 11px 14px;
+  border-left: 3px solid var(--sky-500);
+  border-radius: var(--radius-xs);
+  background: var(--sky-50);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--slate-600);
+}
+
+.tcd-lenh-hint[hidden] {
+  display: none;
+}
+
+.tcd-lenh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.tcd-lenh-actions .btn[hidden] {
+  display: none;
+}
+
+.tcd-lenh .form-status {
+  margin-top: 12px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 520px) {
+  .tcd-lenh-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tcd-lenh-step:not(:last-child)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tcd-lenh-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,50 @@
+          <article class="tcd-panel tcd-lenh reveal" aria-labelledby="tcdLenhTitle">
+            <div class="tcd-panel-head">
+              <h2 id="tcdLenhTitle">Trạng thái lệnh phân công</h2>
+              <span class="tcd-lenh-flags">
+                <span class="status-badge sb--gray" id="tcdLenhChip">Chưa nhận lệnh</span>
+                <span class="status-badge sb--red" id="tcdLenhLate" hidden>Trễ 15'</span>
+              </span>
+            </div>
+
+            <ol class="tcd-lenh-steps" id="tcdLenhSteps">
+              <li class="tcd-lenh-step" data-step="chua-nhan">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Chưa nhận lệnh</span>
+              </li>
+              <li class="tcd-lenh-step" data-step="da-nhan">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Đã nhận lệnh</span>
+              </li>
+              <li class="tcd-lenh-step" data-step="chuan-bi">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Đang chuẩn bị</span>
+              </li>
+              <li class="tcd-lenh-step" data-step="co-mat">
+                <span class="tcd-lenh-dot" aria-hidden="true"></span>
+                <span class="tcd-lenh-label">Đã có mặt</span>
+              </li>
+            </ol>
+
+            <p class="tcd-lenh-hint" id="tcdLenhHint">
+              Xác nhận đã có mặt tại bến trước khi bắt đầu chuyến.
+            </p>
+
+            <div class="tcd-lenh-actions">
+              <button type="button" class="btn btn-primary" id="tcdLenhAccept">
+                <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                Tôi đã nhận lệnh
+              </button>
+              <button type="button" class="btn btn-primary" id="tcdLenhArrive" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                Tôi đã có mặt tại bến
+              </button>
+            </div>
+
+            <p class="form-status" id="tcdLenhStatus" role="status" aria-live="polite"></p>
+          </article>
+
+          <div class="tcd-toast" id="tcdLenhToast" role="status" aria-live="polite" hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+            <span id="tcdLenhToastText">Đã cập nhật</span>
+          </div>

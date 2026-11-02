@@ -4,6 +4,10 @@
    ========================================================= */
 
 @media (max-width: 640px) {
+  .lich-panel {
+    padding: 14px 14px 16px;
+  }
+
   .data-table,
   .data-table tbody,
   .data-table tr,
