@@ -1,4 +1,4 @@
-# 02 — MÀN HÌNH TÀI XẾ (6 MÀN)
+# 02 — MÀN HÌNH TÀI XẾ (5 MÀN)
 
 > Vai trò: **Tài xế** — người **thực hiện các chuyến được admin phân công**.
 > Shell: **D (Driver app)**.
@@ -9,7 +9,8 @@
 > xế do admin tạo tại A3.
 >
 > **Đã bỏ:** màn đăng chuyến, màn đánh giá, màn hỗ trợ, ticket, chat, FAQ,
-> hotline, ngân hàng/ví, upload giấy tờ, duyệt KYC.
+> hotline, ngân hàng/ví, upload giấy tờ, duyệt KYC, màn "Chuyến được phân công"
+> (D2 cũ — danh sách chuyến đã gộp vào lịch chạy ở Tổng quan D1).
 >
 > **Giữ:** báo sự cố chuyến dạng thao tác đơn giản trong chi tiết chuyến.
 
@@ -24,7 +25,7 @@
   Online/Offline.
 - Khách đặt vé trên chuyến đã mở bán; đơn được hệ thống tự xác nhận.
 - Tài xế cập nhật trạng thái **từng hành khách** khi chạy chuyến.
-- Trạng thái chuyến/vé đồng bộ giữa khách (B7), tài xế (D2–D4) và admin (A2/A6).
+- Trạng thái chuyến/vé đồng bộ giữa khách (B7), tài xế (D3–D4) và admin (A2/A6).
 - Sự cố chuyến: tài xế báo bằng modal; admin thấy cờ sự cố ở A1/A2 và xử lý.
 
 ### Luồng nghiệp vụ cốt lõi
@@ -35,8 +36,8 @@ Admin tạo tài khoản tài xế (A3)
 Đăng nhập
   └─ Vào thẳng Tổng quan (D1)
 Admin tạo chuyến + gán xe + phân công tài xế (A2)
-  └─ Chuyến xuất hiện ở D2
-Xem chuyến được phân công (D2)
+  └─ Chuyến xuất hiện ở lịch chạy trên Tổng quan (D1)
+Xem chuyến ở Tổng quan (D1)
   └─ Mở chi tiết chuyến (D3): tuyến, xe, hành khách, điểm đón
 Thực hiện chuyến (D4)
   └─ Bắt đầu → đón/trả từng khách → thu tiền mặt → hoàn thành
@@ -54,7 +55,6 @@ flowchart TD
     A3["A3 admin-tai-xe<br/>Tạo tài khoản + mật khẩu tạm"]
     LOGIN["Đăng nhập tài xế<br/>(cổng chung hoặc tách)"]
     D1["D1 Tổng quan<br/>Lịch làm việc · Chuyến sắp tới"]
-    D2["D2 Chuyến được phân công<br/>Theo trạng thái"]
     D3["D3 Chi tiết chuyến<br/>Tuyến · Xe · Hành khách"]
     D4["D4 Thực hiện chuyến<br/>Bắt đầu · Đón/trả · Hoàn thành"]
     D5["D5 Xe được giao"]
@@ -62,34 +62,32 @@ flowchart TD
 
     A3 -- "bàn giao tài khoản" --> LOGIN
     LOGIN -- "đăng nhập" --> D1
-    D1 -- "chuyến sắp tới" --> D2
-    D2 -- "mở chuyến" --> D3
+    D1 -- "mở chuyến" --> D3
     D3 -- "Bắt đầu chuyến" --> D4
-    D4 -- "Hoàn thành chuyến" --> D2
+    D4 -- "Hoàn thành chuyến" --> D1
     D1 -- "Xe được giao" --> D5
     D1 -- "Hồ sơ" --> D6
     D3 -. "Báo sự cố" .-> A2["A2 admin-chuyen<br/>Nhận cờ sự cố"]
     D4 -. "Báo sự cố" .-> A2
-    A2 -- "phân công / đổi chuyến" --> D2
+    A2 -- "phân công / đổi chuyến" --> D1
 ```
 
 **Chuỗi rút gọn:**
 
 ```
 Admin tạo TK (A3) → Tài xế đăng nhập → Tổng quan (D1)
-→ Chuyến được phân công (D2) → Chi tiết chuyến (D3)
+→ Chuyến ở Tổng quan (D1) → Chi tiết chuyến (D3)
 → Bắt đầu chuyến → Thực hiện chuyến (D4) → Hoàn thành
 Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2)
 ```
 
 ---
 
-## 3. Danh sách 6 màn
+## 3. Danh sách 5 màn
 
 | Mã | Màn hình | Thư mục | Chức năng |
 |----|----------|---------|-----------|
 | D1 | Tổng quan | `tai-xe-tong-quan` | Lịch làm việc, chuyến sắp tới |
-| D2 | Chuyến được phân công | `tai-xe-chuyen` | Danh sách chuyến theo trạng thái |
 | D3 | Chi tiết chuyến | `tai-xe-chi-tiet-chuyen` | Tuyến, xe, hành khách, báo sự cố |
 | D4 | Thực hiện chuyến | `tai-xe-dieu-hanh` | Bắt đầu, đón/trả khách, hoàn thành |
 | D5 | Xe được giao | `tai-xe-xe` | Thông tin xe, tình trạng xe |
@@ -106,27 +104,12 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
   - Lời chào + ngày hôm nay.
   - KPI: **chuyến hôm nay**, **chuyến sắp tới**, **khách hôm nay** (số đơn giản).
   - **Lịch làm việc**: danh sách chuyến sắp tới (giờ, tuyến, xe, số khách).
-  - Lối tắt: Chuyến được phân công (D2), Xe được giao (D5), Hồ sơ (D6).
+  - Lối tắt: Xe được giao (D5), Hồ sơ (D6).
   - Cảnh báo nhẹ nếu có chuyến bắt đầu trong 2 giờ tới.
 - **Thành phần:** `.stat-card`, `.ride-card` (chuyến sắp tới), `.badge` trạng
   thái, `.empty-state`, `.btn`.
 - **Trạng thái:** chưa có chuyến, có chuyến hôm nay, loading.
 - **Không có:** toggle Online/Offline, chuông thông báo, nút nhận chuyến.
-- **Ưu tiên:** P1.
-
-### D2. Chuyến được phân công — `screens/tai-xe-chuyen/`
-
-- **Tác dụng:** danh sách toàn bộ chuyến admin đã phân công cho tài xế.
-- **Nhiệm vụ chính:**
-  - Tab theo trạng thái: **Sắp tới · Đang thực hiện · Hoàn thành · Đã hủy**.
-  - Card chuyến: tuyến, giờ khởi hành, biển số xe, `số khách / sức chứa`,
-    trạng thái, cờ sự cố (nếu có).
-  - Bấm chuyến → D3.
-  - Chuyến đang thực hiện có nút nhanh "Tiếp tục chuyến" → D4.
-- **Thành phần:** `.tabs`, `.ride-card`, `.status-badge`, `.progress` (tỉ lệ
-  ghế), `.filter-bar` (ngày), `.empty-state`.
-- **Trạng thái:** chưa được phân công, không có chuyến trong tab, loading, lỗi;
-  chuyến bị admin hủy (hiển thị lý do).
 - **Ưu tiên:** P1.
 
 ### D3. Chi tiết chuyến — `screens/tai-xe-chi-tiet-chuyen/`
@@ -272,13 +255,13 @@ chỉ gắn với khách đã `Đã đón`). Không có hoàn tiền.
 ## 8. Điều hướng
 
 ```
-Tổng quan | Chuyến được phân công | Xe được giao | Hồ sơ
+Tổng quan | Xe được giao | Hồ sơ
 ```
 
 - Trang chủ app: D1.
-- D1 → D2/D5/D6.
-- D2 → D3 → D4.
-- D4 hoàn thành → toast + quay lại D2.
+- D1 → D3/D5/D6 (mở chuyến từ lịch chạy).
+- D3 → D4.
+- D4 hoàn thành → toast + quay lại D1.
 - Header chỉ có avatar + đăng xuất; **không** có chuông, không có "Hỗ trợ".
 
 ---
@@ -288,8 +271,8 @@ Tổng quan | Chuyến được phân công | Xe được giao | Hồ sơ
 ```
 Admin tạo TK tài xế (A3) → bàn giao
 → Tài xế đăng nhập → Tổng quan (D1)
-→ Admin tạo chuyến + phân công (A2) → hiện ở D2
-→ Khách đặt vé (B5) → danh sách khách đầy lên ở D2/D3
+→ Admin tạo chuyến + phân công (A2) → hiện ở D1
+→ Khách đặt vé (B5) → danh sách khách đầy lên ở D3
 → Đến ngày chạy: D3 → Bắt đầu → D4
 → Đón/trả từng khách + thu tiền mặt → Hoàn thành
 ```

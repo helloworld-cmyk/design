@@ -1,8 +1,8 @@
 # 00 — TỔNG QUAN KẾ HOẠCH (PHẠM VI TINH GỌN)
 
 > **Vi Vu Việt** — website đặt vé xe ghép liên tỉnh theo lịch trình, làm như
-> **project cá nhân**. Phạm vi chốt: **22 màn nghiệp vụ chính** — 8 khách hàng,
-> 6 tài xế, 8 quản trị viên. Không tính cổng đăng nhập riêng của tài xế/admin
+> **project cá nhân**. Phạm vi chốt: **21 màn nghiệp vụ chính** — 8 khách hàng,
+> 5 tài xế, 8 quản trị viên. Không tính cổng đăng nhập riêng của tài xế/admin
 > (nếu tách) và trang lỗi dùng chung.
 >
 > Mục tiêu: thể hiện đủ **ba vai trò, phân quyền, CRUD, đặt vé, quản lý trạng
@@ -15,9 +15,9 @@
 
 | File | Nội dung |
 |------|----------|
-| `00-tong-quan.md` | Phạm vi, mô hình hoạt động, shell, site map, component, lộ trình, bảng 22 màn |
+| `00-tong-quan.md` | Phạm vi, mô hình hoạt động, shell, site map, component, lộ trình, bảng 21 màn |
 | `01-khach-hang.md` | 8 màn khách hàng (gồm trang chủ, đăng nhập, đăng ký) |
-| `02-tai-xe.md` | 6 màn tài xế (D1–D6) |
+| `02-tai-xe.md` | 5 màn tài xế (D1, D3–D6) |
 | `03-admin.md` | 8 màn quản trị (A1–A8) |
 | `04-dung-chung-va-ky-thuat.md` | Cổng xác thực, trang lỗi, partial, component, quy trình build |
 
@@ -46,7 +46,7 @@ Khách tìm chuyến → xem chi tiết → chọn ghế → đặt vé  (B4 →
         │ hệ thống tự xác nhận đơn
         ▼
 Admin thấy đơn trong danh sách đơn đặt              (A6)
-Tài xế thấy chuyến trong danh sách được phân công    (D2)
+Tài xế thấy chuyến trong lịch chạy ở Tổng quan        (D1)
         │ đến ngày chạy
         ▼
 Tài xế bắt đầu chuyến, đón/trả khách, thu tiền mặt   (D4)
@@ -161,9 +161,8 @@ Vi Vu Việt
 │   ├── Chuyến của tôi (gồm chi tiết vé + hủy) ... B7
 │   └── Hồ sơ .................................... B8
 │
-├── TÀI XẾ (shell D) — 6 màn
-│   ├── D1 Tổng quan
-│   ├── D2 Chuyến được phân công
+├── TÀI XẾ (shell D) — 5 màn
+│   ├── D1 Tổng quan (lịch chạy, không còn màn danh sách chuyến riêng)
 │   ├── D3 Chi tiết chuyến (báo sự cố tại đây)
 │   ├── D4 Thực hiện chuyến
 │   ├── D5 Xe được giao
@@ -180,7 +179,7 @@ Vi Vu Việt
     └── A8 Quản lý khách hàng
 ```
 
-**Dùng chung, không tính vào 22 màn:** `tai-xe-dang-nhap`, `admin-dang-nhap`
+**Dùng chung, không tính vào 21 màn:** `tai-xe-dang-nhap`, `admin-dang-nhap`
 (nếu tách cổng), `loi` (404/500/bảo trì).
 
 ---
@@ -197,7 +196,7 @@ thước.
 | Bảng dữ liệu `.data-table` | `css/table.css` | A2–A8 |
 | Thẻ KPI `.stat-card` | `css/stats.css` | A1, A7, D1 |
 | Bộ lọc `.filter-bar` | `css/filters.css` | B4, A2, A6, A8 |
-| Tabs `.tabs` | `css/tabs.css` | B7, D2, A2 |
+| Tabs `.tabs` | `css/tabs.css` | B7, A2 |
 | Modal `.modal` | `css/modal.css` | hủy vé, báo sự cố, xác nhận xóa |
 | Toast `.toast` | `css/toast.css` | phản hồi thao tác |
 | Trạng thái `.empty-state`, skeleton | `css/states.css` | mọi danh sách |
@@ -226,7 +225,7 @@ Thứ tự triển khai chi tiết ở `04-dung-chung-va-ky-thuat.md` §5.
 
 ---
 
-## 7. Bảng tổng hợp 22 màn
+## 7. Bảng tổng hợp 21 màn
 
 | # | Vai trò | Mã | Màn hình | Shell | Thư mục | Ưu tiên |
 |---|---------|----|----------|-------|---------|---------|
@@ -239,7 +238,6 @@ Thứ tự triển khai chi tiết ở `04-dung-chung-va-ky-thuat.md` §5.
 | 7 | Khách | B7 | Chuyến của tôi | U | `chuyen-cua-toi` ✅ | P0 |
 | 8 | Khách | B8 | Hồ sơ | U | `ho-so` ✅ | P0 |
 | 9 | Tài xế | D1 | Tổng quan | D | `tai-xe-tong-quan` | P1 |
-| 10 | Tài xế | D2 | Chuyến được phân công | D | `tai-xe-chuyen` | P1 |
 | 11 | Tài xế | D3 | Chi tiết chuyến | D | `tai-xe-chi-tiet-chuyen` | P1 |
 | 12 | Tài xế | D4 | Thực hiện chuyến | D | `tai-xe-dieu-hanh` | P1 |
 | 13 | Tài xế | D5 | Xe được giao | D | `tai-xe-xe` | P2 |
@@ -253,7 +251,7 @@ Thứ tự triển khai chi tiết ở `04-dung-chung-va-ky-thuat.md` §5.
 | 21 | Admin | A7 | Doanh thu | A | `admin-doanh-thu` | P2 |
 | 22 | Admin | A8 | Quản lý khách hàng | A | `admin-khach-hang` | P2 |
 
-**Tổng: 22 màn** — 8 màn khách đã có file (cần tinh chỉnh theo §8), 14 màn
+**Tổng: 21 màn** — 8 màn khách đã có file (cần tinh chỉnh theo §8), 13 màn
 tài xế/admin cần dựng mới.
 
 ---

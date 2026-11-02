@@ -269,6 +269,20 @@
     <symbol id="i-plus" viewBox="0 0 24 24" class="icon-sym">
       <path d="M12 5v14M5 12h14" />
     </symbol>
+
+    <symbol id="i-copy" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="9" y="9" width="11" height="11" rx="2.5" />
+      <path d="M5.5 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v.5" />
+    </symbol>
+  </defs>
+</svg>
+<svg class="svg-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-copy" viewBox="0 0 24 24" class="icon-sym">
+      <rect x="9" y="9" width="12" height="12" rx="2.5" />
+      <path d="M5.5 15h-.7a2.3 2.3 0 0 1-2.3-2.3V4.8a2.3 2.3 0 0 1 2.3-2.3h7.9
+         a2.3 2.3 0 0 1 2.3 2.3v.7" />
+    </symbol>
   </defs>
 </svg>
 <header class="site-header" id="siteHeader">
@@ -282,15 +296,12 @@
 
     <nav class="main-nav" aria-label="Điều hướng tài xế">
       <a href="tong-quan.html">Tổng quan</a>
-      <a href="tai-xe-chuyen.html" class="is-active" aria-current="page">
-        Chuyến được phân công
-      </a>
       <a href="tai-xe-xe.html">Xe được giao</a>
       <a href="tai-xe-ho-so.html">Hồ sơ</a>
     </nav>
 
     <div class="header-actions">
-      <a class="tq-driver-chip" href="tai-xe-ho-so.html" aria-label="Hồ sơ tài xế">
+      <a class="tq-driver-chip" href="tai-xe-ho-so.html" aria-label="Hồ sơ tài xế Anh Minh">
         <span class="tq-driver-avatar" aria-hidden="true">M</span>
         <span class="tq-driver-id">
           <strong>Anh Minh</strong>
@@ -317,9 +328,6 @@
   <div class="mobile-nav" id="mobileNav" hidden>
     <nav aria-label="Điều hướng tài xế trên di động">
       <a href="tong-quan.html">Tổng quan</a>
-      <a href="tai-xe-chuyen.html" class="is-active" aria-current="page">
-        Chuyến được phân công
-      </a>
       <a href="tai-xe-xe.html">Xe được giao</a>
       <a href="tai-xe-ho-so.html">Hồ sơ</a>
     </nav>
@@ -328,13 +336,6 @@
 <main id="main" data-trip-status="sap-toi">
   <div class="tcd-page">
     <div class="container">
-
-      <nav class="tcd-crumb" aria-label="Đường dẫn">
-        <a href="tai-xe-chuyen.html">
-          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
-          Chuyến được phân công
-        </a>
-      </nav>
 
       <header class="tcd-head">
         <div class="tcd-head-main">
@@ -358,7 +359,7 @@
 
       <div class="tcd-actions-bar" id="tcdActionsBar">
         <button type="button" class="btn btn-primary btn-lg" id="tcdStartBtn">
-          Bắt đầu chuyến
+          Điều hành chuyến
           <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
         </button>
         <button
@@ -396,13 +397,6 @@
                   <strong>Bến xe Giáp Bát</strong>
                   <span>Giải Phóng, Hoàng Mai, Hà Nội</span>
                 </div>
-              </div>
-              <div class="trip-row trip-row--mid">
-                <span class="trip-duration">15:05</span>
-                <span class="trip-marker"></span>
-                <span class="trip-note">
-                  Đón ghép tại Đại Lộ Thăng Long — +1 điểm giữa tuyến
-                </span>
               </div>
               <div class="trip-row">
                 <span class="trip-time">16:20</span>
@@ -448,7 +442,7 @@
           <article class="tcd-panel reveal" aria-labelledby="tcd-timeline-title">
             <div class="tcd-panel-head">
               <h2 id="tcd-timeline-title">Điểm dừng &amp; đón</h2>
-              <span class="tcd-panel-note">3 điểm · 1 đón · 1 trả</span>
+              <span class="tcd-panel-note">2 điểm · 1 trả</span>
             </div>
 
             <ol class="tcd-timeline">
@@ -460,16 +454,6 @@
                     <time>14:30</time>
                   </div>
                   <p>Điểm khởi hành · Giải Phóng, Hoàng Mai, Hà Nội</p>
-                </div>
-              </li>
-              <li class="tcd-stop tcd-stop--pickup">
-                <span class="tcd-stop-dot" aria-hidden="true"></span>
-                <div class="tcd-stop-body">
-                  <div class="tcd-stop-head">
-                    <strong>Đại Lộ Thăng Long</strong>
-                    <time>15:05</time>
-                  </div>
-                  <p>Đón ghép · 1 khách · Nguyễn Văn A</p>
                 </div>
               </li>
               <li class="tcd-stop tcd-stop--end">
@@ -497,7 +481,17 @@
                     <span class="tcd-passenger-avatar" aria-hidden="true">A</span>
                     <div>
                       <strong>Nguyễn Văn A</strong>
-                      <span class="tcd-passenger-phone">0903 *** 789</span>
+                      <span class="tcd-phone-row">
+                        <span class="tcd-passenger-phone">0903 789 789</span>
+                        <button
+                          type="button"
+                          class="tcd-copy"
+                          data-phone="0903789789"
+                          aria-label="Sao chép số điện thoại Nguyễn Văn A"
+                        >
+                          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                        </button>
+                      </span>
                     </div>
                   </div>
                   <div class="tcd-passenger-badges">
@@ -515,12 +509,6 @@
                     Trả: Bến xe Hòa Bình
                   </span>
                 </div>
-                <div class="tcd-passenger-actions">
-                  <a class="tcd-call" href="tel:0903789789" aria-label="Gọi Nguyễn Văn A">
-                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
-                    Gọi khách
-                  </a>
-                </div>
               </article>
 
               <article class="tcd-passenger tcd-passenger--picked">
@@ -529,7 +517,17 @@
                     <span class="tcd-passenger-avatar" aria-hidden="true">B</span>
                     <div>
                       <strong>Trần Thị B</strong>
-                      <span class="tcd-passenger-phone">0912 *** 345</span>
+                      <span class="tcd-phone-row">
+                        <span class="tcd-passenger-phone">0912 345 345</span>
+                        <button
+                          type="button"
+                          class="tcd-copy"
+                          data-phone="0912345345"
+                          aria-label="Sao chép số điện thoại Trần Thị B"
+                        >
+                          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                        </button>
+                      </span>
                     </div>
                   </div>
                   <div class="tcd-passenger-badges">
@@ -547,12 +545,6 @@
                     Trả: Bến xe Hòa Bình
                   </span>
                 </div>
-                <div class="tcd-passenger-actions">
-                  <a class="tcd-call" href="tel:0912345345" aria-label="Gọi Trần Thị B">
-                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
-                    Gọi khách
-                  </a>
-                </div>
               </article>
 
               <article class="tcd-passenger">
@@ -561,7 +553,17 @@
                     <span class="tcd-passenger-avatar" aria-hidden="true">C</span>
                     <div>
                       <strong>Lê Văn C</strong>
-                      <span class="tcd-passenger-phone">0987 *** 123</span>
+                      <span class="tcd-phone-row">
+                        <span class="tcd-passenger-phone">0987 123 123</span>
+                        <button
+                          type="button"
+                          class="tcd-copy"
+                          data-phone="0987123123"
+                          aria-label="Sao chép số điện thoại Lê Văn C"
+                        >
+                          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                        </button>
+                      </span>
                     </div>
                   </div>
                   <div class="tcd-passenger-badges">
@@ -578,12 +580,6 @@
                     <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
                     Trả: Bến xe Hòa Bình
                   </span>
-                </div>
-                <div class="tcd-passenger-actions">
-                  <a class="tcd-call" href="tel:0987123123" aria-label="Gọi Lê Văn C">
-                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
-                    Gọi khách
-                  </a>
                 </div>
               </article>
 
@@ -593,7 +589,17 @@
                     <span class="tcd-passenger-avatar" aria-hidden="true">D</span>
                     <div>
                       <strong>Phạm Thị D</strong>
-                      <span class="tcd-passenger-phone">0903 *** 111</span>
+                      <span class="tcd-phone-row">
+                        <span class="tcd-passenger-phone">0903 111 111</span>
+                        <button
+                          type="button"
+                          class="tcd-copy"
+                          data-phone="0903111111"
+                          aria-label="Sao chép số điện thoại Phạm Thị D"
+                        >
+                          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                        </button>
+                      </span>
                     </div>
                   </div>
                   <div class="tcd-passenger-badges">
@@ -610,12 +616,6 @@
                     <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
                     Trả: Bến xe Hòa Bình
                   </span>
-                </div>
-                <div class="tcd-passenger-actions">
-                  <a class="tcd-call" href="tel:0903111111" aria-label="Gọi Phạm Thị D">
-                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
-                    Gọi khách
-                  </a>
                 </div>
               </article>
 
@@ -625,7 +625,17 @@
                     <span class="tcd-passenger-avatar" aria-hidden="true">E</span>
                     <div>
                       <strong>Hoàng Văn E</strong>
-                      <span class="tcd-passenger-phone">0903 *** 678</span>
+                      <span class="tcd-phone-row">
+                        <span class="tcd-passenger-phone">0903 678 678</span>
+                        <button
+                          type="button"
+                          class="tcd-copy"
+                          data-phone="0903678678"
+                          aria-label="Sao chép số điện thoại Hoàng Văn E"
+                        >
+                          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                        </button>
+                      </span>
                     </div>
                   </div>
                   <div class="tcd-passenger-badges">
@@ -642,12 +652,6 @@
                     <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
                     Trả: Bến xe Hòa Bình
                   </span>
-                </div>
-                <div class="tcd-passenger-actions">
-                  <a class="tcd-call" href="tel:0903678678" aria-label="Gọi Hoàng Văn E">
-                    <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
-                    Gọi khách
-                  </a>
                 </div>
               </article>
             </div>
@@ -675,15 +679,6 @@
                 <dd>2 điểm</dd>
               </div>
             </dl>
-          </section>
-
-          <section class="tcd-summary tcd-summary--muted reveal">
-            <h2>Cần hỗ trợ?</h2>
-            <p>Liên hệ tổng đài nếu cần admin xử lý nhanh trong chuyến.</p>
-            <a class="tcd-call tcd-call--wide" href="tel:1900123456">
-              <svg class="icon" aria-hidden="true"><use href="#i-headset"></use></svg>
-              Gọi tổng đài
-            </a>
           </section>
         </aside>
       </div>
@@ -749,8 +744,13 @@
     </form>
   </div>
 </div>
+<div class="tcd-toast" id="tcdCopyToast" role="status" aria-live="polite" hidden>
+  <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+  <span id="tcdCopyToastText">Đã sao chép</span>
+</div>
 <script src="../shared/js/header.js" defer></script>
 <script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/trip-detail.js" defer></script>
+<script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/passengers.js" defer></script>
 <script src="../tai-xe/screens/tai-xe-chi-tiet-chuyen/js/incident.js" defer></script>
 <script src="../shared/js/reveal.js" defer></script>
 </body>

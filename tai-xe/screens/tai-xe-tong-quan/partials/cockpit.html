@@ -2,115 +2,264 @@
   <section class="dash-page" id="tong-quan">
     <div class="container">
       <div class="dash-top">
-        <span class="section-eyebrow">Chào buổi sáng, Anh Minh</span>
-        <h1>Hôm nay có 2 chuyến</h1>
-        <p class="tq-date">
-          <svg class="icon" aria-hidden="true">
-            <use href="#i-calendar"></use>
-          </svg>
-          Thứ Năm, 29/10/2026 · 11 khách cần đón
-        </p>
+        <span class="section-eyebrow">Khu vực tài xế</span>
+        <h1>Lịch chạy của bạn</h1>
       </div>
 
-      <div class="tq-board reveal" aria-labelledby="tq-board-title">
-        <div class="tq-board-head">
-          <div class="tq-board-title">
-            <span class="section-eyebrow">Lịch trình hôm nay</span>
-            <h2 id="tq-board-title">Chuyến kế tiếp 14:00</h2>
-            <p>
-              Bến xe Giáp Bát → Bến xe Cầu Rào · 4/4 khách đã đặt. Còn
-              1 giờ 20 phút để kiểm tra điểm đón trước khi khởi hành.
-            </p>
-          </div>
-          <div class="tq-board-countdown">
-            <span class="tq-countdown-label">Còn</span>
-            <strong>1 giờ 20 phút</strong>
-            <span class="tq-countdown-meta">đến chuyến 14:00</span>
+      <section class="tqw-board" aria-labelledby="tqw-title">
+        <div class="tqw-heading">
+          <div>
+            <h2 id="tqw-title">Lịch chạy theo tuần</h2>
           </div>
         </div>
 
-        <ol class="tq-day-list">
-          <li class="tq-day-item tq-day-item--done">
-            <div class="tq-day-time">
-              <strong>06:30</strong>
-              <span>Đã chạy</span>
-            </div>
-            <div class="tq-day-main">
-              <h3 class="tq-day-route">
-                Bến xe Giáp Bát
-                <svg class="icon" aria-hidden="true">
-                  <use href="#i-arrow-right"></use>
-                </svg>
-                Bến xe Hòa Bình
-              </h3>
-              <p class="tq-day-meta">
-                <span>
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-users"></use>
-                  </svg>
-                  7 khách
-                </span>
-                <span>
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-car"></use>
-                  </svg>
-                  Ford Transit 16 chỗ · 51A-123.45
-                </span>
-              </p>
-            </div>
-            <div class="tq-day-side">
-              <span class="badge badge--green">Hoàn thành 08:20</span>
-            </div>
-          </li>
+        <div class="tqw-weekbar">
+          <button class="tqw-week-btn tqw-week-btn--prev" type="button"
+            data-week-prev aria-label="Xem tuần trước">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-arrow-right"></use>
+            </svg>
+          </button>
 
-          <li class="tq-day-item tq-day-item--next">
-            <div class="tq-day-time">
-              <strong>14:00</strong>
-              <span>Kế tiếp</span>
+          <p class="tqw-week-label" data-week-label aria-live="polite">
+            <strong data-week-rel>Tuần này</strong>
+            <span data-week-range>02/11 – 08/11</span>
+          </p>
+
+          <div class="tqw-jump">
+            <button class="tqw-jump-btn" type="button" data-week-jump
+              aria-haspopup="dialog" aria-expanded="false">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-calendar"></use>
+              </svg>
+              <strong data-week-jump-label>02/11/2026</strong>
+              <svg class="icon tqw-jump-caret" aria-hidden="true">
+                <use href="#i-chevron-down"></use>
+              </svg>
+            </button>
+
+            <div class="tqw-popover" data-week-popover hidden
+              role="dialog" aria-label="Chọn ngày xem lịch chạy">
+              <div class="tqw-pop-head">
+                <button class="tqw-pop-nav" type="button" data-pop-prev
+                  aria-label="Tháng trước">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </button>
+                <strong class="tqw-pop-month" data-pop-month
+                  aria-live="polite">Tháng 11, 2026</strong>
+                <button class="tqw-pop-nav" type="button" data-pop-next
+                  aria-label="Tháng sau">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-right"></use>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="tqw-pop-dow" aria-hidden="true">
+                <span>T2</span><span>T3</span><span>T4</span><span>T5</span>
+                <span>T6</span><span>T7</span><span>CN</span>
+              </div>
+
+              <div class="tqw-pop-grid" data-pop-grid></div>
             </div>
-            <div class="tq-day-main">
-              <h3 class="tq-day-route">
-                Bến xe Giáp Bát
-                <svg class="icon" aria-hidden="true">
-                  <use href="#i-arrow-right"></use>
-                </svg>
-                Bến xe Cầu Rào
-              </h3>
-              <p class="tq-day-meta">
-                <span>
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-users"></use>
-                  </svg>
-                  4/4 khách đã đặt
-                </span>
-                <span>
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-car"></use>
-                  </svg>
-                  Ford Transit 16 chỗ · 51A-123.45
-                </span>
-                <span>
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-map"></use>
-                  </svg>
-                  2 điểm đón · 2 điểm trả
-                </span>
-              </p>
-            </div>
-            <div class="tq-day-side tq-day-side--action">
-              <a class="btn btn-primary btn-sm" href="tai-xe-chi-tiet-chuyen.html">
-                Mở chuyến
-                <svg class="icon" aria-hidden="true">
+          </div>
+
+          <button class="tqw-week-btn" type="button"
+            data-week-next aria-label="Xem tuần sau">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-arrow-right"></use>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="tqw-day-nav" aria-label="Chọn ngày trong tuần">
+          <button class="tqw-day-btn" type="button"
+            data-day-index="0" aria-pressed="false">
+            <span data-day-name>T2</span>
+            <strong data-day-date>02</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+
+          <button class="tqw-day-btn" type="button"
+            data-day-index="1" aria-pressed="false">
+            <span data-day-name>T3</span>
+            <strong data-day-date>03</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+
+          <button class="tqw-day-btn" type="button"
+            data-day-index="2" aria-pressed="false">
+            <span data-day-name>T4</span>
+            <strong data-day-date>04</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+
+          <button class="tqw-day-btn" type="button"
+            data-day-index="3" aria-pressed="false">
+            <span data-day-name>T5</span>
+            <strong data-day-date>05</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+
+          <button class="tqw-day-btn" type="button"
+            data-day-index="4" aria-pressed="false">
+            <span data-day-name>T6</span>
+            <strong data-day-date>06</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+
+          <button class="tqw-day-btn" type="button"
+            data-day-index="5" aria-pressed="false">
+            <span data-day-name>T7</span>
+            <strong data-day-date>07</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+
+          <button class="tqw-day-btn" type="button"
+            data-day-index="6" aria-pressed="false">
+            <span data-day-name>CN</span>
+            <strong data-day-date>08</strong>
+            <i class="tqw-day-mark" aria-hidden="true"></i>
+          </button>
+        </nav>
+
+        <section class="tqw-agenda" aria-label="Chuyến trong ngày đã chọn">
+          <div class="tqw-agenda-list">
+            <!-- Ngày 0: 0 chuyến -->
+            <article class="tqw-day-group" id="lich-ngay-0" data-week-section="0">
+              <p class="tqw-empty">Hôm nay chưa có chuyến được phân công.</p>
+            </article>
+
+            <!-- Ngày 1: 1 chuyến -->
+            <article class="tqw-day-group" id="lich-ngay-1" data-week-section="1">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+                <div class="tqw-trip-time">
+                  <strong>07:30</strong>
+                  <span>Sáng</span>
+                </div>
+                <div class="tqw-trip-info">
+                  <div class="tqw-trip-route">
+                    <strong>Hà Nội</strong>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                    <strong>Ninh Bình</strong>
+                  </div>
+                  <div class="tqw-trip-meta">
+                    <span>12/29 khách</span>
+                    <span>Hyundai Solati</span>
+                  </div>
+                </div>
+                <svg class="icon tqw-trip-link" aria-hidden="true">
                   <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-              <a class="text-link" href="tai-xe-chuyen.html">
-                Tất cả chuyến
-                <svg class="icon" aria-hidden="true">
-                  <use href="#i-arrow-up-right"></use>
+            </article>
+
+            <!-- Ngày 2: 2 chuyến -->
+            <article class="tqw-day-group" id="lich-ngay-2" data-week-section="2">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+                <div class="tqw-trip-time">
+                  <strong>06:00</strong>
+                  <span>Sáng</span>
+                </div>
+                <div class="tqw-trip-info">
+                  <div class="tqw-trip-route">
+                    <strong>Hà Nội</strong>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                    <strong>Hải Phòng</strong>
+                  </div>
+                  <div class="tqw-trip-meta">
+                    <span>10/16 khách</span>
+                    <span>Ford Transit</span>
+                  </div>
+                </div>
+                <svg class="icon tqw-trip-link" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
                 </svg>
               </a>
-            </div>
-          </li>
-        </ol>
-      </div>
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+                <div class="tqw-trip-time">
+                  <strong>14:00</strong>
+                  <span>Chiều</span>
+                </div>
+                <div class="tqw-trip-info">
+                  <div class="tqw-trip-route">
+                    <strong>Hà Nội</strong>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                    <strong>Thái Nguyên</strong>
+                  </div>
+                  <div class="tqw-trip-meta">
+                    <span>8/16 khách</span>
+                    <span>Ford Transit</span>
+                  </div>
+                </div>
+                <svg class="icon tqw-trip-link" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </a>
+            </article>
+
+            <!-- Ngày 3: 3 chuyến -->
+            <article class="tqw-day-group" id="lich-ngay-3" data-week-section="3">
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+                <div class="tqw-trip-time">
+                  <strong>05:30</strong>
+                  <span>Sáng</span>
+                </div>
+                <div class="tqw-trip-info">
+                  <div class="tqw-trip-route">
+                    <strong>Hà Nội</strong>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                    <strong>Thanh Hóa</strong>
+                  </div>
+                  <div class="tqw-trip-meta">
+                    <span>15/29 khách</span>
+                    <span>Hyundai Solati</span>
+                  </div>
+                </div>
+                <svg class="icon tqw-trip-link" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </a>
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+                <div class="tqw-trip-time">
+                  <strong>11:00</strong>
+                  <span>Sáng</span>
+                </div>
+                <div class="tqw-trip-info">
+                  <div class="tqw-trip-route">
+                    <strong>Hà Nội</strong>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                    <strong>Ninh Bình</strong>
+                  </div>
+                  <div class="tqw-trip-meta">
+                    <span>6/16 khách</span>
+                    <span>Ford Transit</span>
+                  </div>
+                </div>
+                <svg class="icon tqw-trip-link" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </a>
+              <a class="tqw-trip-card" href="tai-xe-chi-tiet-chuyen.html">
+                <div class="tqw-trip-time">
+                  <strong>16:30</strong>
+                  <span>Chiều</span>
+                </div>
+                <div class="tqw-trip-info">
+                  <div class="tqw-trip-route">
+                    <strong>Hà Nội</strong>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                    <strong>Hòa Bình</strong>
+                  </div>
+                  <div class="tqw-trip-meta">
+                    <span>4/16 khách</span>
+                    <span>Ford Transit</span>
+                  </div>
+                </div>
+                <svg class="icon tqw-trip-link" aria-hidden="true">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+              </a>
+            </article>

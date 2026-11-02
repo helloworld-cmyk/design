@@ -1,7 +1,15 @@
 /* ================= Tổng quan tài xế (buồng lái) ================= */
 
 .dash-page {
-  padding: clamp(28px, 3.4vw, 44px) 0 clamp(48px, 6vw, 80px);
+  /* Thêm 16px padding trái phải cho màn hình điện thoại */
+  padding: clamp(36px, 5vw, 56px) 16px clamp(56px, 7vw, 84px);
+}
+
+/* Trên màn hình lớn thì trả lại padding 0 ở 2 bên */
+@media (min-width: 768px) {
+  .dash-page {
+    padding: clamp(36px, 5vw, 56px) 0 clamp(56px, 7vw, 84px);
+  }
 }
 
 .dash-top {
@@ -9,11 +17,11 @@
 }
 
 .dash-top h1 {
-  margin-top: 8px;
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  margin-top: 10px;
+  font-size: clamp(1.8rem, 2.4vw, 2.15rem);
   font-weight: 800;
   line-height: 1.2;
-  letter-spacing: -0.026em;
+  letter-spacing: -0.03em;
   color: var(--ink);
   text-wrap: balance;
 }
@@ -21,15 +29,16 @@
 .tq-date {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 9px;
+  margin-top: 12px;
   font-size: 13px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.5;
   color: var(--slate-500);
 }
 
 .tq-date .icon {
+  flex: none;
   width: 15px;
   height: 15px;
   color: var(--slate-400);
@@ -88,13 +97,15 @@
 }
 
 .tq-driver-id small {
-  margin-top: 1px;
+  margin-top: 2px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--slate-500);
 }
+
+/* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
   .tq-driver-chip {
@@ -108,18 +119,28 @@
 }
 
 @media (max-width: 640px) {
+  .dash-page {
+    padding: 28px 0 56px;
+  }
+
   .dash-top h1 {
-    font-size: clamp(2.2rem, 9.6vw, 2.9rem);
+    font-size: clamp(1.55rem, 6.2vw, 1.9rem);
+    line-height: 1.2;
+  }
+
+  .tq-date {
+    margin-top: 10px;
+    font-size: 12.5px;
   }
 }
 
 @media (max-width: 400px) {
   .tq-date {
     align-items: flex-start;
-    font-size: 12.5px;
+    font-size: 12px;
   }
 
   .tq-date .icon {
-    margin-top: 1px;
+    margin-top: 2px;
   }
 }

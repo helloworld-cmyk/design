@@ -86,24 +86,24 @@
     }
   };
 
-  /* ---------- Bắt đầu chuyến ---------- */
+  /* ---------- Điều hành chuyến ---------- */
 
   if (startBtn) {
     startBtn.addEventListener("click", function () {
       /* Chỉ cho phép khi đang "sap-toi" */
       if (state.status !== "sap-toi") {
-        setStatus("is-error", "Chuyến không ở trạng thái có thể bắt đầu.");
+        setStatus("is-error", "Chuyến không ở trạng thái có thể điều hành.");
         return;
       }
 
       startBtn.classList.add("is-loading");
       startBtn.disabled = true;
-      setStatus("is-info", "Đang bắt đầu chuyến...");
+      setStatus("is-info", "Đang mở điều hành chuyến...");
 
       window.setTimeout(function () {
         startBtn.classList.remove("is-loading");
         startBtn.disabled = false;
-        setStatus("is-success", "Đã bắt đầu — chuyển sang điều hành chuyến.");
+        setStatus("is-success", "Đã vào điều hành chuyến.");
         window.setTimeout(function () {
           window.location.href = "tai-xe-dieu-hanh.html";
         }, 700);

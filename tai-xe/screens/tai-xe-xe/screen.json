@@ -1,0 +1,39 @@
+{
+  "output": "tai-xe/tai-xe-xe.html",
+  "base": "../",
+  "title": "Xe được giao — Khu tài xế Vi Vu Việt",
+  "description": "Thông tin xe được giao: giấy tờ, đăng kiểm, bảo hiểm và lịch sử chạy gần đây.",
+  "home": "tong-quan.html",
+  "profileHref": "tai-xe-ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/booking",
+    "shared/css/ride-card",
+    "shared/css/sections",
+    "tai-xe/css/badges",
+    "tai-xe/screens/tai-xe-tong-quan/css/dash-shell",
+    "tai-xe/screens/tai-xe-xe/css/vehicle",
+    "tai-xe/screens/tai-xe-xe/css/vehicle-docs",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "tai-xe/screens/tai-xe-xe/partials/driver-header.html",
+    "tai-xe/screens/tai-xe-xe/partials/page-head.html",
+    "tai-xe/screens/tai-xe-xe/partials/vehicle-info.html",
+    "tai-xe/screens/tai-xe-xe/partials/vehicle-docs.html",
+    "tai-xe/screens/tai-xe-xe/partials/vehicle-trips.html",
+    "tai-xe/components/page-end.html"
+  ]
+}

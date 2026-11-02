@@ -4,7 +4,7 @@
 > `build.js` và `DESIGN_RULES.MD`. Đây là cầu nối giữa quy hoạch (00–03) và
 > việc dựng thật trong `screens/`.
 >
-> Phạm vi kỹ thuật bám đúng **22 màn**; không thêm module ngoài danh sách.
+> Phạm vi kỹ thuật bám đúng **21 màn**; không thêm module ngoài danh sách.
 
 ---
 
@@ -135,7 +135,6 @@ Cập nhật `sprite.html` với icon mới; **bỏ** `i-bell`, `i-headset`, `i-
 | B7 | `screens/chuyen-cua-toi` | Đã có — thêm panel chi tiết vé + modal hủy |
 | B8 | `screens/ho-so` | Đã có — bỏ cài đặt thông báo/đánh giá |
 | D1 | `screens/tai-xe-tong-quan` | Dựng mới |
-| D2 | `screens/tai-xe-chuyen` | Dựng mới |
 | D3 | `screens/tai-xe-chi-tiet-chuyen` | Dựng mới |
 | D4 | `screens/tai-xe-dieu-hanh` | Dựng mới |
 | D5 | `screens/tai-xe-xe` | Dựng mới |
@@ -177,14 +176,14 @@ trong B7), `tai-xe-tuyen`, `tai-xe-danh-gia`, `danh-gia`, `uu-dai`, `thong-bao`,
 | Phase | Màn ưu tiên |
 |-------|-------------|
 | **1 — Khách** | B2, B3 → B1, B4, B5, B6 → B7, B8 → shell U |
-| **2 — Vận hành** | A3, A4, A5 → **A2 (tạo chuyến + phân công)** → A1, A6 → D1, D2, D3, D4, D6 → shell D, shell A |
+| **2 — Vận hành** | A3, A4, A5 → **A2 (tạo chuyến + phân công)** → A1, A6 → D1, D3, D4, D6 → shell D, shell A |
 | **3 — Hoàn thiện** | D5 → A7, A8 → SH1, rà trạng thái |
 
 Phụ thuộc chính:
 
 ```
 A3 (tài khoản tài xế) ─┐
-A4 (xe) ───────────────┼→ A2 (chuyến) → D2 → D3 → D4
+A4 (xe) ───────────────┼→ A2 (chuyến) → D1 → D3 → D4
 A5 (tuyến + giá) ──────┘        │
                                  └→ khách B4/B5 → A6 → A7
 ```
@@ -204,5 +203,5 @@ A5 (tuyến + giá) ──────┘        │
 - **Không có hoàn tiền**: thu tiền mặt khi lên xe, tài xế ghi `Đã thu` ở D4;
   A7 tính doanh thu theo vé `Đã thu`.
 - Cổng đăng nhập tài xế/admin **dùng chung** `dang-nhap`, điều hướng theo `role`
-  (không tính vào 22 màn; xem §1.2).
+  (không tính vào 21 màn; xem §1.2).
 - Trước khi kết thúc session: xóa file tạm đã tạo trong `temp/`.

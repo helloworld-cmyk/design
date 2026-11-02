@@ -1,0 +1,144 @@
+/* ============== Modal xác nhận thao tác ============== */
+
+.tdh-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.tdh-modal[hidden] {
+  display: none;
+}
+
+.tdh-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 17, 31, 0.55);
+  backdrop-filter: blur(2px);
+  animation: tdhFadeIn var(--dur) var(--ease);
+}
+
+.tdh-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: tdhModalIn var(--dur) var(--ease);
+}
+
+.tdh-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tdh-modal-head h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.tdh-modal-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--slate-500);
+  cursor: pointer;
+  transition:
+    color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.tdh-modal-close:hover {
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.tdh-modal-close .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.tdh-modal-text {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--slate-600);
+}
+
+.tdh-modal-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.tdh-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes tdhFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tdhModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tdh-modal-backdrop,
+  .tdh-modal-dialog {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tdh-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .tdh-modal-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Khóa cuộn khi mở modal */
+
+body.tdh-modal-open {
+  overflow: hidden;
+}

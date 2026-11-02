@@ -1,0 +1,38 @@
+{
+  "output": "tai-xe/tai-xe-ho-so.html",
+  "base": "../",
+  "title": "Hồ sơ cá nhân — Khu tài xế Vi Vu Việt",
+  "description": "Thông tin tài xế, giấy phép lái xe và tài khoản đăng nhập của bạn.",
+  "home": "tong-quan.html",
+  "profileHref": "tai-xe-ho-so.html",
+  "css": [
+    "shared/css/tokens",
+    "shared/css/base",
+    "shared/css/header",
+    "shared/css/user-menu",
+    "shared/css/booking",
+    "shared/css/ride-card",
+    "shared/css/sections",
+    "tai-xe/css/badges",
+    "tai-xe/screens/tai-xe-tong-quan/css/dash-shell",
+    "tai-xe/screens/tai-xe-ho-so/css/profile",
+    "shared/css/motion",
+    "shared/css/responsive-desktop",
+    "shared/css/responsive-mobile",
+    "shared/css/responsive-touch"
+  ],
+  "js": [
+    "shared/js/header",
+    "tai-xe/screens/tai-xe-ho-so/js/profile",
+    "shared/js/reveal"
+  ],
+  "partials": [
+    "shared/components/head.html",
+    "shared/components/sprite.html",
+    "tai-xe/screens/tai-xe-ho-so/partials/driver-header.html",
+    "tai-xe/screens/tai-xe-ho-so/partials/page-head.html",
+    "tai-xe/screens/tai-xe-ho-so/partials/profile-info.html",
+    "tai-xe/screens/tai-xe-ho-so/partials/license-info.html",
+    "tai-xe/components/page-end.html"
+  ]
+}

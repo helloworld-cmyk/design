@@ -1,0 +1,223 @@
+/* ================= Date picker lịch tháng: trigger + popover ================= */
+
+.tqw-jump {
+  position: relative;
+}
+
+/* ---------- Nút mở picker ---------- */
+
+.tqw-jump-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.tqw-jump-btn .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--sky-700);
+}
+
+.tqw-jump-caret {
+  width: 14px;
+  height: 14px;
+  color: var(--slate-400);
+  transition: transform var(--dur) var(--ease);
+}
+
+.tqw-jump-btn[aria-expanded="true"] .tqw-jump-caret {
+  transform: rotate(180deg);
+}
+
+.tqw-jump-btn:hover {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+}
+
+.tqw-jump-btn:focus-visible {
+  outline: 3px solid var(--sky-500);
+  outline-offset: 2px;
+}
+
+/* ---------- Popover lịch tháng (fixed: JS đặt toạ độ theo trigger) ---------- */
+
+.tqw-popover {
+  position: fixed;
+  z-index: 40;
+  width: 312px;
+  max-width: calc(100vw - 32px);
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: panelIn var(--dur) var(--ease);
+}
+
+.tqw-pop-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.tqw-pop-month {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.tqw-pop-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--slate-600);
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.tqw-pop-nav .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.tqw-pop-nav[data-pop-prev] .icon {
+  transform: scaleX(-1);
+}
+
+.tqw-pop-nav:hover:not(:disabled) {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.tqw-pop-nav:focus-visible {
+  outline: 3px solid var(--sky-500);
+  outline-offset: 2px;
+}
+
+.tqw-pop-nav:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---------- Hàng thứ trong tuần ---------- */
+
+.tqw-pop-dow {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.tqw-pop-dow span {
+  display: grid;
+  place-items: center;
+  height: 26px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--slate-400);
+}
+
+/* ---------- Lưới ngày ---------- */
+
+.tqw-pop-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.tqw-pop-day {
+  position: relative;
+  min-height: 40px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--slate-600);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+/* Mở rộng vùng chạm ≥44px mà không phóng to ô lịch (§5.1) */
+.tqw-pop-day::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+}
+
+.tqw-pop-day:hover:not(:disabled) {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.tqw-pop-day:focus-visible {
+  outline: 3px solid var(--sky-500);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.tqw-pop-day:disabled {
+  color: var(--slate-300);
+  cursor: default;
+}
+
+.tqw-pop-day.is-today:not(.is-selected) {
+  border-color: var(--sky-300);
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.tqw-pop-day.is-selected {
+  border-color: var(--sky-700);
+  background: var(--sky-700);
+  color: #fff;
+}
+
+/* ---------- Popover trên màn hẹp: căn giữa màn hình ---------- */
+
+@media (max-width: 520px) {
+  .tqw-popover {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(312px, calc(100vw - 32px));
+    height: fit-content;
+    animation: none;
+  }
+}

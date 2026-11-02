@@ -18,17 +18,19 @@
 
 .tcd-stop:last-child { padding-bottom: 0; }
 
+/* Đường đứt nối đúng 2 tâm chấm: từ tâm chấm li hiện tại (12px)
+   xuống tận tâm chấm li kế (12px dưới biên) */
 .tcd-stop:not(:last-child)::before {
   content: "";
   position: absolute;
-  top: 18px;
-  bottom: 0;
+  top: 12px;
+  bottom: -12px;
   left: 10px;
   width: 2px;
   background: repeating-linear-gradient(
     to bottom,
-    #d8e6f2 0 4px,
-    transparent 4px 8px
+    #d8e6f2 0 5px,
+    transparent 5px 10px
   );
 }
 
@@ -38,14 +40,15 @@
   width: 12px;
   height: 12px;
   margin-top: 6px;
+  justify-self: center;
   border-radius: 50%;
   background: var(--sky-600);
   box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.13);
 }
 
+/* Điểm đầu xanh, điểm cuối cam (bỏ pickup/green cũ) */
 .tcd-stop--start .tcd-stop-dot { background: var(--sky-700); }
-.tcd-stop--pickup .tcd-stop-dot { background: var(--orange-500); }
-.tcd-stop--end .tcd-stop-dot { background: var(--green-600); }
+.tcd-stop--end   .tcd-stop-dot { background: var(--orange-500); }
 
 .tcd-stop-body { min-width: 0; }
 

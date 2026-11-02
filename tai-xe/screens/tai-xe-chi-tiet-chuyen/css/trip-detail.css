@@ -4,29 +4,6 @@
   padding: clamp(32px, 4vw, 56px) 0 clamp(56px, 6vw, 88px);
 }
 
-.tcd-crumb {
-  display: inline-flex;
-  margin-bottom: 12px;
-}
-
-.tcd-crumb a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--slate-600);
-  transition: color var(--dur) var(--ease);
-}
-
-.tcd-crumb a:hover { color: var(--sky-700); }
-.tcd-crumb .icon {
-  width: 16px;
-  height: 16px;
-  transform: scaleX(-1);
-}
-
 .tcd-head {
   display: flex;
   align-items: flex-end;
@@ -158,6 +135,20 @@
   font-size: 12.5px;
   font-weight: 600;
   color: var(--slate-500);
+}
+
+/* ---------- Tuyến đường (tinh chỉnh ride-card cho màn này) ---------- */
+
+.tcd-panel .trip-route {
+  gap: 22px;
+}
+
+/* Nét đứt chạy đúng 2 đầu: đáy điểm xanh → đỉnh điểm cam
+   (bottom = gap 22px + lề trên dot 4px) */
+.tcd-panel .trip-row:not(:last-child) .trip-marker::after {
+  top: 14px;
+  bottom: -26px;
+  height: auto;
 }
 
 /* ---------- Stats ---------- */

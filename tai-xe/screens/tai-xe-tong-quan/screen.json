@@ -18,6 +18,9 @@
     "tai-xe/css/badges",
     "shared/css/sections",
     "tai-xe/screens/tai-xe-tong-quan/css/dash-shell",
+    "tai-xe/screens/tai-xe-tong-quan/css/week-schedule-layout",
+    "tai-xe/screens/tai-xe-tong-quan/css/week-schedule-components",
+    "tai-xe/screens/tai-xe-tong-quan/css/week-picker",
     "tai-xe/screens/tai-xe-tong-quan/css/tq-today",
     "tai-xe/screens/tai-xe-tong-quan/css/tq-day",
     "tai-xe/screens/tai-xe-tong-quan/css/dash-cards",
@@ -28,6 +31,9 @@
   ],
   "js": [
     "shared/js/header",
+    "tai-xe/screens/tai-xe-tong-quan/js/week-trips",
+    "tai-xe/screens/tai-xe-tong-quan/js/week-picker",
+    "tai-xe/screens/tai-xe-tong-quan/js/week-schedule",
     "shared/js/reveal"
   ],
   "partials": [
@@ -35,6 +41,7 @@
     "shared/components/sprite.html",
     "tai-xe/screens/tai-xe-tong-quan/partials/driver-header.html",
     "tai-xe/screens/tai-xe-tong-quan/partials/cockpit.html",
+    "tai-xe/screens/tai-xe-tong-quan/partials/cockpit-agenda.html",
     "tai-xe/screens/tai-xe-tong-quan/partials/overview.html",
     "tai-xe/components/page-end.html"
   ]

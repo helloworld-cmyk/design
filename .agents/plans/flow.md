@@ -1,7 +1,7 @@
 # FLOW APP — Vi Vu Việt (phạm vi tinh gọn)
 
 > Luồng hoạt động của app sau khi tinh gọn cho project cá nhân. Cập nhật ngày
-> 2026-10-30, dựa trên source hiện có và phạm vi **22 màn** (8 khách · 6 tài xế ·
+> 2026-10-30, dựa trên source hiện có và phạm vi **21 màn** (8 khách · 5 tài xế ·
 > 8 admin).
 >
 > Nguyên tắc: chỉ giữ nghiệp vụ cốt lõi. Không có trợ giúp/hỗ trợ, ticket,
@@ -17,7 +17,7 @@ App gồm **3 web theo vai trò** + tài nguyên chung, cùng một design syste
 | Nhóm | Trạng thái | Màn |
 |------|------------|-----|
 | `khach-hang/` | Đã build 10 file | `index`, `dang-nhap`, `dang-ky`, `ho-so`, `ket-qua-tim-chuyen`, `chi-tiet-chuyen`, `dat-cho-thanh-cong`, `chuyen-cua-toi`, `chuyen-da-dat`, `huy-doi-chuyen` |
-| `tai-xe/` | Chưa có màn | Dựng 6 màn D1–D6 |
+| `tai-xe/` | Đang dựng | Dựng 5 màn D1, D3–D6 |
 | `admin/` | Chưa có màn | Dựng 8 màn A1–A8 |
 | `shared/` | Dùng chung | 404/500, header, footer, tokens |
 
@@ -52,7 +52,7 @@ Admin tạo chuyến + gán xe + phân công tài xế        (A2)
 Khách tìm chuyến → chi tiết → chọn ghế → đặt vé      (B4 → B5)
         │ hệ thống tự xác nhận
         ▼
-Admin thấy đơn (A6) · Tài xế thấy chuyến (D2)
+Admin thấy đơn (A6) · Tài xế thấy chuyến (D1)
         │ đến ngày chạy
         ▼
 Tài xế bắt đầu, đón/trả khách, thu tiền mặt, hoàn thành (D4)
@@ -92,7 +92,6 @@ flowchart LR
     end
     subgraph TX["Tài xế (shell D)"]
         D1["D1 Tổng quan"]
-        D2["D2 Chuyến được phân công"]
         D3["D3 Chi tiết chuyến"]
         D4["D4 Thực hiện chuyến"]
         D5["D5 Xe được giao"]
@@ -105,10 +104,10 @@ flowchart LR
     A2 -- "công bố chuyến" --> B4
     B4 --> B5 --> B6 --> B7
     B5 -- "đơn mới" --> A6
-    B5 -- "khách trên chuyến" --> D2
-    A2 -- "phân công" --> D2
+    B5 -- "khách trên chuyến" --> D1
+    A2 -- "phân công" --> D1
     A2 -- "trạng thái" --> B7
-    D2 --> D3 --> D4
+    D1 --> D3 --> D4
     D4 -- "đón/trả" --> B7
     D4 -- "đón/trả" --> A2
     D4 -. "báo sự cố" .-> A1
@@ -125,7 +124,7 @@ flowchart LR
 Admin tạo TK tài xế (A3) + xe (A4) + tuyến (A5)
 → Tạo chuyến, gán xe, phân công tài xế (A2)
 → Khách tìm (B4) → đặt vé (B5) → nhận vé (B6)
-→ Tài xế thấy chuyến (D2) → xem chi tiết (D3)
+→ Tài xế thấy chuyến (D1) → xem chi tiết (D3)
 → Chạy chuyến (D4) → cập nhật trạng thái + thu tiền → hoàn thành
 → Admin xem doanh thu thực thu (A7)
 ```
@@ -186,7 +185,6 @@ flowchart TD
     A3["A3 Tạo tài khoản tài xế"]
     LOGIN["Đăng nhập tài xế"]
     D1["D1 Tổng quan<br/>Lịch làm việc"]
-    D2["D2 Chuyến được phân công"]
     D3["D3 Chi tiết chuyến<br/>Tuyến · Xe · Khách"]
     D4["D4 Thực hiện chuyến"]
     D5["D5 Xe được giao"]
@@ -194,13 +192,12 @@ flowchart TD
 
     A3 -- "bàn giao TK" --> LOGIN
     LOGIN --> D1
-    D1 -- "lịch/chuyến" --> D2
-    D2 -- "mở" --> D3
+    D1 -- "mở" --> D3
     D3 -- "Bắt đầu" --> D4
-    D4 -- "Hoàn thành" --> D2
+    D4 -- "Hoàn thành" --> D1
     D1 -- "Xe" --> D5
     D1 -- "Hồ sơ" --> D6
-    A2["A2 Phân công chuyến"] -. "chuyến mới" .-> D2
+    A2["A2 Phân công chuyến"] -. "chuyến mới" .-> D1
     D3 -. "Báo sự cố" .-> A2
     D4 -. "Báo sự cố" .-> A2
 ```
@@ -209,7 +206,7 @@ flowchart TD
 
 ```
 Admin tạo TK (A3) → Tài xế đăng nhập → Tổng quan (D1)
-→ Chuyến được phân công (D2) → Chi tiết chuyến (D3)
+→ Chuyến ở Tổng quan (D1) → Chi tiết chuyến (D3)
 → Bắt đầu → Thực hiện chuyến (D4): đón/trả + thu tiền mặt
 → Hoàn thành
 Nhánh: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2)
@@ -268,7 +265,7 @@ tiền.
 
 ## 7. Điểm nối bắt buộc (chống lệch trạng thái)
 
-1. **Chuyến** do A2 tạo; D2 chỉ đọc chuyến được phân công; B4 chỉ thấy chuyến
+1. **Chuyến** do A2 tạo; D1 chỉ đọc chuyến được phân công; B4 chỉ thấy chuyến
    đã công bố.
 2. **Vé** do B5 tạo; A6 và B7 đọc cùng trạng thái; D3/D4 cập nhật trạng thái
    khách.
@@ -290,7 +287,7 @@ tiền.
 11. **Hoàn thành chuyến** chỉ khi mọi vé ở trạng thái cuối, trừ ngoại lệ do admin
     xử lý.
 12. **Phiên đăng nhập** tách khóa theo vai trò; cổng đăng nhập tài xế/admin dùng
-    chung `dang-nhap` (không tính vào 22 màn).
+    chung `dang-nhap` (không tính vào 21 màn).
 
 ---
 
@@ -309,9 +306,9 @@ tiền.
 
 ### Tài xế & admin
 
-7. `tai-xe/` và `admin/` **chưa có màn**; cần dựng shell D/A và **14 màn**
-   (6 tài xế + 8 admin).
-8. Chưa có dữ liệu chuyến do admin tạo; D2 phụ thuộc A2.
+7. `tai-xe/` và `admin/` cần hoàn thiện shell D/A và **13 màn**
+   (5 tài xế + 8 admin).
+8. Chưa có dữ liệu chuyến do admin tạo; D1 phụ thuộc A2.
 
 ### Quy tắc nghiệp vụ cần chốt (đã ghi trong 01–03)
 

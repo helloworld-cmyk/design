@@ -1,0 +1,140 @@
+/* ============== Điều hành chuyến — layout ============== */
+
+.tdh-page {
+  padding: clamp(32px, 4vw, 56px) 0 clamp(56px, 6vw, 88px);
+}
+
+.tdh-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.tdh-head h1 {
+  margin-top: 10px;
+  font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.tdh-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 8px 14px;
+  font-size: 12px;
+}
+
+.tdh-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-600);
+  animation: pulse 1.8s var(--ease) infinite;
+}
+
+.tdh-progress {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+.tdh-progress-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+.tdh-progress-top strong {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.tdh-progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+  overflow: hidden;
+}
+
+.tdh-progress-bar span {
+  display: block;
+  height: 100%;
+  width: var(--w, 0%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sky-500), var(--sky-600));
+  transition: width var(--dur) var(--ease);
+}
+
+.tdh-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+  gap: clamp(20px, 3vw, 32px);
+  align-items: start;
+  margin-top: clamp(22px, 3vw, 30px);
+}
+
+.tdh-main,
+.tdh-aside {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 24px);
+}
+
+.tdh-aside {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+}
+
+.tdh-panel {
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.tdh-panel h2 {
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.tdh-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-bottom: 16px;
+}
+
+.tdh-panel-note {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.tdh-status-note {
+  margin: 0 0 14px;
+  font-size: 13px;
+}

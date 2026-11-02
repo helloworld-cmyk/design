@@ -25,12 +25,14 @@
   "js": [
     "shared/js/header",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/trip-detail",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/passengers",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/js/incident",
     "shared/js/reveal"
   ],
   "partials": [
     "shared/components/head.html",
     "shared/components/sprite.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/icons.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/driver-header.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/page-head.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/trip-panel.html",
@@ -38,6 +40,7 @@
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/passengers.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/aside.html",
     "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/incident-modal.html",
+    "tai-xe/screens/tai-xe-chi-tiet-chuyen/partials/copy-toast.html",
     "tai-xe/components/page-end.html"
   ]
 }

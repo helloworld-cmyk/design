@@ -255,7 +255,7 @@ flowchart TD
    lên xe` / `Đã hủy`); ngoại lệ do admin xử lý kèm ghi chú.
 7. Không xóa cứng chuyến/tài xế/xe đã phát sinh dữ liệu; dùng trạng thái.
 8. Tiền công tài xế nhập khi tạo/sửa chuyến; A7 dùng để tính lãi gộp.
-9. Mọi thay đổi trạng thái chuyến/vé đồng bộ tới khách (B7) và tài xế (D2–D4).
+9. Mọi thay đổi trạng thái chuyến/vé đồng bộ tới khách (B7) và tài xế (D3–D4).
 10. Không có hoàn tiền; khách chỉ tự hủy trước 12 giờ, sau đó admin xử lý.
 11. Không có cấu hình hệ thống: các ngưỡng (hủy trước 12 giờ, giữ ghế, hạn chót
     đặt) là hằng số trong code.

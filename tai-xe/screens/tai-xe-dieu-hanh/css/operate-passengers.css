@@ -1,0 +1,207 @@
+
+.tdh-passengers {
+  display: grid;
+  gap: 12px;
+}
+
+.tdh-passenger {
+  padding: 14px 16px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.tdh-passenger[data-status="da-tra"] {
+  border-color: var(--green-100);
+  background: var(--green-50);
+}
+
+.tdh-passenger-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.tdh-passenger-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tdh-passenger-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--navy-800);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.tdh-passenger-id strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.tdh-passenger-phone {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--slate-500);
+}
+
+.tdh-badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: none;
+  justify-content: flex-end;
+}
+
+.tdh-passenger-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--slate-600);
+}
+
+.tdh-passenger-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tdh-passenger-meta .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--sky-700);
+}
+
+.tdh-passenger-fare strong {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.tdh-passenger-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.tdh-copy,
+.tdh-paid,
+.tdh-pickup,
+.tdh-dropoff {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.tdh-copy[hidden],
+.tdh-paid[hidden],
+.tdh-pickup[hidden],
+.tdh-dropoff[hidden] {
+  display: none;
+}
+
+.tdh-copy {
+  background: var(--sky-50);
+  color: var(--sky-700);
+}
+
+.tdh-copy:hover {
+  background: var(--sky-100);
+  color: var(--sky-800);
+}
+
+.tdh-copy.is-copied {
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.tdh-paid {
+  background: var(--orange-50);
+  color: var(--orange-700);
+}
+
+.tdh-paid:hover {
+  background: var(--orange-100);
+  color: var(--orange-600);
+}
+
+.tdh-pickup {
+  background: var(--sky-700);
+  color: #fff;
+}
+
+.tdh-pickup:hover {
+  background: var(--sky-800);
+}
+
+.tdh-dropoff {
+  background: var(--green-600);
+  color: #fff;
+}
+
+.tdh-dropoff:hover {
+  background: var(--green-700);
+}
+
+.tdh-copy .icon,
+.tdh-paid .icon,
+.tdh-pickup .icon,
+.tdh-dropoff .icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* Trạng thái đã xác nhận: pill tint xanh, bấm lại để hoàn tác */
+
+.tdh-paid.is-done,
+.tdh-pickup.is-done,
+.tdh-dropoff.is-done {
+  background: var(--green-50);
+  color: var(--green-700);
+  box-shadow: inset 0 0 0 1px var(--green-100);
+}
+
+.tdh-paid.is-done:hover,
+.tdh-pickup.is-done:hover,
+.tdh-dropoff.is-done:hover {
+  background: var(--green-100);
+}

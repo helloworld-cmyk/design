@@ -1,0 +1,103 @@
+          <article class="tdh-panel reveal" aria-labelledby="tdh-route-title">
+            <div class="tdh-panel-head">
+              <h2 id="tdh-route-title">Lịch trình</h2>
+              <span class="tdh-panel-note">1/3 điểm dừng</span>
+            </div>
+
+            <ol class="tdh-timeline">
+              <li class="tdh-stop tdh-stop--done">
+                <span class="tdh-stop-dot" aria-hidden="true"></span>
+                <div class="tdh-stop-body">
+                  <div class="tdh-stop-head">
+                    <strong>Bến xe Giáp Bát</strong>
+                    <time>16:00 · Đã đi</time>
+                  </div>
+                  <p>Điểm khởi hành · Giải Phóng, Hoàng Mai, Hà Nội</p>
+                </div>
+              </li>
+              <li class="tdh-stop tdh-stop--active">
+                <span class="tdh-stop-dot" aria-hidden="true"></span>
+                <div class="tdh-stop-body">
+                  <div class="tdh-stop-head">
+                    <strong>Cầu Giẽ</strong>
+                    <time>17:05 · Sắp tới</time>
+                  </div>
+                  <p>Đón ghép · Trần Văn Bé, Phạm Văn D</p>
+                </div>
+              </li>
+              <li class="tdh-stop tdh-stop--end">
+                <span class="tdh-stop-dot" aria-hidden="true"></span>
+                <div class="tdh-stop-body">
+                  <div class="tdh-stop-head">
+                    <strong>Bến xe Thái Nguyên</strong>
+                    <time>17:50 · Dự kiến</time>
+                  </div>
+                  <p>Điểm kết thúc · Quang Trung, TP Thái Nguyên</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+        </div>
+
+        <aside class="tdh-aside">
+          <section class="tdh-panel reveal" aria-labelledby="tdh-sum-title">
+            <h2 id="tdh-sum-title">Thông tin chuyến</h2>
+            <dl class="tdh-summary">
+              <div>
+                <dt>Số khách</dt>
+                <dd>4 khách</dd>
+              </div>
+              <div>
+                <dt>Điểm đón / trả</dt>
+                <dd>2 / 1</dd>
+              </div>
+              <div>
+                <dt>Xe</dt>
+                <dd>51C-445.67</dd>
+              </div>
+              <div>
+                <dt>Đã thu</dt>
+                <dd id="tdhCashCollected">450.000đ</dd>
+              </div>
+              <div>
+                <dt>Tiền mặt dự kiến</dt>
+                <dd>1.800.000đ</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="tdh-panel reveal" aria-labelledby="tdh-act-title">
+            <h2 id="tdh-act-title">Hành động</h2>
+            <div class="tdh-actions">
+              <a
+                class="btn btn-ghost"
+                href="tai-xe-chi-tiet-chuyen.html"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-alert"></use>
+                </svg>
+                Báo sự cố
+              </a>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="tdhFinishBtn"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-check-circle"></use>
+                </svg>
+                Kết thúc chuyến
+              </button>
+              <p
+                class="form-status"
+                id="tdhFinishStatus"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </div>
+</main>

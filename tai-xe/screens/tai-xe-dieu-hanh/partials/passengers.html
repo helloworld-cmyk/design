@@ -1,0 +1,265 @@
+<article class="tdh-panel reveal" aria-labelledby="tdh-passengers-title">
+  <div class="tdh-panel-head">
+    <h2 id="tdh-passengers-title">Hành khách trên chuyến</h2>
+    <span class="tdh-panel-note">4 khách · 51C-445.67</span>
+  </div>
+
+  <p
+    class="form-status tdh-status-note"
+    id="tdhStatus"
+    role="status"
+    aria-live="polite"
+  ></p>
+
+  <div class="tdh-passengers">
+
+    <article
+      class="tdh-passenger"
+      data-passenger data-status="da-don" data-paid="false"
+      data-amount="450000" data-phone="0903789789"
+    >
+      <div class="tdh-passenger-top">
+        <div class="tdh-passenger-id">
+          <span class="tdh-passenger-avatar" aria-hidden="true">A</span>
+          <div>
+            <strong>Nguyễn Văn A</strong>
+            <span class="tdh-passenger-phone">0903 *** 789</span>
+          </div>
+        </div>
+        <div class="tdh-badges">
+          <span class="badge badge--orange" data-badge-paid>Chưa trả tiền</span>
+          <span class="badge badge--green" data-badge-stage>Đã lên xe</span>
+        </div>
+      </div>
+      <div class="tdh-passenger-meta">
+        <span class="tdh-passenger-fare">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          <strong>450.000đ</strong> · Tiền mặt
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          Đón: Bến xe Giáp Bát
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+          Trả: Bến xe Thái Nguyên
+        </span>
+      </div>
+      <div class="tdh-passenger-actions">
+        <button type="button" class="tdh-copy" data-action="copy">
+          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+          <span data-copy-label>Copy SĐT</span>
+        </button>
+        <button type="button" class="tdh-paid" data-action="paid">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          Đã trả tiền
+        </button>
+        <button
+          type="button"
+          class="tdh-pickup is-done"
+          data-action="pickup"
+          aria-pressed="true"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+          Đã lên xe
+        </button>
+        <button type="button" class="tdh-dropoff" data-action="dropoff">
+          <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+          Đã trả khách
+        </button>
+      </div>
+    </article>
+
+    <article
+      class="tdh-passenger"
+      data-passenger data-status="cho-don" data-paid="false"
+      data-amount="450000" data-phone="0903789789"
+    >
+      <div class="tdh-passenger-top">
+        <div class="tdh-passenger-id">
+          <span class="tdh-passenger-avatar" aria-hidden="true">B</span>
+          <div>
+            <strong>Trần Văn Bé</strong>
+            <span class="tdh-passenger-phone">0903 *** 789</span>
+          </div>
+        </div>
+        <div class="tdh-badges">
+          <span class="badge badge--orange" data-badge-paid>Chưa trả tiền</span>
+          <span class="badge badge--sky" data-badge-stage>Chờ đón</span>
+        </div>
+      </div>
+      <div class="tdh-passenger-meta">
+        <span class="tdh-passenger-fare">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          <strong>450.000đ</strong> · Tiền mặt
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          Đón: Cầu Giẽ
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+          Trả: Bến xe Thái Nguyên
+        </span>
+      </div>
+      <div class="tdh-passenger-actions">
+        <button type="button" class="tdh-copy" data-action="copy">
+          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+          <span data-copy-label>Copy SĐT</span>
+        </button>
+        <button type="button" class="tdh-paid" data-action="paid">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          Đã trả tiền
+        </button>
+        <button
+          type="button"
+          class="tdh-pickup"
+          data-action="pickup"
+          aria-pressed="false"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+          Đã lên xe
+        </button>
+        <button
+          type="button"
+          class="tdh-dropoff"
+          data-action="dropoff"
+          hidden
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+          Đã trả khách
+        </button>
+      </div>
+    </article>
+
+    <article
+      class="tdh-passenger"
+      data-passenger data-status="da-don" data-paid="true"
+      data-amount="450000" data-phone="0912345345"
+    >
+      <div class="tdh-passenger-top">
+        <div class="tdh-passenger-id">
+          <span class="tdh-passenger-avatar" aria-hidden="true">C</span>
+          <div>
+            <strong>Lê Thị C</strong>
+            <span class="tdh-passenger-phone">0912 *** 345</span>
+          </div>
+        </div>
+        <div class="tdh-badges">
+          <span class="badge badge--green" data-badge-paid>Đã trả tiền</span>
+          <span class="badge badge--green" data-badge-stage>Đã lên xe</span>
+        </div>
+      </div>
+      <div class="tdh-passenger-meta">
+        <span class="tdh-passenger-fare">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          <strong>450.000đ</strong> · Tiền mặt
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          Đón: Bến xe Giáp Bát
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+          Trả: Bến xe Thái Nguyên
+        </span>
+      </div>
+      <div class="tdh-passenger-actions">
+        <button type="button" class="tdh-copy" data-action="copy">
+          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+          <span data-copy-label>Copy SĐT</span>
+        </button>
+        <button
+          type="button"
+          class="tdh-paid is-done"
+          data-action="paid"
+          aria-pressed="true"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          Đã trả tiền
+        </button>
+        <button
+          type="button"
+          class="tdh-pickup is-done"
+          data-action="pickup"
+          aria-pressed="true"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+          Đã lên xe
+        </button>
+        <button type="button" class="tdh-dropoff" data-action="dropoff">
+          <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+          Đã trả khách
+        </button>
+      </div>
+    </article>
+
+    <article
+      class="tdh-passenger"
+      data-passenger data-status="cho-don" data-paid="true"
+      data-amount="450000" data-phone="0987123123"
+    >
+      <div class="tdh-passenger-top">
+        <div class="tdh-passenger-id">
+          <span class="tdh-passenger-avatar" aria-hidden="true">D</span>
+          <div>
+            <strong>Phạm Văn D</strong>
+            <span class="tdh-passenger-phone">0987 *** 123</span>
+          </div>
+        </div>
+        <div class="tdh-badges">
+          <span class="badge badge--green" data-badge-paid>Đã trả tiền</span>
+          <span class="badge badge--sky" data-badge-stage>Chờ đón</span>
+        </div>
+      </div>
+      <div class="tdh-passenger-meta">
+        <span class="tdh-passenger-fare">
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          <strong>450.000đ</strong> · Tiền mặt
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          Đón: Cầu Giẽ
+        </span>
+        <span>
+          <svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg>
+          Trả: Bến xe Thái Nguyên
+        </span>
+      </div>
+      <div class="tdh-passenger-actions">
+        <button type="button" class="tdh-copy" data-action="copy">
+          <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+          <span data-copy-label>Copy SĐT</span>
+        </button>
+        <button
+          type="button"
+          class="tdh-paid is-done"
+          data-action="paid"
+          aria-pressed="true"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg>
+          Đã trả tiền
+        </button>
+        <button
+          type="button"
+          class="tdh-pickup"
+          data-action="pickup"
+          aria-pressed="false"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+          Đã lên xe
+        </button>
+        <button
+          type="button"
+          class="tdh-dropoff"
+          data-action="dropoff"
+          hidden
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>
+          Đã trả khách
+        </button>
+      </div>
+    </article>
+
+  </div>
+</article>
