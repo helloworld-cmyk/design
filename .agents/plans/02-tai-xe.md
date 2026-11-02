@@ -1,7 +1,10 @@
-# 02 — MÀN HÌNH TÀI XẾ (5 MÀN)
+# 02 — MÀN HÌNH TÀI XẾ (5 MÀN + CỔNG ĐĂNG NHẬP)
 
 > Vai trò: **Tài xế** — người **thực hiện các chuyến được admin phân công**.
 > Shell: **D (Driver app)**.
+>
+> **Trạng thái 2026-11-02:** đã build đủ 5 màn nghiệp vụ + cổng đăng nhập
+> (`tai-xe/screens/dang-nhap` → `tai-xe/index.html`), tổng 6 `screen.json`.
 >
 > **Thay đổi mô hình so với bản cũ:** tài xế **không tự đăng chuyến**, **không
 > tự đăng ký tài khoản**, **không có Online/Offline**, **không nhận chuyến tự
@@ -87,15 +90,18 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
 
 ---
 
-## 3. Danh sách 5 màn
+## 3. Danh sách 5 màn nghiệp vụ
 
-| Mã | Màn hình | Thư mục | Chức năng |
-|----|----------|---------|-----------|
-| D1 | Tổng quan | `tai-xe-tong-quan` | Lịch làm việc, chuyến sắp tới |
-| D3 | Chi tiết chuyến | `tai-xe-chi-tiet-chuyen` | Tuyến, xe, hành khách, báo sự cố |
-| D4 | Thực hiện chuyến | `tai-xe-dieu-hanh` | Bắt đầu, đón/trả khách, hoàn thành |
-| D5 | Xe được giao | `tai-xe-xe` | Thông tin xe, tình trạng xe |
-| D6 | Hồ sơ cá nhân | `tai-xe-ho-so` | Thông tin, giấy phép, tài khoản |
+| Mã | Màn hình | Thư mục | Output | Chức năng | Trạng thái |
+|----|----------|---------|--------|-----------|------------|
+| D1 | Tổng quan | `tai-xe-tong-quan` | `tai-xe/tong-quan.html` | Lịch làm việc tuần, chuyến sắp tới | ✅ |
+| D3 | Chi tiết chuyến | `tai-xe-chi-tiet-chuyen` | `tai-xe/tai-xe-chi-tiet-chuyen.html` | Tuyến, xe, hành khách, báo sự cố | ✅ |
+| D4 | Điều hành chuyến | `tai-xe-dieu-hanh` | `tai-xe/tai-xe-dieu-hanh.html` | Bắt đầu, đón/trả khách, hoàn thành | ✅ |
+| D5 | Xe được giao | `tai-xe-xe` | `tai-xe/tai-xe-xe.html` | Thông tin xe, tình trạng xe | ✅ |
+| D6 | Hồ sơ cá nhân | `tai-xe-ho-so` | `tai-xe/tai-xe-ho-so.html` | Thông tin, giấy phép, tài khoản | ✅ |
+
+**Cổng đăng nhập riêng:** `tai-xe/screens/dang-nhap` → `tai-xe/index.html`
+(không tính vào 5 màn nghiệp vụ).
 
 ---
 
@@ -105,7 +111,7 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
 
 - **Tác dụng:** "buồng lái" hằng ngày — tài xế nắm lịch chạy và việc cần làm.
 - **Nhiệm vụ chính:**
-  - Lời chào + ngày hôm nay.
+  - Lời chào + ngày hôm nay; **lịch chạy theo tuần** (week picker).
   - KPI: **chuyến hôm nay**, **chuyến sắp tới**, **khách hôm nay** (số đơn giản).
   - **Lịch làm việc**: danh sách chuyến sắp tới (giờ, tuyến, xe, số khách) kèm
     **chip trạng thái lệnh** (Chưa nhận / Đã nhận / Có mặt) và **cờ trễ**; nút
@@ -145,7 +151,7 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
 - **Trạng thái:** chưa tới giờ, đã bắt đầu, đã hủy, sự cố đã báo.
 - **Ưu tiên:** P1.
 
-### D4. Thực hiện chuyến — `screens/tai-xe-dieu-hanh/`
+### D4. Điều hành chuyến — `screens/tai-xe-dieu-hanh/`
 
 - **Tác dụng:** công cụ chạy chuyến — cập nhật trạng thái từng hành khách.
 - **Nhiệm vụ chính:**
@@ -178,6 +184,7 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
 - **Thành phần:** `.fleet-card`, `.badge`, `.empty-state`.
 - **Trạng thái:** chưa được gán xe, xe đang bảo trì, giấy tờ sắp hết hạn.
 - **Không có:** thêm/sửa xe, upload giấy tờ, yêu cầu duyệt.
+- **Hiện trạng:** màn chỉ đọc (không có JS riêng), đúng đặc tả.
 - **Ưu tiên:** P2.
 
 ### D6. Hồ sơ cá nhân — `screens/tai-xe-ho-so/`
@@ -190,6 +197,8 @@ Nhánh phụ: Xe được giao (D5), Hồ sơ (D6), Báo sự cố (D3/D4 → A2
 - **Thành phần:** avatar, `.field` (thông tin chỉ đọc), form đổi mật khẩu,
   `.form-status`, `.btn`.
 - **Trạng thái:** lưu thành công, sai mật khẩu, lỗi validate.
+- **Hiện trạng:** đã có thông tin cá nhân, giấy phép và nút đăng xuất;
+  **chưa có form đổi mật khẩu** — cần bổ sung nếu giữ trong đặc tả.
 - **Không có:** ngân hàng, ví, upload giấy tờ, cài đặt thông báo.
 - **Ưu tiên:** P1.
 
@@ -311,3 +320,17 @@ Admin tạo TK tài xế (A3) → bàn giao
 
 > Khu tài xế tái dùng tối đa `.driver-panel` đã có ở trang chủ để giữ nhận diện,
 > nhưng **không** tái dùng khối đăng ký/CTA tài xế.
+
+---
+
+## 10. Hiện trạng triển khai (2026-11-02)
+
+- Đã build `tai-xe/index.html` + 5 màn D1, D3–D6; `node build.js` pass.
+- D1 có lịch chạy tuần (`week-trips`, `week-picker`, `week-schedule`) và nút xác
+  nhận lệnh (`lenh.js`).
+- D3 có khối 4 bậc trạng thái lệnh, nút "Tôi đã nhận lệnh" / "Tôi đã có mặt tại
+  bến", modal báo sự cố và danh sách hành khách.
+- D4 có cập nhật đón/trả, thu tiền mặt và modal hoàn thành chuyến.
+- D5 chỉ đọc; D6 có thông tin + giấy phép + đăng xuất, **chưa có đổi mật khẩu**.
+- Trang đăng nhập tài xế còn mô tả "nhận chuyến / thu nhập" — cần sửa lại cho
+  đúng mô hình admin phân công.

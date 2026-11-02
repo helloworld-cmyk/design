@@ -1,32 +1,40 @@
-# 03 — MÀN HÌNH QUẢN TRỊ VIÊN (8 MÀN)
+# 03 — MÀN HÌNH QUẢN TRỊ VIÊN (8 MÀN + CỔNG ĐĂNG NHẬP)
 
 > Vai trò: **Quản trị viên / điều hành**. Shell: **A (Admin)** — sidebar trái
 > cố định + topbar + breadcrumb.
 >
+> **Trạng thái 2026-11-02:** đã build đủ 8 màn nghiệp vụ + cổng đăng nhập
+> (`admin/screens/dang-nhap` → `admin/index.html`), tổng 9 `screen.json`.
+>
 > Đây là khu **dày dữ liệu**; dùng `.data-table`, `.stat-card`, `.filter-bar`,
 > `.modal`, `.tabs`, `.pagination`, `.empty-state` (xem `00-tong-quan.md` §5).
 >
-> **Admin là người lập kế hoạch vận hành:** tạo chuyến, gán xe, phân công tài
-> xế. Khách đặt vé trên chuyến đã công bố; tài xế thực hiện chuyến; admin theo
-> dõi trạng thái, xử lý hủy vé, theo dõi thu tiền và xem doanh thu.
+> **Admin là người lập kế hoạch vận hành:** tạo chuyến, xem lịch điều phối tài
+> nguyên, gán xe, phân công tài xế. Khách đặt vé trên chuyến đã công bố; tài xế
+> thực hiện chuyến; admin theo dõi trạng thái, xử lý sự cố, hủy vé, theo dõi thu
+> tiền và xem doanh thu.
 >
 > **Đã bỏ:** cấu hình hệ thống, audit log, thông báo broadcast, khuyến mãi, CMS,
-> ticket hỗ trợ, quản lý khiếu nại, ví đối tác/payout, duyệt KYC nhiều bước.
+> ticket hỗ trợ, quản lý khiếu nại, ví đối tác/payout, duyệt KYC nhiều bước,
+> màn điều phối A9, trang sự cố riêng.
 
 ---
 
-## 1. Danh sách 8 màn
+## 1. Danh sách 8 màn nghiệp vụ
 
-| Mã | Màn hình | Thư mục | Chức năng |
-|----|----------|---------|-----------|
-| A1 | Tổng quan | `admin-tong-quan` | Thống kê nhanh, chuyến hôm nay |
-| A2 | Quản lý chuyến | `admin-chuyen` | Tạo, sửa, hủy (chưa bắt đầu), phân công tài xế và xe |
-| A3 | Quản lý tài xế | `admin-tai-xe` | Tạo tài khoản, quản lý thông tin và trạng thái |
-| A4 | Quản lý xe | `admin-xe` | Danh sách xe, sức chứa, tình trạng |
-| A5 | Quản lý tuyến | `admin-tuyen-duong` | Tuyến, điểm dừng và giá vé |
-| A6 | Quản lý đơn đặt | `admin-don-dat` | Xem vé, hủy vé, theo dõi trạng thái thu tiền |
-| A7 | Doanh thu | `admin-doanh-thu` | Doanh thu thực thu và đối soát đơn giản |
-| A8 | Quản lý khách hàng | `admin-khach-hang` | Danh sách và thông tin tài khoản |
+| Mã | Màn hình | Thư mục | Output | Chức năng | Trạng thái |
+|----|----------|---------|--------|-----------|------------|
+| A1 | Tổng quan | `tong-quan` | `admin/tong-quan.html` | Thống kê nhanh, chuyến hôm nay, sự cố | ✅ |
+| A2 | Quản lý chuyến | `admin-chuyen` | `admin/admin-chuyen.html` | Tạo/sửa/hủy, phân công, lịch điều phối, sự cố | ✅ |
+| A3 | Quản lý tài xế | `admin-tai-xe` | `admin/tai-xe.html` | Tạo tài khoản, quản lý thông tin/trạng thái | ✅ |
+| A4 | Quản lý xe | `admin-xe` | `admin/xe.html` | Danh sách xe, sức chứa, tình trạng | ✅ |
+| A5 | Quản lý tuyến | `admin-tuyen-duong` | `admin/tuyen-duong.html` | Tuyến, điểm dừng và giá vé | ✅ |
+| A6 | Quản lý đơn đặt | `admin-don-dat` | `admin/don-dat.html` | Xem vé, hủy vé, theo dõi thu tiền | ✅ |
+| A7 | Doanh thu | `admin-doanh-thu` | `admin/admin-doanh-thu.html` | Doanh thu thực thu và đối soát | ✅ |
+| A8 | Quản lý khách hàng | `admin-khach-hang` | `admin/khach-hang.html` | Danh sách và thông tin tài khoản | ✅ |
+
+**Cổng đăng nhập riêng:** `admin/screens/dang-nhap` → `admin/index.html`
+(không tính vào 8 màn nghiệp vụ).
 
 **Sidebar:**
 
@@ -45,7 +53,7 @@ Quản lý khách hàng
 
 ## 2. Chi tiết từng màn
 
-### A1. Tổng quan — `screens/admin-tong-quan/`
+### A1. Tổng quan — `screens/tong-quan/`
 
 - **Tác dụng:** nắm nhanh tình hình vận hành trong ngày.
 - **Nhiệm vụ chính:**
@@ -310,3 +318,19 @@ quên.
 - Hành động phá hủy (hủy chuyến, hủy vé, khóa tài khoản) đều qua `.modal`
   xác nhận + toast kết quả.
 - Không có màn/phân hệ nào khác ngoài 8 màn trong tài liệu này.
+
+---
+
+## 6. Hiện trạng triển khai (2026-11-02)
+
+- Đã build `admin/index.html` + A1–A8; `node build.js` pass.
+- A2 đã có **chế độ Lịch điều phối** (Bảng | Lịch, Theo tài xế / Theo xe), dải
+  tình trạng rảnh trong modal tạo/sửa, chip trạng thái lệnh + cờ trễ, vòng đời
+  sự cố trong drawer (`chuyen-incident.js`).
+- A1 có hàng đợi sự cố kèm tuổi đời, chip lệnh và cờ trễ.
+- A3–A8 đã có danh sách, bộ lọc, modal tạo/sửa, drawer chi tiết.
+- **Còn lệch đặc tả:** A1 còn KPI "Tài xế đang online"; `monitor.html` còn câu
+  "tự động tạm khoá nhận chuyến"; shell còn chuông `i-bell`; A1 dùng shell
+  partial riêng thay vì `admin/components/admin-shell.html`.
+- **Output không đồng nhất:** A2 và A7 có tiền tố `admin-`, A3–A6/A8 không;
+  thư mục A1 là `tong-quan` (không phải `admin-tong-quan`).

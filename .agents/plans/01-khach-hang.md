@@ -4,6 +4,9 @@
 > Shell: **M** cho trang chủ, **Auth** cho đăng nhập/đăng ký, **U** cho khu đã
 > đăng nhập.
 >
+> **Trạng thái 2026-11-02:** đã build đủ 8 màn (`khach-hang/screens/*` →
+> `khach-hang/*.html`). Các điểm lệch đặc tả còn lại được ghi ngay dưới từng màn.
+>
 > **Mô hình:** admin tạo chuyến và mở bán ghế; khách chọn chuyến có sẵn, chọn
 > ghế/điểm đón rồi đặt vé. Hệ thống **tự xác nhận** đơn hợp lệ — không có bước
 > admin ghép tài xế vào đơn.
@@ -20,16 +23,16 @@
 
 ## 1. Danh sách màn
 
-| Mã | Màn hình | Thư mục | Shell | Chức năng |
-|----|----------|---------|-------|-----------|
-| B1 | Trang chủ | `home` | M | Giới thiệu ngắn + form tìm chuyến |
-| B2 | Đăng nhập | `dang-nhap` | Auth | Xác thực khách hàng |
-| B3 | Đăng ký | `dang-ky` | Auth | Tạo tài khoản khách |
-| B4 | Kết quả tìm chuyến | `ket-qua-tim-chuyen` | U | Danh sách chuyến phù hợp |
-| B5 | Chi tiết chuyến | `chi-tiet-chuyen` | U | Chọn ghế, điểm đón/trả, đặt vé |
-| B6 | Đặt vé thành công | `dat-cho-thanh-cong` | U | Hiển thị thông tin vé |
-| B7 | Chuyến của tôi | `chuyen-cua-toi` | U | Danh sách vé + chi tiết vé + hủy |
-| B8 | Hồ sơ | `ho-so` | U | Quản lý thông tin cá nhân |
+| Mã | Màn hình | Thư mục | Output | Shell | Chức năng |
+|----|----------|---------|--------|-------|-----------|
+| B1 | Trang chủ | `home` | `khach-hang/index.html` | M | Giới thiệu ngắn + form tìm chuyến |
+| B2 | Đăng nhập | `dang-nhap` | `khach-hang/dang-nhap.html` | Auth | Xác thực khách hàng |
+| B3 | Đăng ký | `dang-ky` | `khach-hang/dang-ky.html` | Auth | Tạo tài khoản khách |
+| B4 | Kết quả tìm chuyến | `ket-qua-tim-chuyen` | `khach-hang/ket-qua-tim-chuyen.html` | U | Danh sách chuyến phù hợp |
+| B5 | Chi tiết chuyến | `chi-tiet-chuyen` | `khach-hang/chi-tiet-chuyen.html` | U | Chọn ghế, điểm đón/trả, đặt vé |
+| B6 | Đặt chỗ thành công | `dat-cho-thanh-cong` | `khach-hang/dat-cho-thanh-cong.html` | U | Hiển thị thông tin vé |
+| B7 | Chuyến của tôi | `chuyen-cua-toi` | `khach-hang/chuyen-cua-toi.html` | U | Danh sách vé + hủy vé |
+| B8 | Hồ sơ | `ho-so` | `khach-hang/ho-so.html` | U | Quản lý thông tin cá nhân |
 
 ---
 
@@ -46,8 +49,11 @@
 - **Thành phần:** `site-header`, `.booking-form`, `.route-card`, `.feature-card`,
   `site-footer`.
 - **Trạng thái:** form lỗi validate, đang tìm (loading ngắn).
-- **Đã bỏ:** FAQ, hotline, khối đánh giá/testimonial, khối "Dành cho tài xế"
-  (tài xế không tự đăng ký), banner khuyến mãi.
+- **Hiện trạng:** form đã chuyển sang `ket-qua-tim-chuyen.html`. Tuy nhiên trang
+  vẫn còn `testimonials.html`, `faq.html`, khối "Hỗ trợ 24/7" trong
+  `features.html`, link `#danh-gia`/`#faq` ở header — **cần bỏ** theo phạm vi.
+- **Đã bỏ (đặc tả):** FAQ, hotline, khối đánh giá/testimonial, khối "Dành cho
+  tài xế" (tài xế không tự đăng ký), banner khuyến mãi.
 - **Ưu tiên:** P0.
 
 ### B2. Đăng nhập — `screens/dang-nhap/`
@@ -56,10 +62,11 @@
 - **Nhiệm vụ chính:**
   - Nhập SĐT/email + mật khẩu; ghi nhớ đăng nhập.
   - Liên kết sang đăng ký.
-  - Đăng nhập thành công → quay lại trang trước đó (hoặc B1).
+  - Đăng nhập thành công → quay lại `?next=` (hoặc B1).
 - **Thành phần:** panel form, `.field`, `.btn.is-loading`, `.form-status`.
 - **Trạng thái:** sai thông tin, tài khoản bị khóa, loading.
-- **Không có:** đăng nhập mạng xã hội, quên mật khẩu (không nằm trong 8 màn).
+- **Không có:** đăng nhập mạng xã hội, quên mật khẩu.
+- **Hiện trạng:** đã nối `?next=` và lưu phiên `vvv.auth.user`.
 - **Ưu tiên:** P0.
 
 ### B3. Đăng ký — `screens/dang-ky/`
@@ -96,16 +103,17 @@
   - Sơ đồ ghế: chọn ghế trống; ghế đã đặt bị khóa.
   - Chọn điểm đón/trả trong danh sách cho phép.
   - Nhập tên/SĐT người đi, ghi chú; xem tổng tiền.
-  - Xác nhận đặt vé → B6 (nếu chưa đăng nhập → B2 rồi quay lại).
-- **Thành phần:** panel chuyến, `.timeline`, `.seat-map` (`css/seat-map.css`),
-  `.map` (placeholder điểm đón), `.booking-form`, `.field`, `.badge`, `.btn`.
+  - Xác nhận đặt vé → B6 (nếu chưa đăng nhập → B2 kèm `?next=` rồi quay lại).
+- **Thành phần:** panel chuyến, `.timeline`, `.seat-map`
+  (`css/seat-map.css`), `.booking-form`, `.field`, `.badge`, `.btn`.
 - **Trạng thái:** ghế vừa bị người khác đặt (thông báo + chọn lại), điểm đón
   không hợp lệ, đang giữ ghế, lỗi.
-- **Thanh toán:** hiển thị rõ "Thanh toán tiền mặt cho tài xế khi lên xe".
+- **Hiện trạng:** đã nối đăng nhập `?next=` và chuyển sang B6. Chưa có khối nhắc
+  rõ "Thanh toán tiền mặt cho tài xế khi lên xe" — cần bổ sung.
 - **Đã bỏ:** mã giảm giá, chọn nhiều điểm đón phức tạp, đổi vé.
 - **Ưu tiên:** P0.
 
-### B6. Đặt vé thành công — `screens/dat-cho-thanh-cong/`
+### B6. Đặt chỗ thành công — `screens/dat-cho-thanh-cong/`
 
 - **Tác dụng:** xác nhận đặt vé thành công và cung cấp vé điện tử.
 - **Nhiệm vụ chính:**
@@ -119,27 +127,21 @@
 
 ### B7. Chuyến của tôi — `screens/chuyen-cua-toi/`
 
-- **Tác dụng:** trung tâm quản lý vé — danh sách và chi tiết vé trong cùng màn.
-- **Nhiệm vụ chính:**
+- **Tác dụng:** trung tâm quản lý vé — danh sách và hủy vé trong cùng màn.
+- **Nhiệm vụ chính (đặc tả):**
   - Tab: **Sắp tới · Đang đi · Hoàn thành · Không lên xe · Đã hủy**.
   - Card vé: tuyến, giờ, ghế, trạng thái, giá.
-  - Bấm card → mở **panel/drawer chi tiết vé** (giữ URL dạng
-    `chuyen-cua-toi.html?ve=<ma>`), gồm:
-    - Thông tin chuyến, xe, tài xế, điểm đón, mã vé.
-    - `.timeline` trạng thái: Đã đặt → Đã đón → Hoàn thành; nhánh Không lên xe,
-      Đã hủy.
-    - Trạng thái thanh toán: Chưa thu / Đã thu.
-    - Nút **Gọi tài xế** (chỉ khi chuyến sắp tới/đang đi).
-    - Nút **Hủy vé** → modal xác nhận (không phát sinh hoàn tiền); nút bị khóa
-      khi quá hạn tự hủy hoặc vé đã ở trạng thái cuối.
-  - Hủy thành công → cập nhật trạng thái vé, chuyển sang tab Đã hủy.
+  - Mở **panel/drawer chi tiết vé** (URL dạng `chuyen-cua-toi.html?ve=<ma>`),
+    gồm thông tin chuyến/xe/tài xế/điểm đón/mã vé, timeline trạng thái, thanh
+    toán, nút gọi tài xế, nút hủy vé.
+  - Hủy thành công → cập nhật trạng thái, chuyển sang tab Đã hủy.
   - Vé đã hủy có nút "Đặt lại" → B1/B4.
 - **Thành phần:** `.tabs`, `.ride-card`, `.status-badge`, `.timeline`, `.modal`,
-  `.empty-state`, `.filter-bar` (thời gian).
-- **Trạng thái:** empty từng tab, loading, lỗi; vé bị admin hủy (banner lý do);
-  quá hạn hủy (nút hủy bị khóa + giải thích).
-- **Gộp:** `chuyen-da-dat` trở thành panel chi tiết vé trong màn này.
-- **Bỏ:** `huy-doi-chuyen`, đổi vé, đánh giá, liên hệ hỗ trợ.
+  `.empty-state`.
+- **Hiện trạng:** 4 tab (`Sắp tới`, `Đang đi`, `Đã hoàn thành`, `Đã hủy`); chi
+  tiết vé hiển thị ngay trên card; hủy vé bằng modal; nút "Xem vé" mở B6. Chưa
+  có tab `Không lên xe`, chưa có drawer `?ve=`, chưa có nút gọi tài xế.
+- **Gộp:** `chuyen-da-dat` đã được gộp/loại bỏ; `huy-doi-chuyen` không còn.
 - **Ưu tiên:** P0.
 
 ### B8. Hồ sơ — `screens/ho-so/`
@@ -150,9 +152,10 @@
   - Đổi mật khẩu.
   - Đăng xuất.
   - Lối tắt "Chuyến của tôi" → B7.
-- **Thành phần:** avatar, `.field`, `.form-status`, `.btn`, `.modal` (đổi mật
-  khẩu).
+- **Thành phần:** avatar, `.field`, `.form-status`, `.btn`.
 - **Trạng thái:** lưu thành công, lỗi validate, sai mật khẩu hiện tại.
+- **Hiện trạng:** đã có form thông tin cá nhân và khối "Địa chỉ & đi chung";
+  **chưa có form đổi mật khẩu** (cần bổ sung nếu giữ trong đặc tả).
 - **Đã bỏ:** danh bạ người đi cùng, điểm đón yêu thích, cài đặt thông báo,
   thiết bị đăng nhập, xóa tài khoản, hiển thị đánh giá.
 - **Ưu tiên:** P0.
@@ -168,15 +171,15 @@ flowchart TD
     REG["B3 Đăng ký"]
     KQ["B4 Kết quả tìm chuyến"]
     CT["B5 Chi tiết chuyến<br/>Chọn ghế + điểm đón"]
-    OK["B6 Đặt vé thành công"]
-    MY["B7 Chuyến của tôi<br/>Danh sách + chi tiết vé"]
+    OK["B6 Đặt chỗ thành công"]
+    MY["B7 Chuyến của tôi<br/>Tab trạng thái + hủy vé"]
     HS["B8 Hồ sơ"]
 
     HOME -- "Tìm chuyến" --> KQ
     HOME -- "Đăng nhập" --> LOGIN
     LOGIN -- "Đăng ký" --> REG
     REG -- "Đăng nhập" --> LOGIN
-    LOGIN -- "xong, quay lại" --> KQ
+    LOGIN -- "?next= quay lại" --> KQ
     KQ -- "Chọn chuyến" --> CT
     CT -- "chưa đăng nhập" --> LOGIN
     CT -- "Xác nhận đặt vé" --> OK
@@ -191,15 +194,16 @@ flowchart TD
 
 ```
 Trang chủ → Kết quả tìm chuyến → Chi tiết chuyến (chọn ghế, điểm đón)
-→ Đặt vé thành công → Chuyến của tôi (xem vé)
+→ Đặt chỗ thành công → Chuyến của tôi (xem vé)
 → Đến ngày đi: tài xế đón/trả → vé chuyển Hoàn thành
 ```
 
 **Luồng phụ:**
 
-- Chưa đăng nhập khi xác nhận đặt vé → Đăng nhập/Đăng ký → quay lại chi tiết.
-- Hủy vé → modal trong chi tiết vé → tab Đã hủy.
-- Admin hủy chuyến → vé chuyển Đã hủy, khách thấy lý do trong chi tiết vé.
+- Chưa đăng nhập khi xác nhận đặt vé → Đăng nhập/Đăng ký → quay lại chi tiết
+  nhờ `?next=`.
+- Hủy vé → modal trong card vé → tab Đã hủy.
+- Admin hủy chuyến → vé chuyển Đã hủy, khách thấy lý do.
 
 ---
 

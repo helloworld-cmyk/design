@@ -1,12 +1,13 @@
 # FLOW APP — Vi Vu Việt (phạm vi tinh gọn)
 
 > Luồng hoạt động của app sau khi tinh gọn cho project cá nhân. Cập nhật ngày
-> 2026-10-30, dựa trên source hiện có và phạm vi **21 màn** (8 khách · 5 tài xế ·
-> 8 admin).
+> **2026-11-02**, dựa trên source hiện có: **21 màn nghiệp vụ** (8 khách ·
+> 5 tài xế · 8 admin) + **2 cổng đăng nhập riêng** + **1 trang lỗi** = 24
+> `screen.json`.
 >
 > Nguyên tắc: chỉ giữ nghiệp vụ cốt lõi. Không có trợ giúp/hỗ trợ, ticket,
 > chat, FAQ, tổng đài, thông báo, đánh giá, khuyến mãi, CMS, cấu hình, audit
-> log, ví/payout.
+> log, ví/payout, online/offline, "nhận chuyến".
 
 ---
 
@@ -16,30 +17,18 @@ App gồm **3 web theo vai trò** + tài nguyên chung, cùng một design syste
 
 | Nhóm | Trạng thái | Màn |
 |------|------------|-----|
-| `khach-hang/` | Đã build 10 file | `index`, `dang-nhap`, `dang-ky`, `ho-so`, `ket-qua-tim-chuyen`, `chi-tiet-chuyen`, `dat-cho-thanh-cong`, `chuyen-cua-toi`, `chuyen-da-dat`, `huy-doi-chuyen` |
-| `tai-xe/` | Đang dựng | Dựng 5 màn D1, D3–D6 |
-| `admin/` | Chưa có màn | Dựng 8 màn A1–A8 |
-| `shared/` | Dùng chung | 404/500, header, footer, tokens |
+| `khach-hang/` | ✅ Đã build 8 màn | `index`, `dang-nhap`, `dang-ky`, `ket-qua-tim-chuyen`, `chi-tiet-chuyen`, `dat-cho-thanh-cong`, `chuyen-cua-toi`, `ho-so` |
+| `tai-xe/` | ✅ Đã build 6 màn | Cổng `index` + D1, D3–D6 |
+| `admin/` | ✅ Đã build 9 màn | Cổng `index` + A1–A8 |
+| `shared/` | ✅ Dùng chung | 404, header/footer, tokens, CSS/JS nền |
 
 - Prototype tĩnh: HTML/CSS/JS thuần, build bằng `node build.js` từ
   `screens/<ten>/screen.json`.
 - Không backend; phiên đăng nhập mô phỏng bằng `localStorage`
   (`vvv.auth.user`, `vvv.auth.driver`, `vvv.auth.admin`).
 - **Thanh toán MVP:** tiền mặt cho tài xế khi lên xe.
-
-### Chuyển đổi khách hàng về 8 màn
-
-| Hiện có | Sau tinh gọn |
-|---------|--------------|
-| `index` | B1 Trang chủ — bỏ FAQ/hotline/khối đánh giá/CTA đăng ký tài xế |
-| `dang-nhap`, `dang-ky` | B2, B3 |
-| `ket-qua-tim-chuyen` | B4 |
-| `chi-tiet-chuyen` | B5 |
-| `dat-cho-thanh-cong` | B6 |
-| `chuyen-cua-toi` | B7 — thêm panel chi tiết vé + nút hủy |
-| `chuyen-da-dat` | Gộp vào panel chi tiết vé của B7, bỏ trang riêng |
-| `huy-doi-chuyen` | Bỏ; thay bằng modal Hủy vé trong B7 |
-| `ho-so` | B8 — bỏ cài đặt thông báo/đánh giá |
+- **Đã hoàn tất chuyển đổi:** `chuyen-da-dat` và `huy-doi-chuyen` không còn
+  trong source; chi tiết vé + hủy nằm trong B7.
 
 ---
 
@@ -286,61 +275,65 @@ tiền.
     nhật; không tự đổi trạng thái chuyến.
 11. **Hoàn thành chuyến** chỉ khi mọi vé ở trạng thái cuối, trừ ngoại lệ do admin
     xử lý.
-12. **Phiên đăng nhập** tách khóa theo vai trò; cổng đăng nhập tài xế/admin dùng
-    chung `dang-nhap` (không tính vào 21 màn).
+12. **Phiên đăng nhập** tách khóa theo vai trò; mỗi vai trò có cổng riêng
+    (`khach-hang/dang-nhap.html`, `tai-xe/index.html`, `admin/index.html`).
 
 ---
 
-## 8. Hiện trạng & lỗ hổng cần nối
+## 8. Hiện trạng & lỗ hổng còn lại
 
-### Khách hàng (đã build)
+### Đã nối xong
 
-1. Form tìm chuyến ở trang chủ **chưa** chuyển sang `ket-qua-tim-chuyen.html`;
-   đang chỉ hiện status giả sau 950ms.
-2. Sau khi đặt vé **chưa tự chuyển** sang `dat-cho-thanh-cong.html`; người dùng
-   phải bấm link.
-3. Nút trên card "Chuyến của tôi" **chưa có đích** (Chi tiết, Hủy/đổi, Đặt lại).
-4. Auth luôn về `index.html`, **chưa nhớ trang trước**.
-5. `chuyen-da-dat` và `huy-doi-chuyen` **cần gộp/bỏ** theo phạm vi 8 màn.
-6. Trang chủ còn khối **hỗ trợ/FAQ/đánh giá/CTA tài xế** cần bỏ.
+1. Form tìm chuyến ở trang chủ chuyển sang `ket-qua-tim-chuyen.html`.
+2. Xác nhận đặt vé chuyển sang `dat-cho-thanh-cong.html`; chưa đăng nhập thì
+   sang `dang-nhap.html?next=...` rồi quay lại.
+3. B7 có tab trạng thái, hủy vé bằng modal, nút "Xem vé".
+4. Auth khách/tài xế/admin tôn trọng `?next=` và ghi đúng khóa phiên.
+5. `chuyen-da-dat` và `huy-doi-chuyen` đã bị loại bỏ khỏi source.
+6. `tai-xe/` đã có cổng + D1, D3–D6; `admin/` đã có cổng + A1–A8.
+7. A2 đã có lịch điều phối, dải tài nguyên rảnh, chip lệnh + cờ trễ, vòng đời
+   sự cố; A1 có hàng đợi sự cố kèm tuổi đời.
 
-### Tài xế & admin
+### Còn lệch đặc tả (xem chi tiết `00-tong-quan.md` §8)
 
-7. `tai-xe/` và `admin/` cần hoàn thiện shell D/A và **13 màn**
-   (5 tài xế + 8 admin).
-8. Chưa có dữ liệu chuyến do admin tạo; D1 phụ thuộc A2.
-
-### Quy tắc nghiệp vụ cần chốt (đã ghi trong 01–03)
-
-10. Tách bạch trạng thái chuyến/vé/thanh toán; vé có nhánh `Không lên xe`.
-11. Chặn trùng lịch xe/tài xế, vượt sức chứa, trùng ghế.
-12. Bỏ hoàn tiền; khách tự hủy chỉ trước 12 giờ, sau đó admin xử lý.
-13. Hoàn thành chuyến chỉ khi mọi khách ở trạng thái cuối (trừ ngoại lệ admin).
+8. Trang chủ + header còn FAQ/đánh giá/hỗ trợ 24/7 và link `#danh-gia`/`#faq`.
+9. A1 còn KPI "Tài xế đang online"; `monitor.html` còn "tự động tạm khoá nhận
+   chuyến"; admin shell còn chuông.
+10. B7 chưa có tab `Không lên xe`, chưa có drawer chi tiết vé/`?ve=`, chưa có
+    nút gọi tài xế.
+11. B5 chưa nhắc thanh toán tiền mặt; B8/D6 chưa có đổi mật khẩu.
+12. Output admin không đồng nhất; A1 dùng shell riêng; chỉ có 404, chưa có 500.
+13. Dữ liệu vẫn là mock theo màn, chưa có nguồn dữ liệu chung giữa
+    admin/tài xế/khách (đúng bản chất UI tĩnh).
 
 ### Tài liệu
 
-9. `NAVIGATION.MD` đã cũ; chỉ cập nhật khi người dùng duyệt (file chung).
+14. `NAVIGATION.MD` đã bị xóa; điều hướng nằm trong partial header,
+    `admin-shell.html`, `driver-header.html`.
+15. `AGENTS.MD` snapshot 2026-10-31 còn stale (số màn, trạng thái worktree).
 
 ---
 
-## 9. Kế hoạch nối luồng
+## 9. Kế hoạch dọn tiếp
 
-| # | Việc | Vai trò | Ưu tiên | Ghi chú |
-|---|------|---------|---------|---------|
-| 1 | Nối form trang chủ → `ket-qua-tim-chuyen` | Khách | P0 | §8.1 |
-| 2 | Tự chuyển sang `dat-cho-thanh-cong` sau đặt | Khách | P0 | §8.2 |
-| 3 | Nối card "Chuyến của tôi" + panel chi tiết vé | Khách | P0 | §8.3 |
-| 4 | Auth quay về trang trước | Khách | P1 | §8.4 |
-| 5 | Gộp `chuyen-da-dat` vào B7, bỏ `huy-doi-chuyen` | Khách | P0 | §1 |
-| 6 | Dựng shell D + D1–D4, D6 | Tài xế | P1 | 02 |
-| 7 | Dựng shell A + A3, A4, A5 → A2 → A1, A6 | Admin | P1 | 03 |
-| 8 | Dựng D5 và A7, A8 | TX + Admin | P2 | 02, 03 |
-| 9 | Rà bỏ toàn bộ khối hỗ trợ/FAQ/hotline/chuông | Cả 3 | P0 | 00 §9 |
-| 10 | Đồng bộ `NAVIGATION.MD` | Chung | P2 | file chung, chỉ sửa khi được duyệt |
-| 11 | Chặn trùng lịch xe/tài xế, vượt sức chứa, trùng ghế | Admin + Khách | P0 | §7.4 |
-| 12 | Ánh xạ trạng thái khách→vé, thêm `Không lên xe` | Cả 3 | P0 | §7.3 |
-| 13 | Tài xế ghi `Đã thu` từng vé ở D4; A7 tính doanh thu thực thu | TX + Admin | P0 | §7.7–7.8 |
-| 14 | Chốt quy tắc hủy (12 giờ, chưa bắt đầu); bỏ hoàn tiền | Cả 3 | P0 | 01 §4, 03 §4 |
+| # | Việc | Vai trò | Ưu tiên | Trạng thái |
+|---|------|---------|---------|------------|
+| 1 | Nối form trang chủ → `ket-qua-tim-chuyen` | Khách | P0 | ✅ |
+| 2 | Tự chuyển sang `dat-cho-thanh-cong` sau đặt | Khách | P0 | ✅ |
+| 3 | Nối card B7 + hủy vé bằng modal | Khách | P0 | ✅ |
+| 4 | Auth quay về trang trước | Khách | P1 | ✅ |
+| 5 | Gộp `chuyen-da-dat` vào B7, bỏ `huy-doi-chuyen` | Khách | P0 | ✅ |
+| 6 | Dựng shell D + D1–D4, D6 | Tài xế | P1 | ✅ |
+| 7 | Dựng shell A + A3, A4, A5 → A2 → A1, A6 | Admin | P1 | ✅ |
+| 8 | Dựng D5 và A7, A8 | TX + Admin | P2 | ✅ |
+| 9 | Rà bỏ khối hỗ trợ/FAQ/hotline/chuông/online | Cả 3 | P0 | ⏳ |
+| 10 | Bổ sung 500/bảo trì | Chung | P2 | ⏳ |
+| 11 | Chặn trùng lịch xe/tài xế, vượt sức chứa, trùng ghế | Admin + Khách | P0 | ✅ (A2) |
+| 12 | Ánh xạ trạng thái khách→vé, thêm `Không lên xe` | Cả 3 | P0 | ✅ (D4); B7 còn thiếu tab |
+| 13 | Tài xế ghi `Đã thu` từng vé ở D4; A7 tính doanh thu thực thu | TX + Admin | P0 | ✅ |
+| 14 | Chốt quy tắc hủy (12 giờ, chưa bắt đầu); bỏ hoàn tiền | Cả 3 | P0 | ✅ |
+| 15 | Thống nhất output admin + gom component/shell | Admin | P2 | ⏳ |
+| 16 | Cập nhật `AGENTS.MD` (file chung, cần người dùng duyệt) | Chung | P2 | ⏳ |
 
 > Quy ước khi thêm màn: tạo `screens/<ten>/screen.json`, chạy `node build.js`,
 > không sửa file build tay; tuân `DESIGN_RULES.MD`.

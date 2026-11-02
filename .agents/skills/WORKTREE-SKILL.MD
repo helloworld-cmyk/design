@@ -17,21 +17,29 @@ một cách trơn tru, ít lỗi và không phá vỡ nhánh đích.
 ## Khi nào dùng
 
 - Người dùng yêu cầu "chuyển sang nhánh main rồi merge worktree này vào main".
-- Cần đưa thay đổi trong `.kilo/worktrees/<name>/` về nhánh đích.
+- Cần đưa thay đổi trong worktree Agent Manager (pool
+  `~/.local/share/kilo/worktree-pool/...` hoặc `.kilo/worktrees/<name>/`) về
+  nhánh đích.
 - Cần kiểm tra/xem trước xung đột trước khi hợp nhất.
 - Cần gỡ xung đột khi merge worktree.
 
 ## Mô hình cần nhớ
 
-Mỗi worktree là **một checkout riêng trên branch riêng**, thường nằm ở
-`.kilo/worktrees/<name>/`. Nhánh đích (`main`) thường **đã được checkout ở thư mục
-repo chính** (`REPO_PATH`).
+Mỗi worktree là **một checkout riêng trên branch riêng** (hoặc detached HEAD),
+thường nằm trong pool của Agent Manager:
+`~/.local/share/kilo/worktree-pool/<workspace-id>/<name>/` trên macOS/Linux.
+Một số bản cũ dùng `.kilo/worktrees/<name>/` — luôn xác nhận bằng
+`git worktree list` thay vì đoán đường dẫn. Nhánh đích (`main`) thường **đã được
+checkout ở thư mục repo chính** (`REPO_PATH`).
 
 Hệ quả quan trọng:
 
 - **Không thể `git checkout <nhánh đích>` bên trong worktree** nếu nhánh đó đang được
   checkout ở worktree khác — Git sẽ từ chối. Vì vậy hãy chạy lệnh merge **từ thư mục
   repo chính** bằng `git -C "$REPO_PATH" ...`.
+- Worktree trong pool có thể ở **detached HEAD** — `git branch --show-current`
+  trả về rỗng. Khi đó commit xong thì merge bằng **SHA** (`git rev-parse HEAD`)
+  hoặc tạo nhánh tạm trước khi merge.
 - Thay đổi trong worktree thường **chưa commit** (untracked/modified). Muốn merge thì
   **phải commit trước**.
 - Nhánh worktree có thể đã là **tổ tiên** của nhánh đích (đã merge một phần trước đó);
@@ -41,8 +49,14 @@ Biến tham chiếu dùng trong skill:
 
 ```sh
 WORKTREE_PATH="$(pwd)"                 # thư mục worktree hiện tại
-REPO_PATH="$(git rev-parse --show-toplevel)"   # sẽ trỏ tới worktree; lấy repo chính từ `git worktree list`
-BRANCH="$(git rev-parse --abbrev-ref HEAD)"    # nhánh của worktree (vd silly-single)
+BRANCH="$(git branch --show-current)"  # rỗng nếu detached HEAD
+[ -z "$BRANCH" ] && BRANCH="$(git rev-parse HEAD)"
+
+# Repo chính: lấy worktree đang checkout main từ danh sách
+REPO_PATH="$(git worktree list --porcelain |
+  awk 'BEGIN{RS=""} /branch refs\/heads\/main/{print $2; exit}')"
+[ -z "$REPO_PATH" ] && REPO_PATH="/Users/phong/hust-bai-tap-or-code/design-cnpm/design"
+
 TARGET="main"                          # nhánh đích
 ```
 
@@ -68,6 +82,7 @@ git log --oneline -5 "$TARGET"
 git log --oneline -5 HEAD
 git merge-base "$TARGET" HEAD    # quan hệ tổ tiên giữa hai nhánh
 git merge-base --is-ancestor HEAD "$TARGET" && echo "worktree đã nằm trong $TARGET" || echo "cần merge thật"
+git branch --show-current        # rỗng = detached HEAD (phổ biến trong pool)
 ```
 
 Nếu `git branch -a` cho thấy có nhánh như `+ main`, dấu `+` nghĩa là nhánh đó đang
@@ -75,12 +90,14 @@ Nếu `git branch -a` cho thấy có nhánh như `+ main`, dấu `+` nghĩa là 
 
 - Nếu worktree **chưa commit gì** và mọi thứ đã nằm trong `$TARGET` → không có gì để merge.
 - Nếu có thay đổi chưa commit → sang bước 2.
+- Nếu detached HEAD, ghi lại `git rev-parse HEAD` để dùng làm `$BRANCH` khi merge.
 
 ### Bước 2 — Commit phần chưa lưu trong worktree
 
 ```sh
 git add -A
 git commit -m "<mô tả ngắn gọn phần việc>"
+[ -z "$(git branch --show-current)" ] && BRANCH="$(git rev-parse HEAD)"
 git log --oneline -3
 ```
 
@@ -97,8 +114,12 @@ echo "EXIT=$?"
 ### Bước 4 — Merge vào nhánh đích từ repo chính
 
 ```sh
-git -C "$REPO_PATH" merge --no-ff "$BRANCH" -m "Merge branch '$BRANCH': <mô tả>"
+git -C "$REPO_PATH" merge --no-ff "$BRANCH" -m "Merge '$BRANCH': <mô tả>"
 ```
+
+> Nếu `$BRANCH` là SHA (detached HEAD), câu lệnh vẫn hợp lệ; Git sẽ tạo merge
+> commit trỏ tới SHA đó. Muốn lịch sử đẹp hơn, tạo nhánh tạm trong worktree
+> (`git switch -c merge/<ten>`) rồi merge nhánh đó.
 
 Sau merge nên kiểm tra lại trạng thái repo chính:
 
@@ -151,6 +172,10 @@ merge dở dang.
 
 - **`fatal: '<branch>' is already checked out at ...`** → nhánh đích đang ở worktree
   khác. Không checkout; chuyển sang merge từ `$REPO_PATH` (Bước 4).
+- **`git branch --show-current` rỗng** → worktree detached HEAD (thường gặp trong
+  pool Agent Manager). Commit rồi merge bằng SHA, hoặc tạo nhánh tạm.
+- **Worktree không nằm trong `.kilo/worktrees/`** → kiểm tra `git worktree list`;
+  pool mặc định là `~/.local/share/kilo/worktree-pool/...`.
 - **Merge xong nhưng file mới "biến mất"** → file đó có thể vẫn **untracked** và chưa
   được commit ở Bước 2. Kiểm tra `git status` trong worktree trước khi merge.
 - **Xung đột lặp lại do một file ở worktree có nền cũ hơn `$TARGET`** → merge/rebase

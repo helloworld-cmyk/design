@@ -1,13 +1,20 @@
 # Brainstorm — Điều phối tài nguyên · Phối hợp Admin–Tài xế · Xử lý sự cố
 
 > Nguồn: 3 nhận xét đánh giá hiện trạng (mục 2, 3, 4) — 02/11/2026.
-> Ràng buộc: phạm vi chốt **22 màn + trang lỗi**; UI tĩnh (mock data, không
-> backend/GPS/chat/push); mọi file nguồn ≤ 300 dòng, ≤ 100 ký tự/dòng; tái dùng
-> design system hiện có (`.data-table`, `.filter-bar`, `.tabs`, `.modal`,
-> `.timeline`, `.status-badge`, `.badge`, `.stat-card`, `.empty-state`).
+> Ràng buộc: phạm vi chốt **21 màn nghiệp vụ + 2 cổng đăng nhập + trang lỗi**;
+> UI tĩnh (mock data, không backend/GPS/chat/push); mọi file nguồn ≤ 300 dòng,
+> ≤ 100 ký tự/dòng; tái dùng design system hiện có (`.data-table`, `.filter-bar`,
+> `.tabs`, `.modal`, `.timeline`, `.status-badge`, `.badge`, `.stat-card`,
+> `.empty-state`).
+>
+> **Trạng thái 2026-11-02:** các khuyến nghị **PA2.1 + PA2.2, PA3.2 + PA3.3,
+> PA4.1 + PA4.2 + PA4.3 đã được triển khai** trong `admin-chuyen/` và
+> `tai-xe/.../tai-xe-tong-quan|chi-tiet-chuyen/`. PA2.3, PA2.4, PA3.1, PA3.4,
+> PA4.4, PA4.5 **không triển khai**. File này giữ làm nhật ký quyết định.
+>
 > Quy ước trong file này:
-> - **[GỮ PHẠM VI]** — giữ trong phạm vi hiện tại (không thêm màn);
-> - **[CẦN DUYỆT]** — vượt phạm vi 22 màn, chỉ làm khi người dùng đồng ý.
+> - **[GIỮ PHẠM VI]** — giữ trong phạm vi hiện tại (không thêm màn);
+> - **[CẦN DUYỆT]** — vượt phạm vi, chỉ làm khi người dùng đồng ý.
 
 ---
 
@@ -30,7 +37,7 @@ thử–sai qua validate.
 
 ### 2.3 Phương án
 
-#### PA2.1 — Chế độ xem "Lịch điều phối" trong A2 [GỮ PHẠM VI] ⭐ khuyến nghị
+#### PA2.1 — Chế độ xem "Lịch điều phối" trong A2 [GIỮ PHẠM VI] ⭐ ✅ đã triển khai
 
 - Toolbar A2 thêm bộ chuyển chế độ: **Bảng | Lịch** (tái dùng `.tabs`/
   segmented).
@@ -51,7 +58,7 @@ thử–sai qua validate.
   chung trong `admin-chuyen/js/`); tách `lich-grid.css/js` riêng để giữ ≤ 300
   dòng/file. Không sửa `shared/`.
 
-#### PA2.2 — Dải "tình trạng rảnh" trong modal tạo/sửa chuyến [GỮ PHẠM VI] ⭐ khuyến nghị
+#### PA2.2 — Dải "tình trạng rảnh" trong modal tạo/sửa chuyến [GIỮ PHẠM VI] ⭐ ✅ đã triển khai
 
 - Sau khi chọn **ngày + giờ khởi hành** trong form, phần chọn **xe** và
   **tài xế** hiển thị kèm **mini timeline 24h** cho từng lựa chọn:
@@ -62,19 +69,19 @@ thử–sai qua validate.
   form mà không qua lịch.
 - Tái dùng cùng dữ liệu mock với PA2.1 (một lần dựng, hai nơi dùng).
 
-#### PA2.3 — Dải "tài nguyên hôm nay" ở A1 Tổng quan [GỮ PHẠM VI]
+#### PA2.3 — Dải "tài nguyên hôm nay" ở A1 Tổng quan [GIỮ PHẠM VI] — ⏳ không triển khai
 
 - Thêm 1 hàng `.stat-card`/dải nhỏ: "Tài xế rảnh · Xe rảnh · Trùng lịch tiềm
   ẩn hôm nay" + link sang A2 (chế độ Lịch).
 - Giá trị bổ sung thấp hơn 2 phương án trên — làm **sau**, khi PA2.1 đã ổn.
 
-#### PA2.4 — Màn mới "Điều phối" (A9) [CẦN DUYỆT]
+#### PA2.4 — Màn mới "Điều phối" (A9) [CẦN DUYỆT] — ❌ không làm
 
 - Màn riêng cho lịch tài nguyên: chuyển ngày/tuần, hai chế độ tài xế/xe,
   kéo–thả chuyến sang tài nguyên khác.
 - **Không khuyến nghị ở bước này**: trùng chức năng PA2.1 (nếu PA2.1 nằm trong
-  A2), vượt phạm vi 22 màn, và kéo–thả tốn công lớn với UI tĩnh. Chỉ cân nhắc
-  nếu sau này A2 quá tải và người dùng duyệt thêm màn.
+  A2), vượt phạm vi 21 màn nghiệp vụ, và kéo–thả tốn công lớn với UI tĩnh. Chỉ
+  cân nhắc nếu sau này A2 quá tải và người dùng duyệt thêm màn.
 
 ### 2.4 So sánh
 
@@ -88,7 +95,8 @@ thử–sai qua validate.
 ### 2.5 Khuyến nghị
 
 **PA2.1 + PA2.2** (cùng nguồn dữ liệu, gọn code): lịch tổng thể nằm ngay A2,
-dải rảnh nằm ngay trong form. PA2.3 tùy chọn; PA2.4 để dành.
+dải rảnh nằm ngay trong form. **Đã triển khai.** PA2.3 không triển khai; PA2.4
+loại khỏi phạm vi.
 
 ---
 
@@ -113,7 +121,7 @@ dải rảnh nằm ngay trong form. PA2.3 tùy chọn; PA2.4 để dành.
 
 ### 3.3 Phương án
 
-#### PA3.1 — Chuỗi trạng thái lệnh đầy đủ (4 bước tài xế) [GỮ PHẠM VI]
+#### PA3.1 — Chuỗi trạng thái lệnh đầy đủ (4 bước tài xế) [GIỮ PHẠM VI] — ❌ không chọn
 
 ```
 Đã gửi lệnh → Đã nhận lệnh → Đã chuẩn bị → Đã có mặt
@@ -127,7 +135,7 @@ dải rảnh nằm ngay trong form. PA2.3 tùy chọn; PA2.4 để dành.
 - Ưu điểm: đủ 4 tín hiệu mà đánh giá yêu cầu, timeline drawer A2 đẹp.
 - Nhược điểm: tài xế bấm nhiều lần → dễ lược bỏ bước giữa.
 
-#### PA3.2 — Chuỗi rút gọn 2 bước + suy ra "chuẩn bị" [GỮ PHẠM VI] ⭐ khuyến nghị
+#### PA3.2 — Chuỗi rút gọn 2 bước + suy ra "chuẩn bị" [GIỮ PHẠM VI] ⭐ ✅ đã triển khai
 
 - Tài xế chỉ bấm **2 nút**: **"Xác nhận nhận lệnh"** (D3) và **"Đã có mặt tại
   bến"** (D3, trong ngày chạy, là điều kiện hiện nút Bắt đầu).
@@ -136,7 +144,7 @@ dải rảnh nằm ngay trong form. PA2.3 tùy chọn; PA2.4 để dành.
   phân biệt được 4 mức mà tài xế chỉ bấm 2 lần.
 - Ít ma sát nhất cho tài xế, vẫn đủ thông tin cho admin.
 
-#### PA3.3 — Cờ trễ tự tính (bắt buộc, đi kèm 3.1/3.2) [GỮ PHẠM VI]
+#### PA3.3 — Cờ trễ tự tính (bắt buộc, đi kèm 3.1/3.2) [GIỮ PHẠM VI] — ✅ đã triển khai
 
 - **Trễ khởi hành**: `now > giờ khởi hành` mà chuyến chưa `Đang thực hiện` →
   badge đỏ `Trễ 15'` cạnh trạng thái (UI tĩnh: tính từ mock "giờ hiện tại").
@@ -145,7 +153,7 @@ dải rảnh nằm ngay trong form. PA2.3 tùy chọn; PA2.4 để dành.
 - **Cảnh báo im lặng**: `Sắp tới` + chưa nhận lệnh + còn ≤ 12h → chip vàng
   `Chưa xác nhận` (ngưỡng là hằng số code, đúng tinh thần quy tắc §4.11).
 
-#### PA3.4 — Nới lỏng: chỉ thêm cờ trễ, không thêm thao tác tài xế [GỮ PHẠM VI]
+#### PA3.4 — Nới lỏng: chỉ thêm cờ trễ, không thêm thao tác tài xế [GIỮ PHẠM VI] — ❌ không chọn
 
 - Không có "đã nhận lệnh/có mặt"; trễ vẫn hiển thị.
 - Bị loại nếu muốn trả lời đủ nhận xét 3 — chỉ giữ làm phương án tối thiểu
@@ -201,7 +209,7 @@ mỗi bước, admin kiểm soát được: đang ai xử, xử đến đâu, k�
 
 ### 4.3 Phương án
 
-#### PA4.1 — Modal "Xử lý sự cố" 2 bước + nhật ký [GỮ PHẠM VI] ⭐ khuyến nghị
+#### PA4.1 — Modal "Xử lý sự cố" 2 bước + nhật ký [GIỮ PHẠM VI] ⭐ ✅ đã triển khai
 
 - Thay 4 nút rời bằng khối sự cố có **2 hành động**:
   1. **"Bắt đầu xử lý"** → modal: chọn **người xử lý** (mặc định admin hiện
@@ -215,7 +223,7 @@ mỗi bước, admin kiểm soát được: đang ai xử, xử đến đâu, k�
 - Nút "Tiếp tục chạy" chỉ là 1 kết quả của bước 2 (biện pháp = Tiếp tục),
   không còn là lối tắt không dấu vết.
 
-#### PA4.2 — Nhật ký sự cố dạng timeline trong drawer [GỮ PHẠM VI] ⭐ khuyến nghị
+#### PA4.2 — Nhật ký sự cố dạng timeline trong drawer [GIỮ PHẠM VI] ⭐ ✅ đã triển khai
 
 - Khối cảnh báo mở rộng thành **mini-log** (dùng `.timeline`):
   `Báo lúc 07:58 (Trần Văn Bình, Hỏng xe) → Nhận xử lý 08:05 (Admin) →
@@ -223,7 +231,7 @@ mỗi bước, admin kiểm soát được: đang ai xử, xử đến đâu, k�
 - Mỗi sự cố một entry; sự cố đã đóng thu thành dòng tóm tắt, bấm để mở log.
 - Dữ liệu mẫu: mảng sự cố per chuyến (nhiều sự cố/chuyến được phép).
 
-#### PA4.3 — Hàng đợi sự cố ở A1 có "tuổi đời" [GỮ PHẠM VI]
+#### PA4.3 — Hàng đợi sự cố ở A1 có "tuổi đời" [GIỮ PHẠM VI] — ✅ đã triển khai
 
 - Mục "Sự cố đang mở" ở A1 nâng thành bảng nhỏ: mã chuyến, loại, tài xế,
   **thời gian trôi** (`12 phút trước` — từ mock now), trạng thái
@@ -231,17 +239,17 @@ mỗi bước, admin kiểm soát được: đang ai xử, xử đến đâu, k�
 - Định hướng: sự cố `Mở` quá ngưỡng (vd 15 phút) → chip đỏ "Chưa nhận xử lý".
 - Giúp admin **phát hiện sự cố bị bỏ quên** — mảnh ghép còn thiếu của 4.1.
 
-#### PA4.4 — Mức độ + phân loại nghiêm trọng [GỮ PHẠM VI, tùy chọn]
+#### PA4.4 — Mức độ + phân loại nghiêm trọng [GIỮ PHẠM VI, tùy chọn] — ⏳ không triển khai
 
 - Tài xế chọn thêm **mức độ** (Nhẹ / Nghiêm trọng) khi báo; sắp thứ tự hàng
   đợi A1 theo mức độ + tuổi đời.
 - Chi phí thấp nhưng tăng nhiễu cho tài xế — chỉ làm nếu người dùng muốn.
 
-#### PA4.5 — Trang theo dõi sự cố riêng [CẦN DUYỆT]
+#### PA4.5 — Trang theo dõi sự cố riêng [CẦN DUYỆT] — ❌ không làm
 
 - Màn riêng danh sách + chi tiết toàn bộ sự cố (kể cả đã đóng), lọc theo
-  trạng thái/kỳ. Vượt phạm vi 22 màn — không khuyến nghị; A1 + A2 đã phủ đủ
-  với quy mô dự án.
+  trạng thái/kỳ. Vượt phạm vi 21 màn nghiệp vụ — không khuyến nghị; A1 + A2 đã
+  phủ đủ với quy mô dự án.
 
 ### 4.4 So sánh
 
@@ -255,40 +263,42 @@ mỗi bước, admin kiểm soát được: đang ai xử, xử đến đâu, k�
 ### 4.5 Khuyến nghị
 
 **PA4.1 + PA4.2 + PA4.3**: quy trình 2 bước có bằng chứng, log timeline trong
-drawer, hàng đợi A1 có tuổi đời. PA4.4 tùy chọn; PA4.5 để dành.
+drawer, hàng đợi A1 có tuổi đời. **Đã triển khai.** PA4.4 không triển khai;
+PA4.5 loại khỏi phạm vi.
 
 ---
 
 ## Ảnh hưởng kỹ thuật chung (UI tĩnh)
 
-- **Vị trí code**: tất cả nằm trong `admin/screens/admin-chuyen/` (css/js/
-  partials riêng màn) và `tai-xe/screens/tai-xe-tong-quan|chi-tiet-chuyen/`;
-  không đụng `shared/`, không đụng màn nhóm khác → an toàn với session song
-  song. File mới đều ≤ 300 dòng (tách nhỏ: `lich-grid.css`, `lich-grid.js`,
-  `su-co.css`…).
-- **Nguồn dữ liệu mock**: gom về 1 file js dùng chung trong `admin-chuyen/js/`
-  cho bảng + lịch + drawer + sự cố để các chế độ luôn khớp nhau.
-- **Tài liệu phải cập nhật sau khi chốt**: `03-admin.md` (A2, A1, §4 trạng
-  thái), `02-tai-xe.md` (D1/D3, nguyên tắc "không nút nhận chuyến" → đổi thành
-  "chỉ xác nhận lệnh đã phân công"), `NAVIGATION.MD` nếu thêm bước mới.
+- **Vị trí code thực tế**: `admin/screens/admin-chuyen/` (css/js/partials riêng
+  màn: `chuyen-lich*`, `chuyen-avail*`, `chuyen-lenh*`, `chuyen-suco*`,
+  `chuyen-incident.js`) và `tai-xe/screens/tai-xe-tong-quan|chi-tiet-chuyen/`
+  (`week-*`, `tq-lenh`, `lenh.js`, `incident.js`). Không sửa `shared/`.
+- **Nguồn dữ liệu mock**: `admin-chuyen/js/chuyen-lich-data.js` dùng chung cho
+  bảng + lịch; dữ liệu sự cố nằm trong `dataset` của dòng chuyến.
+- **Tài liệu đã cập nhật**: `03-admin.md` (A2, A1, §4, §6), `02-tai-xe.md`
+  (D1/D3, §10), `flow.md` (§7–§9), `00-tong-quan.md` (§8).
+  `NAVIGATION.MD` đã bị xóa khỏi repo — không còn để cập nhật.
 - **Không có**: GPS/chỉ đường, chat, push notification, auto-hủy khi trễ
-  (trễ chỉ là cờ hiển thị; quyết định vẫn thuộc admin — đúng triết lý hiện
-  tại "admin quyết định, tài xế thực hiện").
+  (trễ chỉ là cờ hiển thị; quyết định vẫn thuộc admin — đúng triết lý "admin
+  quyết định, tài xế thực hiện").
 
 ## Bảng tóm tắt khuyến nghị
 
-| Vấn đề | Chọn | Vì sao |
-|---|---|---|
-| 2 — Điều phối tài nguyên | PA2.1 + PA2.2 (trong A2) | Nhìn tổng thể + đúng lúc xếp chuyến, không thêm màn |
-| 3 — Trạng thái phối hợp | PA3.2 + PA3.3 | Đủ 4 tín hiệu, tài xế chỉ bấm 2 lần, giữ model chuyến |
-| 4 — Quy trình sự cố | PA4.1 + PA4.2 + PA4.3 | Vòng đời Mở→Đang xử lý→Đã xử lý + chống bỏ quên |
+| Vấn đề | Chọn | Trạng thái | Vì sao |
+|---|---|---|---|
+| 2 — Điều phối tài nguyên | PA2.1 + PA2.2 (trong A2) | ✅ Đã triển khai | Nhìn tổng thể + đúng lúc xếp chuyến, không thêm màn |
+| 3 — Trạng thái phối hợp | PA3.2 + PA3.3 | ✅ Đã triển khai | Đủ 4 tín hiệu, tài xế chỉ bấm 2 lần, giữ model chuyến |
+| 4 — Quy trình sự cố | PA4.1 + PA4.2 + PA4.3 | ✅ Đã triển khai | Vòng đời Mở→Đang xử lý→Đã xử lý + chống bỏ quên |
 
-## Câu hỏi mở cần người dùng chốt trước khi lên kế hoạch chi tiết
+## Câu hỏi đã chốt (2026-11-02)
 
-1. Chấp nhận **thêm chế độ xem "Lịch" trong A2** (không phải màn mới)?
-2. Chấp nhận cho tài xế **2 nút xác nhận** (Nhận lệnh ở D3, Có mặt tại bến
-   trước khi Bắt đầu) — tức sửa nguyên tắc hiện tại của 02-tai-xe?
-3. "Đã chuẩn bị" để **tự suy** (khuyến nghị) hay cần tài xế bấm riêng?
-4. Sự cố: có cần **mức độ** (PA4.4) và cho phép **nhiều sự cố/chuyến** không?
-5. Có giữ phương án **A9 Điều phối riêng / trang sự cố riêng** cho tương lai
-   hay loại hẳn khỏi phạm vi?
+1. **Có** thêm chế độ xem "Lịch" trong A2, không thêm màn mới → PA2.1.
+2. **Có** cho tài xế 2 nút xác nhận (Nhận lệnh ở D3, Có mặt tại bến trước khi
+   Bắt đầu) → PA3.2; nguyên tắc "không nút nhận chuyến" được hiểu là **không
+   nhận chuyến tự do**, chỉ xác nhận lệnh đã được phân công.
+3. "Đã chuẩn bị" **tự suy**, tài xế không bấm riêng → PA3.2.
+4. Sự cố: **không** thêm mức độ (PA4.4); dữ liệu mock hiện một sự cố/chuyến,
+   không chặn mở rộng nhiều sự cố về sau.
+5. **Loại hẳn** A9 Điều phối riêng và trang sự cố riêng khỏi phạm vi → PA2.4,
+   PA4.5 không làm.
